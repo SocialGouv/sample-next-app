@@ -1,0 +1,23 @@
+{
+  "name": "sample-next-app",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "next": "^9.1.1",
+    "react": "^16.10.2",
+    "react-dom": "^16.10.2"
+  },
+  "scripts": {
+    "dev": "next",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint src/*"
+  },
+  "devDependencies": {
+    "@socialgouv/eslint-config-react": "^0.10.0",
+    "@socialgouv/eslint-config-recommended": "^0.10.0",
+    "eslint": "^6.5.1",
+    "prettier": "^1.18.2"
+  }
+}
