@@ -8,3 +8,6 @@ A sample Next.js app with :
 - gitlab-ci
 - @SocialGouv linters
 - @SocialGouv bootstrap
+- @SocialGouv polyfill.io
+
+This sample app use Next.js built-in server
