@@ -1,0 +1,19 @@
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: sample-next-app
+  labels:
+    app: sample-next-app
+    branch: sample-next-app
+spec:
+  rules:
+    - host: sample-next-app.incubateur.social.gouv.fr
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: sample-next-app
+              servicePort: ${PORT}
+  tls:
+    - secretName: sample-next-app-crt-secret

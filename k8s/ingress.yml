@@ -1,0 +1,17 @@
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: sample-next-app${HASH_BRANCH_NAME}
+  labels:
+    app: sample-next-app${HASH_BRANCH_NAME}
+    branch: sample-next-app${HASH_BRANCH_NAME}
+spec:
+  rules:
+    - host: ${HASH_BRANCH_INGRESS}sample-next-app.dev.factory.social.gouv.fr
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: sample-next-app${HASH_BRANCH_NAME}
+              servicePort: ${PORT}
