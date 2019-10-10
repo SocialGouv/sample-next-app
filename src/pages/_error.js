@@ -13,7 +13,13 @@ const MyError = ({ hasGetInitialPropsRun, statusCode, err }) => {
     Sentry.captureException(err);
   }
 
-  return <Error statusCode={statusCode} />;
+  return (
+    <div>
+      <div className="alert alert-warning">
+        Une erreur {statusCode} est apparue ¯\_(ツ)_/¯
+      </div>
+    </div>
+  );
 };
 
 MyError.getInitialProps = async ({ res, err, asPath }) => {
