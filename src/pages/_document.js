@@ -13,6 +13,7 @@ class MyDocument extends Document {
         <Head>
           {/* see polyfill.io */}
           <script src="//polyfill.incubateur.social.gouv.fr/v3/polyfill.min.js"></script>
+          <link rel="shortcut icon" href="/favicon.ico" />
           <link
             rel="stylesheet"
             href="//socialgouv.github.io/bootstrap/master/@socialgouv/bootstrap.core/dist/socialgouv-bootstrap.min.css"
