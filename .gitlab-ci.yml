@@ -97,7 +97,7 @@ Register api image:
   variables:
     CONTEXT: .
     DOCKERFILE_PATH: Dockerfile
-    IMAGE_NAME: $CI_REGISTRY_IMAGE/api
+    IMAGE_NAME: $CI_REGISTRY_IMAGE
 
 ###########################################
 ###            DEPLOY TO K8S            ###
@@ -113,7 +113,7 @@ Register api image:
 
 # Dev Environment
 
-Deploy @sample-next-app/api (dev):
+Deploy @sample-next-app (dev):
   <<: *deploy_stage
   extends: .deploy-sample-next-app-k8s-dev
   stage: "Deploy dev"
@@ -127,7 +127,7 @@ Deploy @sample-next-app/api (dev):
   except:
     - master
 
-Deploy @sample-next-app/api (prod):
+Deploy @sample-next-app (prod):
   <<: *deploy_stage
   extends: .deploy-sample-next-app-k8s-prod
   stage: "Deploy prod"

@@ -17,7 +17,7 @@ spec:
         app: sample-next-app${HASH_BRANCH_NAME}
     spec:
       containers:
-        - image: ${CI_REGISTRY_IMAGE}/api:${IMAGE_TAG}
+        - image: ${CI_REGISTRY_IMAGE}:${IMAGE_TAG}
           name: sample-next-app
           ports:
             - containerPort: ${PORT}

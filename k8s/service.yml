@@ -11,4 +11,4 @@ spec:
     app: sample-next-app${HASH_BRANCH_NAME}
   ports:
     - port: ${PORT}
-      name: api
+      name: www
