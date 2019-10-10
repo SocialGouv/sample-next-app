@@ -41,6 +41,10 @@ app.prepare().then(() => {
       if (err) {
         throw err;
       }
+
+      console.log("process.env.SENTRY_DSN", process.env.SENTRY_DSN);
+      console.log("process.env.MATOMO_URL", process.env.MATOMO_URL);
+      console.log("process.env.MATOMO_SITE_ID", process.env.MATOMO_SITE_ID);
       // eslint-disable-next-line no-console
       console.log(`> Ready on http://localhost:${port}`);
     });

@@ -1,8 +1,14 @@
 import React from "react";
 import Link from "next/link";
 
+import { matopush } from "../matomo";
+
 const triggerClientError = () => {
   throw new Error("Client-side error");
+};
+
+const trackEvent = () => {
+  matopush(["trackEvent", "click", "button-test-matomo"]);
 };
 
 const Page = () => (
@@ -25,7 +31,9 @@ const Page = () => (
     </p>
 
     <p>
-      <button className="btn btn-primary">trigger Matomo event</button>
+      <button className="btn btn-primary" onClick={trackEvent}>
+        trigger Matomo event
+      </button>
     </p>
     <p>
       <button className="btn btn-warning" onClick={triggerClientError}>

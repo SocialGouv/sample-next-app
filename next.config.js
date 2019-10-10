@@ -3,7 +3,9 @@ const nextSourceMaps = require("@zeit/next-source-maps");
 
 module.exports = nextSourceMaps({
   env: {
-    SENTRY_DSN: process.env.SENTRY_DSN
+    SENTRY_DSN: process.env.SENTRY_DSN,
+    MATOMO_SITE_ID: process.env.MATOMO_SITE_ID,
+    MATOMO_URL: process.env.MATOMO_URL
   },
   webpack: (config, { isServer, buildId }) => {
     config.plugins.push(

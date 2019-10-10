@@ -1,14 +1,21 @@
 import React from "react";
 import App from "next/app";
 import Head from "next/head";
-
 import * as Sentry from "@sentry/node";
+
+import { initMatomo } from "../matomo";
 
 Sentry.init({
   dsn: process.env.SENTRY_DSN
 });
 
 class MyApp extends App {
+  componentDidMount() {
+    initMatomo({
+      siteId: process.env.MATOMO_SITE_ID,
+      piwikUrl: process.env.MATOMO_URL
+    });
+  }
   render() {
     const { Component, pageProps } = this.props;
 
