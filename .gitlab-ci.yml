@@ -107,8 +107,8 @@ Register api image:
 .deploy_stage: &deploy_stage
   dependencies: []
   variables: &deploy_stage_variables
-    sample-next-app_REGISTRY: $CI_REGISTRY_IMAGE
-    IMAGE_TAG: $CI_COMMIT_SHA
+    #REGISTRY: $CI_REGISTRY_IMAGE
+    #IMAGE_TAG: $CI_COMMIT_SHA
 #
 
 # Dev Environment
