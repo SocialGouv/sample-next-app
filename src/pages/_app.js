@@ -2,6 +2,7 @@ import React from "react";
 import App from "next/app";
 import Head from "next/head";
 import * as Sentry from "@sentry/node";
+import GitHubForkRibbon from "react-github-fork-ribbon";
 
 import { initMatomo } from "../matomo";
 
@@ -28,6 +29,14 @@ class MyApp extends App {
         <Head>
           <title>sample-next-app</title>
         </Head>
+        <GitHubForkRibbon
+          href="//github.com/SocialGouv/sample-next-app"
+          target="_blank"
+          position="right"
+          color="green"
+        >
+          Clone-moi sur GitHub
+        </GitHubForkRibbon>
         <div className="container">
           <div className="jumbotron">
             <h1 className="display-4">Hello, SocialGouv!</h1>

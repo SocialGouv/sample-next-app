@@ -12,6 +12,7 @@
     "next": "^9.1.1",
     "react": "^16.10.2",
     "react-dom": "^16.10.2",
+    "react-github-fork-ribbon": "^0.6.0",
     "sentry-testkit": "^3.0.2"
   },
   "husky": {
