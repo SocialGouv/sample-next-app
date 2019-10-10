@@ -87,7 +87,7 @@ Get Github Id (prod):
     - docker pull $IMAGE_NAME:$CI_COMMIT_BEFORE_SHA || true
   script:
     - echo "Build $IMAGE_NAME:$CI_COMMIT_SHA from $IMAGE_NAME:$CI_COMMIT_BEFORE_SHA"
-    - docker build --build-arg SENTRY_DSN="${SENTRY_DSN} --build-arg SENTRY_TOKEN="${SENTRY_TOKEN}" --build-arg MATOMO_URL="${MATOMO_URL}" --build-arg MATOMO_SITE_ID="${MATOMO_SITE_ID}" --cache-from $IMAGE_NAME:$CI_COMMIT_BEFORE_SHA -t $IMAGE_NAME:$CI_COMMIT_SHA -f $DOCKERFILE_PATH $CONTEXT
+    - docker build --build-arg SENTRY_DSN="${SENTRY_DSN}" --build-arg SENTRY_TOKEN="${SENTRY_TOKEN}" --build-arg MATOMO_URL="${MATOMO_URL}" --build-arg MATOMO_SITE_ID="${MATOMO_SITE_ID}" --cache-from $IMAGE_NAME:$CI_COMMIT_BEFORE_SHA -t $IMAGE_NAME:$CI_COMMIT_SHA -f $DOCKERFILE_PATH $CONTEXT
     - docker push $IMAGE_NAME
 
 #
