@@ -11,6 +11,11 @@ const trackEvent = () => {
   matopush(["trackEvent", "click", "button-test-matomo"]);
 };
 
+const apiCall = () =>
+  fetch("/api/answer/anything")
+    .then(r => r.json())
+    .then(data => alert(data.answer));
+
 const Page = () => (
   <React.Fragment>
     <p>
@@ -24,7 +29,11 @@ const Page = () => (
         <a>Go to unknown page</a>
       </Link>
     </p>
-
+    <p>
+      <button className="btn btn-primary" onClick={apiCall}>
+        trigger api call to /api/answer/anything
+      </button>
+    </p>
     <p>
       <button className="btn btn-primary" onClick={trackEvent}>
         trigger Matomo event
