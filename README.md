@@ -10,11 +10,11 @@ A sample SSR Next.js app with :
 - ✅ @SocialGouv polyfill.io
 - ✅ precommit hooks
 - ✅ docker build
-- ⏳ gitlab-ci
-  - ⏳ quality
-  - ⏳ docker build+push
+- ✅ gitlab-ci
+  - ✅ quality
+  - ✅ docker build+push
   - ⏳ releases + changelog
-  - ⏳ features-branches envs
+  - ✅ features-branches envs
   - ⏳ prod env
 
 ## Production
