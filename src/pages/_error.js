@@ -5,7 +5,7 @@ import sentry from "../sentry";
 
 const { Sentry } = sentry();
 
-const MyError = ({ statusCode, hasGetInitialPropsRun, err }) => {
+const MyError = ({ hasGetInitialPropsRun, statusCode, err }) => {
   if (!hasGetInitialPropsRun && err) {
     // getInitialProps is not called in case of
     // https://github.com/zeit/next.js/issues/8592. As a workaround, we pass

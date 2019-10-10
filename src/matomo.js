@@ -62,4 +62,3 @@ export function initMatomo({
 export function matopush(args) {
   window._paq.push(args);
 }
-

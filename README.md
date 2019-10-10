@@ -1,19 +1,21 @@
 # sample next.js app
 
-A sample Next.js app with :
+A sample SSR Next.js app with :
 
 - [x] sentry
 - [x] matomo
 - [x] docker
-- [ ] gitlab-ci with feature-branch deployments
 - [ ] Jest tests
 - [x] @SocialGouv linters
 - [x] @SocialGouv bootstrap
 - [x] @SocialGouv polyfill.io
-- [ ] precommit hooks
-- [ ] conventionnal changelog
-
-This sample app use Next.js built-in server
+- [x] precommit hooks
+- gitlab-ci
+  - [ ] quality
+  - [ ] docker build+push
+  - [ ] releases + changelog
+  - [ ] features-branches
+  - [ ] prod
 
 ## Production
 

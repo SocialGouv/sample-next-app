@@ -2,5 +2,9 @@
   "extends": [
     "@socialgouv/eslint-config-recommended",
     "@socialgouv/eslint-config-react"
-  ]
+  ],
+  "rules": {
+    "jsx-a11y/anchor-is-valid": "warn",
+    "react/prop-types": "warn"
+  }
 }
