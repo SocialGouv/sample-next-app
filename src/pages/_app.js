@@ -28,7 +28,17 @@ class MyApp extends App {
         <Head>
           <title>sample-next-app</title>
         </Head>
-        <Component {...modifiedPageProps} />
+        <div className="container">
+          <div className="jumbotron">
+            <h1 className="display-4">Hello, SocialGouv!</h1>
+            <p className="lead">Welcome to this Next.js sample project</p>
+          </div>
+          <div className="row">
+            <div className="col">
+              <Component {...modifiedPageProps} />
+            </div>
+          </div>
+        </div>
       </React.Fragment>
     );
   }

@@ -12,12 +12,7 @@ const trackEvent = () => {
 };
 
 const Page = () => (
-  <div className="container">
-    <div className="jumbotron">
-      <h1 className="display-4">Hello, SocialGouv!</h1>
-      <p className="lead">Welcome to this Next.js sample project</p>
-    </div>
-
+  <React.Fragment>
     <p>
       <Link href="/page2">
         <a>Go to page 2</a>
@@ -47,7 +42,7 @@ const Page = () => (
         </button>
       </Link>
     </p>
-  </div>
+  </React.Fragment>
 );
 
 export default Page;
