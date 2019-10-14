@@ -92,7 +92,7 @@ Get Github Id (prod):
 
 #
 
-Register api image:
+Register image:
   <<: *register_stage
   variables:
     CONTEXT: .
