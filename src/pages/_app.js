@@ -2,9 +2,9 @@ import React from "react";
 import App from "next/app";
 import Head from "next/head";
 import * as Sentry from "@sentry/node";
-import Ribbon from "@socialgouv/clone-moi-sur-github";
 
 import { initMatomo } from "../matomo";
+import Nav from "../Nav";
 
 Sentry.init({
   dsn: process.env.SENTRY_DSN
@@ -29,9 +29,9 @@ class MyApp extends App {
         <Head>
           <title>sample-next-app</title>
         </Head>
-        <Ribbon url="//github.com/SocialGouv/sample-next-app" />
+        <Nav />
         <div className="container">
-          <div className="jumbotron">
+          <div className="jumbotron" style={{ marginTop: 40 }}>
             <h1 className="display-4">Hello, SocialGouv!</h1>
             <p className="lead">Welcome to this Next.js sample project</p>
           </div>
