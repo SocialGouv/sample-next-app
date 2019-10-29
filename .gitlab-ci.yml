@@ -12,7 +12,6 @@ variables:
   DEV_ENVIRONMENT_NAME: "dev.factory"
   PROD_ENVIRONMENT_NAME: "incubateur"
   SERVICE_PORT: 4000
-  APP_NAME: sample-next-app
 
 stages:
   - "Code Quality"
@@ -46,6 +45,7 @@ Quality tests:
 
 Register image:
   extends: .base_register_stage
+  stage: "Register"
   variables:
     CONTEXT: .
     DOCKERFILE_PATH: Dockerfile
