@@ -45,7 +45,7 @@ Quality tests:
 ###########################################
 
 Register image:
-  <<: *register_stage
+  <<: *base_register_stage
   variables:
     CONTEXT: .
     DOCKERFILE_PATH: Dockerfile
