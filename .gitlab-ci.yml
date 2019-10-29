@@ -1,6 +1,8 @@
 ---
 include:
   - "/k8s/.deploy-sample-next-app.yml"
+  - "https://raw.githubusercontent.com/SocialGouv/gitlab-ci-yml/master/github-deployments.yml"
+  - "https://raw.githubusercontent.com/SocialGouv/gitlab-ci-yml/master/register-stage.yml"
 
 variables:
   DOCKER_DRIVER: overlay2
@@ -10,6 +12,7 @@ variables:
   DEV_ENVIRONMENT_NAME: "dev.factory"
   PROD_ENVIRONMENT_NAME: "incubateur"
   SERVICE_PORT: 4000
+  APP_NAME: sample-next-app
 
 stages:
   - "Code Quality"
@@ -38,59 +41,8 @@ Quality tests:
     - yarn test
 
 ###########################################
-###               PREPARE               ###
+###       REGISTER DOCKER IMAGES       ###
 ###########################################
-
-#
-.get_github_id_stage: &get_github_id_stage
-  stage: "Prepare"
-  image:
-    name: $CI_REGISTRY/$IMAGE_INFRA_BASE_NAME/docker-kube:latest
-    entrypoint: [""]
-  before_script:
-    - envsubst < k8s/scripts/get-deploy-id.sh > k8s/scripts/get-github-deploy-id.sh
-  script:
-    - sh k8s/scripts/get-github-deploy-id.sh
-  artifacts:
-    paths:
-      - github_deploy_id
-#
-
-Get Github Id (dev):
-  <<: *get_github_id_stage
-  environment:
-    name: $DEV_ENVIRONMENT_NAME
-  only:
-    - branches
-  except:
-    - master
-
-Get Github Id (prod):
-  <<: *get_github_id_stage
-  environment:
-    name: $PROD_ENVIRONMENT_NAME
-  only:
-    - tags
-
-###########################################
-###       REGISTER DOCKER IMAGES        ###
-###########################################
-
-#
-.register_stage: &register_stage
-  stage: "Registration"
-  image: docker:$DOCKER_VERSION
-  services:
-    - docker:$DOCKER_VERSION-dind
-  before_script:
-    - echo "$CI_JOB_TOKEN" | docker login $CI_REGISTRY -u gitlab-ci-token --password-stdin
-    - docker pull $IMAGE_NAME:$CI_COMMIT_BEFORE_SHA || true
-  script:
-    - echo "Build $IMAGE_NAME:$CI_COMMIT_SHA from $IMAGE_NAME:$CI_COMMIT_BEFORE_SHA"
-    - docker build --build-arg SENTRY_DSN="${SENTRY_DSN}" --build-arg SENTRY_TOKEN="${SENTRY_TOKEN}" --build-arg MATOMO_URL="${MATOMO_URL}" --build-arg MATOMO_SITE_ID="${MATOMO_SITE_ID}" --cache-from $IMAGE_NAME:$CI_COMMIT_BEFORE_SHA -t $IMAGE_NAME:$CI_COMMIT_SHA -f $DOCKERFILE_PATH $CONTEXT
-    - docker push $IMAGE_NAME
-
-#
 
 Register image:
   <<: *register_stage
@@ -138,41 +90,3 @@ Deploy @sample-next-app (prod):
     name: $PROD_ENVIRONMENT_NAME
   when: manual
 
-###########################################
-###         SEND URL TO GITHUB          ###
-###########################################
-
-#
-.send_url_to_github_stage: &send_url_to_github_stage
-  image:
-    name: $CI_REGISTRY/$IMAGE_INFRA_BASE_NAME/docker-kube:latest
-    entrypoint: [""]
-  script:
-    - export DEPLOY_ID=$(cat github_deploy_id)
-    - envsubst < k8s/scripts/send-url.sh > k8s/scripts/send-url-to-github.sh
-    - sh k8s/scripts/send-url-to-github.sh $CI_COMMIT_REF_NAME
-#
-
-Send deployment url to Github (dev):
-  <<: *send_url_to_github_stage
-  stage: "Send Url to GitHub (dev)"
-  before_script:
-    - HASH_BRANCH_NAME=$(printf "$CI_COMMIT_REF_NAME" | sha1sum | cut -c1-5)
-    - export HASH_BRANCH_NAME=$HASH_BRANCH_NAME
-    - export URL=http://$HASH_BRANCH_NAME-sample-next-app.${CI_ENVIRONMENT_NAME}.social.gouv.fr/
-  environment:
-    name: $DEV_ENVIRONMENT_NAME
-  only:
-    - branches
-  except:
-    - master
-
-Send deployment url to Github (prod):
-  <<: *send_url_to_github_stage
-  stage: "Send Url to GitHub (prod)"
-  before_script:
-    - export URL=http://sample-next-app.${CI_ENVIRONMENT_NAME}/
-  environment:
-    name: $PROD_ENVIRONMENT_NAME
-  only:
-    - tags
