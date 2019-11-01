@@ -1,7 +1,7 @@
 ---
 include:
   - "/k8s/.deploy-sample-next-app.yml"
-  - "https://raw.githubusercontent.com/SocialGouv/gitlab-ci-yml/master/github-deployments.yml"
+  - "https://raw.githubusercontent.com/SocialGouv/gitlab-ci-yml/master/github-deployments-feature.yml"
   - "https://raw.githubusercontent.com/SocialGouv/gitlab-ci-yml/master/register-stage.yml"
 
 variables:
@@ -18,9 +18,8 @@ stages:
   - "Prepare"
   - "Registration"
   - "Deploy dev"
-  - "Send Url to GitHub (dev)"
+  - "Send Url to GitHub (feature)"
   - "Deploy prod"
-  - "Send Url to GitHub (prod)"
 
 .quality_stage: &quality_stage
   stage: "Code Quality"
