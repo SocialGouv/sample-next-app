@@ -7,6 +7,7 @@ module.exports = nextSourceMaps({
     MATOMO_SITE_ID: process.env.MATOMO_SITE_ID,
     MATOMO_URL: process.env.MATOMO_URL
   },
+  poweredByHeader: false,
   webpack: (config, { isServer, buildId }) => {
     config.plugins.push(
       new webpack.DefinePlugin({
