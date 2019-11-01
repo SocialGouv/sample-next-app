@@ -62,8 +62,7 @@ Register image:
     IMAGE_TAG: $CI_COMMIT_SHA
 #
 
-# Dev Environment
-
+# deploy Dev Environment
 Deploy @sample-next-app (dev):
   <<: *deploy_stage
   extends: .deploy-sample-next-app-k8s-dev
@@ -78,6 +77,7 @@ Deploy @sample-next-app (dev):
   except:
     - master
 
+# deploy Prod Environment
 Deploy @sample-next-app (prod):
   <<: *deploy_stage
   extends: .deploy-sample-next-app-k8s-prod
