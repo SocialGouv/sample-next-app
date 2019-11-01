@@ -36,7 +36,7 @@
     "@commitlint/cli": "^8.2.0",
     "@commitlint/config-conventional": "^8.2.0",
     "@socialgouv/eslint-config-react": "^0.10.2",
-    "@socialgouv/eslint-config-recommended": "^0.10.0",
+    "@socialgouv/eslint-config-recommended": "^0.10.2",
     "eslint": "^6.5.1",
     "husky": "^3.0.9",
     "jest-cli": "^24.9.0",
