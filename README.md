@@ -5,6 +5,7 @@ http://sample-next-app.incubateur.fabrique.social.gouv.Fr
 A sample SSR Next.js app with :
 
 - ✅ sentry
+  - ✅ source maps
   - ⏳ track version + envs
 - ✅ matomo
 - ✅ jest tests
