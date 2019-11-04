@@ -5,6 +5,7 @@ http://sample-next-app.incubateur.fabrique.social.gouv.Fr
 A sample SSR Next.js app with :
 
 - ✅ sentry
+  - ⏳ track version + envs
 - ✅ matomo
 - ✅ jest tests
 - ✅ [@SocialGouv linters](https://github.com/SocialGouv/linters/)
