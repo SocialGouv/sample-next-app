@@ -9,7 +9,7 @@ variables:
   DOCKER_HOST: tcp://localhost:2375
   DOCKER_VERSION: "18.06"
   IMAGE_INFRA_BASE_NAME: "infra/images-docker"
-  DEV_ENVIRONMENT_NAME: "dev.factory"
+  DEV_ENVIRONMENT_NAME: "feature-dev"
   PROD_ENVIRONMENT_NAME: "incubateur"
   SERVICE_PORT: 4000
 
@@ -71,7 +71,7 @@ Deploy @sample-next-app (dev):
     <<: *deploy_stage_variables
     PORT: $SERVICE_PORT
   environment:
-    name: $DEV_ENVIRONMENT_NAME
+    name: feature-dev
   only:
     - branches
   except:
@@ -86,6 +86,6 @@ Deploy @sample-next-app (prod):
     <<: *deploy_stage_variables
     PORT: $SERVICE_PORT
   environment:
-    name: $PROD_ENVIRONMENT_NAME
+    name: prod
   when: manual
 
