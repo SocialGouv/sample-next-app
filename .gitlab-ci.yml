@@ -1,92 +1,162 @@
----
+#
+# Context investigation
+# 
+# - master as prod
+# - features branches env
+#
+
+stages:
+  - Code Quality
+  - Registration
+  - Deploy
+  - Notify Finished Deployment
+
+#
+#
+#
+
 include:
   - "/k8s/.deploy-sample-next-app.yml"
-  - "https://raw.githubusercontent.com/SocialGouv/gitlab-ci-yml/master/github-deployments.yml"
   - "https://raw.githubusercontent.com/SocialGouv/gitlab-ci-yml/master/register-stage.yml"
 
 variables:
-  DOCKER_DRIVER: overlay2
-  DOCKER_HOST: tcp://localhost:2375
-  DOCKER_VERSION: "18.06"
-  IMAGE_INFRA_BASE_NAME: "infra/images-docker"
   DEV_ENVIRONMENT_NAME: "dev.factory"
   PROD_ENVIRONMENT_NAME: "incubateur"
   SERVICE_PORT: 4000
 
-stages:
-  - "Code Quality"
-  - "Prepare"
-  - "Registration"
-  - "Deploy dev"
-  - "Send Url to GitHub (dev)"
-  - "Deploy prod"
-  - "Send Url to GitHub (prod)"
+#
+# 
+#
 
-.quality_stage: &quality_stage
-  stage: "Code Quality"
-  image: node:12-alpine
-  before_script:
-    - yarn --frozen-lockfile
+###########################################
+###       QUALITY                       ###
+###########################################
+
 #
 
 Quality tests:
-  <<: *quality_stage
+  stage: Code Quality
+  image: node:12-alpine
+  before_script:
+    - yarn --frozen-lockfile
   cache:
     key: ${CI_COMMIT_REF_SLUG}
     paths:
-      - node_modules/
+      - node_modules
   script:
     - yarn lint
     - yarn test
+    - yarn build
+
+#
+# 
+#
 
 ###########################################
-###       REGISTER DOCKER IMAGES       ###
+###       REGISTER                      ###
 ###########################################
+
+#
 
 Register image:
   extends: .base_register_stage
-  stage: "Registration"
+  stage: Registration
   variables:
     CONTEXT: .
     DOCKERFILE_PATH: Dockerfile
     IMAGE_NAME: $CI_REGISTRY_IMAGE
+
+#
+# 
+#
 
 ###########################################
 ###            DEPLOY TO K8S            ###
 ###########################################
 
 #
+
 .deploy_stage: &deploy_stage
   dependencies: []
-  variables: &deploy_stage_variables
+  stage: Deploy
+  variables:
     REGISTRY: $CI_REGISTRY_IMAGE
     IMAGE_TAG: $CI_COMMIT_SHA
-#
-
-# Dev Environment
+    PORT: $SERVICE_PORT
 
 Deploy @sample-next-app (dev):
   <<: *deploy_stage
-  extends: .deploy-sample-next-app-k8s-dev
-  stage: "Deploy dev"
-  variables:
-    <<: *deploy_stage_variables
-    PORT: $SERVICE_PORT
-  environment:
-    name: $DEV_ENVIRONMENT_NAME
   only:
     - branches
   except:
     - master
+  extends: .deploy-sample-next-app-k8s-dev
+  environment:
+    name: $DEV_ENVIRONMENT_NAME
 
 Deploy @sample-next-app (prod):
   <<: *deploy_stage
+  only:
+    - master
   extends: .deploy-sample-next-app-k8s-prod
-  stage: "Deploy prod"
-  variables:
-    <<: *deploy_stage_variables
-    PORT: $SERVICE_PORT
   environment:
     name: $PROD_ENVIRONMENT_NAME
-  when: manual
 
+#
+# 
+#
+
+###########################################
+###            Notify                   ###
+###########################################
+
+#
+
+.notify_stage: &notify_stage
+  image: registry.gitlab.factory.social.gouv.fr/socialgouv/docker/git-deploy:0.12.0
+  dependencies: []
+
+.notify_pending_stage: &notify_pending_stage
+  <<: *notify_stage
+  script:
+    #
+    - create-deployment
+    - cat /tmp/deploy_payload.json
+    #
+    - extract-deploy-id
+    - echo "GitHub deployment id '$(cat DEPLOY_ID)'"
+  artifacts:
+    expire_in: 1 hour
+    paths:
+      - DEPLOY_ID
+
+.notify_fail_stage: &notify_fail_stage
+  <<: *notify_stage
+  allow_failure: true
+  when: on_failure
+  script:
+    - update-deployment $(cat DEPLOY_ID) "http://${FRONTEND_HOST}" failure
+
+.notify_success_stage: &notify_success_stage
+  <<: *notify_stage
+  when: on_success
+  script:
+    - update-deployment $(cat DEPLOY_ID) "http://${FRONTEND_HOST}" success
+
+#
+
+Notify Starting Deployment:
+  <<: *notify_pending_stage
+  stage: Deploy
+
+Notify Fail:
+  <<: *notify_fail_stage
+  stage: Notify Finished Deployment
+  dependencies:
+    - Notify Starting Deployment
+
+Notify Success:
+  <<: *notify_success_stage
+  stage: Notify Finished Deployment
+  dependencies:
+    - Notify Starting Deployment
