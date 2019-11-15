@@ -1,7 +1,6 @@
 ---
 include:
   - "/k8s/.deploy-sample-next-app.yml"
-  - "https://raw.githubusercontent.com/SocialGouv/gitlab-ci-yml/master/github-deployments.yml"
   - "https://raw.githubusercontent.com/SocialGouv/gitlab-ci-yml/master/register-stage.yml"
 
 variables:
@@ -18,9 +17,9 @@ stages:
   - "Prepare"
   - "Registration"
   - "Deploy dev"
-  - "Send Url to GitHub (dev)"
+  - "After Deploy dev"
   - "Deploy prod"
-  - "Send Url to GitHub (prod)"
+  - "After Deploy prod"
 
 .quality_stage: &quality_stage
   stage: "Code Quality"
@@ -90,3 +89,75 @@ Deploy @sample-next-app (prod):
     name: $PROD_ENVIRONMENT_NAME
   when: manual
 
+
+###########################################
+###            Notify                   ###
+###########################################
+
+
+.notify_stage: &notify_stage
+  image: registry.gitlab.factory.social.gouv.fr/socialgouv/docker/git-deploy:0.12.0
+  dependencies: []
+
+.notify_pending_stage: &notify_pending_stage
+  <<: *notify_stage
+  script:
+    #
+    - create-deployment
+    - cat /tmp/deploy_payload.json
+    #
+    - extract-deploy-id
+    - echo "GitHub deployment id '$(cat DEPLOY_ID)'"
+  artifacts:
+    expire_in: 1 hour
+    paths:
+      - DEPLOY_ID
+
+.notify_fail_stage: &notify_fail_stage
+  <<: *notify_stage
+  allow_failure: true
+  when: on_failure
+  script:
+    - update-deployment $(cat DEPLOY_ID) "http://${FRONTEND_HOST}" failure
+
+.notify_success_stage: &notify_success_stage
+  <<: *notify_stage
+  when: on_success
+  script:
+    - update-deployment $(cat DEPLOY_ID) "http://${FRONTEND_HOST}" success
+
+#
+
+Notify Starting Deployment (dev):
+  <<: *notify_pending_stage
+  stage: "Deploy dev"
+
+Notify Fail (dev):
+  <<: *notify_fail_stage
+  stage: "After Deploy dev"
+  dependencies:
+    - Notify Starting Deployment (dev)
+
+Notify Success (dev):
+  <<: *notify_success_stage
+  stage: "After Deploy dev"
+  dependencies:
+    - Notify Starting Deployment (dev)
+
+#
+
+Notify Starting Deployment (prod):
+  <<: *notify_pending_stage
+  stage: "Deploy prod"
+
+Notify Fail (prod):
+  <<: *notify_fail_stage
+  stage: "After Deploy prod"
+  dependencies:
+    - Notify Starting Deployment (prod)
+
+Notify Success (prod):
+  <<: *notify_success_stage
+  stage: "After Deploy prod"
+  dependencies:
+    - Notify Starting Deployment (prod)
