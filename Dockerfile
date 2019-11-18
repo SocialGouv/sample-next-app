@@ -38,5 +38,6 @@ COPY --from=build /app/.next/ ./.next
 USER node
 
 ENV NODE_ENV=production
+ENV NEXT_TELEMETRY_DISABLED=1
 
 CMD ["yarn", "start"]
