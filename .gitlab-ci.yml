@@ -25,7 +25,7 @@ include:
 
 .base_docker_helm_image_stage:
   extends: .base_docker_kube_image_stage
-  image: registry.gitlab.factory.social.gouv.fr/socialgouv/docker/helm:0.12.0
+  image: registry.gitlab.factory.social.gouv.fr/socialgouv/docker/helm:0.13.0
 
 #
 
@@ -151,7 +151,7 @@ Create namespace:
     IMAGE_TAG: $CI_COMMIT_SHA
 
 .deploy_node_script: &deploy_node_script
-  image: registry.gitlab.factory.social.gouv.fr/socialgouv/docker/helm:0.12.0
+  image: registry.gitlab.factory.social.gouv.fr/socialgouv/docker/helm:0.13.0
   before_script:
     - *resolve_env_domain
     - helm init --client-only
