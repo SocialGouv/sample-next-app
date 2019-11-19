@@ -12,9 +12,9 @@ deployment:
   port: 8000
 
   livenessProbe:
-    periodSeconds: 15
+    periodSeconds: 20
   readinessProbe:
-    periodSeconds: 15
+    periodSeconds: 20
 
   resources:
     limits:
