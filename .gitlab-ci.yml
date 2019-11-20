@@ -108,6 +108,13 @@ Register image:
 
 Create namespace:
   extends: .base_create_namespace_stage
+  only:
+    refs:
+      - branches
+  except:
+    refs:
+      - tags
+      - master
   before_script:
     - *resolve_env_domain
 
