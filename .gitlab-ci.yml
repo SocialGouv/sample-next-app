@@ -133,6 +133,7 @@ Create namespace:
     VALUES_FILE: ./.k8s/app.values.yml
   before_script:
     - *resolve_env_domain
+    - HOST=${FRONTEND_HOST}
 
 #
 
