@@ -16,7 +16,7 @@ stages:
 #
 
 include:
-  - "https://raw.githubusercontent.com/SocialGouv/gitlab-ci-yml/master/register-stage.yml"
+  - "https://raw.githubusercontent.com/SocialGouv/gitlab-ci-yml/v1.0.0/register-stage.yml"
 
 #
 
