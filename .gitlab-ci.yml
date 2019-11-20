@@ -16,7 +16,8 @@ stages:
 #
 
 include:
-  - "https://raw.githubusercontent.com/SocialGouv/gitlab-ci-yml/v1.0.0/register-stage.yml"
+  - "https://raw.githubusercontent.com/SocialGouv/gitlab-ci-yml/v1.2.1/base_semantic_release_stage.yml"
+  - "https://raw.githubusercontent.com/SocialGouv/gitlab-ci-yml/v1.2.1/register-stage.yml"
 
 #
 
@@ -89,6 +90,10 @@ Quality tests:
 #
 #
 #
+
+Release:
+  extends: .base_semantic_release_stage
+  stage: Registration
 
 ###########################################
 ###       REGISTER                      ###
