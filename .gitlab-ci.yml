@@ -16,17 +16,10 @@ stages:
 #
 
 include:
-  - "https://raw.githubusercontent.com/SocialGouv/gitlab-ci-yml/v1.2.1/base_semantic_release_stage.yml"
-  - "https://raw.githubusercontent.com/SocialGouv/gitlab-ci-yml/v1.2.1/register-stage.yml"
-
-#
-
-.base_docker_kube_image_stage:
-  image: registry.gitlab.factory.social.gouv.fr/socialgouv/docker/kubectl:0.13.0
-
-.base_docker_helm_image_stage:
-  extends: .base_docker_kube_image_stage
-  image: registry.gitlab.factory.social.gouv.fr/socialgouv/docker/helm:0.13.0
+  - "https://raw.githubusercontent.com/SocialGouv/gitlab-ci-yml/v1.2.2/register-stage.yml"
+  - "https://raw.githubusercontent.com/SocialGouv/gitlab-ci-yml/v1.2.2/base_semantic_release_stage.yml"
+  - "https://raw.githubusercontent.com/SocialGouv/gitlab-ci-yml/v1.2.2/base_create_namespace_stage.yml"
+  - "https://raw.githubusercontent.com/SocialGouv/gitlab-ci-yml/v1.2.2/base_docker_kubectl_image_stage.yml"
 
 #
 
@@ -111,32 +104,10 @@ Register image:
 
 #
 
-.create_namespace: &create_namespace
-  extends: .base_docker_kube_image_stage
-  dependencies: []
+Create namespace:
+  extends: .base_create_namespace_stage
   before_script:
     - *resolve_env_domain
-    # Skip the job if the namespace exists
-    - "[[ $(kubectl get namespace ${K8S_NAMESPACE}) ]] && exit ${CI_JOB_SKIP_EXIT_CODE:-0}"
-    # Or (re)create to ensure new quota are applied
-    # - kubectl delete namespaces ${K8S_NAMESPACE} || true
-    #
-    - kubectl create namespace ${K8S_NAMESPACE}
-    - kubectl annotate namespace ${K8S_NAMESPACE} field.cattle.io/projectId=${RANCHER_PROJECT_ID}
-    #
-    # Fake rancher namespace creation
-    - kubectl annotate namespace ${K8S_NAMESPACE} field.cattle.io/containerDefaultResourceLimit='{}'
-    - kubectl annotate namespace ${K8S_NAMESPACE} field.cattle.io/creatorId=gitlab
-    # Link the namespace to a git branch
-    - kubectl annotate namespace ${K8S_NAMESPACE} git/branch=${CI_COMMIT_REF_NAME}
-
-Create namespace:
-  <<: *create_namespace
-  stage: "Registration"
-  environment:
-    name: $DEV_ENVIRONMENT_NAME
-  script:
-    - echo "Namespace "${K8S_NAMESPACE}" created"
 
 #
 #
