@@ -96,7 +96,7 @@ Release:
   extends: .base_semantic_release_stage
   stage: Registration
   variables:
-    SEMANTIC_RELEASE_ARGS: --dry-run
+    SEMANTIC_RELEASE_ARGS: --dry-run --branch ${CI_COMMIT_REF_NAME}
 
 ###########################################
 ###       REGISTER                      ###
