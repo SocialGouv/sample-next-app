@@ -16,10 +16,12 @@ stages:
 #
 
 include:
-  - "https://raw.githubusercontent.com/SocialGouv/gitlab-ci-yml/v1.2.2/register-stage.yml"
-  - "https://raw.githubusercontent.com/SocialGouv/gitlab-ci-yml/v1.2.2/base_semantic_release_stage.yml"
-  - "https://raw.githubusercontent.com/SocialGouv/gitlab-ci-yml/v1.2.2/base_create_namespace_stage.yml"
-  - "https://raw.githubusercontent.com/SocialGouv/gitlab-ci-yml/v1.2.2/base_docker_kubectl_image_stage.yml"
+  - "https://raw.githubusercontent.com/SocialGouv/gitlab-ci-yml/v1.3.1/base_create_namespace_stage.yml"
+  - "https://raw.githubusercontent.com/SocialGouv/gitlab-ci-yml/v1.3.1/base_deploy_nodejs_chart_stage.yml"
+  - "https://raw.githubusercontent.com/SocialGouv/gitlab-ci-yml/v1.3.1/base_docker_helm_image_stage.yml"
+  - "https://raw.githubusercontent.com/SocialGouv/gitlab-ci-yml/v1.3.1/base_docker_kubectl_image_stage.yml"
+  - "https://raw.githubusercontent.com/SocialGouv/gitlab-ci-yml/v1.3.1/base_semantic_release_stage.yml"
+  - "https://raw.githubusercontent.com/SocialGouv/gitlab-ci-yml/v1.3.1/register-stage.yml"
 
 #
 
@@ -119,40 +121,19 @@ Create namespace:
 
 #
 
-.deploy_stage: &deploy_stage
-  dependencies: []
+.deploy_sample-next-app_stage: &deploy_sample-next-app_stage
   stage: Deploy
-  variables: &deploy_stage_variables
+  extends: .base_deploy_nodejs_chart_stage
+  dependencies: []
+  variables:
     REGISTRY: $CI_REGISTRY_IMAGE
     IMAGE_TAG: $CI_COMMIT_SHA
-
-.deploy_node_script: &deploy_node_script
-  image: registry.gitlab.factory.social.gouv.fr/socialgouv/docker/helm:0.13.0
-  before_script:
-    - *resolve_env_domain
-    - helm init --client-only
-    - kubectl config set-context --current --namespace=${K8S_NAMESPACE}
-  script:
-    - curl -L https://github.com/SocialGouv/helm-charts/releases/download/v2.7.0/helm-just-linux-2.7.0.tgz | tar -C $(helm home) -xzv
-    - helm repo add socialgouv https://github.com/SocialGouv/helm-charts/releases/download/v2.7.0
-    - helm just fetch "socialgouv/nodejs#2.7.0"
-    - envsubst < $VALUES_FILE > ./values.yaml
-    - helm just render ${CONTEXT} nodejs
-        --set image.tag=${IMAGE_TAG}
-        --set ingress.annotations."certmanager\.k8s\.io/cluster-issuer"=${LETSENCRYPT_ISSUER}
-        --set ingress.hosts[0].host=${FRONTEND_HOST}
-        --set ingress.tls[0].hosts[0]=${FRONTEND_HOST}
-        --values ./values.yaml
-    - helm just apply ${CONTEXT}
-
-.deploy_sample-next-app_stage: &deploy_sample-next-app_stage
-  <<: *deploy_stage
-  <<: *deploy_node_script
-  variables:
-    <<: *deploy_stage_variables
     PORT: $SERVICE_PORT
     CONTEXT: app
     VALUES_FILE: ./.k8s/app.values.yml
+  before_script:
+    - *resolve_env_domain
+    - HOST=${FRONTEND_HOST}
 
 #
 
