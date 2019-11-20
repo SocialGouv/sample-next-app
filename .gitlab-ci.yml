@@ -126,7 +126,6 @@ Create namespace:
   extends: .base_deploy_nodejs_chart_stage
   dependencies: []
   variables:
-    <<: *deploy_stage_variables
     REGISTRY: $CI_REGISTRY_IMAGE
     IMAGE_TAG: $CI_COMMIT_SHA
     PORT: $SERVICE_PORT
