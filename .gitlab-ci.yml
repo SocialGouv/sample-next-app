@@ -99,7 +99,6 @@ Release:
     SEMANTIC_RELEASE_ARGS:
       --dry-run
       --branch ${CI_COMMIT_REF_NAME}
-      --plugins ['@semantic-release/commit-analyzer', '@semantic-release/release-notes-generator', '@semantic-release/github' ]
 
 ###########################################
 ###       REGISTER                      ###
