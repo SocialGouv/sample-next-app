@@ -15,9 +15,9 @@ A sample SSR Next.js app with :
 - ✅ gitlab-ci
   - ✅ quality
   - ✅ docker build+push
-  - ⏳ releases + changelog
+  - ✅ releases + changelog
   - ✅ features-branches envs
-  - ⏳ prod env
+  - ✅ prod env
 
 ## Production
 
