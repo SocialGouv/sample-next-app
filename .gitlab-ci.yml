@@ -93,7 +93,7 @@ Build:
   script:
     - yarn build
   artifacts:
-    expire_in: 1 hour
+    expire_in: 30 minutes
     paths:
       - .next
 
