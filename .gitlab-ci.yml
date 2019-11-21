@@ -73,7 +73,7 @@ Quality tests:
   image: node:12-alpine
   only:
     refs:
-      - merge_requests
+      - external_pull_requests
     changes:
       - .eslintrc.json
       - .gitlab-ci.yml
@@ -94,7 +94,7 @@ Build:
   image: node:12-alpine
   only:
     refs:
-      - merge_requests
+      - external_pull_requests
     changes:
       - .gitlab-ci.yml
       - Dockerfile
@@ -132,6 +132,8 @@ Register image:
   extends: .base_register_stage
   stage: Registration
   only:
+    refs:
+      - external_pull_requests
     changes:
       - .gitlab-ci.yml
       - Dockerfile
