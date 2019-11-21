@@ -132,8 +132,6 @@ Register image:
   extends: .base_register_stage
   stage: Registration
   only:
-    refs:
-      - merge_requests
     changes:
       - .gitlab-ci.yml
       - Dockerfile
