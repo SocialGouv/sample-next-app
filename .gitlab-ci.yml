@@ -80,7 +80,22 @@ Quality tests:
   script:
     - yarn lint
     - yarn test
+
+Build:
+  stage: Code Quality
+  image: node:12-alpine
+  cache:
+    key: ${CI_COMMIT_REF_SLUG}
+    paths:
+      - node_modules
+  before_script:
+    - yarn --frozen-lockfile
+  script:
     - yarn build
+  artifacts:
+    expire_in: 30 minutes
+    paths:
+      - .next
 
 #
 #
@@ -99,6 +114,10 @@ Release:
 Register image:
   extends: .base_register_stage
   stage: Registration
+  dependencies:
+    - Build
+  needs:
+    - Build
   variables:
     CONTEXT: .
     DOCKERFILE_PATH: Dockerfile

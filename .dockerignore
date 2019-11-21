@@ -2,5 +2,4 @@
 .github
 .k8s
 *.md
-**/.next
 **/node_modules
