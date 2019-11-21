@@ -50,9 +50,11 @@ variables:
     export LETSENCRYPT_ISSUER=letsencrypt-prod
     export K8S_NAMESPACE="${PROJECT}-${BRANCH_HASH}"
     export DOMAIN="${PROJECT}.fabrique.social.gouv.fr"
+    export CERTIFICATE=${PROJECT}-certificate-${BRANCH_HASH}
   else
     export LETSENCRYPT_ISSUER=letsencrypt-staging
     export DOMAIN="${BRANCH_HASH}.${PROJECT}.dev.fabrique.social.gouv.fr"
+    export CERTIFICATE=wildcard-crt
   fi
 
   export FRONTEND_HOST="${DOMAIN}"
@@ -136,6 +138,8 @@ Create namespace:
       - master
   before_script:
     - *resolve_env_domain
+  after_script:
+    - kubectl label namespace ${K8S_NAMESPACE} cert=wildcard
 
 #
 #

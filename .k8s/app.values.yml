@@ -37,4 +37,4 @@ ingress:
   tls:
     - hosts:
         - ${FRONTEND_HOST}
-      secretName: ${PROJECT}-certificate-${BRANCH_HASH}-secret
+      secretName: ${CERTIFICATE}
