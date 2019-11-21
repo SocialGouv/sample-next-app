@@ -131,6 +131,15 @@ Release:
 Register image:
   extends: .base_register_stage
   stage: Registration
+  only:
+    refs:
+      - merge_requests
+    changes:
+      - .gitlab-ci.yml
+      - Dockerfile
+      - next.config.js
+      - package.json
+      - src/**/*
   dependencies:
     - Build
   needs:
@@ -164,6 +173,18 @@ Create namespace:
 
 #
 
+.function_check_docker_image_exists: &function_check_docker_image_exists |
+  docker_image_exists() {
+    local image_full_name="$1"; shift
+    local wait_time="${1:-1}"
+
+    (
+      timeout --preserve-status $wait_time
+        docker 2>&1 pull $image_full_name &
+    ) | grep exists
+  }
+
+
 .deploy_sample-next-app_stage: &deploy_sample-next-app_stage
   stage: Deploy
   extends: .base_deploy_nodejs_chart_stage
@@ -177,6 +198,12 @@ Create namespace:
   before_script:
     - *resolve_env_domain
     - HOST=${FRONTEND_HOST}
+    -
+    - *function_check_docker_image_exists
+    - docker_image_exists $IMAGE_NAME:master && export IMAGE_TAG=master || true
+    - docker_image_exists $IMAGE_NAME:$TAG && export IMAGE_TAG=$TAG || true
+    - docker_image_exists $IMAGE_NAME:$CI_COMMIT_BEFORE_SHA && export IMAGE_TAG=$CI_COMMIT_BEFORE_SHA || true
+    - docker_image_exists $IMAGE_NAME:$CI_COMMIT_SHA && export IMAGE_TAG=$CI_COMMIT_SHA || true
 
 #
 
