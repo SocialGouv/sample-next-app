@@ -71,6 +71,14 @@ variables:
 Quality tests:
   stage: Code Quality
   image: node:12-alpine
+  only:
+    refs:
+      - merge_requests
+    changes:
+      - .eslintrc.json
+      - .gitlab-ci.yml
+      - package.json
+      - src/**/*
   before_script:
     - yarn --frozen-lockfile
   cache:
@@ -84,6 +92,15 @@ Quality tests:
 Build:
   stage: Code Quality
   image: node:12-alpine
+  only:
+    refs:
+      - merge_requests
+    changes:
+      - .gitlab-ci.yml
+      - Dockerfile
+      - next.config.js
+      - package.json
+      - src/**/*
   cache:
     key: ${CI_COMMIT_REF_SLUG}
     paths:
