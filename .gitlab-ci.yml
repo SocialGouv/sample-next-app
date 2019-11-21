@@ -198,7 +198,7 @@ Create namespace:
   before_script:
     - *resolve_env_domain
     - HOST=${FRONTEND_HOST}
-    -
+    #
     - *function_check_docker_image_exists
     - docker_image_exists $IMAGE_NAME:master && export IMAGE_TAG=master || true
     - docker_image_exists $IMAGE_NAME:$TAG && export IMAGE_TAG=$TAG || true
