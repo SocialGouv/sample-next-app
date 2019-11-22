@@ -67,7 +67,7 @@ variables:
 
 #
 
-.Quality tests:
+Quality tests:
   stage: Code Quality
   image: node:12-alpine
   before_script:
@@ -80,7 +80,7 @@ variables:
     - yarn lint
     - yarn test
 
-.Build:
+Build:
   stage: Code Quality
   image: node:12-alpine
   cache:
@@ -110,7 +110,7 @@ Release:
 
 #
 
-.Register image:
+Register image:
   extends: .base_register_stage
   stage: Registration
   dependencies:
@@ -156,7 +156,7 @@ Create namespace:
   dependencies: []
   variables:
     REGISTRY: $CI_REGISTRY_IMAGE
-    IMAGE_TAG: 9a7f240584fdb44737380901067e120c97b2fdd9
+    IMAGE_TAG: $CI_COMMIT_SHA
     PORT: $SERVICE_PORT
     CONTEXT: app
     VALUES_FILE: ./.k8s/app.values.yml
@@ -164,20 +164,6 @@ Create namespace:
     - *resolve_env_domain
     - HOST=${FRONTEND_HOST}
     # - HELM_RENDER_ARGS="--set image.tag=${IMAGE_TAG} --set ingress.hosts[0].host=${HOST} --set ingress.tls[0].hosts[0]=${HOST}"
-  script:
-    - helm init --client-only
-    - kubectl config set-context --current --namespace=${K8S_NAMESPACE}
-    - curl -L https://github.com/SocialGouv/helm-charts/releases/download/v2.7.0/helm-just-linux-2.7.0.tgz | tar -C $(helm home) -xzv
-    - helm repo add socialgouv https://github.com/SocialGouv/helm-charts/releases/download/v2.7.0
-    - helm just fetch "socialgouv/nodejs#2.7.0"
-    - envsubst < "${VALUES_FILE}" > ./values.yaml
-    - helm just render ${CONTEXT} nodejs
-        --set image.tag=${IMAGE_TAG}
-        --set ingress.hosts[0].host=${HOST}
-        --set ingress.tls[0].hosts[0]=${HOST}
-        --values ./values.yaml
-    - helm just apply ${CONTEXT}
-
 
 #
 
