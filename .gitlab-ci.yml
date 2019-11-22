@@ -138,7 +138,7 @@ Create namespace:
       - master
   before_script:
     - *resolve_env_domain
-    - kubectl delete ${K8S_NAMESPACE} || true
+    - kubectl delete namespace ${K8S_NAMESPACE} || true
   after_script:
     - *resolve_env_domain
     - kubectl label namespace ${K8S_NAMESPACE} cert=wildcard
