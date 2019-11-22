@@ -29,8 +29,10 @@ ingress:
     appgw.ingress.kubernetes.io/ssl-redirect: "true"
     kubernetes.io/ingress.class: "azure/application-gateway"
   hosts:
-    - host: ${FRONTEND_HOST}
+    - host: "sample-next-app.dev.fabrique.social.gouv.fr"
       paths:
         - /
   tls:
-    - secretName: wildcard-crt
+    - hosts:
+        - "sample-next-app.dev.fabrique.social.gouv.fr"
+      secretName: wildcard-crt
