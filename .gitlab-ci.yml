@@ -47,14 +47,11 @@ variables:
 
   if [[ "${BRANCH_NAME}" = "master" ]]; then
     export BRANCH_HASH=prod
-    export LETSENCRYPT_ISSUER=letsencrypt-prod
     export K8S_NAMESPACE="${PROJECT}-${BRANCH_HASH}"
     export DOMAIN="${PROJECT}.fabrique.social.gouv.fr"
     export CERTIFICATE=${PROJECT}-certificate-${BRANCH_HASH}
   else
-    export LETSENCRYPT_ISSUER=letsencrypt-staging
-    export DOMAIN="${BRANCH_HASH}.${PROJECT}.dev.fabrique.social.gouv.fr"
-    export CERTIFICATE=wildcard-crt
+    export DOMAIN="${BRANCH_HASH}-${PROJECT}.dev.fabrique.social.gouv.fr"
   fi
 
   export FRONTEND_HOST="${DOMAIN}"
