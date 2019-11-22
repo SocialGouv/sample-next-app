@@ -33,4 +33,4 @@ ingress:
       paths:
         - /
   tls:
-    - secretName: wildcard-cert
+    - secretName: wildcard-crt
