@@ -70,7 +70,7 @@ variables:
 
 #
 
-Quality tests:
+.Quality tests:
   stage: Code Quality
   image: node:12-alpine
   before_script:
@@ -83,7 +83,7 @@ Quality tests:
     - yarn lint
     - yarn test
 
-Build:
+.Build:
   stage: Code Quality
   image: node:12-alpine
   cache:
@@ -113,7 +113,7 @@ Release:
 
 #
 
-Register image:
+.Register image:
   extends: .base_register_stage
   stage: Registration
   dependencies:
@@ -138,6 +138,7 @@ Create namespace:
       - master
   before_script:
     - *resolve_env_domain
+    - kubectl delete ${K8S_NAMESPACE}
   after_script:
     - *resolve_env_domain
     - kubectl label namespace ${K8S_NAMESPACE} cert=wildcard
@@ -158,7 +159,7 @@ Create namespace:
   dependencies: []
   variables:
     REGISTRY: $CI_REGISTRY_IMAGE
-    IMAGE_TAG: $CI_COMMIT_SHA
+    IMAGE_TAG: 9a7f240584fdb44737380901067e120c97b2fdd9
     PORT: $SERVICE_PORT
     CONTEXT: app
     VALUES_FILE: ./.k8s/app.values.yml
