@@ -160,11 +160,13 @@ Create namespace:
     PORT: $SERVICE_PORT
     CONTEXT: app
     VALUES_FILE: ./.k8s/app.values.yml
+    HELM_RENDER_ARGS:
+      --set image.tag=${IMAGE_TAG}
+      --set ingress.hosts[0].host=${HOST}
+      --set ingress.tls[0].hosts[0]=${HOST}
   before_script:
     - *resolve_env_domain
     - HOST=${FRONTEND_HOST}
-    # - HELM_RENDER_ARGS="--set image.tag=${IMAGE_TAG} --set ingress.hosts[0].host=${HOST} --set ingress.tls[0].hosts[0]=${HOST}"
-
 #
 
 Deploy @sample-next-app (dev):
