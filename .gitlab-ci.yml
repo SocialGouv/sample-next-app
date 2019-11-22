@@ -174,7 +174,7 @@ Create namespace:
     - curl -L https://github.com/SocialGouv/helm-charts/releases/download/v2.7.0/helm-just-linux-2.7.0.tgz | tar -C $(helm home) -xzv
     - helm repo add socialgouv https://github.com/SocialGouv/helm-charts/releases/download/v2.7.0
     - helm just fetch "socialgouv/nodejs#2.7.0"
-    - envsubst < ${VALUES_FILE} > ./values.yaml
+    - envsubst < "${VALUES_FILE}" > ./values.yaml
     - helm just render ${CONTEXT} nodejs
         --set image.tag=${IMAGE_TAG}
         --set ingress.hosts[0].host=${HOST}
