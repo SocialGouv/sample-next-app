@@ -139,6 +139,7 @@ Create namespace:
   before_script:
     - *resolve_env_domain
   after_script:
+    - *resolve_env_domain
     - kubectl label namespace ${K8S_NAMESPACE} cert=wildcard
 
 #
