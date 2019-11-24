@@ -16,12 +16,12 @@ stages:
 #
 
 include:
-  - "https://raw.githubusercontent.com/SocialGouv/gitlab-ci-yml/v1.3.1/base_create_namespace_stage.yml"
-  - "https://raw.githubusercontent.com/SocialGouv/gitlab-ci-yml/v1.4.0/base_deploy_nodejs_chart_stage.yml"
-  - "https://raw.githubusercontent.com/SocialGouv/gitlab-ci-yml/v1.3.1/base_docker_helm_image_stage.yml"
-  - "https://raw.githubusercontent.com/SocialGouv/gitlab-ci-yml/v1.3.1/base_docker_kubectl_image_stage.yml"
-  - "https://raw.githubusercontent.com/SocialGouv/gitlab-ci-yml/v1.3.1/base_semantic_release_stage.yml"
-  - "https://raw.githubusercontent.com/SocialGouv/gitlab-ci-yml/v1.3.1/register-stage.yml"
+  - "https://raw.githubusercontent.com/SocialGouv/gitlab-ci-yml/v1.5.0/base_create_namespace_stage.yml"
+  - "https://raw.githubusercontent.com/SocialGouv/gitlab-ci-yml/v1.5.0/base_deploy_nodejs_chart_stage.yml"
+  - "https://raw.githubusercontent.com/SocialGouv/gitlab-ci-yml/v1.5.0/base_docker_helm_image_stage.yml"
+  - "https://raw.githubusercontent.com/SocialGouv/gitlab-ci-yml/v1.5.0/base_docker_kubectl_image_stage.yml"
+  - "https://raw.githubusercontent.com/SocialGouv/gitlab-ci-yml/v1.5.0/base_semantic_release_stage.yml"
+  - "https://raw.githubusercontent.com/SocialGouv/gitlab-ci-yml/v1.5.0/register-stage.yml"
 
 #
 
