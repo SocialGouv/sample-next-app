@@ -16,12 +16,12 @@ stages:
 #
 
 include:
-  - "https://raw.githubusercontent.com/SocialGouv/gitlab-ci-yml/v1.3.1/base_create_namespace_stage.yml"
-  - "https://raw.githubusercontent.com/SocialGouv/gitlab-ci-yml/v1.3.1/base_deploy_nodejs_chart_stage.yml"
-  - "https://raw.githubusercontent.com/SocialGouv/gitlab-ci-yml/v1.3.1/base_docker_helm_image_stage.yml"
-  - "https://raw.githubusercontent.com/SocialGouv/gitlab-ci-yml/v1.3.1/base_docker_kubectl_image_stage.yml"
-  - "https://raw.githubusercontent.com/SocialGouv/gitlab-ci-yml/v1.3.1/base_semantic_release_stage.yml"
-  - "https://raw.githubusercontent.com/SocialGouv/gitlab-ci-yml/v1.3.1/register-stage.yml"
+  - "https://raw.githubusercontent.com/SocialGouv/gitlab-ci-yml/v2.0.0/base_create_namespace_stage.yml"
+  - "https://raw.githubusercontent.com/SocialGouv/gitlab-ci-yml/v2.0.0/base_deploy_nodejs_chart_stage.yml"
+  - "https://raw.githubusercontent.com/SocialGouv/gitlab-ci-yml/v2.0.0/base_docker_helm_image_stage.yml"
+  - "https://raw.githubusercontent.com/SocialGouv/gitlab-ci-yml/v2.0.0/base_docker_kubectl_image_stage.yml"
+  - "https://raw.githubusercontent.com/SocialGouv/gitlab-ci-yml/v2.0.0/base_semantic_release_stage.yml"
+  - "https://raw.githubusercontent.com/SocialGouv/gitlab-ci-yml/v2.0.0/register-stage.yml"
 
 #
 
@@ -47,12 +47,10 @@ variables:
 
   if [[ "${BRANCH_NAME}" = "master" ]]; then
     export BRANCH_HASH=prod
-    export LETSENCRYPT_ISSUER=letsencrypt-prod
     export K8S_NAMESPACE="${PROJECT}-${BRANCH_HASH}"
     export DOMAIN="${PROJECT}.fabrique.social.gouv.fr"
   else
-    export LETSENCRYPT_ISSUER=letsencrypt-staging
-    export DOMAIN="${BRANCH_HASH}.${PROJECT}.dev.fabrique.social.gouv.fr"
+    export DOMAIN="${BRANCH_HASH}-${PROJECT}.dev.fabrique.social.gouv.fr"
   fi
 
   export FRONTEND_HOST="${DOMAIN}"
@@ -136,6 +134,10 @@ Create namespace:
       - master
   before_script:
     - *resolve_env_domain
+    - kubectl delete namespace ${K8S_NAMESPACE} || true
+  after_script:
+    - *resolve_env_domain
+    - kubectl label namespace ${K8S_NAMESPACE} cert=wildcard
 
 #
 #
@@ -160,6 +162,19 @@ Create namespace:
   before_script:
     - *resolve_env_domain
     - HOST=${FRONTEND_HOST}
+    - HELM_RENDER_ARGS="
+        --set image.tag=${IMAGE_TAG}
+        --set ingress.hosts[0].host=${HOST}
+        --set ingress.tls[0].hosts[0]=${HOST}"
+    - |
+      if [[ "${BRANCH_NAME}" = "master" ]]; then
+        HELM_RENDER_ARGS="
+          ${HELM_RENDER_ARGS}
+          --set ingress.annotations."certmanager\.k8s\.io/cluster-issuer"=letsencrypt-prod
+          --set ingress.annotations."kubernetes\.io/tls-acme"=true
+          --set ingress.tls[0].secretName=${PROJECT}-certificate"
+      fi
+    - echo "HELM_RENDER_ARGS=${HELM_RENDER_ARGS}"
 
 #
 
