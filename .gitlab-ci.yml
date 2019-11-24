@@ -166,7 +166,7 @@ Create namespace:
         --set image.tag="${IMAGE_TAG}"
         --set ingress.hosts[0].host="${HOST}"
         --set ingress.tls[0].hosts[0]=${HOST}"
-    - |
+    - >-
       if [[ "${BRANCH_NAME}" = "master" ]]; then
         HELM_RENDER_ARGS="
           ${HELM_RENDER_ARGS}
