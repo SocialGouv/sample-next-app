@@ -167,6 +167,10 @@ Create namespace:
         --set ingress.hosts[0].host=${HOST}
         --set ingress.tls[0].hosts[0]=${HOST}
         ${HELM_RENDER_ARGS}"
+    - |
+      if [[ "${BRANCH_NAME}" = "master" ]]; then
+        HELM_RENDER_ARGS=" ${HELM_RENDER_ARGS}"
+      fi
 
 #
 
