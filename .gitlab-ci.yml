@@ -177,7 +177,7 @@ Create namespace:
       fi
     - echo "HELM_RENDER_ARGS=${HELM_RENDER_ARGS}"
   after_script:
-    - cat .manifest/app/ingress.yaml
+    - cat .manifests/app/ingress.yaml
 #
 
 Deploy @sample-next-app (dev):
