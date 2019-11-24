@@ -167,9 +167,13 @@ Create namespace:
         --set ingress.hosts[0].host=${HOST}
         --set ingress.tls[0].hosts[0]=${HOST}
         ${HELM_RENDER_ARGS}"
-    - if [[ "${BRANCH_NAME}" = "master" ]]; then
-        HELM_RENDER_ARGS="${HELM_RENDER_ARGS}"
-      fi
+    - [[ "${BRANCH_NAME}" = "master" ]] &&
+        HELM_RENDER_ARGS="
+          --set ingress.annotations."certmanager\.k8s\.io/cluster-issuer"=letsencrypt-prod
+          --set ingress.annotations."kubernetes\.io/tls-acme"=true
+          --set ingress.tls[0].secretName=${PROJECT}-certificate
+          ${HELM_RENDER_ARGS}"
+
 
 #
 
