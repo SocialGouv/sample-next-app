@@ -175,9 +175,7 @@ Create namespace:
           --set-string ingress.annotations.kubernetes\.io/tls-acme=true \
           --set ingress.tls[0].secretName=${PROJECT}-certificate"
       fi
-    - echo "HELM_RENDER_ARGS=${HELM_RENDER_ARGS}"
-  after_script:
-    - cat .manifests/app/ingress.yaml
+
 #
 
 Deploy @sample-next-app (dev):
