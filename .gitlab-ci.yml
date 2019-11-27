@@ -16,12 +16,13 @@ stages:
 #
 
 include:
-  - "https://raw.githubusercontent.com/SocialGouv/gitlab-ci-yml/v2.0.0/base_create_namespace_stage.yml"
-  - "https://raw.githubusercontent.com/SocialGouv/gitlab-ci-yml/v2.0.0/base_deploy_nodejs_chart_stage.yml"
-  - "https://raw.githubusercontent.com/SocialGouv/gitlab-ci-yml/v2.0.0/base_docker_helm_image_stage.yml"
-  - "https://raw.githubusercontent.com/SocialGouv/gitlab-ci-yml/v2.0.0/base_docker_kubectl_image_stage.yml"
-  - "https://raw.githubusercontent.com/SocialGouv/gitlab-ci-yml/v2.0.0/base_semantic_release_stage.yml"
-  - "https://raw.githubusercontent.com/SocialGouv/gitlab-ci-yml/v2.0.0/register-stage.yml"
+  - "https://raw.githubusercontent.com/SocialGouv/gitlab-ci-yml/v2.2.0/base_create_namespace_stage.yml"
+  - "https://raw.githubusercontent.com/SocialGouv/gitlab-ci-yml/v2.2.0/base_delete_useless_k8s_ns_stage.yml"
+  - "https://raw.githubusercontent.com/SocialGouv/gitlab-ci-yml/v2.2.0/base_deploy_nodejs_chart_stage.yml"
+  - "https://raw.githubusercontent.com/SocialGouv/gitlab-ci-yml/v2.2.0/base_docker_helm_image_stage.yml"
+  - "https://raw.githubusercontent.com/SocialGouv/gitlab-ci-yml/v2.2.0/base_docker_kubectl_image_stage.yml"
+  - "https://raw.githubusercontent.com/SocialGouv/gitlab-ci-yml/v2.2.0/base_semantic_release_stage.yml"
+  - "https://raw.githubusercontent.com/SocialGouv/gitlab-ci-yml/v2.2.0/register-stage.yml"
 
 #
 
@@ -273,15 +274,4 @@ Notify Success:
 #
 
 Delete useless k8s namespaces:
-  stage: Notify Finished Deployment
-  dependencies: []
-  allow_failure: true
-  image: registry.gitlab.factory.social.gouv.fr/socialgouv/docker/k8s-ns-killer:0.15.0
-  environment: fabrique-dev
-  script:
-    - git remote set-url origin https://github.com/${CI_PROJECT_PATH}.git
-    # - k8s-ns-killer ${PROJECT}-feature
-    # Debug mode
-    - sh -x /bin/k8s-ns-killer ${PROJECT}-feature
-  only:
-    - master
+  extends: .base_delete_useless_k8s_ns_stage
