@@ -206,7 +206,7 @@ Deploy @sample-next-app (prod):
 #
 
 .notify_stage: &notify_stage
-  image: registry.gitlab.factory.social.gouv.fr/socialgouv/docker/git-deploy:0.15.0
+  image: registry.gitlab.factory.social.gouv.fr/socialgouv/docker/git-deploy:0.16.0
   dependencies: []
 
 .notify_pending_stage: &notify_pending_stage
