@@ -6,8 +6,9 @@
 #
 
 include:
-  - "https://raw.githubusercontent.com/SocialGouv/gitlab-ci-yml/boni/autodevops_simple_app.yml"
-
+  - project: SocialGouv/gitlab-ci-yml
+    file: /autodevops_simple_app.yml
+    ref: boni
 
 variables:
   PROJECT: "sample-next-app"
