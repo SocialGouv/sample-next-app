@@ -1,9 +1,14 @@
 #
+# Context investigation
+#
+# - master as prod
+# - features branches env
+#
 
 include:
   - project: SocialGouv/gitlab-ci-yml
     file: /autodevops_simple_app.yml
-    ref: cd57254
+    ref: boni
 
 variables:
   PROJECT: "sample-next-app"
