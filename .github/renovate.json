@@ -1,6 +1,8 @@
 {
   "extends": ["github>SocialGouv/renovate-config", ":automergeAll"],
   "gitlabci": {
-    "endpoint": "gitlab.factory.social.gouv.fr/api/v4"
+    "registryUrls": [
+      "https://gitlab.factory.social.gouv.fr/api/v4/"
+    ]
   }
 }
