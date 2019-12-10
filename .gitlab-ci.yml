@@ -12,9 +12,5 @@ include:
 
 variables:
   PROJECT: "sample-next-app"
-  RANCHER_PROJECT_ID: "c-gsm8d:p-pwpk6"
-  DEV_ENVIRONMENT_NAME: "fabrique-dev"
-  PROD_ENVIRONMENT_NAME: "prod"
   PORT: 4000
   VALUES_FILE: ./.k8s/app.values.yml
-
