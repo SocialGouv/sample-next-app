@@ -1,12 +1,4 @@
 #
-# Context investigation
-#
-# - master as prod
-# - features branches env
-#
-
-
-#
 
 on-pull-requests:
   script: echo 'this should run on pull requests'
