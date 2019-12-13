@@ -1,4 +1,4 @@
-#
+# lol
 
 on-pull-requests:
   script: echo 'this should run on pull requests'
