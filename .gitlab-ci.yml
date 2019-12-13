@@ -5,12 +5,22 @@
 # - features branches env
 #
 
-include:
-  - project: SocialGouv/gitlab-ci-yml
-    file: /autodevops_simple_app.yml
-    ref: v3.1.1
 
-variables:
-  PROJECT: "sample-next-app"
-  PORT: 4000
-  VALUES_FILE: ./.k8s/app.values.yml
+#
+
+on-pull-requests:
+  script: echo 'this should run on pull requests'
+  only:
+    - external_pull_requests
+
+on-pull-requests-no-branches:
+  script: echo 'this should run on pull requests no branches'
+  only:
+    - external_pull_requests
+  except:
+    - branches
+    
+except-pull-requests:
+  script: echo 'this should not run on pull requests'
+  except:
+    - external_pull_requests
