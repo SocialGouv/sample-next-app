@@ -2115,7 +2115,7 @@ bn.js@^4.0.0, bn.js@^4.1.0, bn.js@^4.1.1, bn.js@^4.4.0:
   resolved "https://registry.yarnpkg.com/bn.js/-/bn.js-4.11.8.tgz#2cde09eb5ee341f484746bb0309b3253b1b1442f"
   integrity sha512-ItfYfPLkWHUjckQCk8xC+LwxgK8NYcXywGigJgSwOP8Y2iyWT4f2vsZnoOXTTbo+o5yXmIUJ4gn5538SO5S3gA==
 
-body-parser@1.19.0:
+body-parser@1.19.0, body-parser@^1.19.0:
   version "1.19.0"
   resolved "https://registry.yarnpkg.com/body-parser/-/body-parser-1.19.0.tgz#96b2709e57c9c4e09a6fd66a8fd979844f69f08a"
   integrity sha512-dhEPs72UPbDnAQJ9ZKMNTP6ptJaionhP5cBb541nXPlW60Jepo9RV/a4fX4XWW9CuFNK22krhrj1+rgzifNCsw==
@@ -7694,10 +7694,13 @@ send@0.17.1:
     range-parser "~1.2.1"
     statuses "~1.5.0"
 
-sentry-testkit@^3.0.2:
-  version "3.0.2"
-  resolved "https://registry.yarnpkg.com/sentry-testkit/-/sentry-testkit-3.0.2.tgz#cfed7537b574ee1c2e741d916ac1e37a0f8727f9"
-  integrity sha512-t0UgrVaGrhJi0v61nn7vma2VmmwGhRYFFaD+HBTnw+QZY5QLrYwdHTSwBgezx6BULmx0WgkEPklWM2BAbEcYVA==
+sentry-testkit@^3.1.0:
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/sentry-testkit/-/sentry-testkit-3.1.0.tgz#d0f44580b68426233d99a5466227d4241579e569"
+  integrity sha512-lPVjlqc5DqQFUDXx77uFsLDYXgsvRo6EEFmGrdE3mg5/FmohZS4aUgahrkJYc3vVvIL2kcL05SEJ+np5s2w5Tw==
+  dependencies:
+    body-parser "^1.19.0"
+    express "^4.17.1"
 
 serialize-javascript@^1.7.0:
   version "1.9.1"
