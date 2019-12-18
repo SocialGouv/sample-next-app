@@ -7694,10 +7694,10 @@ send@0.17.1:
     range-parser "~1.2.1"
     statuses "~1.5.0"
 
-sentry-testkit@^3.1.0:
-  version "3.1.0"
-  resolved "https://registry.yarnpkg.com/sentry-testkit/-/sentry-testkit-3.1.0.tgz#d0f44580b68426233d99a5466227d4241579e569"
-  integrity sha512-lPVjlqc5DqQFUDXx77uFsLDYXgsvRo6EEFmGrdE3mg5/FmohZS4aUgahrkJYc3vVvIL2kcL05SEJ+np5s2w5Tw==
+sentry-testkit@^3.2.0:
+  version "3.2.0"
+  resolved "https://registry.yarnpkg.com/sentry-testkit/-/sentry-testkit-3.2.0.tgz#79156763f4f512e8df2551a38fcbc4df3438c4ea"
+  integrity sha512-xR83d6q9FwcrZm6Q7UUOYlKWjLpIzC3BcD0inhNht2GsYcRaRFI3GJV6rv4eYwmPmgvDKztD5QQcR4DkdNe2ZA==
   dependencies:
     body-parser "^1.19.0"
     express "^4.17.1"
