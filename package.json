@@ -9,7 +9,7 @@
     "@sentry/node": "^5.10.2",
     "@zeit/next-source-maps": "^0.0.3",
     "express": "^4.17.1",
-    "next": "^9.1.5",
+    "next": "^9.1.6",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "sentry-testkit": "^3.2.0"
@@ -37,7 +37,7 @@
     "@commitlint/config-conventional": "^8.2.0",
     "@socialgouv/eslint-config-react": "^0.11.1",
     "@socialgouv/eslint-config-recommended": "^0.11.1",
-    "eslint": "^6.7.2",
+    "eslint": "^6.8.0",
     "husky": "^3.1.0",
     "jest-cli": "^24.9.0",
     "prettier": "^1.19.1"
