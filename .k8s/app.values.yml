@@ -2,7 +2,16 @@ image:
   repository: registry.gitlab.factory.social.gouv.fr/socialgouv/sample-next-app
   tag: master
 
+labels:
+  app.kubernetes.io/part-of: sample-next-app
+  owner: sample-next-app
+  team: sample-next-app
+  
 deployment:
+
+  annotations:
+    app.gitlab.com/app: ${CI_PROJECT_PATH_SLUG}
+    app.gitlab.com/env: ${CI_ENVIRONMENT_SLUG}
 
   port: 8000
 
