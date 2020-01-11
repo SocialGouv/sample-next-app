@@ -19,6 +19,7 @@ module.exports = (release = process.env.SENTRY_RELEASE) => {
 
     // Don't actually send the errors to Sentry
     sentryOptions.transport = sentryTransport;
+    sentryOptions.beforeSend = () => null;
 
     // Instead, dump the errors to the console
     sentryOptions.integrations = [
