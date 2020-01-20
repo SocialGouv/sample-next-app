@@ -1,5 +1,7 @@
 const webpack = require("webpack");
-const nextSourceMaps = require("@zeit/next-source-maps");
+const nextSourceMaps = require('@zeit/next-source-maps')({
+  devtool: 'hidden-source-map'
+});
 
 module.exports = nextSourceMaps({
   env: {
