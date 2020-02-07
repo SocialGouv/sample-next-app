@@ -40,7 +40,9 @@ ingress:
   hosts:
     - host: "sample-next-app.dev.fabrique.social.gouv.fr"
       paths:
-        - /
+        - path: /
+          servicePort: "80"
+
   tls:
     - hosts:
         - "sample-next-app.dev.fabrique.social.gouv.fr"
