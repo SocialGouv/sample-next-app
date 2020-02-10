@@ -8,7 +8,7 @@
 include:
   - project: SocialGouv/gitlab-ci-yml
     file: /autodevops_simple_app.yml
-    ref: v4.5.4
+    ref: v7.0.0
 
 variables:
   PROJECT: "sample-next-app"
