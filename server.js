@@ -1,3 +1,4 @@
+require("dotenv").config();
 const next = require("next");
 const express = require("express");
 const port = parseInt(process.env.PORT, 10) || 3030;
