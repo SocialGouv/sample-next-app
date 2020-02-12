@@ -1327,23 +1327,23 @@
   dependencies:
     type-detect "4.0.8"
 
-"@socialgouv/eslint-config-react@^0.15.0":
-  version "0.15.0"
-  resolved "https://registry.yarnpkg.com/@socialgouv/eslint-config-react/-/eslint-config-react-0.15.0.tgz#d3ccfbcb384c16acc6fb03bfbe196167a0fe35c7"
-  integrity sha512-r9ZprZ/usBP8nyFLFZScpeaxDme3Ikpw/dO7JhrKSuOYnJQvEmtOG6G18QaKci/Zhdpka+0Y2hwy+f4xGxTwdw==
+"@socialgouv/eslint-config-react@^0.16.0":
+  version "0.16.0"
+  resolved "https://registry.yarnpkg.com/@socialgouv/eslint-config-react/-/eslint-config-react-0.16.0.tgz#219eb0502936f71e98b1ecfd7239b021a36cacf3"
+  integrity sha512-Yp8DeigubjuuHSPTMRU1xsCxWYtAnoky3ihTq0CshAfne+Ssf6gXIigibmiHvjBl426vBQcNU7yT+/wui7JL8w==
   dependencies:
-    "@socialgouv/eslint-config-recommended" "^0.15.0"
+    "@socialgouv/eslint-config-recommended" "^0.16.0"
     babel-eslint "^10.0.3"
     eslint-plugin-jsx-a11y "~6.2.3"
     eslint-plugin-react "~7.18.0"
     eslint-plugin-react-hooks "~2.3.0"
 
-"@socialgouv/eslint-config-recommended@^0.15.0":
-  version "0.15.0"
-  resolved "https://registry.yarnpkg.com/@socialgouv/eslint-config-recommended/-/eslint-config-recommended-0.15.0.tgz#793ccfcee8d02e6e5ad01638cf9ad102289c3a4d"
-  integrity sha512-YUxvO3D1YqVi9QZ2UIiP9wbhautfhZZFazqen5pv/9qoKw+5vwVQWbCrESoU+cJ5CtIwTf1jIsxaE/JNXVg3+Q==
+"@socialgouv/eslint-config-recommended@^0.16.0":
+  version "0.16.0"
+  resolved "https://registry.yarnpkg.com/@socialgouv/eslint-config-recommended/-/eslint-config-recommended-0.16.0.tgz#12009fce089a85ecba9b13ffed540a3f6714f793"
+  integrity sha512-miNkLTmYYT0lVHTn3sUMH6t9N4H6rEKBAUMhSgi6ZeWL0HYBsvZlMDSlATeTcmD7HvJJ5F/LuF5uWOTtR+1cAQ==
   dependencies:
-    eslint-config-prettier "~6.9.0"
+    eslint-config-prettier "~6.10.0"
     eslint-plugin-import "~2.20.0"
     eslint-plugin-jest "~23.6.0"
     eslint-plugin-prettier "~3.1.2"
@@ -3542,10 +3542,10 @@ escodegen@^1.11.1:
   optionalDependencies:
     source-map "~0.6.1"
 
-eslint-config-prettier@~6.9.0:
-  version "6.9.0"
-  resolved "https://registry.yarnpkg.com/eslint-config-prettier/-/eslint-config-prettier-6.9.0.tgz#430d24822e82f7deb1e22a435bfa3999fae4ad64"
-  integrity sha512-k4E14HBtcLv0uqThaI6I/n1LEqROp8XaPu6SO9Z32u5NlGRC07Enu1Bh2KEFw4FNHbekH8yzbIU9kUGxbiGmCA==
+eslint-config-prettier@~6.10.0:
+  version "6.10.0"
+  resolved "https://registry.yarnpkg.com/eslint-config-prettier/-/eslint-config-prettier-6.10.0.tgz#7b15e303bf9c956875c948f6b21500e48ded6a7f"
+  integrity sha512-AtndijGte1rPILInUdHjvKEGbIV06NuvPrqlIEaEaWtbtvJh464mDeyGMdZEQMsGvC0ZVkiex1fSNcC4HAbRGg==
   dependencies:
     get-stdin "^6.0.0"
 
