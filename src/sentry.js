@@ -14,7 +14,8 @@ module.exports = (release = process.env.SENTRY_RELEASE) => {
   // When we're developing locally
   if (process.env.NODE_ENV !== "production") {
     // Don't actually send the errors to Sentry
-    sentryOptions.transport = sentryTransport;
+    // FIXME(douglasduteil): use NoopTransport maybe
+    // sentryOptions.transport = sentryTransport;
     sentryOptions.beforeSend = () => null;
 
     // Instead, dump the errors to the console
