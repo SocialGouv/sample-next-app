@@ -26,7 +26,7 @@ const faultyRoute = () => {
 
 app.prepare().then(() => {
   // app.buildId is only available after app.prepare(), hence why we setup here
-  const { Sentry } = require("./src/sentry")(app.buildId);
+  const { Sentry } = require("./sentry")(app.buildId);
 
   express()
     // This attaches request information to Sentry errors

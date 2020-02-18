@@ -31,7 +31,7 @@
     "dev": "node server.js",
     "build": "next build",
     "start": "NODE_ENV=production node server.js",
-    "lint": "eslint src/*",
+    "lint": "eslint **/*.js",
     "test": "jest"
   },
   "devDependencies": {
