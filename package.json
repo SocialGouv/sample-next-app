@@ -4,9 +4,9 @@
   "main": "index.js",
   "license": "MIT",
   "dependencies": {
-    "@sentry/browser": "^5.11.1",
-    "@sentry/integrations": "^5.11.1",
-    "@sentry/node": "^5.11.1",
+    "@sentry/browser": "^5.12.4",
+    "@sentry/integrations": "^5.12.4",
+    "@sentry/node": "^5.12.4",
     "@zeit/next-source-maps": "^0.0.3",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
