@@ -46,4 +46,4 @@ ingress:
   tls:
     - hosts:
         - "sample-next-app.dev.fabrique.social.gouv.fr"
-      secretName: wildcard-crt
+      secretName: sample-next-app-crt
