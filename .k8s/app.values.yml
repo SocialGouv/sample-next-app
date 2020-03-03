@@ -2,6 +2,8 @@ image:
   repository: $CI_REGISTRY_IMAGE
   tag: master
 
+nameOverride: sample-next-app
+
 labels:
   app.kubernetes.io/part-of: sample-next-app
   owner: sample-next-app
