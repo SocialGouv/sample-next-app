@@ -1,6 +1,13 @@
 require("dotenv").config();
 const next = require("next");
 const express = require("express");
+
+const chalk = require("chalk");
+const bodyParser = require("body-parser");
+const passport = require("passport");
+const cors = require("cors");
+const expressValidator = require("express-validator");
+
 const port = parseInt(process.env.PORT, 10) || 3030;
 const dev = process.env.NODE_ENV !== "production";
 
@@ -29,6 +36,11 @@ app.prepare().then(() => {
   const { Sentry } = require("./sentry")(app.buildId);
 
   express()
+    .use(cors())
+    .use(bodyParser.json({ type: "application/*+json" }))
+    .use(expressValidator())
+    .use(passport.initialize())
+    .use(passport.session())
     // This attaches request information to Sentry errors
     .use(Sentry.Handlers.requestHandler())
     .get(/\.map$/, sourcemapsForSentryOnly(process.env.SENTRY_TOKEN))
@@ -48,6 +60,11 @@ app.prepare().then(() => {
       console.log("process.env.MATOMO_URL", process.env.MATOMO_URL);
       console.log("process.env.MATOMO_SITE_ID", process.env.MATOMO_SITE_ID);
       // eslint-disable-next-line no-console
-      console.log(`> Ready on http://localhost:${port}`);
+      console.log(
+        "%s App is running at http://localhost:%s in %s mode",
+        chalk.green("✓"),
+        port,
+        express().get("env")
+      );
     });
 });

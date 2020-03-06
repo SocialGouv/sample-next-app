@@ -1,5 +1,6 @@
 import React from "react";
 import Link from "next/link";
+import { logout } from "../../utils/auth";
 
 const Nav = () => (
   <nav className="navbar sgb-navbar-marianne navbar-expand-lg navbar-light bg-light">
@@ -26,6 +27,25 @@ const Nav = () => (
     <div id="navbarSupportedContent" className="navbar-collapse collapse">
       <ul className="navbar-nav mr-auto"></ul>
       <ul className="navbar-nav">
+        <li className="nav-item">
+          <Link href="/signup">
+            <a className="nav-link" href="/signup">
+              Signup
+            </a>
+          </Link>
+        </li>
+        <li className="nav-item">
+          <Link href="/login">
+            <a className="nav-link" href="/signin">
+              Login
+            </a>
+          </Link>
+        </li>
+        <li className="nav-item">
+          <button type="button" className="btn btn-link" onClick={logout}>
+            Logout
+          </button>
+        </li>
         <li className="nav-item">
           <Link href="/page2">
             <a

@@ -30,6 +30,12 @@ const Page = () => (
     </p>
 
     <p>
+      <Link href="/logged">
+        <a>Go to logged page</a>
+      </Link>
+    </p>
+
+    <p>
       <Link href="/page3">
         <a>Go to unknown page</a>
       </Link>
