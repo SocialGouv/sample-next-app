@@ -1344,6 +1344,19 @@
   dependencies:
     type-detect "4.0.8"
 
+"@socialgouv/bootstrap.core@^0.2.1":
+  version "0.2.1"
+  resolved "https://registry.yarnpkg.com/@socialgouv/bootstrap.core/-/bootstrap.core-0.2.1.tgz#f4e5b67a3ae9e3bc3deeb3049e90f1c639ce4a2f"
+  integrity sha512-xS0pId6O7Z2HxSYGh1fZg6xG5tGk43PKAVYvv1eDlZAMjGUFlqzwSnu5vcv0QQdz7lczZTeKhq4+os790N6n8g==
+  dependencies:
+    "@socialgouv/bootstrap.tokens" "^0.2.0"
+    bootstrap "^4.4.1"
+
+"@socialgouv/bootstrap.tokens@^0.2.0":
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/@socialgouv/bootstrap.tokens/-/bootstrap.tokens-0.2.0.tgz#ee1aa1df50b0b18dba0b645610d862fdb312d5b3"
+  integrity sha512-bBN7oGhmYGA61gyWTqTwSXh3YWkN1RWlMFAfi3NQa6L8ziJsSCgN5yk4FVpBq6uRFDQz061PgH8mlyGAyxwVqg==
+
 "@socialgouv/eslint-config-react@^0.17.0":
   version "0.17.0"
   resolved "https://registry.yarnpkg.com/@socialgouv/eslint-config-react/-/eslint-config-react-0.17.0.tgz#223676beb37a0fb7d5bfee454699e7b98cd1321d"
@@ -2243,6 +2256,11 @@ body-parser@1.19.0, body-parser@^1.19.0:
     qs "6.7.0"
     raw-body "2.4.0"
     type-is "~1.6.17"
+
+bootstrap@^4.4.1:
+  version "4.4.1"
+  resolved "https://registry.yarnpkg.com/bootstrap/-/bootstrap-4.4.1.tgz#8582960eea0c5cd2bede84d8b0baf3789c3e8b01"
+  integrity sha512-tbx5cHubwE6e2ZG7nqM3g/FZ5PQEDMWmMGNrCUBVRPHXTJaH7CBDdsLeu3eCh3B1tzAxTnAbtmrzvWEvT2NNEA==
 
 brace-expansion@^1.1.7:
   version "1.1.11"
