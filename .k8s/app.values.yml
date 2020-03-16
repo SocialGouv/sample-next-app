@@ -40,12 +40,12 @@ ingress:
     appgw.ingress.kubernetes.io/ssl-redirect: "true"
     kubernetes.io/ingress.class: "azure/application-gateway"
   hosts:
-    - host: "sample-next-app.dev.fabrique.social.gouv.fr"
+    - host: "sample-next-app.fabrique.social.gouv.fr"
       paths:
         - path: /
           servicePort: "80"
 
   tls:
     - hosts:
-        - "sample-next-app.dev.fabrique.social.gouv.fr"
+        - "sample-next-app.fabrique.social.gouv.fr"
       secretName: sample-next-app-crt
