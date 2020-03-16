@@ -6,6 +6,8 @@ import * as Sentry from "@sentry/node";
 import { initMatomo } from "../matomo";
 import Nav from "../Nav";
 
+import "@socialgouv/bootstrap.core/dist/socialgouv-bootstrap.min.css";
+
 Sentry.init({
   dsn: process.env.SENTRY_DSN
 });
