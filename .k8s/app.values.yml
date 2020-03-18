@@ -19,8 +19,10 @@ deployment:
 
   livenessProbe:
     periodSeconds: 20
+    port: 8000
   readinessProbe:
     periodSeconds: 20
+    port: 8000
 
   resources:
     limits:
