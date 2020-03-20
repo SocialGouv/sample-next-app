@@ -16,6 +16,11 @@ const apiCall = () =>
     .then(r => r.json())
     .then(data => alert(data.answer));
 
+const faultyApiCall = () =>
+  fetch("/api/faulty")
+    .then(r => r.json())
+    .then(data => alert(data.answer));
+
 const Page = () => (
   <React.Fragment>
     <p>
@@ -32,6 +37,11 @@ const Page = () => (
     <p>
       <button className="btn btn-primary" onClick={apiCall}>
         trigger api call to /api/answer/anything
+      </button>
+    </p>
+    <p>
+      <button className="btn btn-primary" onClick={faultyApiCall}>
+        trigger api call to /api/faulty
       </button>
     </p>
     <p>
