@@ -39,6 +39,10 @@ variables:
     DROP_DATABASE: db_${CI_COMMIT_SHORT_SHA}
     DROP_USER: user_${CI_COMMIT_SHORT_SHA}@${PGHOST}
   before_script:
+    - echo 1
     - env
+    - echo 11
     - \. <(kubectl get secret azure-pg-admin-user -n ${CI_PROJECT_NAME}-secret -o json | export_from_k8s_secret)
+    - echo 111
     - env
+    - echo 1111
