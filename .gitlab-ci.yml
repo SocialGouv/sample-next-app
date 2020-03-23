@@ -41,4 +41,4 @@ variables:
   before_script:
     - env
     - \. <(kubectl get secret azure-pg-admin-user -n ${CI_PROJECT_NAME}-secret -o json | export_from_k8s_secret)
-    - export PGHOST="${PG_HOST}"
+    - env
