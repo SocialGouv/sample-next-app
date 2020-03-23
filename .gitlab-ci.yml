@@ -9,40 +9,39 @@ include:
   - project: SocialGouv/gitlab-ci-yml
     file: /autodevops_simple_app.yml
     ref: v9.1.1
-  - project: SocialGouv/gitlab-ci-yml
-    file: /base_migrate_azure_db.yml
-    ref: v9.1.1
+  # - project: SocialGouv/gitlab-ci-yml
+  #   file: /base_migrate_azure_db.yml
+  #   ref: v9.1.1
 
 variables:
   PROJECT: "sample-next-app"
   PORT: 4000
   VALUES_FILE: ./.k8s/app.values.yml
   ENABLE_AZURE_POSTGRES: 1
-
-.base_azure_db:
-  image: registry.gitlab.factory.social.gouv.fr/socialgouv/docker/azure-db:0.29.0
-  dependencies: []
-  only:
-    refs:
-      - branches
-    variables:
-      - $ENABLE_AZURE_POSTGRES
-  except:
-    refs:
-      - master
-  variables:
-    GIT_STRATEGY: none
-    #
-    NEW_DB_NAME: db_${CI_COMMIT_SHORT_SHA}
-    NEW_USER: user_${CI_COMMIT_SHORT_SHA}@${PGHOST}
-    NEW_PASSWORD: pass_${CI_COMMIT_SHORT_SHA}
-    DROP_DATABASE: db_${CI_COMMIT_SHORT_SHA}
-    DROP_USER: user_${CI_COMMIT_SHORT_SHA}@${PGHOST}
-  before_script:
-    - echo 1
-    - env
-    - echo 11
-    - \. <(kubectl get secret azure-pg-admin-user -n ${CI_PROJECT_NAME}-secret -o json | export_from_k8s_secret)
-    - echo 111
-    - env
-    - echo 1111
+# .base_azure_db:
+#   image: registry.gitlab.factory.social.gouv.fr/socialgouv/docker/azure-db:0.29.0
+#   dependencies: []
+#   only:
+#     refs:
+#       - branches
+#     variables:
+#       - $ENABLE_AZURE_POSTGRES
+#   except:
+#     refs:
+#       - master
+#   variables:
+#     GIT_STRATEGY: none
+#     #
+#     NEW_DB_NAME: db_${CI_COMMIT_SHORT_SHA}
+#     NEW_USER: user_${CI_COMMIT_SHORT_SHA}@${PGHOST}
+#     NEW_PASSWORD: pass_${CI_COMMIT_SHORT_SHA}
+#     DROP_DATABASE: db_${CI_COMMIT_SHORT_SHA}
+#     DROP_USER: user_${CI_COMMIT_SHORT_SHA}@${PGHOST}
+#   before_script:
+#     - echo 1
+#     - env
+#     - echo 11
+#     - \. <(kubectl get secret azure-pg-admin-user -n ${CI_PROJECT_NAME}-secret -o json | export_from_k8s_secret)
+#     - echo 111
+#     - env
+#     - echo 1111
