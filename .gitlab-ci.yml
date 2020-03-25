@@ -1,7 +1,7 @@
 foo:
   variables:
-   - NLP_PORT: "666"
-   - NLP_URL: http://nlp${NLP_PORT}  
+    NLP_PORT: "666"
+    NLP_URL: http://nlp${NLP_PORT}  
   script: 
     - echo "${NLP_URL}"
     
