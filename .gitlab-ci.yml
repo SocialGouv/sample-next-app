@@ -5,7 +5,7 @@ foo:
     DOCKER_BUILD_ARGS: >-
       --build-arg REGISTRY=$CI_REGISTRY_IMAGE
       --build-arg TAG_BASE_IMAGE=$CI_COMMIT_SHA
-      --build-arg NLP_URL=$NLP_URL
+      --build-arg NLP_URL=${NLP_URL}
   script: 
     - echo "${DOCKER_BUILD_ARGS}"
     
