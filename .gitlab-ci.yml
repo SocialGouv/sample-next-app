@@ -1,16 +1,7 @@
-#
-# Context investigation
-#
-# - master as prod
-# - features branches env
-#
-
-include:
-  - project: SocialGouv/gitlab-ci-yml
-    file: /autodevops_simple_app.yml
-    ref: v9.1.1
-
-variables:
-  PROJECT: "sample-next-app"
-  PORT: 4000
-  VALUES_FILE: ./.k8s/app.values.yml
+foo:
+  variables:
+   - NLP_PORT: 666
+   - NLP_URL: http://nlp${NLP_PORT}  
+  script: 
+    - echo "${NLP_URL}"
+    
