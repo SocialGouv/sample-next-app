@@ -1,7 +1,11 @@
 foo:
   variables:
     NLP_PORT: "666"
-    NLP_URL: http://nlp${NLP_PORT}  
+    NLP_URL: http://nlp:${NLP_PORT}
+    DOCKER_BUILD_ARGS: >-
+      --build-arg REGISTRY=$CI_REGISTRY_IMAGE
+      --build-arg TAG_BASE_IMAGE=$CI_COMMIT_SHA
+      --build-arg NLP_URL=$NLP_URL
   script: 
-    - echo "${NLP_URL}"
+    - echo "${DOCKER_BUILD_ARGS}"
     
