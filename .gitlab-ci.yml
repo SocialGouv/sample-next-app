@@ -20,7 +20,7 @@ variables:
   PROJECT: "sample-next-app"
   # HELM_CHART_VERSION: "5.1.0"
   PORT: 4000
-  # CONTEXT: sample-next-app
+  CONTEXT: sample-next-app
   #  VALUES_FILE: ./.k8s/app.values.yml
   ENABLE_AZURE_POSTGRES: 1
   TEST_DISABLED: 1
