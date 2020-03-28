@@ -14,11 +14,11 @@ deployment:
     periodSeconds: 20
     port: "3000"
 
-  # resources:
-  #   limits:
-  #     memory: 128Mi
-  #   requests:
-  #     memory: 64Mi
+  resources:
+    limits:
+      memory: 128Mi
+    requests:
+      memory: 64Mi
 
   env:
     - name: PORT
