@@ -5,14 +5,14 @@ image:
 nameOverride: sample-next-app
 
 deployment:
-  port: 8000
+  port: "3000"
 
   livenessProbe:
     periodSeconds: 20
-    port: 8000
+    port: "3000"
   readinessProbe:
     periodSeconds: 20
-    port: 8000
+    port: "3000"
 
   # resources:
   #   limits:
@@ -22,7 +22,7 @@ deployment:
 
   env:
     - name: PORT
-      value: "8000"
+      value: "3000"
     - name: NODE_ENV
       value: "production"
 # ingress:
