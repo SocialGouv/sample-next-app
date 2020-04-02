@@ -8,9 +8,9 @@
 include:
   - project: SocialGouv/gitlab-ci-yml
     file: /autodevops_simple_app.yml
-    ref: v9.1.1
+    ref: v11.0.0
 
 variables:
   PROJECT: "sample-next-app"
   PORT: 4000
-  VALUES_FILE: ./.k8s/app.values.yml
+  VALUES_FILE: ./.k8s.app.values.yml

@@ -1,0 +1,19 @@
+# See https://github.com/SocialGouv/helm-charts/tree/master/charts/app
+
+image:
+  repository: $CI_REGISTRY_IMAGE
+  tag: master
+
+deployment:
+
+  livenessProbe:
+    initialDelaySeconds: 15
+
+  resources:
+    limits:
+      memory: 128Mi
+    requests:
+      memory: 64Mi
+
+ingress:
+  enabled: true
