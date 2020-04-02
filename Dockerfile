@@ -1,5 +1,12 @@
 FROM node:12-alpine
 
+RUN set -ex \
+  && apk add --no-cache --virtual .setcap libcap \
+  # NOTE(douglasduteil): allow the node application to listen to any port
+  && setcap cap_net_bind_service=+ep `which node` \
+  && apk del .setcap \
+  ;
+
 WORKDIR /app
 
 COPY package.json yarn.lock ./
