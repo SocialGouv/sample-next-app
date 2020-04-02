@@ -4,16 +4,16 @@
   "main": "index.js",
   "license": "MIT",
   "dependencies": {
-    "@sentry/browser": "^5.14.2",
-    "@sentry/integrations": "^5.14.2",
-    "@sentry/node": "^5.14.2",
+    "@sentry/browser": "^5.15.4",
+    "@sentry/integrations": "^5.15.4",
+    "@sentry/node": "^5.15.4",
     "@socialgouv/bootstrap.core": "^0.2.1",
     "@zeit/next-source-maps": "^0.0.3",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
-    "next": "^9.3.2",
-    "react": "^16.13.0",
-    "react-dom": "^16.13.0",
+    "next": "^9.3.4",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
     "sentry-testkit": "^3.2.1"
   },
   "husky": {
