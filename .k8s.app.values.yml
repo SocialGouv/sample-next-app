@@ -15,5 +15,11 @@ deployment:
     requests:
       memory: 64Mi
 
+  env:
+    - name: PORT
+      value: "${PORT}"
+    - name: NODE_ENV
+      value: production
+
 ingress:
   enabled: true
