@@ -17,7 +17,7 @@ deployment:
 
   env:
     - name: PORT
-      value: "4000"
+      value: "${PORT}"
     - name: NODE_ENV
       value: production
 
