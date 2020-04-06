@@ -6,7 +6,7 @@ const Nav = () => (
   <nav className="navbar sgb-navbar-marianne navbar-expand-lg navbar-light bg-light">
     <div className="sgb-marianne"></div>
     <div className="navbar-brand">
-      <Link href="/">
+      <Link href="/" passHref>
         <a>sample-next-app</a>
       </Link>
       <div className="navbar-baseline" href="#">

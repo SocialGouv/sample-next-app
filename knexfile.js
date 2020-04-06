@@ -1,5 +1,4 @@
 const databaseName = "postgres";
-const pg = require("pg");
 
 const connection_url =
   process.env.DATABASE_URL ||

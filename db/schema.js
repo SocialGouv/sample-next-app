@@ -88,6 +88,7 @@ class User extends Model {
   }
 
   async $beforeUpdate() {
+    // eslint-disable-next-line no-undef
     await $beforeInsert();
   }
 

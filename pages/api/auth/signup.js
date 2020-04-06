@@ -20,6 +20,7 @@ export default async (req, res, next) => {
       }
 
       try {
+        // eslint-disable-next-line no-unused-vars
         const user = await User.query()
           .allowInsert("[email, password]")
           .insert({

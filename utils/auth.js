@@ -1,4 +1,4 @@
-import { Component } from "react";
+import React, { Component } from "react";
 import Router from "next/router";
 import nextCookie from "next-cookies";
 import cookie from "js-cookie";
