@@ -4,7 +4,7 @@ export function initMatomo({
   siteId,
   piwikUrl,
   jsTrackerFile = "piwik.js",
-  phpTrackerFile = "piwik.php"
+  phpTrackerFile = "piwik.php",
 }) {
   window._paq = window._paq || [];
   let previousPath = "";
@@ -29,7 +29,7 @@ export function initMatomo({
   refElement.parentNode.insertBefore(scriptElement, refElement);
   previousPath = location.pathname;
 
-  Router.events.on("routeChangeComplete", path => {
+  Router.events.on("routeChangeComplete", (path) => {
     // We use only the part of the url without the querystring to ensure piwik is happy
     // It seems that piwiki doesn't track well page with querystring
     const [pathname] = path.split("?");

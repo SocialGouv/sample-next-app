@@ -13,13 +13,13 @@ const trackEvent = () => {
 
 const apiCall = () =>
   fetch("/api/answer/anything")
-    .then(r => r.json())
-    .then(data => alert(data.answer));
+    .then((r) => r.json())
+    .then((data) => alert(data.answer));
 
 const faultyApiCall = () =>
   fetch("/api/faulty")
-    .then(r => r.json())
-    .then(data => alert(data.answer));
+    .then((r) => r.json())
+    .then((data) => alert(data.answer));
 
 const Page = () => (
   <React.Fragment>

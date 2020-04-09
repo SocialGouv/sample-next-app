@@ -9,14 +9,14 @@ import Nav from "../Nav";
 import "@socialgouv/bootstrap.core/dist/socialgouv-bootstrap.min.css";
 
 Sentry.init({
-  dsn: process.env.SENTRY_DSN
+  dsn: process.env.SENTRY_DSN,
 });
 
 class MyApp extends App {
   componentDidMount() {
     initMatomo({
       siteId: process.env.MATOMO_SITE_ID,
-      piwikUrl: process.env.MATOMO_URL
+      piwikUrl: process.env.MATOMO_URL,
     });
   }
   render() {
