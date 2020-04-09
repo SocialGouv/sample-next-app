@@ -9,6 +9,6 @@ test("question anything should return anything is 42", () => {
   answerQuery(req, res);
 
   expect(res.json).toHaveBeenCalledWith({
-    answer: "The answer to anything is 42"
+    answer: "The answer to anything is 42",
   });
 });

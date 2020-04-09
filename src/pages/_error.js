@@ -60,8 +60,9 @@ MyError.getInitialProps = async ({ res, err, asPath }) => {
   // information about what the error might be. This is unexpected and may
   // indicate a bug introduced in Next.js, so record it in Sentry
   Sentry.captureMessage(
-    `_error.js status=${res &&
-      res.statusCode} getInitialProps missing data at path: ${asPath}`
+    `_error.js status=${
+      res && res.statusCode
+    } getInitialProps missing data at path: ${asPath}`
   );
 
   return errorInitialProps;
