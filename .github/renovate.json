@@ -1,3 +1,4 @@
 {
+  "enabled": true,
   "extends": ["github>SocialGouv/renovate-config", ":automergeAll"]
 }
