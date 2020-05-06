@@ -19,6 +19,14 @@ A sample SSR Next.js app with :
   - ✅ features-branches envs
   - ✅ prod env
 
+## Development
+
+Start hasura and local postgres using 
+```sh
+docker-compose up
+```
+Hasura migrations and metadata will be automatically applied.
+
 ## Production
 
 ### Env vars
