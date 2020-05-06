@@ -22,6 +22,11 @@ Create namespace:
     - kubectl get secret sample-next-app-secrets --namespace=sample-next-app-secret --export -o yaml |
       kubectl apply --namespace=${K8S_NAMESPACE} -f -
 
+Create Azure DB (dev):
+  extends: .autodevops_create_azure_db_dev
+  variables:
+    NEW_DB_EXTENSIONS: "pgcrypto hstore citext"
+
 Register image Hasura:
   extends: .autodevops_register_image
   dependencies: []
@@ -66,4 +71,3 @@ Deploy app Hasura (prod):
     PRODUCTION: "true"
     K8S_NAMESPACE: sample-next-app # WTH ??
     JWK_URL: https://sample-next-app.fabrique.social.gouv.fr/api/auth/jwks # todo replace with JWK KEY
-
