@@ -29,8 +29,6 @@ deployment:
       value: "80"
     - name: HASURA_GRAPHQL_ENABLED_LOG_TYPES
       value: "startup, http-log, webhook-log, websocket-log, query-log"
-    - name: HASURA_GRAPHQL_JWT_SECRET
-      value: '{"type": "RS256","jwk_url": "${JWK_URL}"}'
     - name: HASURA_GRAPHQL_NO_OF_RETRIES
       value: "5"
     - name: HASURA_GRAPHQL_UNAUTHORIZED_ROLE
