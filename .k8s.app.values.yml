@@ -18,8 +18,8 @@ deployment:
       memory: 64Mi
 
   env:
-    - name: PORT
-      value: "${PORT}"
+    - name: FRONTEND_PORT
+      value: "${FRONTEND_PORT}"
     - name: NODE_ENV
       value: production
 
