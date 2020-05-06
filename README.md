@@ -32,7 +32,7 @@ Hasura migrations and metadata will be automatically applied.
 to launch the Hasura console, you can run the command 
 
 ```sh
-hasura console --envfile ../.env  
+hasura console --envfile ../.env --project hasura
 ```
 
 And then launch the frontend (next.js app) using  
