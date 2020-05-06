@@ -4,7 +4,7 @@ WORKDIR /app
 
 COPY package.json yarn.lock ./
 
-RUN yarn --production --frozen-lockfile
+RUN yarn --verbose --production --frozen-lockfile
 
 COPY next.config.js server.js  ./
 COPY src/sentry.js ./src/sentry.js
