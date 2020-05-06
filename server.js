@@ -1,13 +1,13 @@
 require("dotenv").config();
 const next = require("next");
 const express = require("express");
-const port = parseInt(process.env.PORT, 10) || 3030;
+const port = parseInt(process.env.FRONTEND_PORT, 10) || 3030;
 const dev = process.env.NODE_ENV !== "production";
 
 const app = next({ dev });
 const handler = app.getRequestHandler();
 
-const sourcemapsForSentryOnly = token => (req, res, next) => {
+const sourcemapsForSentryOnly = (token) => (req, res, next) => {
   // In production we only want to serve source maps for Sentry
   if (!dev && !!token && req.headers["x-sentry-token"] !== token) {
     res
@@ -38,7 +38,7 @@ app.prepare().then(() => {
     .use(handler)
     // This handles errors if they are thrown before reaching the app
     .use(Sentry.Handlers.errorHandler())
-    .listen(port, err => {
+    .listen(port, (err) => {
       if (err) {
         throw err;
       }
