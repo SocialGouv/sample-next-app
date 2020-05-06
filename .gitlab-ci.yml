@@ -27,7 +27,7 @@ Register image Hasura:
   dependencies: []
   needs: []
   variables:
-    CONTEXT: ./packages/hasura
+    CONTEXT: ./hasura
     DOCKERFILE_PATH: Dockerfile
     IMAGE_NAME: $CI_REGISTRY_IMAGE/hasura
 
