@@ -2,9 +2,6 @@ include:
   - project: SocialGouv/gitlab-ci-yml
     file: /autodevops_simple_app.yml
     ref: v15.3.0
-  - project: SocialGouv/gitlab-ci-yml
-    file: /base_snyk_scan.yml
-    ref: v15.3.0
 
 variables:
   PORT: 3030
