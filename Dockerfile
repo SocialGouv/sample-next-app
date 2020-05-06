@@ -1,10 +1,10 @@
-FROM node:12-alpine
+FROM node:12.16.1-alpine
 
 WORKDIR /app
 
 COPY package.json yarn.lock ./
 
-RUN yarn --verbose --production --frozen-lockfile
+RUN yarn --production --frozen-lockfile
 
 COPY next.config.js server.js  ./
 COPY src/sentry.js ./src/sentry.js
