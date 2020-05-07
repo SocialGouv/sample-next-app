@@ -8,7 +8,7 @@ image:
   repository: $CI_REGISTRY_IMAGE
   tag: master
 
-nameOverride: app
+# nameOverride: app
 
 deployment:
   resources:
@@ -36,7 +36,7 @@ deployment:
     - name: GRAPHQL_URL
       value: "http://hasura-sample-next-app/v1/graphql"
     - name: ACCOUNT_MAIL_SENDER
-      value: "no-reply@fabrique.social.gouv.fr"
+      value: "contact@fabrique.social.gouv.fr"
   envFrom:
     - secretRef:
         name: sample-next-app-secrets
