@@ -26,7 +26,7 @@ export const refreshTokenMutation = `
       objects: [$refresh_token_data]
     ) {
       returning {
-        id
+        refresh_token
       }
     }
   }
