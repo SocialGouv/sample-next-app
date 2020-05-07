@@ -47,6 +47,7 @@ app.prepare().then(() => {
       console.log("process.env.SENTRY_TOKEN", process.env.SENTRY_TOKEN);
       console.log("process.env.MATOMO_URL", process.env.MATOMO_URL);
       console.log("process.env.MATOMO_SITE_ID", process.env.MATOMO_SITE_ID);
+      console.log("process.env.GRAPHQL_ENDPOINT", process.env.GRAPHQL_ENDPOINT);
       // eslint-disable-next-line no-console
       console.log(`> Ready on http://localhost:${port}`);
     });
