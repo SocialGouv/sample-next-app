@@ -1,4 +1,3 @@
-CREATE EXTENSION citext;
 
 CREATE DOMAIN email AS citext
   CONSTRAINT custom_domain_email_check
@@ -25,7 +24,7 @@ INSERT INTO public.roles (role) VALUES ('admin');
 INSERT INTO public.roles (role) VALUES ('user');
 INSERT INTO public.roles (role) VALUES ('anonymous');
 
-
+CREATE EXTENSION IF NOT EXISTS citext;
 --
 -- AUTH SCHEMA
 --
