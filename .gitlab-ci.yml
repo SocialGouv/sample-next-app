@@ -66,4 +66,3 @@ Deploy app Hasura (prod):
   variables:
     PRODUCTION: "true"
     K8S_NAMESPACE: sample-next-app # WTH ??
-    JWK_URL: https://sample-next-app.fabrique.social.gouv.fr/api/auth/jwks # todo replace with JWK KEY
