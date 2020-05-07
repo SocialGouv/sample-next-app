@@ -1,4 +1,3 @@
-import nodemailer from "nodemailer";
 import {
   ACCOUNT_EMAIL_SECRET,
   FRONTEND_URL,
@@ -59,7 +58,7 @@ export default async function sendMail(req, res) {
   Vous pouvez activer votre compte ${email} afin d'accéder à
   l'outil d'administration du cdtn en suivant ce lien : ${activateUrl}
 
-  Lionel
+  L'equipe veille CDTN
   `;
 
   if (op === "UPDATE") {
@@ -72,7 +71,7 @@ Vous pouvez suivre ce lien : ${activateUrl} pour valider la demande.
 Si vous n'etes pas à l'origine de cette demande, pas de soucis,
 ne tenez pas compte de de message.
 
-Lionel
+L'equipe veille CDTN
 `;
   }
 
@@ -82,22 +81,11 @@ Lionel
     subject,
     text,
   };
-  var transport = nodemailer.createTransport({
-    host: process.env.SMTP_URL,
-    port: 587,
-    auth: {
-      user: process.env.SMTP_EMAIL_USER,
-      pass: process.env.SMTP_EMAIL_PASSWORD,
-    },
-  });
-  transport.sendMail(mailOptions, function (error, info) {
-    if (error) {
-      console.log(error);
-      return apiError(Boom.badGateway("can't send account email"));
-    } else {
-      console.log(info);
-      res.json(info);
-    }
-  });
-  transport.close();
+  try {
+    const results = await sendMail(mailOptions);
+    res.json(results);
+  } catch (error) {
+    console.error(error);
+    return apiError(Boom.badGateway("can't send account email"));
+  }
 }
