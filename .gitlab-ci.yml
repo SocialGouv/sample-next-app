@@ -55,7 +55,6 @@ Deploy app Hasura (dev):
     - .deploy_hasura
   variables:
     PG_HOST: samplenextappdevserver.postgres.database.azure.com
-    JWK_URL: https://${CI_ENVIRONMENT_SLUG}-${CI_PROJECT_NAME}.${KUBE_INGRESS_BASE_DOMAIN}/api/auth/jwks
     HELM_RENDER_ARGS: >-
       --set deployment.env[6].name=HASURA_GRAPHQL_DATABASE_URL
       --set deployment.env[6].value=postgresql://user_${CI_COMMIT_SHORT_SHA}%40${PG_HOST}:pass_${CI_COMMIT_SHORT_SHA}@${PG_HOST}:5432/db_${CI_COMMIT_SHORT_SHA}?sslmode=require
