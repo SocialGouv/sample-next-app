@@ -4,7 +4,7 @@ include:
     ref: v15.6.0
 
 variables:
-  PORT: 3030
+  PORT: 3000
   PROJECT: "sample-next-app"
   TEST_DISABLED: 1 # tmp
   CODE_QUALITY_DISABLED: 1 # tmp

@@ -37,6 +37,8 @@ deployment:
       value: "http://hasura-sample-next-app/v1/graphql"
     - name: ACCOUNT_MAIL_SENDER
       value: "contact@fabrique.social.gouv.fr"
+    - name: FRONTEND_PORT
+      value: "${PORT}"
   envFrom:
     - secretRef:
         name: sample-next-app-secrets
