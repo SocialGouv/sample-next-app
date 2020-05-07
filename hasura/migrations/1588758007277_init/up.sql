@@ -1,3 +1,11 @@
+DO
+$do$
+BEGIN
+   IF (select usesuper=TRUE from pg_user where usename = CURRENT_USER) THEN
+      CREATE EXTENSION citext;
+   END IF;
+END
+$do$;
 
 CREATE DOMAIN email AS citext
   CONSTRAINT custom_domain_email_check

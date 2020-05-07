@@ -2,7 +2,6 @@ import Boom from "@hapi/boom";
 import Joi from "@hapi/joi";
 import { verify } from "argon2";
 import cookie from "cookie";
-import { REFRESH_TOKEN_EXPIRES } from "../../../src/config";
 import { createErrorFor } from "../../../src/lib/apiError";
 import { getExpiryDate } from "../../../src/lib/duration";
 import { graphqlClient } from "../../../src/lib/graphqlClient";
@@ -68,7 +67,9 @@ export default async function login(req, res) {
     hasura_data = await graphqlClient.request(refreshTokenMutation, {
       refresh_token_data: {
         user_id: user.id,
-        expires_at: getExpiryDate({ minutes: REFRESH_TOKEN_EXPIRES }),
+        expires_at: getExpiryDate({
+          minutes: process.env.REFRESH_TOKEN_EXPIRES || 15,
+        }),
       },
     });
   } catch (e) {
@@ -85,7 +86,7 @@ export default async function login(req, res) {
     cookie.serialize("refresh_token", refresh_token, {
       sameSite: "lax",
       secure: process.env.NODE_ENV === "production",
-      maxAge: REFRESH_TOKEN_EXPIRES * 60, // maxAge in second
+      maxAge: (process.env.REFRESH_TOKEN_EXPIRES || 43200) * 60, // maxAge in second
       httpOnly: true,
       path: "/",
     })

@@ -1,7 +1,7 @@
 import { GraphQLClient } from "graphql-request";
-import { HASURA_GRAPHQL_ENDPOINT } from "../config";
 
 const HASURA_GRAPHQL_ADMIN_SECRET = process.env.HASURA_GRAPHQL_ADMIN_SECRET;
+const HASURA_GRAPHQL_ENDPOINT = process.env.GRAPHQL_ENDPOINT;
 
 export const graphqlClient = new GraphQLClient(HASURA_GRAPHQL_ENDPOINT, {
   headers: {

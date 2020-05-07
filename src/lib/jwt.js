@@ -1,5 +1,6 @@
 import jwt from "jsonwebtoken";
-import { HASURA_GRAPHQL_JWT_SECRET, JWT_TOKEN_EXPIRES } from "../config";
+const { HASURA_GRAPHQL_JWT_SECRET, JWT_TOKEN_EXPIRES } = process.env;
+const jwtSecret = JSON.parse(HASURA_GRAPHQL_JWT_SECRET);
 
 export function generateJwtToken(user) {
   const user_roles = user.roles.map((role) => {
@@ -16,9 +17,9 @@ export function generateJwtToken(user) {
         "x-hasura-user-id": user.id.toString(),
       },
     },
-    HASURA_GRAPHQL_JWT_SECRET.key,
+    jwtSecret.key,
     {
-      algorithm: HASURA_GRAPHQL_JWT_SECRET.type,
+      algorithm: jwtSecret.type,
       expiresIn: `${JWT_TOKEN_EXPIRES}m`,
     }
   );

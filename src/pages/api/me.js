@@ -1,6 +1,5 @@
 import Boom from "@hapi/boom";
 import { verify } from "jsonwebtoken";
-import { HASURA_GRAPHQL_JWT_SECRET } from "../../../src/config";
 import { createErrorFor } from "../../../src/lib/apiError";
 import { graphqlClient } from "../../../src/lib/graphqlClient";
 
@@ -22,8 +21,8 @@ export default async function me(req, res) {
   // verify jwt token is OK
   let claims;
   try {
-    claims = verify(token, HASURA_GRAPHQL_JWT_SECRET.key, {
-      algorithms: HASURA_GRAPHQL_JWT_SECRET.type,
+    claims = verify(token, process.env.HASURA_GRAPHQL_JWT_SECRET.key, {
+      algorithms: process.env.HASURA_GRAPHQL_JWT_SECRET.type,
     });
   } catch (e) {
     console.error(e);

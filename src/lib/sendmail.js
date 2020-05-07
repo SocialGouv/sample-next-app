@@ -9,15 +9,5 @@ export default function sendmail(mailOptions) {
       pass: process.env.SMTP_EMAIL_PASSWORD,
     },
   });
-  return new Promise((resolve, reject) => {
-    transport.sendMail(mailOptions, function (error, info) {
-      if (error) {
-        reject(error);
-        console.log(error);
-      } else {
-        resolve(info);
-      }
-      transport.close();
-    });
-  });
+  return transport.sendMail(mailOptions).finally(() => transport.close());
 }

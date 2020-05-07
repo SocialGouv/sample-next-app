@@ -35,11 +35,6 @@ Register image Hasura:
 
 Deploy app (dev):
   extends: .autodevops_deploy_app_dev
-  variables:
-    PG_HOST: samplenextappdevserver.postgres.database.azure.com
-    HELM_RENDER_ARGS: >-
-      --set deployment.env[3].name=DATABASE_URL
-      --set deployment.env[3].value=postgresql://user_${CI_COMMIT_SHORT_SHA}%40${PG_HOST}:pass_${CI_COMMIT_SHORT_SHA}@${PG_HOST}:5432/db_${CI_COMMIT_SHORT_SHA}?sslmode=require
 
 .deploy_hasura:
   extends:

@@ -7,6 +7,7 @@ services:
       - db_data:/var/lib/postgresql/data
     environment:
       POSTGRES_PASSWORD: postgrespassword
+
   graphql-engine:
     image: hasura/graphql-engine:v1.2.1.cli-migrations-v2
     volumes:
@@ -18,6 +19,22 @@ services:
       - "postgres"
     restart: always
     env_file:
-      - .env
+      - .env.development
+    environment:
+      HASURA_GRAPHQL_DATABASE_URL: postgres://postgres:postgrespassword@postgres:5432/postgres
+      HASURA_GRAPHQL_ENABLE_CONSOLE: "false"
+      HASURA_GRAPHQL_ENABLED_LOG_TYPES: startup, http-log, webhook-log, websocket-log, query-log
+
+  app:
+    build: .
+    depends_on:
+      - "graphql-engine"
+    ports:
+      - "3000:3000"
+    env_file:
+      - .env.development
+    environment:
+      GRAPHQL_ENDPOINT: http://graphql-engine:8080/v1/graphql
+
 volumes:
   db_data:

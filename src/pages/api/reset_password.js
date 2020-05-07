@@ -1,7 +1,6 @@
 import Boom from "@hapi/boom";
 import Joi from "@hapi/joi";
 import { v4 as uuidv4 } from "uuid";
-import { ACTIVATION_TOKEN_EXPIRES } from "../../../src/config";
 import { createErrorFor } from "../../../src/lib/apiError";
 import { getExpiryDate } from "../../../src/lib/duration";
 import { graphqlClient } from "../../../src/lib/graphqlClient";
@@ -26,16 +25,14 @@ export default async function reset_password(req, res) {
 
   const { email } = value;
 
-  let hasura_data;
-
   try {
-    hasura_data = await graphqlClient.request(udpateSecretTokenMutation, {
+    await graphqlClient.request(udpateSecretTokenMutation, {
       email,
       secret_token: uuidv4(),
-      expires: getExpiryDate({ minutes: ACTIVATION_TOKEN_EXPIRES }),
+      expires: getExpiryDate({
+        minutes: process.env.ACTIVATION_TOKEN_EXPIRES || 10080,
+      }),
     });
-    console.log(hasura_data);
-    console.log(hasura_data["update_user"].affected_rows);
   } catch (error) {
     // silently fail to not disclose if user exists or not
     console.error(error);

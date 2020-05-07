@@ -3,7 +3,7 @@ query get_refresh_token(
   $refresh_token: uuid!,
   $current_timestampz: timestamptz!,
 ) {
-  tokens: auth_refresh_tokens (
+  refresh_tokens: auth_refresh_tokens (
     where: {
       _and: [{
         refresh_token: { _eq: $refresh_token }

@@ -36,7 +36,8 @@
     ]
   },
   "scripts": {
-    "dev": "node server.js",
+    "dev": "node -r dotenv/config server.js dotenv_config_path=.env.development",
+    "dev2": "node server.js",
     "build": "next build",
     "start": "NODE_ENV=production node server.js",
     "lint": "eslint src/*",

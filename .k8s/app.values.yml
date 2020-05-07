@@ -31,10 +31,12 @@ deployment:
   env:
     - name: PRODUCTION
       value: "${PRODUCTION}"
-    - name: PGSSLMODE
-      value: "require"
-    - name: HASURA_GRAPHQL_URL
+    - name: FRONTEND_HOST
+      value: ${HOST}
+    - name: GRAPHQL_URL
       value: "http://hasura-sample-next-app/v1/graphql"
+    - name: ACCOUNT_MAIL_SENDER
+      value: "no-reply@fabrique.social.gouv.fr"
   envFrom:
     - secretRef:
         name: sample-next-app-secrets

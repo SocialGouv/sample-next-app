@@ -1,7 +1,6 @@
 import Boom from "@hapi/boom";
 import Joi from "@hapi/joi";
 import { hash } from "argon2";
-import { ACTIVATION_TOKEN_EXPIRES } from "../../../src/config";
 import { createErrorFor } from "../../../src/lib/apiError";
 import { getExpiryDate } from "../../../src/lib/duration";
 import { graphqlClient } from "../../../src/lib/graphqlClient";
@@ -49,7 +48,7 @@ export default async function register(req, res) {
         password: await hash(new Date().toISOString()),
         user_roles: { data: [{ role: "user" }] },
         secret_token_expires_at: getExpiryDate({
-          minutes: ACTIVATION_TOKEN_EXPIRES,
+          minutes: process.env.ACTIVATION_TOKEN_EXPIRES,
         }),
       },
     });

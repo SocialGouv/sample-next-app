@@ -1,18 +1,12 @@
-import {
-  ACCOUNT_EMAIL_SECRET,
-  FRONTEND_URL,
-  ACCOUNT_MAIL_SENDER,
-} from "../../../../src/config";
 import { createErrorFor } from "../../../../src/lib/apiError";
 import Joi from "@hapi/joi";
 import Boom from "@hapi/boom";
+import sendmail from "../../../lib/sendmail";
 
-export default async function sendMail(req, res) {
+export default async function accountWebhook(req, res) {
   const apiError = createErrorFor(res);
 
-  if (req.headers["email-secret"] !== ACCOUNT_EMAIL_SECRET) {
-    console.log({ EmailSecret: req.headers["email-secret"] });
-    console.log({ ACCOUNT_EMAIL_SECRET });
+  if (req.headers["email-secret"] !== process.env.ACCOUNT_EMAIL_SECRET) {
     return apiError(Boom.unauthorized("Invalid secret token"));
   }
 
@@ -53,7 +47,7 @@ export default async function sendMail(req, res) {
   const { data, op } = value.event;
   const { email, secret_token } = data.new;
   let subject = "Activation de votre compte";
-  const activateUrl = `https://${FRONTEND_URL}/api/activate?token=${secret_token}`; // todo: dynamic hostname
+  let activateUrl = `${process.env.FRONTEND_URL}/change_password?token=${secret_token}&activate=1`; // todo: dynamic hostname
   let text = `Bonjour,
   Vous pouvez activer votre compte ${email} afin d'accéder à
   l'outil d'administration du cdtn en suivant ce lien : ${activateUrl}
@@ -62,6 +56,7 @@ export default async function sendMail(req, res) {
   `;
 
   if (op === "UPDATE") {
+    activateUrl = `${process.env.FRONTEND_URL}/change_password?token=${secret_token}`; // todo: dynamic hostname
     subject = "Réinitialisation de votre mot de passe";
     text = `
 Bonjour,
@@ -76,13 +71,13 @@ L'equipe veille CDTN
   }
 
   var mailOptions = {
-    from: ACCOUNT_MAIL_SENDER,
+    from: process.env.ACCOUNT_MAIL_SENDER,
     to: email,
     subject,
     text,
   };
   try {
-    const results = await sendMail(mailOptions);
+    const results = await sendmail(mailOptions);
     res.json(results);
   } catch (error) {
     console.error(error);

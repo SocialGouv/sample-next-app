@@ -2,7 +2,6 @@ import Boom from "@hapi/boom";
 import Joi from "@hapi/joi";
 import cookie from "cookie";
 import { v4 as uuidv4 } from "uuid";
-import { REFRESH_TOKEN_EXPIRES } from "../../../src/config";
 import { createErrorFor } from "../../../src/lib/apiError";
 import { getExpiryDate } from "../../../src/lib/duration";
 import { graphqlClient } from "../../../src/lib/graphqlClient";
@@ -48,7 +47,7 @@ export default async function refresh_token(req, res) {
     console.error("Incorrect user id or refresh token");
     return apiError(Boom.unauthorized("Invalid 'refresh_token'"));
   }
-  const { user } = hasura_data[`tokens`][0];
+  const { user } = hasura_data[`refresh_tokens`][0];
 
   const new_refresh_token = uuidv4();
 
@@ -58,7 +57,9 @@ export default async function refresh_token(req, res) {
       new_refresh_token_data: {
         user_id: user.id,
         refresh_token: new_refresh_token,
-        expires_at: getExpiryDate({ minutes: REFRESH_TOKEN_EXPIRES }),
+        expires_at: getExpiryDate({
+          minutes: process.env.REFRESH_TOKEN_EXPIRES,
+        }),
       },
     });
   } catch (e) {
@@ -73,7 +74,7 @@ export default async function refresh_token(req, res) {
     cookie.serialize("refresh_token", new_refresh_token, {
       sameSite: "lax",
       secure: process.env.NODE_ENV === "production",
-      maxAge: REFRESH_TOKEN_EXPIRES * 60, // maxAge in second
+      maxAge: process.env.REFRESH_TOKEN_EXPIRES * 60, // maxAge in second
       httpOnly: true,
       path: "/",
     })

@@ -1,7 +1,7 @@
 require("dotenv").config();
 const next = require("next");
 const express = require("express");
-const port = parseInt(process.env.FRONTEND_PORT, 10) || 3030;
+const port = parseInt(process.env.FRONTEND_PORT, 10) || 3000;
 const dev = process.env.NODE_ENV !== "production";
 
 const app = next({ dev });
