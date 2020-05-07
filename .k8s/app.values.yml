@@ -33,7 +33,7 @@ deployment:
       value: "${PRODUCTION}"
     - name: FRONTEND_HOST
       value: ${HOST}
-    - name: GRAPHQL_URL
+    - name: GRAPHQL_ENDPOINT
       value: "http://hasura-sample-next-app/v1/graphql"
     - name: ACCOUNT_MAIL_SENDER
       value: "contact@fabrique.social.gouv.fr"
