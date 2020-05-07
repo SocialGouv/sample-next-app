@@ -10,5 +10,3 @@ DROP TABLE public.roles;
 DROP FUNCTION trigger_set_timestamp;
 
 DROP DOMAIN email;
-
-DROP EXTENSION citext;
