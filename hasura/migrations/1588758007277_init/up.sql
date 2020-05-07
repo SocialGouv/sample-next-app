@@ -24,7 +24,7 @@ INSERT INTO public.roles (role) VALUES ('admin');
 INSERT INTO public.roles (role) VALUES ('user');
 INSERT INTO public.roles (role) VALUES ('anonymous');
 
-CREATE EXTENSION citext IF NOT EXISTS;
+CREATE EXTENSION IF NOT EXISTS citext;
 --
 -- AUTH SCHEMA
 --
