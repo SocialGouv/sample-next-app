@@ -45,6 +45,7 @@ export default async function logout(req, res) {
       path: "/",
     })
   );
+  console.log("[logout]", refresh_token);
   res.json("user logout !");
 }
 

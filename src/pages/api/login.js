@@ -78,6 +78,7 @@ export default async function login(req, res) {
       Boom.badImplementation("Could not update 'refresh token' for user")
     );
   }
+  console.log("[login]", user.id);
   const { refresh_token } = hasura_data.insert_data.returning[0];
 
   // return jwt token and refresh token to client

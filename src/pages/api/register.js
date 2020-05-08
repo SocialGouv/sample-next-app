@@ -56,6 +56,6 @@ export default async function register(req, res) {
     console.error(error);
     return apiError(Boom.badImplementation("Unable to create user."));
   }
-
+  console.log("[register]", name, email);
   res.json("user created !");
 }

@@ -37,6 +37,9 @@ export default async function reset_password(req, res) {
     // silently fail to not disclose if user exists or not
     console.error(error);
   }
+
+  console.log("[reset_password]", email);
+
   res.json("ok!");
 }
 

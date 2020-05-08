@@ -43,6 +43,9 @@ export function createRequestHandler({
     if (hasura_data["update_user"].affected_rows === 0) {
       return apiError(Boom.unauthorized(error_message));
     }
+
+    console.log("[set password]", value.token);
+
     res.json(success_message);
   };
 }
