@@ -9,7 +9,7 @@ fullnameOverride: app
 deployment:
 
   livenessProbe:
-    initialDelaySeconds: 15
+    initialDelaySeconds: 30
 
   resources:
     limits:
