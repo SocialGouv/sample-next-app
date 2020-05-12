@@ -1,0 +1,31 @@
+name: Sync the `autodevops-test` branch
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name:
+        run: |
+          git config user.name "Social Groovy Bot"
+          git config user.email "45039513+SocialGroovyBot@users.noreply.github.com"
+
+          git checkout autodevops-master
+          git root
+
+          git checkout -
+          git rh master
+          git cherry-pick 69508cb0638318dfefe2238f4b89bb1c2f4be0a4 ; git co --theirs -- .
+          git diff master
+
+          git add .gitlab-ci.yml
+          git -c core.editor=true  cherry-pick --continue
+
+          git push origin autodevops-master -f
+
