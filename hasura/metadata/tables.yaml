@@ -15,6 +15,13 @@
   - name: user
     using:
       foreign_key_constraint_on: user_id
+  select_permissions:
+  - role: user
+    permission:
+      columns:
+      - id
+      - role
+      filter: {}
 - table:
     schema: auth
     name: users
@@ -72,6 +79,12 @@
         table:
           schema: auth
           name: users
+  select_permissions:
+  - role: user
+    permission:
+      columns:
+      - role
+      filter: {}
 - table:
     schema: public
     name: users
@@ -84,3 +97,19 @@
           name: user_roles
         column_mapping:
           id: user_id
+  select_permissions:
+  - role: user
+    permission:
+      columns:
+      - active
+      - created_at
+      - default_role
+      - email
+      - id
+      - name
+      - secret_token
+      - secret_token_expires_at
+      - updated_at
+      filter:
+        id:
+          _eq: X-Hasura-User-Id

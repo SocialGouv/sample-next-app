@@ -4,9 +4,20 @@ import { hash } from "argon2";
 import { createErrorFor } from "../../../src/lib/apiError";
 import { getExpiryDate } from "../../../src/lib/duration";
 import { graphqlClient } from "../../../src/lib/graphqlClient";
+import { verifyJwtToken } from "../../lib/jwt";
 
 export default async function register(req, res) {
   const apiError = createErrorFor(res);
+
+  try {
+    verifyJwtToken(req.headers.authorization);
+  } catch (e) {
+    console.error(e);
+    if (e.type === "badRequest") {
+      return apiError(Boom.badRequest(e.message));
+    }
+    return apiError(Boom.unauthorized(e.message));
+  }
 
   if (req.method === "GET") {
     res.setHeader("Allow", ["POST"]);

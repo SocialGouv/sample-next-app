@@ -1,32 +1,20 @@
 import Boom from "@hapi/boom";
-import { verify } from "jsonwebtoken";
 import { createErrorFor } from "../../../src/lib/apiError";
 import { graphqlClient } from "../../../src/lib/graphqlClient";
+import { verifyJwtToken } from "../../lib/jwt";
 
 export default async function me(req, res) {
   const apiError = createErrorFor(res);
-  if (!req.headers.authorization) {
-    return apiError(Boom.badRequest("no authorization header"));
-  }
-
-  const auth_split = req.headers.authorization.split(" ");
-
-  if (auth_split[0] !== "Bearer" || !auth_split[1]) {
-    return apiError(Boom.badRequest("malformed authorization header"));
-  }
-
-  // get jwt token
-  const token = auth_split[1];
-
   // verify jwt token is OK
   let claims;
   try {
-    claims = verify(token, process.env.HASURA_GRAPHQL_JWT_SECRET.key, {
-      algorithms: process.env.HASURA_GRAPHQL_JWT_SECRET.type,
-    });
+    claims = verifyJwtToken(req.headers.authorization);
   } catch (e) {
     console.error(e);
-    return apiError(Boom.unauthorized("Incorrect JWT Token"));
+    if (e.type === "badRequest") {
+      return apiError(Boom.badRequest(e.message));
+    }
+    return apiError(Boom.unauthorized(e.message));
   }
 
   // get user_id from jwt claim

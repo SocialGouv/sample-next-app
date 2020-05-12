@@ -20,7 +20,7 @@ export default async function login(req, res) {
     username: Joi.string().required(),
     password: Joi.string().required(),
   });
-
+  console.log(req.body);
   const { error, value } = schema.validate(req.body);
 
   if (error) {

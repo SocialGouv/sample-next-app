@@ -1,7 +1,7 @@
-require("dotenv").config();
 const next = require("next");
 const express = require("express");
 const port = parseInt(process.env.FRONTEND_PORT, 10) || 3000;
+const { createProxyMiddleware } = require("http-proxy-middleware");
 const dev = process.env.NODE_ENV !== "production";
 
 const app = next({ dev });
@@ -31,6 +31,26 @@ app.prepare().then(() => {
   express()
     // This attaches request information to Sentry errors
     .use(Sentry.Handlers.requestHandler())
+    .use(
+      createProxyMiddleware("/graphql", {
+        target: process.env.GRAPHQL_ENDPOINT,
+        changeOrigin: true,
+        xfwd: true,
+        prependPath: false,
+        followRedirects: true,
+        pathRewrite: { "^/graphql": "/v1/graphql" },
+        logLevel: "debug",
+        onError: (err, req, res) => {
+          res.writeHead(500, {
+            "Content-Type": "text/plain",
+          });
+          // todo: sentry
+          res.end("Something went wrong. We've been notified.");
+        },
+        ws: true, // proxy websockets
+        // target: process.env.GRAPHQL_ENDPOINT,
+      })
+    )
     .get(/\.map$/, sourcemapsForSentryOnly(process.env.SENTRY_TOKEN))
     // demo server-exception
     .get("/page-error", faultyRoute)
