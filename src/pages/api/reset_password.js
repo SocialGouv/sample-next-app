@@ -29,7 +29,7 @@ export default async function reset_password(req, res) {
     await graphqlClient.request(udpateSecretTokenMutation, {
       email,
       secret_token: uuidv4(),
-      expires: getExpiryDate(process.env.ACTIVATION_TOKEN_EXPIRES),
+      expires: getExpiryDate(process.env.ACTIVATION_TOKEN_EXPIRES || 10080),
     });
   } catch (error) {
     // silently fail to not disclose if user exists or not

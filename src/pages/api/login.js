@@ -67,7 +67,7 @@ export default async function login(req, res) {
     hasura_data = await graphqlClient.request(refreshTokenMutation, {
       refresh_token_data: {
         user_id: user.id,
-        expires_at: getExpiryDate(process.env.REFRESH_TOKEN_EXPIRES),
+        expires_at: getExpiryDate(process.env.REFRESH_TOKEN_EXPIRES || 43200),
       },
     });
   } catch (e) {
@@ -85,7 +85,7 @@ export default async function login(req, res) {
     cookie.serialize("refresh_token", refresh_token, {
       sameSite: "lax",
       secure: process.env.NODE_ENV === "production",
-      maxAge: process.env.REFRESH_TOKEN_EXPIRES * 60, // maxAge in second
+      maxAge: (process.env.REFRESH_TOKEN_EXPIRES || 43200) * 60, // maxAge in second
       httpOnly: true,
       path: "/",
     })
@@ -94,6 +94,6 @@ export default async function login(req, res) {
   res.json({
     refresh_token,
     jwt_token,
-    jwt_token_expiry: process.env.JWT_TOKEN_EXPIRES,
+    jwt_token_expiry: process.env.JWT_TOKEN_EXPIRES || 15,
   });
 }

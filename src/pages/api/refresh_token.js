@@ -71,7 +71,7 @@ export default async function refresh_token(req, res) {
     cookie.serialize("refresh_token", new_refresh_token, {
       sameSite: "lax",
       secure: process.env.NODE_ENV === "production",
-      maxAge: process.env.REFRESH_TOKEN_EXPIRES * 60, // maxAge in second
+      maxAge: (process.env.REFRESH_TOKEN_EXPIRES || 43200) * 60, // maxAge in second
       httpOnly: true,
       path: "/",
     })
@@ -79,6 +79,6 @@ export default async function refresh_token(req, res) {
   res.json({
     refresh_token: new_refresh_token,
     jwt_token,
-    jwt_token_expiry: process.env.JWT_TOKEN_EXPIRES,
+    jwt_token_expiry: process.env.JWT_TOKEN_EXPIRES || 15,
   });
 }

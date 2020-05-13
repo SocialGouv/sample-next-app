@@ -1,5 +1,5 @@
 import jwt, { verify } from "jsonwebtoken";
-const { HASURA_GRAPHQL_JWT_SECRET, JWT_TOKEN_EXPIRES } = process.env;
+const { HASURA_GRAPHQL_JWT_SECRET, JWT_TOKEN_EXPIRES = 15 } = process.env;
 const jwtSecret = JSON.parse(HASURA_GRAPHQL_JWT_SECRET);
 
 export function generateJwtToken(user) {
@@ -20,7 +20,7 @@ export function generateJwtToken(user) {
     jwtSecret.key,
     {
       algorithm: jwtSecret.type,
-      expiresIn: `${process.env.JWT_TOKEN_EXPIRES}m`,
+      expiresIn: `${JWT_TOKEN_EXPIRES}m`,
     }
   );
 }
