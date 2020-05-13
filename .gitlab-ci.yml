@@ -6,8 +6,6 @@ include:
 variables:
   PORT: 3000
   PROJECT: "sample-next-app"
-  TEST_DISABLED: 1 # tmp
-  CODE_QUALITY_DISABLED: 1 # tmp
   ENABLE_AZURE_POSTGRES: 1
   VALUES_FILE: ./.k8s/app.values.yml
 
@@ -60,4 +58,3 @@ Deploy app Hasura (prod):
     - .deploy_hasura
   variables:
     PRODUCTION: "true"
-    K8S_NAMESPACE: sample-next-app # WTH ??

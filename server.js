@@ -48,7 +48,6 @@ app.prepare().then(() => {
           res.end("Something went wrong. We've been notified.");
         },
         ws: true, // proxy websockets
-        // target: process.env.GRAPHQL_ENDPOINT,
       })
     )
     .get(/\.map$/, sourcemapsForSentryOnly(process.env.SENTRY_TOKEN))
