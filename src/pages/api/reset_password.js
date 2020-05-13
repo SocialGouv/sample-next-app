@@ -13,8 +13,8 @@ export default async function reset_password(req, res) {
     return apiError(Boom.methodNotAllowed("GET method not allowed"));
   }
 
-  const schema = Joi.object().keys({
-    email: Joi.string().email(),
+  const schema = Joi.object({
+    email: Joi.string().email().required(),
   });
 
   const { error, value } = schema.validate(req.body);

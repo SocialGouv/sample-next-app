@@ -16,11 +16,11 @@ export default async function login(req, res) {
     return apiError(Boom.methodNotAllowed("GET method not allowed"));
   }
   // validate username and password
-  const schema = Joi.object().keys({
+  const schema = Joi.object({
     username: Joi.string().required(),
     password: Joi.string().required(),
   });
-  console.log(req.body);
+
   const { error, value } = schema.validate(req.body);
 
   if (error) {
@@ -93,5 +93,9 @@ export default async function login(req, res) {
     })
   );
 
-  res.json({ refresh_token, jwt_token });
+  res.json({
+    refresh_token,
+    jwt_token,
+    jwt_token_expiry: process.env.JWT_TOKEN_EXPIRES,
+  });
 }

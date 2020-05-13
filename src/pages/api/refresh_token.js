@@ -13,9 +13,8 @@ import {
 
 export default async function refresh_token(req, res) {
   const apiError = createErrorFor(res);
-
-  const schema = Joi.object().keys({
-    refresh_token: Joi.string().guid({ version: "uuidv4" }),
+  const schema = Joi.object({
+    refresh_token: Joi.string().guid({ version: "uuidv4" }).required(),
   });
 
   let { error, value } = schema.validate(req.cookies);
@@ -82,5 +81,6 @@ export default async function refresh_token(req, res) {
   res.json({
     refresh_token: new_refresh_token,
     jwt_token,
+    jwt_token_expiry: process.env.JWT_TOKEN_EXPIRES,
   });
 }

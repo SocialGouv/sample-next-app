@@ -24,8 +24,8 @@ export default async function register(req, res) {
     return apiError(Boom.methodNotAllowed("GET method not allowed"));
   }
 
-  const schema = Joi.object().keys({
-    email: Joi.string().email(),
+  const schema = Joi.object({
+    email: Joi.string().email().required(),
     name: Joi.string().required(),
   });
 

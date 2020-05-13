@@ -18,8 +18,8 @@ export function createRequestHandler({
       return apiError(Boom.methodNotAllowed("GET method not allowed"));
     }
 
-    const schema = Joi.object().keys({
-      token: Joi.string().guid({ version: "uuidv4" }),
+    const schema = Joi.object({
+      token: Joi.string().guid({ version: "uuidv4" }).required(),
       password: Joi.string().required().min(8),
     });
 

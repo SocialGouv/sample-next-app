@@ -7,8 +7,8 @@ import { graphqlClient } from "../../../src/lib/graphqlClient";
 export default async function logout(req, res) {
   const apiError = createErrorFor(res);
 
-  const schema = Joi.object().keys({
-    refresh_token: Joi.string().guid({ version: "uuidv4" }),
+  const schema = Joi.object({
+    refresh_token: Joi.string().guid({ version: "uuidv4" }).required(),
   });
 
   let { error, value } = schema.validate(req.cookies);
