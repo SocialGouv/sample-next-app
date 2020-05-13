@@ -58,9 +58,9 @@ export default async function register(req, res) {
         email,
         password: await hash(new Date().toISOString()),
         user_roles: { data: [{ role: "user" }] },
-        secret_token_expires_at: getExpiryDate({
-          minutes: process.env.ACTIVATION_TOKEN_EXPIRES,
-        }),
+        secret_token_expires_at: getExpiryDate(
+          process.env.ACTIVATION_TOKEN_EXPIRES
+        ),
       },
     });
   } catch (error) {

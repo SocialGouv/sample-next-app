@@ -1,13 +1,11 @@
-export function toMs(duration) {
-  return toSecond(duration) * 1000;
+export function toMs(minutes = 0) {
+  return toSecond(minutes) * 1000;
 }
 
-export function toSecond(duration) {
-  return duration * 60 * 1000;
+export function toSecond(minutes = 0) {
+  return minutes * 60;
 }
 
-export function getExpiryDate({ minutes }) {
-  if (minutes) {
-    return new Date(Date.now() + toMs(minutes));
-  }
+export function getExpiryDate(minutes = 0) {
+  return new Date(Date.now() + toMs(minutes));
 }

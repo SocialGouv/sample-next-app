@@ -56,9 +56,7 @@ export default async function refresh_token(req, res) {
       new_refresh_token_data: {
         user_id: user.id,
         refresh_token: new_refresh_token,
-        expires_at: getExpiryDate({
-          minutes: process.env.REFRESH_TOKEN_EXPIRES,
-        }),
+        expires_at: getExpiryDate(process.env.REFRESH_TOKEN_EXPIRES),
       },
     });
   } catch (e) {

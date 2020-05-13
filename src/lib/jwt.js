@@ -20,7 +20,7 @@ export function generateJwtToken(user) {
     jwtSecret.key,
     {
       algorithm: jwtSecret.type,
-      expiresIn: `${JWT_TOKEN_EXPIRES}m`,
+      expiresIn: `${process.env.JWT_TOKEN_EXPIRES}m`,
     }
   );
 }
