@@ -11,18 +11,18 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      - name: Sync `autodevops-test` branch with master
+      - name: Sync `autodevops-master` branch with master
         run: |
           git config user.name "Social Groovy Bot"
           git config user.email "45039513+SocialGroovyBot@users.noreply.github.com"
 
-          git checkout -b autodevops-test
+          git checkout -b autodevops-master
           sed -i -e 's/ref: .*/ref: master/' .gitlab-ci.yml
           git commit -a -m "ci(gitlab): test autodevops master ref"
-      - name: Push `autodevops-test` branch
+      - name: Push `autodevops-master` branch
         uses: ad-m/github-push-action@master
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          branch: 'autodevops-test'
+          branch: 'autodevops-master'
           force: true
 
