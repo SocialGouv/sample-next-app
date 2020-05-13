@@ -79,6 +79,6 @@ export default async function refresh_token(req, res) {
   res.json({
     refresh_token: new_refresh_token,
     jwt_token,
-    jwt_token_expiry: process.env.JWT_TOKEN_EXPIRES || 15,
+    jwt_token_expiry: parseInt(process.env.JWT_TOKEN_EXPIRES, 10) || 15,
   });
 }
