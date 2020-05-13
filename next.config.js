@@ -8,6 +8,7 @@ module.exports = nextSourceMaps({
     MATOMO_URL: process.env.MATOMO_URL,
     REFRESH_TOKEN_EXPIRES: process.env.REFRESH_TOKEN_EXPIRES || 43200,
     JWT_TOKEN_EXPIRES: process.env.JWT_TOKEN_EXPIRES || 15,
+    ACTIVATION_TOKEN_EXPIRES: process.env.ACTIVATION_TOKEN_EXPIRES || 10080,
   },
   webpack: (config, { isServer, buildId }) => {
     config.plugins.push(
