@@ -15,15 +15,21 @@
     "cookie": "^0.4.1",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
+    "graphql": "^15.0.0",
     "graphql-request": "^1.8.2",
     "http-proxy-middleware": "^1.0.3",
     "jsonwebtoken": "^8.5.1",
     "next": "^9.4.0",
+    "next-urql": "^0.3.7",
     "nodemailer": "^6.4.6",
     "react": "^16.13.1",
+    "react-bootstrap": "^1.0.1",
     "react-dom": "^16.13.1",
+    "react-is": "^16.13.1",
     "sentry-testkit": "^3.2.1",
-    "uuid": "^8.0.0"
+    "urql": "^1.9.7",
+    "uuid": "^8.0.0",
+    "wonka": "^4.0.13"
   },
   "husky": {
     "hooks": {
@@ -49,6 +55,7 @@
     "@socialgouv/eslint-config-react": "^0.21.0",
     "@socialgouv/eslint-config-recommended": "^0.21.0",
     "eslint": "^7.0.0",
+    "eslint-plugin-import": "^2.20.2",
     "husky": "^4.2.5",
     "jest-cli": "^26.0.1",
     "prettier": "^2.0.5"
