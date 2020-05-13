@@ -1,16 +1,60 @@
-#
-# Context investigation
-#
-# - master as prod
-# - features branches env
-#
-
 include:
   - project: SocialGouv/gitlab-ci-yml
     file: /autodevops_simple_app.yml
     ref: v15.6.0
 
 variables:
+  PORT: 3000
   PROJECT: "sample-next-app"
-  PORT: 4000
-  VALUES_FILE: ./.k8s.app.values.yml
+  ENABLE_AZURE_POSTGRES: 1
+  VALUES_FILE: ./.k8s/app.values.yml
+
+Create namespace:
+  extends:
+    - .autodevops_create_namespace
+  after_script:
+    # Copy namespace default creds
+    - kubectl get secret sample-next-app-secrets --namespace=sample-next-app-secret --export -o yaml |
+      kubectl apply --namespace=${K8S_NAMESPACE} -f -
+
+Create Azure DB (dev):
+  extends: .autodevops_create_azure_db_dev
+  variables:
+    NEW_DB_EXTENSIONS: "pgcrypto hstore citext"
+
+Register image Hasura:
+  extends: .autodevops_register_image
+  dependencies: []
+  needs: []
+  variables:
+    CONTEXT: ./hasura
+    DOCKERFILE_PATH: Dockerfile
+    IMAGE_NAME: $CI_REGISTRY_IMAGE/hasura
+
+Deploy app (dev):
+  extends: .autodevops_deploy_app_dev
+
+.deploy_hasura:
+  extends:
+    - .deploy_app_stage
+  variables:
+    PORT: 80
+    CONTEXT: hasura
+    VALUES_FILE: ./.k8s/hasura.values.yml
+
+Deploy app Hasura (dev):
+  extends:
+    - .autodevops_deploy_app_dev
+    - .deploy_hasura
+  variables:
+    PG_HOST: samplenextappdevserver.postgres.database.azure.com
+    HELM_RENDER_ARGS: >-
+      --set deployment.env[7].name=HASURA_GRAPHQL_DATABASE_URL
+      --set deployment.env[7].value=postgresql://user_${CI_COMMIT_SHORT_SHA}%40${PG_HOST}:pass_${CI_COMMIT_SHORT_SHA}@${PG_HOST}:5432/db_${CI_COMMIT_SHORT_SHA}?sslmode=require
+
+Deploy app Hasura (prod):
+  extends:
+    - .autodevops_deploy_app_prod
+    - .deploy_hasura
+  variables:
+    PRODUCTION: "true"

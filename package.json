@@ -4,21 +4,30 @@
   "main": "index.js",
   "license": "MIT",
   "dependencies": {
+    "@hapi/boom": "^9.1.0",
+    "@hapi/joi": "^17.1.1",
     "@sentry/browser": "^5.15.5",
     "@sentry/integrations": "^5.15.5",
     "@sentry/node": "^5.15.5",
     "@socialgouv/bootstrap.core": "^0.2.1",
     "@zeit/next-source-maps": "^0.0.3",
+    "argon2": "^0.26.2",
+    "cookie": "^0.4.1",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
+    "graphql-request": "^1.8.2",
+    "http-proxy-middleware": "^1.0.3",
+    "jsonwebtoken": "^8.5.1",
     "next": "^9.4.0",
+    "nodemailer": "^6.4.6",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "sentry-testkit": "^3.2.1"
+    "sentry-testkit": "^3.2.1",
+    "uuid": "^8.0.0"
   },
   "husky": {
     "hooks": {
-      "pre-commit": "yarn lint",
+      "pre-commit": "eslint src/*",
       "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
     }
   },
@@ -28,7 +37,7 @@
     ]
   },
   "scripts": {
-    "dev": "node server.js",
+    "dev": "node -r dotenv/config server.js dotenv_config_path=.env.development",
     "build": "next build",
     "start": "NODE_ENV=production node server.js",
     "lint": "eslint src/*",

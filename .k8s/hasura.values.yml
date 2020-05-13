@@ -1,0 +1,43 @@
+image:
+  repository: $CI_REGISTRY_IMAGE/hasura
+  tag: master
+
+deployment:
+  livenessProbe:
+    path: /healthz
+    initialDelaySeconds: 30
+    periodSeconds: 20
+  readinessProbe:
+    path: /healthz
+    initialDelaySeconds: 30
+    periodSeconds: 20
+
+  resources:
+    requests:
+      cpu: 5m
+      memory: 256Mi
+    limits:
+      cpu: 1000m
+      memory: 1024Mi
+
+  env:
+    - name: NODE_ENV
+      value: "production"
+    - name: HASURA_GRAPHQL_ENABLE_CONSOLE
+      value: "false"
+    - name: HASURA_GRAPHQL_SERVER_PORT
+      value: "80"
+    - name: HASURA_GRAPHQL_ENABLED_LOG_TYPES
+      value: "startup, http-log, webhook-log, websocket-log, query-log"
+    - name: HASURA_GRAPHQL_NO_OF_RETRIES
+      value: "5"
+    - name: HASURA_GRAPHQL_UNAUTHORIZED_ROLE
+      value: "anonymous"
+    - name: ACCOUNT_EMAIL_WEBHOOK_URL
+      value: http://sample-next-app:3000/api/webhooks/account
+
+  envFrom:
+    - secretRef:
+        name: sample-next-app-secrets
+ingress:
+  enabled: false

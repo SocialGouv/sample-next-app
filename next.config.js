@@ -5,13 +5,13 @@ module.exports = nextSourceMaps({
   env: {
     SENTRY_DSN: process.env.SENTRY_DSN,
     MATOMO_SITE_ID: process.env.MATOMO_SITE_ID,
-    MATOMO_URL: process.env.MATOMO_URL
+    MATOMO_URL: process.env.MATOMO_URL,
   },
   webpack: (config, { isServer, buildId }) => {
     config.plugins.push(
       new webpack.DefinePlugin({
         // looks like it doesnt work for some reason
-        "process.env.SENTRY_RELEASE": JSON.stringify(buildId)
+        "process.env.SENTRY_RELEASE": JSON.stringify(buildId),
       })
     );
 
@@ -20,5 +20,5 @@ module.exports = nextSourceMaps({
     }
 
     return config;
-  }
+  },
 });

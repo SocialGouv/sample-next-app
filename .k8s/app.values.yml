@@ -1,0 +1,46 @@
+# Default values for Mas webapp. https://github.com/SocialGouv/helm-charts/blob/master/charts/webapp/values.yaml
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+# See https://github.com/SocialGouv/helm-charts/tree/master/charts/app
+---
+image:
+  repository: $CI_REGISTRY_IMAGE
+  tag: master
+
+# nameOverride: app
+
+deployment:
+  resources:
+    requests:
+      cpu: 5m
+      memory: 128Mi
+    limits:
+      cpu: 1000m
+      memory: 256Mi
+
+  livenessProbe:
+    initialDelaySeconds: 30
+    path: /health
+    periodSeconds: 15
+  readinessProbe:
+    initialDelaySeconds: 30
+    path: /health
+    periodSeconds: 15
+
+  env:
+    - name: PRODUCTION
+      value: "${PRODUCTION}"
+    - name: FRONTEND_HOST
+      value: ${HOST}
+    - name: GRAPHQL_ENDPOINT
+      value: "http://hasura-sample-next-app/v1/graphql"
+    - name: ACCOUNT_MAIL_SENDER
+      value: "contact@fabrique.social.gouv.fr"
+    - name: FRONTEND_PORT
+      value: "${PORT}"
+  envFrom:
+    - secretRef:
+        name: sample-next-app-secrets
+ingress:
+  enabled: true
