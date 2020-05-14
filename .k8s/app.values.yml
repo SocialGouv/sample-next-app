@@ -8,15 +8,13 @@ image:
   repository: $CI_REGISTRY_IMAGE
   tag: master
 
-# nameOverride: app
+fullnameOverride: app
 
 deployment:
   resources:
     requests:
-      cpu: 5m
       memory: 128Mi
     limits:
-      cpu: 1000m
       memory: 256Mi
 
   livenessProbe:
@@ -34,7 +32,7 @@ deployment:
     - name: FRONTEND_HOST
       value: ${HOST}
     - name: GRAPHQL_ENDPOINT
-      value: "http://hasura-sample-next-app/v1/graphql"
+      value: "http://hasura-app/v1/graphql"
     - name: ACCOUNT_MAIL_SENDER
       value: "contact@fabrique.social.gouv.fr"
     - name: FRONTEND_PORT
