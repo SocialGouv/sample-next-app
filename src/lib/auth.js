@@ -2,71 +2,78 @@ import Router from "next/router";
 import { request } from "./request";
 import { parse, serialize } from "cookie";
 import { setRefreshTokenCookie } from "./setRefreshTokenCookie";
-let inMemoryToken;
 
-async function getToken(ctx) {
-  console.log("[getToken]", { inMemoryToken });
-  if (!inMemoryToken) {
-    try {
-      let hostname = "";
-      const headers = {
-        "Cache-Control": "no-cache",
-      };
-      if (ctx && ctx.req) {
-        // node-fetch needs absolute url
-        hostname = `${ctx.req.protocol}://${ctx.req.headers.host}`;
-        const cookies = parse(ctx.req.headers.cookie);
-        if (cookies && cookies.refresh_token) {
-          headers["Cookie"] = serialize("refresh_token", cookies.refresh_token);
-        }
-      }
-      const tokenData = await request(`${hostname}/api/refresh_token`, {
-        credentials: "same-origin",
-        mode: "same-origin",
-        headers,
-        body: {},
-      });
-      if (ctx && ctx.res) {
-        setRefreshTokenCookie(ctx.res, tokenData.refresh_token);
-      }
-      setToken(tokenData);
-    } catch (error) {
-      console.error("[getToken]", { error });
-      if (ctx && ctx.res) {
-        ctx.res.writeHead(302, { Location: "/login" });
-        ctx.res.end();
-        return;
-      } else {
-        Router.push("/login");
-        return;
-      }
-    }
-  }
-  console.log("--[gettoken]--", { inMemoryToken });
-  return inMemoryToken.token;
+let token = null;
+
+function getToken() {
+  console.log("[ getToken ]", token?.jwt_token);
+  return token ? token.jwt_token : null;
 }
 
-function setToken({ jwt_token, jwt_token_expiry, refresh_token }) {
-  console.log("[setToken]", { jwt_token, jwt_token_expiry, refresh_token });
-  inMemoryToken = {
-    refresh_token,
-    token: jwt_token,
-    expiry: jwt_token_expiry,
-  };
+function isTokenExpired() {
+  if (!token) return true;
+  return Date.now() > new Date(token.jwt_token_expiry);
+}
+
+async function refreshToken(ctx) {
+  console.log("[ refreshToken ]", { token });
+
+  try {
+    let hostname = "";
+    const headers = {
+      "Cache-Control": "no-cache",
+    };
+    if (ctx && ctx.req) {
+      // node-fetch needs absolute url
+      hostname = `${ctx.req.protocol}://${ctx.req.headers.host}`;
+      const cookies = parse(ctx.req.headers.cookie);
+      if (cookies && cookies.refresh_token) {
+        headers["Cookie"] = serialize("refresh_token", cookies.refresh_token);
+      }
+    }
+    const tokenData = await request(`${hostname}/api/refresh_token`, {
+      credentials: "same-origin",
+      mode: "same-origin",
+      headers,
+    });
+
+    // for ServerSide call, we need to set the Cookie header
+    // to update the refresh_token value
+    if (ctx && ctx.res) {
+      setRefreshTokenCookie(ctx.res, tokenData.refresh_token);
+    }
+
+    setToken(tokenData);
+  } catch (error) {
+    console.error("[ refreshToken ]", { error });
+    if (ctx && ctx.res) {
+      ctx.res.writeHead(302, { Location: "/login" });
+      ctx.res.end();
+      return;
+    } else {
+      Router.push("/login");
+      return;
+    }
+  }
+
+  return getToken();
+}
+
+function setToken(tokenData) {
+  console.log("[ setToken ]", { tokenData });
+  token = { ...tokenData };
 }
 
 async function logout() {
-  inMemoryToken = null;
+  token = null;
   try {
-    await fetch("/api/logout", {
-      method: "POST",
-      credentials: "include",
+    await request("/api/logout", {
+      credentials: "same-origin",
+      mode: "same-origin",
     });
-    // to support logging out from all windows
-    window.localStorage.setItem("logout", Date.now());
   } catch (error) {
-    console.error("[client logout] failed");
+    console.error("[ client logout ] failed");
   }
 }
 
-export { setToken, logout, getToken };
+export { getToken, isTokenExpired, logout, refreshToken, setToken };

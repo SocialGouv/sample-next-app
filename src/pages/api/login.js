@@ -84,6 +84,8 @@ export default async function login(req, res) {
   res.json({
     refresh_token,
     jwt_token,
-    jwt_token_expiry: parseInt(process.env.JWT_TOKEN_EXPIRES, 10) || 15,
+    jwt_token_expiry: getExpiryDate(
+      parseInt(process.env.JWT_TOKEN_EXPIRES, 10) || 15
+    ),
   });
 }
