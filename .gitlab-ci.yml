@@ -35,8 +35,6 @@ Deploy app (dev):
   extends: .autodevops_deploy_app_dev
 
 .deploy_hasura:
-  extends:
-    - .deploy_app_stage
   variables:
     PORT: 80
     CONTEXT: hasura
