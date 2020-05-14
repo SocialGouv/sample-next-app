@@ -56,5 +56,3 @@ Deploy app Hasura (prod):
   extends:
     - .autodevops_deploy_app_prod
     - .deploy_hasura
-  variables:
-    PRODUCTION: "true"
