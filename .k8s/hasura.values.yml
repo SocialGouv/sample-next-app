@@ -2,6 +2,8 @@ image:
   repository: $CI_REGISTRY_IMAGE/hasura
   tag: master
 
+fullnameOverride: hasura
+
 deployment:
   livenessProbe:
     path: /healthz
@@ -34,7 +36,7 @@ deployment:
     - name: HASURA_GRAPHQL_UNAUTHORIZED_ROLE
       value: "anonymous"
     - name: ACCOUNT_EMAIL_WEBHOOK_URL
-      value: http://sample-next-app:3000/api/webhooks/account
+      value: http://app:3000/api/webhooks/account
 
   envFrom:
     - secretRef:
