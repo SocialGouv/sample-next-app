@@ -17,7 +17,7 @@ export default async function refresh_token(req, res) {
     refresh_token: Joi.string().guid({ version: "uuidv4" }).required(),
   }).unknown();
 
-  let { error, value } = schema.validate(req.query);
+  let { error, value } = schema.validate(req.cookies);
 
   if (error) {
     const temp = schema.validate(req.query);
@@ -26,7 +26,7 @@ export default async function refresh_token(req, res) {
   }
 
   if (error) {
-    const temp = schema.validate(req.cookies);
+    const temp = schema.validate(req.body);
     error = temp.error;
     value = temp.value;
   }
@@ -36,7 +36,6 @@ export default async function refresh_token(req, res) {
   }
 
   const { refresh_token } = value;
-  console.log("[ /api/refresh_token ]", { refresh_token });
   let hasura_data;
   try {
     hasura_data = await graphqlClient.request(getRefreshTokenQuery, {
@@ -48,19 +47,21 @@ export default async function refresh_token(req, res) {
     console.error("Error connecting to GraphQL");
     return apiError(Boom.unauthorized("Invalid 'refresh_token'"));
   }
-  console.log("[ /api/refresh_token ]", "query refresh_token ok");
+
   if (hasura_data.refresh_tokens.length === 0) {
     console.error("Incorrect user id or refresh token");
     return apiError(Boom.unauthorized("Invalid 'refresh_token'"));
   }
-  console.log("[ /api/refresh_token ]", "query refresh_token found");
+
   const { user } = hasura_data[`refresh_tokens`][0];
 
   const new_refresh_token = uuidv4();
+
   console.log("[ /api/refresh_token ]", "replace", {
     refresh_token,
     new_refresh_token,
   });
+
   try {
     await graphqlClient.request(deletePreviousRefreshTokenMutation, {
       old_refresh_token: refresh_token,
