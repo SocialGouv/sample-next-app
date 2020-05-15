@@ -9,7 +9,10 @@ const LoginForm = ({ authenticate, resetPassword, onSuccess }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const submit = async () => {
+  const submit = async (event) => {
+    if (event) {
+      event.preventDefault();
+    }
     setError(null);
     setStatus("loading");
     try {
@@ -25,7 +28,7 @@ const LoginForm = ({ authenticate, resetPassword, onSuccess }) => {
   const isValid = status !== "loading" && isValidEmail && !!password;
 
   return (
-    <Form onSubmit={(e) => e.preventDefault()}>
+    <Form onSubmit={submit}>
       <Form.Group>
         <Form.Label>Adresse email</Form.Label>
         <Form.Control
@@ -50,8 +53,8 @@ const LoginForm = ({ authenticate, resetPassword, onSuccess }) => {
         variant="primary"
         size="lg"
         block
-        onClick={submit}
         type="submit"
+        onClick={submit}
         disabled={!isValid}
       >
         Se connecter

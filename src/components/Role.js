@@ -13,8 +13,6 @@ export function Role() {
   const [results] = useQuery({ query });
   const { data, error, fetching } = results;
 
-  console.log("[Role] ");
-
   if (fetching) return <p>loading</p>;
   if (error)
     return (
@@ -25,7 +23,9 @@ export function Role() {
   return (
     <p>
       {data.roles.map(({ role }) => (
-        <Badge key={role}>{role}</Badge>
+        <Badge variant="dark" key={role}>
+          {role}
+        </Badge>
       ))}
     </p>
   );

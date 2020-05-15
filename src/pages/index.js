@@ -1,5 +1,6 @@
 import React from "react";
 import Link from "next/link";
+import Head from "next/head";
 
 import { matopush } from "../matomo";
 
@@ -23,6 +24,9 @@ const faultyApiCall = () =>
 
 const Page = () => (
   <React.Fragment>
+    <Head>
+      <title>Home | sample next app</title>
+    </Head>
     <p>
       <Link href="/page2">
         <a>Go to page 2</a>
