@@ -38,7 +38,7 @@ export default async function reset_password(req, res) {
 
   console.log("[reset_password]", email);
 
-  res.json("ok!");
+  res.json({ message: "reset password started" });
 }
 
 const udpateSecretTokenMutation = `

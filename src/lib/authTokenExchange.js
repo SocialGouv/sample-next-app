@@ -39,7 +39,7 @@ export const tapExchange = (fn) => ({ forward }) => (ops$) => {
     ops$,
     map((operation) => {
       fn({ ...operation });
-      return { ...operation };
+      return operation;
     }),
     forward
   );
@@ -64,11 +64,9 @@ export const authExchange = ({ forward }) => {
       // Filter by non-teardowns
       filter((operation) => operation.operationName !== "teardown"),
       mergeMap((operation) => {
-        console.log("[authExchange]", operation);
         const refreshTokenFn = operation.context.fetchOptions.refreshToken;
         // check whether the token is expired
         const isExpired = isTokenExpired();
-
         // If it's not expired then just add it to the operation immediately
         if (!isExpired) {
           return fromValue(addTokenToOperation(operation, getToken()));

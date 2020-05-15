@@ -1,5 +1,6 @@
 import React from "react";
 import { useRouter } from "next/router";
+import Head from "next/head";
 import LoginForm from "../components/login";
 
 import { setToken } from "../lib/auth";
@@ -29,10 +30,15 @@ export default function LoginPage() {
   };
 
   return (
-    <LoginForm
-      authenticate={authenticate}
-      resetPassword={resetPassword}
-      onSuccess={goAdmin}
-    />
+    <>
+      <Head>
+        <title>login | sample next app</title>
+      </Head>
+      <LoginForm
+        authenticate={authenticate}
+        resetPassword={resetPassword}
+        onSuccess={goAdmin}
+      />
+    </>
   );
 }

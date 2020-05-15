@@ -46,7 +46,7 @@ export function createRequestHandler({
 
     console.log("[set password]", value.token);
 
-    res.json(success_message);
+    res.json({ message: success_message });
   };
 }
 

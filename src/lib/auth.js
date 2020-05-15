@@ -6,8 +6,11 @@ import { setRefreshTokenCookie } from "./setRefreshTokenCookie";
 let token = null;
 
 function getToken() {
-  console.log("[ getToken ]", token?.jwt_token);
   return token ? token.jwt_token : null;
+}
+
+function getUserId() {
+  return token ? token.user_id : null;
 }
 
 function isTokenExpired() {
@@ -16,8 +19,6 @@ function isTokenExpired() {
 }
 
 async function refreshToken(ctx) {
-  console.log("[ refreshToken ]", { token });
-
   try {
     let hostname = "";
     const headers = {
@@ -32,9 +33,10 @@ async function refreshToken(ctx) {
       }
     }
     const tokenData = await request(`${hostname}/api/refresh_token`, {
-      credentials: "same-origin",
+      credentials: "include",
       mode: "same-origin",
       headers,
+      body: { refresh_token: token?.refresh_token },
     });
 
     // for ServerSide call, we need to set the Cookie header
@@ -45,7 +47,7 @@ async function refreshToken(ctx) {
 
     setToken(tokenData);
   } catch (error) {
-    console.error("[ refreshToken ]", { error });
+    console.error("[ auth.refreshToken error]", { error });
     if (ctx && ctx.res) {
       ctx.res.writeHead(302, { Location: "/login" });
       ctx.res.end();
@@ -60,20 +62,7 @@ async function refreshToken(ctx) {
 }
 
 function setToken(tokenData) {
-  console.log("[ setToken ]", { tokenData });
   token = { ...tokenData };
 }
 
-async function logout() {
-  token = null;
-  try {
-    await request("/api/logout", {
-      credentials: "same-origin",
-      mode: "same-origin",
-    });
-  } catch (error) {
-    console.error("[ client logout ] failed");
-  }
-}
-
-export { getToken, isTokenExpired, logout, refreshToken, setToken };
+export { getToken, getUserId, isTokenExpired, refreshToken, setToken };

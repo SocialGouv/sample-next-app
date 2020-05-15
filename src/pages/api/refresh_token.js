@@ -17,13 +17,7 @@ export default async function refresh_token(req, res) {
     refresh_token: Joi.string().guid({ version: "uuidv4" }).required(),
   }).unknown();
 
-  let { error, value } = schema.validate(req.cookies);
-
-  if (error) {
-    const temp = schema.validate(req.query);
-    error = temp.error;
-    value = temp.value;
-  }
+  let { error, value } = schema.validate(req.query);
 
   if (error) {
     const temp = schema.validate(req.body);
@@ -32,9 +26,14 @@ export default async function refresh_token(req, res) {
   }
 
   if (error) {
-    return apiError(Boom.badRequest(error.details[0].message));
+    const temp = schema.validate(req.cookies);
+    error = temp.error;
+    value = temp.value;
   }
 
+  if (error) {
+    return apiError(Boom.badRequest(error.details[0].message));
+  }
   const { refresh_token } = value;
   let hasura_data;
   try {
@@ -49,7 +48,7 @@ export default async function refresh_token(req, res) {
   }
 
   if (hasura_data.refresh_tokens.length === 0) {
-    console.error("Incorrect user id or refresh token");
+    console.error("Incorrect user id or refresh token", refresh_token);
     return apiError(Boom.unauthorized("Invalid 'refresh_token'"));
   }
 
@@ -79,8 +78,10 @@ export default async function refresh_token(req, res) {
   const jwt_token = generateJwtToken(user);
 
   setRefreshTokenCookie(res, new_refresh_token);
+
   res.json({
     refresh_token: new_refresh_token,
+    user_id: user.id,
     jwt_token,
     jwt_token_expiry: parseInt(process.env.JWT_TOKEN_EXPIRES, 10) || 15,
   });
