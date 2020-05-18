@@ -46,8 +46,8 @@
   "devDependencies": {
     "@commitlint/cli": "^8.3.5",
     "@commitlint/config-conventional": "^8.3.4",
-    "@socialgouv/eslint-config-react": "^0.21.0",
-    "@socialgouv/eslint-config-recommended": "^0.21.0",
+    "@socialgouv/eslint-config-react": "^0.22.1",
+    "@socialgouv/eslint-config-recommended": "^0.22.1",
     "eslint": "^7.0.0",
     "husky": "^4.2.5",
     "jest-cli": "^26.0.1",
