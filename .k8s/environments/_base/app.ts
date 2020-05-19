@@ -8,6 +8,10 @@ export default {
   labels: {
     component: "next",
   },
-  containerPort: 8080,
-  servicePort: 8080,
+  limits: {
+    cpu: "50m",
+    memory: "128Mi",
+  },
+  containerPort: 3030,
+  servicePort: 3030,
 } as Readonly<AppComponentEnvironment>;
