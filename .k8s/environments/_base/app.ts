@@ -8,6 +8,10 @@ export default {
   labels: {
     component: "next",
   },
+  requests: {
+    cpu: "1m",
+    memory: "64Mi",
+  },
   limits: {
     cpu: "50m",
     memory: "128Mi",
