@@ -1,10 +1,11 @@
 {
   "compilerOptions": {
     "baseUrl": ".",
-    "target": "es2015",
-    "module": "commonjs",
     "esModuleInterop": true,
+    "module": "commonjs",
     "moduleResolution": "node",
-    "types": ["node"],
+    "strict": true,
+    "target": "es2015",
+    "types": ["node"]
   }
 }

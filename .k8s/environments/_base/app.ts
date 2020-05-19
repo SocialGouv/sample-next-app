@@ -1,4 +1,5 @@
 import { AppComponentEnvironment } from "@socialgouv/kosko-charts/types";
+
 export default {
   name: "www",
   image: {
