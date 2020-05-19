@@ -4,12 +4,12 @@ image:
   repository: $CI_REGISTRY_IMAGE
   tag: master
 
-nameOverride: app
+fullnameOverride: app
 
 deployment:
 
   livenessProbe:
-    initialDelaySeconds: 15
+    initialDelaySeconds: 30
 
   resources:
     limits:

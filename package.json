@@ -11,7 +11,7 @@
     "@zeit/next-source-maps": "^0.0.3",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
-    "next": "^9.3.6",
+    "next": "^9.4.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "sentry-testkit": "^3.2.1"
@@ -38,8 +38,8 @@
   "devDependencies": {
     "@commitlint/cli": "^8.3.5",
     "@commitlint/config-conventional": "^8.3.4",
-    "@socialgouv/eslint-config-react": "^0.20.0",
-    "@socialgouv/eslint-config-recommended": "^0.20.0",
+    "@socialgouv/eslint-config-react": "^0.21.0",
+    "@socialgouv/eslint-config-recommended": "^0.21.0",
     "eslint": "^7.0.0",
     "husky": "^4.2.5",
     "jest-cli": "^26.0.1",
