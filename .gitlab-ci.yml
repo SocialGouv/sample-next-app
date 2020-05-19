@@ -11,4 +11,4 @@ include:
     ref: v16.0.0-alpha.4
 
 variables:
-  AUTO_DEVOPS_RELEASE_AUTO: true
+  AUTO_DEVOPS_RELEASE_AUTO: "true"
