@@ -7,10 +7,5 @@
 
 include:
   - project: SocialGouv/gitlab-ci-yml
-    file: /autodevops_simple_app.yml
-    ref: v15.6.0
-
-variables:
-  PROJECT: "sample-next-app"
-  PORT: 4000
-  VALUES_FILE: ./.k8s.app.values.yml
+    file: /autodevops.yml
+    ref: douglasduteil/feat-autodevops-autodevops-v2

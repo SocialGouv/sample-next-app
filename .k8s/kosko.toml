@@ -1,0 +1,3 @@
+components = ["*"]
+require = ["ts-node/register"]
+baseEnvironment = "_base"
