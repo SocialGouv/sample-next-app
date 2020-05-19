@@ -29,6 +29,7 @@
   },
   "scripts": {
     "dev": "node server.js",
+    "k8s": "yarn --silent --cwd .k8s",
     "build": "next build",
     "start": "NODE_ENV=production node server.js",
     "lint": "eslint src/*",
