@@ -8,4 +8,4 @@
 include:
   - project: SocialGouv/gitlab-ci-yml
     file: /autodevops.yml
-    ref: douglasduteil/feat-autodevops-autodevops-v2
+    ref: alpha
