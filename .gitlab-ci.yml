@@ -12,3 +12,4 @@ include:
 
 variables:
   AUTO_DEVOPS_RELEASE_AUTO: "true"
+  AUTO_DEVOPS_PRODUCTION_AUTO: "true"
