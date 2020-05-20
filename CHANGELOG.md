@@ -1,3 +1,10 @@
+# [1.1.0-alpha.8](https://github.com/SocialGouv/sample-next-app/compare/v1.1.0-alpha.7...v1.1.0-alpha.8) (2020-05-20)
+
+
+### Bug Fixes
+
+* **k8s:** add alpha prefix in production ([00bc4fa](https://github.com/SocialGouv/sample-next-app/commit/00bc4fa6a48c96b8664d92b09decd0aba70c44d2))
+
 # [1.1.0-alpha.7](https://github.com/SocialGouv/sample-next-app/compare/v1.1.0-alpha.6...v1.1.0-alpha.7) (2020-05-20)
 
 
