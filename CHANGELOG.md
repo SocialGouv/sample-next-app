@@ -1,3 +1,10 @@
+# [1.1.0-alpha.5](https://github.com/SocialGouv/sample-next-app/compare/v1.1.0-alpha.4...v1.1.0-alpha.5) (2020-05-20)
+
+
+### Bug Fixes
+
+* **k8s:** use tagged image when available ([3cebd7a](https://github.com/SocialGouv/sample-next-app/commit/3cebd7a911a06f0cba9bce8eeda46a887486077e))
+
 # [1.1.0-alpha.4](https://github.com/SocialGouv/sample-next-app/compare/v1.1.0-alpha.3...v1.1.0-alpha.4) (2020-05-20)
 
 
