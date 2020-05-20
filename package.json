@@ -18,7 +18,7 @@
     "graphql-request": "^1.8.2",
     "http-proxy-middleware": "^1.0.4",
     "jsonwebtoken": "^8.5.1",
-    "next": "^9.4.1",
+    "next": "^9.4.2",
     "nodemailer": "^6.4.6",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
