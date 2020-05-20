@@ -1,4 +1,4 @@
-import { AppComponentEnvironment } from "@socialgouv/kosko-charts/types";
+import { AppComponentEnvironment } from "@socialgouv/kosko-charts/components/app/params";
 
 export default {
   name: "www",
