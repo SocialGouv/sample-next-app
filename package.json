@@ -23,7 +23,7 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "sentry-testkit": "^3.2.1",
-    "uuid": "^8.0.0"
+    "uuid": "^8.1.0"
   },
   "husky": {
     "hooks": {
