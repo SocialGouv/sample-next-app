@@ -8,6 +8,9 @@ export default {
       ? process.env.CI_COMMIT_TAG.slice(1)
       : process.env.CI_COMMIT_SHA,
   },
+  ingress: {
+    secretName: process.env.PRODUCTION ? "www-crt" : "wildcard-crt",
+  },
   labels: {
     component: "next",
   },
