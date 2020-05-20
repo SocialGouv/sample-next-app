@@ -1,3 +1,10 @@
+# [1.1.0-alpha.9](https://github.com/SocialGouv/sample-next-app/compare/v1.1.0-alpha.8...v1.1.0-alpha.9) (2020-05-20)
+
+
+### Bug Fixes
+
+* **k8s:** change production certificate ([6e34eed](https://github.com/SocialGouv/sample-next-app/commit/6e34eeda632b0eb02e4e60efb39751cb90a89c68))
+
 # [1.1.0-alpha.8](https://github.com/SocialGouv/sample-next-app/compare/v1.1.0-alpha.7...v1.1.0-alpha.8) (2020-05-20)
 
 
