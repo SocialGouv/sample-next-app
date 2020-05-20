@@ -8,7 +8,7 @@
 include:
   - project: SocialGouv/gitlab-ci-yml
     file: /autodevops.yml
-    ref: v16.0.0-alpha.4
+    ref: v16.0.0-alpha.5
 
 variables:
   AUTO_DEVOPS_RELEASE_AUTO: "true"
