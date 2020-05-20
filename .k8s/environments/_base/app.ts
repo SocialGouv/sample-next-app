@@ -4,7 +4,9 @@ export default {
   name: "www",
   image: {
     name: process.env.CI_REGISTRY_IMAGE,
-    tag: process.env.CI_COMMIT_SHA,
+    tag: process.env.CI_COMMIT_TAG
+      ? process.env.CI_COMMIT_TAG.slice(1)
+      : process.env.CI_COMMIT_SHA,
   },
   labels: {
     component: "next",
