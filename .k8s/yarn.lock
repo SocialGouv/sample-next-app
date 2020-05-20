@@ -115,9 +115,9 @@
     fastq "^1.6.0"
 
 "@socialgouv/kosko-charts@^2.0.0-alpha.4":
-  version "2.0.0-alpha.9"
-  resolved "https://registry.yarnpkg.com/@socialgouv/kosko-charts/-/kosko-charts-2.0.0-alpha.9.tgz#676f6cb4a040a7dbdbb637469e059c9792f9ae27"
-  integrity sha512-QWdMM2mGS10pR3ND2R+QAnRKda4qGDKvxqLLIaMvOOzgirbZ0nCWfJmXjOeldHT9f9VkHf6bRFKoqJB6cxDWyA==
+  version "2.0.0-alpha.11"
+  resolved "https://registry.yarnpkg.com/@socialgouv/kosko-charts/-/kosko-charts-2.0.0-alpha.11.tgz#771e3a32257745c5a43cf2d4a726222929e983f7"
+  integrity sha512-TgKUYoUESOJIkh8Dk+BN8/98OUH2kzurUcWGTrYUpScLELQL1etzpMmLBGZhY5x3Sni2rDYrXVDBOOmGOYBqew==
   dependencies:
     fp-ts "^2.6.0"
     io-ts "^2.2.2"
