@@ -26,24 +26,24 @@ jobs:
           branch: 'autodevops-master'
           force: true
 
-  sync_alpha:
+  sync_beta:
     runs-on: ubuntu-latest
     if: |
-      github.ref == 'refs/heads/alpha'
+      github.ref == 'refs/heads/beta'
     steps:
       - uses: actions/checkout@v2
-      - name: Sync `ci-test-autodevops-alpha` branch with `alpha`
+      - name: Sync `ci-test-autodevops-beta` branch with `beta`
         run: |
           git config user.name "Social Groovy Bot"
           git config user.email "45039513+SocialGroovyBot@users.noreply.github.com"
 
-          git checkout -b ci-test-autodevops-alpha
-          sed -i -e 's/ref: .*/ref: alpha/' .gitlab-ci.yml
-          git commit -a -m "ci(gitlab): test SocialGouv/gitlab-ci-yml@alpha autodevops"
-      - name: Push `ci-test-autodevops-alpha` branch
+          git checkout -b ci-test-autodevops-beta
+          sed -i -e 's/ref: .*/ref: beta/' .gitlab-ci.yml
+          git commit -a -m "ci(gitlab): test SocialGouv/gitlab-ci-yml@beta autodevops"
+      - name: Push `ci-test-autodevops-beta` branch
         uses: ad-m/github-push-action@master
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          branch: 'ci-test-autodevops-alpha'
+          branch: 'ci-test-autodevops-beta'
           force: true
 
