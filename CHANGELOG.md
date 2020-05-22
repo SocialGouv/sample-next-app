@@ -1,3 +1,66 @@
+# [1.1.0-beta.1](https://github.com/SocialGouv/sample-next-app/compare/v1.0.0...v1.1.0-beta.1) (2020-05-22)
+
+
+### Bug Fixes
+
+* **deps:** update all non-major dependencies ([#162](https://github.com/SocialGouv/sample-next-app/issues/162)) ([0c8ad78](https://github.com/SocialGouv/sample-next-app/commit/0c8ad78a70a71d0eb5ac86b11fcd495485693f08))
+* **deps:** update dependency @sentry/node to ^5.13.1 ([#130](https://github.com/SocialGouv/sample-next-app/issues/130)) ([f212c0f](https://github.com/SocialGouv/sample-next-app/commit/f212c0f411c14f66338f1d5159c482987b5c71e9))
+* **deps:** update dependency next to ^9.1.5 ([#62](https://github.com/SocialGouv/sample-next-app/issues/62)) ([e94cf95](https://github.com/SocialGouv/sample-next-app/commit/e94cf95da509875c1753c0e1065e26cf3badcc82))
+* **deps:** update dependency next to ^9.1.7 ([#88](https://github.com/SocialGouv/sample-next-app/issues/88)) ([e891d90](https://github.com/SocialGouv/sample-next-app/commit/e891d904c9669a9c12a174b014f097a8297b8d3a))
+* **deps:** update dependency next to ^9.2.0 ([#103](https://github.com/SocialGouv/sample-next-app/issues/103)) ([4bbac3b](https://github.com/SocialGouv/sample-next-app/commit/4bbac3b4e7c5a581f23371c106f8293981bcbecf))
+* **deps:** update dependency next to ^9.2.1 ([#110](https://github.com/SocialGouv/sample-next-app/issues/110)) ([9d7eb36](https://github.com/SocialGouv/sample-next-app/commit/9d7eb36dc8bf0d440df17bf318371a06d772e883))
+* **deps:** update dependency next to ^9.2.2 ([#124](https://github.com/SocialGouv/sample-next-app/issues/124)) ([02abfae](https://github.com/SocialGouv/sample-next-app/commit/02abfaec46d5656b0886bca676e54bbb0aee7ff6))
+* **deps:** update dependency next to ^9.3.0 ([#136](https://github.com/SocialGouv/sample-next-app/issues/136)) ([e6ca5c2](https://github.com/SocialGouv/sample-next-app/commit/e6ca5c2952c216ab43caa162dce61164a4854f1e))
+* **deps:** update dependency next to ^9.3.1 ([#148](https://github.com/SocialGouv/sample-next-app/issues/148)) ([82592af](https://github.com/SocialGouv/sample-next-app/commit/82592af12933c3e3394b73184ed63fa5ce63c3cf))
+* **deps:** update dependency next to ^9.3.5 ([#174](https://github.com/SocialGouv/sample-next-app/issues/174)) ([f529256](https://github.com/SocialGouv/sample-next-app/commit/f5292567a16dc0c265b02da485887e3b8cdb352e))
+* **deps:** update dependency next to ^9.3.6 ([#184](https://github.com/SocialGouv/sample-next-app/issues/184)) ([1501bce](https://github.com/SocialGouv/sample-next-app/commit/1501bcea8dc982fdb04ba8dd4fd7785d6b37d486))
+* **deps:** update dependency next to ^9.4.0 ([#200](https://github.com/SocialGouv/sample-next-app/issues/200)) ([d0f01a5](https://github.com/SocialGouv/sample-next-app/commit/d0f01a56eaca34c1c79d8cf63fc5ba1e330a7dae))
+* **deps:** update dependency sentry-testkit to ^3.1.0 ([#74](https://github.com/SocialGouv/sample-next-app/issues/74)) ([4915ee1](https://github.com/SocialGouv/sample-next-app/commit/4915ee16bfecd784fa2a700f0a0d7e89f84f0626))
+* **deps:** update dependency sentry-testkit to ^3.2.0 ([#78](https://github.com/SocialGouv/sample-next-app/issues/78)) ([14ec39b](https://github.com/SocialGouv/sample-next-app/commit/14ec39bb06fdf7211f4b72cfe5d3715d16c6ee03))
+* **deps:** update dependency sentry-testkit to ^3.2.1 ([#82](https://github.com/SocialGouv/sample-next-app/issues/82)) ([32fadb1](https://github.com/SocialGouv/sample-next-app/commit/32fadb18b7439ec7aff5e80e3792999bd4f6323b))
+* **deps:** update react monorepo to ^16.13.0 ([#128](https://github.com/SocialGouv/sample-next-app/issues/128)) ([c7f27e7](https://github.com/SocialGouv/sample-next-app/commit/c7f27e79263f33124004677da58ca20d6d26def9))
+* **deps:** update sentry monorepo to ^5.10.1 ([#48](https://github.com/SocialGouv/sample-next-app/issues/48)) ([44c7ed9](https://github.com/SocialGouv/sample-next-app/commit/44c7ed9c00c08f410918e8145607e95ed19c1ab4))
+* **deps:** update sentry monorepo to ^5.10.2 ([#61](https://github.com/SocialGouv/sample-next-app/issues/61)) ([7b3bbb6](https://github.com/SocialGouv/sample-next-app/commit/7b3bbb6e8a473fe12164d3759f893371f609fefb))
+* **deps:** update sentry monorepo to ^5.11.0 ([#92](https://github.com/SocialGouv/sample-next-app/issues/92)) ([7584d81](https://github.com/SocialGouv/sample-next-app/commit/7584d813515f059b79b9777e16a6cc7eb653d418))
+* **deps:** update sentry monorepo to ^5.11.1 ([#104](https://github.com/SocialGouv/sample-next-app/issues/104)) ([42c7e42](https://github.com/SocialGouv/sample-next-app/commit/42c7e4202ac5529ebd2ebb205ecde89db3f96d07))
+* **deps:** update sentry monorepo to ^5.12.4 ([#113](https://github.com/SocialGouv/sample-next-app/issues/113)) ([047a5bc](https://github.com/SocialGouv/sample-next-app/commit/047a5bc17a24abc05acb20ce5cbe70182ebceed4))
+* **deps:** update sentry monorepo to ^5.12.5 ([#127](https://github.com/SocialGouv/sample-next-app/issues/127)) ([da233f8](https://github.com/SocialGouv/sample-next-app/commit/da233f8bfef3158ff74d892862d1b5fdae80b4d5))
+* **deps:** update sentry monorepo to ^5.13.0 ([#129](https://github.com/SocialGouv/sample-next-app/issues/129)) ([6e8d1b3](https://github.com/SocialGouv/sample-next-app/commit/6e8d1b3fb0af8be62805421ca05e2533e2661c93))
+* **deps:** update sentry monorepo to ^5.13.2 ([#133](https://github.com/SocialGouv/sample-next-app/issues/133)) ([abc9f57](https://github.com/SocialGouv/sample-next-app/commit/abc9f57f7cf8c2eab3fbf89860bfe32776cbb71c))
+* **deps:** update sentry monorepo to ^5.14.0 ([#141](https://github.com/SocialGouv/sample-next-app/issues/141)) ([119b7ff](https://github.com/SocialGouv/sample-next-app/commit/119b7ffc92746d6b56fca843104f05d347f1b655))
+* **deps:** update sentry monorepo to ^5.14.2 ([#142](https://github.com/SocialGouv/sample-next-app/issues/142)) ([1dd49c4](https://github.com/SocialGouv/sample-next-app/commit/1dd49c462d6c923d63f4f37cdf298d8e8d986f4e))
+* **deps:** update sentry monorepo to ^5.15.5 ([#181](https://github.com/SocialGouv/sample-next-app/issues/181)) ([a9e6402](https://github.com/SocialGouv/sample-next-app/commit/a9e6402cd0122d8133148746a8ec0f84941f2558))
+* **gitlab:** update socialgouv/gitlab-ci-yml to v16.0.0-alpha.5 ([76e6a98](https://github.com/SocialGouv/sample-next-app/commit/76e6a987c123c194affe69f518bcc1668106f44e))
+* **gitlab:** update socialgouv/gitlab-ci-yml to v16.0.0-alpha.6 ([a534315](https://github.com/SocialGouv/sample-next-app/commit/a53431593229f500ff63f4fdd0fb48836d1a3b70))
+* **gitlab:** update socialgouv/gitlab-ci-yml to v16.0.0-alpha.7 ([9e5ab0b](https://github.com/SocialGouv/sample-next-app/commit/9e5ab0bed894fbeb1ee109c0141d12b51261beee))
+* **gitlab:** update socialgouv/gitlab-ci-yml to v16.0.0-alpha.9 ([2f16fef](https://github.com/SocialGouv/sample-next-app/commit/2f16fefe90b47683a63d68fa6f91e6b5e0a5f184))
+* **gitlab:** use preprod job on tags ([cf7a474](https://github.com/SocialGouv/sample-next-app/commit/cf7a474ffe24d51fc528154ccd28893a7d44be37))
+* **k8s:** add alpha prefix in production ([00bc4fa](https://github.com/SocialGouv/sample-next-app/commit/00bc4fa6a48c96b8664d92b09decd0aba70c44d2))
+* **k8s:** change production certificate ([6e34eed](https://github.com/SocialGouv/sample-next-app/commit/6e34eeda632b0eb02e4e60efb39751cb90a89c68))
+* trigger patch release ([1f65f49](https://github.com/SocialGouv/sample-next-app/commit/1f65f493a4ec608d0ce27af18299cd254a8bceee))
+* trigger patch release ([354dfb1](https://github.com/SocialGouv/sample-next-app/commit/354dfb19fd582811a933d342b77180fbad8b5903))
+* **k8s:** update @socialgouv/kosko-charts to 2.0.0-alpha.9 ([fe01bdd](https://github.com/SocialGouv/sample-next-app/commit/fe01bdd1b5c9084d77f5a5475eb2ed00eee82759))
+* **k8s:** use tagged image when available ([3cebd7a](https://github.com/SocialGouv/sample-next-app/commit/3cebd7a911a06f0cba9bce8eeda46a887486077e))
+* trigger patch release ([03d8b27](https://github.com/SocialGouv/sample-next-app/commit/03d8b27e3e1eedef9e525f1a38130fec3241a012))
+* **sentry:** add missing dotenv package and sentry before send ([#97](https://github.com/SocialGouv/sample-next-app/issues/97)) ([5bf24fe](https://github.com/SocialGouv/sample-next-app/commit/5bf24fe9b7dd972f38ea62595d78ef285648e7f0))
+* **sentry:** undefined sentryTransport ([03e8b35](https://github.com/SocialGouv/sample-next-app/commit/03e8b35ac1e8592196a03d1729ea91ce2804fe59))
+
+
+### Features
+
+* **gitlab:** update socialgouv/gitlab-ci-yml to v16.0.0-alpha.8 ([5f1f596](https://github.com/SocialGouv/sample-next-app/commit/5f1f596ee38677932257779f4363b8b245427fea))
+* **gitlab:** update socialgouv/gitlab-ci-yml to v16.0.0-beta.1 ([19cc71f](https://github.com/SocialGouv/sample-next-app/commit/19cc71fc327ec62a34b2b4d7e301c7c35d4632dd))
+* **k8s:** add beta prefix in production ([93f22a3](https://github.com/SocialGouv/sample-next-app/commit/93f22a3931e7969bd2c015179a96771558bd0a2d))
+* add faulty api call ([#152](https://github.com/SocialGouv/sample-next-app/issues/152)) ([bb3ac8a](https://github.com/SocialGouv/sample-next-app/commit/bb3ac8a51ae68fd58b1a796f71db563aa9a264e9))
+* import bootstrap from npm ([#144](https://github.com/SocialGouv/sample-next-app/issues/144)) ([90e1323](https://github.com/SocialGouv/sample-next-app/commit/90e1323beac3605df5662a3523ac88fa120b132e))
+
+
+### Reverts
+
+* Revert "chore(renovate): temporaly enable the bot to do some work <3" ([f0a9f1c](https://github.com/SocialGouv/sample-next-app/commit/f0a9f1c0190d5068c0b46fc3598660cdf367fdcd))
+* Revert "chore(renovate): force lockFileMaintenance" ([57a6de7](https://github.com/SocialGouv/sample-next-app/commit/57a6de73d66e9373cfa7df7aab70bea75314a383))
+* Revert "chore(deps): update node.js to v13 (#72)" (#73) ([b73dd2d](https://github.com/SocialGouv/sample-next-app/commit/b73dd2d4ea110a48bd91e980ea166ea398010723)), closes [#72](https://github.com/SocialGouv/sample-next-app/issues/72) [#73](https://github.com/SocialGouv/sample-next-app/issues/73)
+
 # [1.1.0-alpha.12](https://github.com/SocialGouv/sample-next-app/compare/v1.1.0-alpha.11...v1.1.0-alpha.12) (2020-05-22)
 
 
