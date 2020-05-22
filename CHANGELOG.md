@@ -1,3 +1,10 @@
+# [1.1.0-alpha.11](https://github.com/SocialGouv/sample-next-app/compare/v1.1.0-alpha.10...v1.1.0-alpha.11) (2020-05-22)
+
+
+### Bug Fixes
+
+* **gitlab:** use preprod job on tags ([cf7a474](https://github.com/SocialGouv/sample-next-app/commit/cf7a474ffe24d51fc528154ccd28893a7d44be37))
+
 # [1.1.0-alpha.10](https://github.com/SocialGouv/sample-next-app/compare/v1.1.0-alpha.9...v1.1.0-alpha.10) (2020-05-22)
 
 
