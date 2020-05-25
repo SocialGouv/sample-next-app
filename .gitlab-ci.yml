@@ -1,8 +1,8 @@
 include:
   - project: SocialGouv/gitlab-ci-yml
     file: /autodevops.yml
-    ref: v16.0.0-beta.3
+    ref: v16.0.0-beta.4
 
 variables:
   AUTO_DEVOPS_RELEASE_AUTO: "true"
-  AUTO_DEVOPS_PRODUCTION_AUTO: "true"
+  AUTO_DEVOPS_PRODUCTION_AUTO: "^v[1-9]+\.[0-9]+\.[0-9]+$"
