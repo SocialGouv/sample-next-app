@@ -1,14 +1,7 @@
-#
-# Context investigation
-#
-# - master as prod
-# - features branches env
-#
-
 include:
   - project: SocialGouv/gitlab-ci-yml
     file: /autodevops.yml
-    ref: v16.0.0-beta.1
+    ref: v16.0.0-beta.3
 
 variables:
   AUTO_DEVOPS_RELEASE_AUTO: "true"
