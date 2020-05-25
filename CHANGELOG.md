@@ -1,3 +1,10 @@
+# [1.1.0-beta.4](https://github.com/SocialGouv/sample-next-app/compare/v1.1.0-beta.3...v1.1.0-beta.4) (2020-05-25)
+
+
+### Bug Fixes
+
+* **gitlab:** trigger production test ([a06522c](https://github.com/SocialGouv/sample-next-app/commit/a06522ca67235e3da7c051d6331cfcc09e1048f3))
+
 # [1.1.0-beta.3](https://github.com/SocialGouv/sample-next-app/compare/v1.1.0-beta.2...v1.1.0-beta.3) (2020-05-25)
 
 
