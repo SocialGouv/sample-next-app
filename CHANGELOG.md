@@ -1,3 +1,10 @@
+# [1.1.0-beta.2](https://github.com/SocialGouv/sample-next-app/compare/v1.1.0-beta.1...v1.1.0-beta.2) (2020-05-25)
+
+
+### Bug Fixes
+
+* trigger patch release ([8c34283](https://github.com/SocialGouv/sample-next-app/commit/8c342837fc859c79fe3efd42a81c2254ed393efa))
+
 # [1.1.0-beta.1](https://github.com/SocialGouv/sample-next-app/compare/v1.0.0...v1.1.0-beta.1) (2020-05-22)
 
 
