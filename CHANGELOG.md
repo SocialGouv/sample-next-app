@@ -1,3 +1,15 @@
+# [1.1.0-beta.11](https://github.com/SocialGouv/sample-next-app/compare/v1.1.0-beta.10...v1.1.0-beta.11) (2020-05-26)
+
+
+### Bug Fixes
+
+* **gitlab:** update @socialgouv/kosko-charts to 2.0.0-beta.6 ([4c79fc3](https://github.com/SocialGouv/sample-next-app/commit/4c79fc3ef9a5b3f72b2a2e514c9702971491b976))
+
+
+### Reverts
+
+* Revert "fix(k8s): use nginx ingress class" ([07790a2](https://github.com/SocialGouv/sample-next-app/commit/07790a289219d207566c00a8cb210dc6032478c1))
+
 # [1.1.0-beta.10](https://github.com/SocialGouv/sample-next-app/compare/v1.1.0-beta.9...v1.1.0-beta.10) (2020-05-26)
 
 
