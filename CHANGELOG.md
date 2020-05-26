@@ -1,3 +1,10 @@
+# [1.1.0-beta.10](https://github.com/SocialGouv/sample-next-app/compare/v1.1.0-beta.9...v1.1.0-beta.10) (2020-05-26)
+
+
+### Features
+
+* **pages:** add healthz page ([d9ca87b](https://github.com/SocialGouv/sample-next-app/commit/d9ca87bf278c51e6ad299f19edcfdce76c50ddda))
+
 # [1.1.0-beta.9](https://github.com/SocialGouv/sample-next-app/compare/v1.1.0-beta.8...v1.1.0-beta.9) (2020-05-26)
 
 
