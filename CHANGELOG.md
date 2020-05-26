@@ -1,3 +1,11 @@
+# [1.1.0-beta.7](https://github.com/SocialGouv/sample-next-app/compare/v1.1.0-beta.6...v1.1.0-beta.7) (2020-05-26)
+
+
+### Bug Fixes
+
+* **gitlab:** update socialgouv/gitlab-ci-yml to v16.0.0-beta.10 ([14551f3](https://github.com/SocialGouv/sample-next-app/commit/14551f3bcf620d5030ead8716429856f3117657c))
+* **release:** add @semantic-release/npm plugin ([627780e](https://github.com/SocialGouv/sample-next-app/commit/627780e3bf9209e2ee7bb9924d098d6bd7d19e64))
+
 # [1.1.0-beta.6](https://github.com/SocialGouv/sample-next-app/compare/v1.1.0-beta.5...v1.1.0-beta.6) (2020-05-26)
 
 
