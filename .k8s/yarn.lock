@@ -114,10 +114,10 @@
     "@nodelib/fs.scandir" "2.1.3"
     fastq "^1.6.0"
 
-"@socialgouv/kosko-charts@^2.0.0-alpha.4":
-  version "2.0.0-alpha.11"
-  resolved "https://registry.yarnpkg.com/@socialgouv/kosko-charts/-/kosko-charts-2.0.0-alpha.11.tgz#771e3a32257745c5a43cf2d4a726222929e983f7"
-  integrity sha512-TgKUYoUESOJIkh8Dk+BN8/98OUH2kzurUcWGTrYUpScLELQL1etzpMmLBGZhY5x3Sni2rDYrXVDBOOmGOYBqew==
+"@socialgouv/kosko-charts@^2.0.0-alpha.11":
+  version "2.0.0-beta.5"
+  resolved "https://registry.yarnpkg.com/@socialgouv/kosko-charts/-/kosko-charts-2.0.0-beta.5.tgz#fb99e03b5b4234f4cab9bc16e14ee5f69a096f1a"
+  integrity sha512-vpVo73+HqDy0+nSuZo89BlTu39O/7H/mTYqE/sgL7DAd0x1pZeT6pFGRPLBHTQ9gqeIQi6oNqrefAhoWDN0Scg==
   dependencies:
     fp-ts "^2.6.0"
     io-ts "^2.2.2"
