@@ -1,3 +1,10 @@
+# [1.1.0-beta.12](https://github.com/SocialGouv/sample-next-app/compare/v1.1.0-beta.11...v1.1.0-beta.12) (2020-05-28)
+
+
+### Bug Fixes
+
+* **gitlab:** update @socialgouv/kosko-charts to 2.0.0-beta.7 ([e2deeb6](https://github.com/SocialGouv/sample-next-app/commit/e2deeb66d82f2a93c10238417d8037639f45ba9d))
+
 # [1.1.0-beta.11](https://github.com/SocialGouv/sample-next-app/compare/v1.1.0-beta.10...v1.1.0-beta.11) (2020-05-26)
 
 
