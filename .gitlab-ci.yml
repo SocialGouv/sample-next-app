@@ -16,7 +16,10 @@ Create namespace:
     name: ${CI_COMMIT_REF_NAME}-dev2
   after_script:
     - mkdir -p /tmp/.k8s/environements/dev
-    - envsubst < ./.k8s/environements/dev/app-env.configmap.yaml > /tmp/.k8s/environements/dev/app-env.configmap.yaml
+    - envsubst < ./.k8s/environements/dev/app-env.configmap.yaml >
+        /tmp/.k8s/environements/dev/app-env.configmap.yaml &&
+      rm -rf ./.k8s/environements/dev/app-env.configmap.yaml
+
     #
     - kubectl apply --namespace=${K8S_NAMESPACE}
       -f .k8s/environements/dev/
