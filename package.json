@@ -19,7 +19,7 @@
     "http-proxy-middleware": "^1.0.4",
     "jsonwebtoken": "^8.5.1",
     "next": "^9.4.4",
-    "nodemailer": "^6.4.7",
+    "nodemailer": "^6.4.8",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "sentry-testkit": "^3.2.1",
