@@ -15,9 +15,7 @@ Create namespace:
   environment:
     name: ${CI_COMMIT_REF_NAME}-dev2
   after_script:
-    - kubectl apply --namespace=${K8S_NAMESPACE}
-      -f .k8s/app-secrets.sealed-secret.yaml
-      -f .k8s/azure-pg-admin-user.sealed-secret.yaml
+    - kubectl apply --namespace=${K8S_NAMESPACE} -f .k8s/environements/dev/
 
 Stop review:
   extends: .autodevops_stop_review
