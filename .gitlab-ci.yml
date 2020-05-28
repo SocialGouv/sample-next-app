@@ -15,15 +15,13 @@ Create namespace:
   environment:
     name: ${CI_COMMIT_REF_NAME}-dev2
   after_script:
-    - mkdir -p /tmp/.k8s/environements/dev
-    - envsubst < ./.k8s/environements/dev/app-env.configmap.yaml >
-        /tmp/.k8s/environements/dev/app-env.configmap.yaml &&
-      rm -rf ./.k8s/environements/dev/app-env.configmap.yaml
+    - mv .k8s/environements/dev/app-env.configmap.yaml app-env.configmap.yaml
+    - envsubst < ./app-env.configmap.yaml >
+        .k8s/environements/dev/app-env.configmap.yaml
 
     #
     - kubectl apply --namespace=${K8S_NAMESPACE}
       -f .k8s/environements/dev/
-      -f /tmp/.k8s/environements/dev/
 
 Stop review:
   extends: .autodevops_stop_review
