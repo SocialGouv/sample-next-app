@@ -49,6 +49,8 @@ Create Azure DB (dev):
       --set env[0].name=NEW_DB_EXTENSIONS
       --set env[0].value="${NEW_DB_EXTENSIONS}"
     #
+    - helm just delete helm-chart-managed-pg-test-${CI_JOB_ID}
+      -l app=create-db-user
     - helm just apply helm-chart-managed-pg-test-${CI_JOB_ID}
       -l app=create-db-user
 
