@@ -26,20 +26,11 @@ deployment:
     path: /health
     periodSeconds: 15
 
-  env:
-    - name: PRODUCTION
-      value: "${PRODUCTION}"
-    - name: FRONTEND_HOST
-      value: ${HOST}
-    - name: GRAPHQL_ENDPOINT
-      value: "http://hasura/v1/graphql"
-    - name: ACCOUNT_MAIL_SENDER
-      value: "contact@fabrique.social.gouv.fr"
-    - name: FRONTEND_PORT
-      value: "${PORT}"
   envFrom:
+    - configMapRef:
+        name: app-env
     - secretRef:
-        name: sample-next-app-secrets
+        name: app-secrets
 ingress:
   enabled: true
   annotations:
