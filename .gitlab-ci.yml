@@ -30,6 +30,20 @@ Create Azure DB (dev):
     name: ${CI_COMMIT_REF_NAME}-dev2
   variables:
     NEW_DB_EXTENSIONS: "pgcrypto hstore citext"
+  image: registry.gitlab.factory.social.gouv.fr/socialgouv/docker/helm:0.25.0
+  variables:
+    JUST_CHARTS_DIRECTORY: charts
+    HELM_CHART_VERSION: "6.1.0-alpha.1"
+  script:
+    - echo "helm just fetch socialgouv/managed-pg#${HELM_CHART_VERSION}"
+    - helm just fetch "socialgouv/managed-pg#${HELM_CHART_VERSION}"
+    #
+    - helm just render helm-chart-managed-pg-test-${CI_JOB_ID} managed-pg
+      --set db.name=db_${CI_COMMIT_REF_SLUG}
+      --set db.password=pass_${CI_COMMIT_REF_SLUG}
+      --set db.user=user_${CI_COMMIT_REF_SLUG}
+    #
+    - helm just apply helm-chart-managed-pg-test-${CI_JOB_ID} -l app=create-db-user
 
 Register image Hasura:
   extends: .autodevops_register_image
