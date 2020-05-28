@@ -8,4 +8,4 @@ data:
   HASURA_GRAPHQL_ENABLED_LOG_TYPES: "startup, http-log, webhook-log, websocket-log, query-log"
   HASURA_GRAPHQL_NO_OF_RETRIES: "5"
   HASURA_GRAPHQL_UNAUTHORIZED_ROLE: "anonymous"
-  ACCOUNT_EMAIL_WEBHOOK_URL: http://app:3000/api/webhooks/account
+  ACCOUNT_EMAIL_WEBHOOK_URL: "http://app:3000/api/webhooks/account"
