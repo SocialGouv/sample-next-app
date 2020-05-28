@@ -116,9 +116,9 @@
     fastq "^1.6.0"
 
 "@socialgouv/kosko-charts@^2.0.0-beta.6":
-  version "2.0.0-beta.6"
-  resolved "https://registry.yarnpkg.com/@socialgouv/kosko-charts/-/kosko-charts-2.0.0-beta.6.tgz#9ff13d7444520054c8df3b84a95a3aa35c688c44"
-  integrity sha512-tnACfX3/NTU1znDSiw2PjAzu+SYgp6BAs3JVk6IzQpAyuggCun7KGLyJ9tOUh7MfMzxMm3IBI5P9ZopkELGLdg==
+  version "2.0.0-beta.7"
+  resolved "https://registry.yarnpkg.com/@socialgouv/kosko-charts/-/kosko-charts-2.0.0-beta.7.tgz#41d6dfcedab5ade4d17aef61d5bf9f914f5ca902"
+  integrity sha512-ajN+RJVbn7K0V4tzjIOgype8xJ/VNsezuk9/2JQ9Ua/gd7d3F6wSp9iW/HTICu9JAZII36+uPI3Vvrrir/c0aQ==
   dependencies:
     fp-ts "^2.6.0"
     io-ts "^2.2.2"
@@ -402,9 +402,9 @@ find-up@^4.0.0, find-up@^4.1.0:
     path-exists "^4.0.0"
 
 fp-ts@^2.6.0:
-  version "2.6.1"
-  resolved "https://registry.yarnpkg.com/fp-ts/-/fp-ts-2.6.1.tgz#f2505a4b44a77a344a1e451c667383e42f3728de"
-  integrity sha512-ZYOgqEOvUuO59rvItjf1OniEG4k/ClY3rd+AiuRYbl3skY4X/s7Oig25/wvORjycjeOjjr5OO+VcpprLQQOpIQ==
+  version "2.6.2"
+  resolved "https://registry.yarnpkg.com/fp-ts/-/fp-ts-2.6.2.tgz#0115221e223e0e4a1d08d93c0ebaee9241688cd1"
+  integrity sha512-RUm0iNcD7eMFZo6W1K10kqi0DyYX06lbbjyNgKwEWg1kPZw91ZXlkEx/9cII1x/jY4fHzh14+Hquk5sJnXBzQA==
 
 get-caller-file@^2.0.1:
   version "2.0.5"
@@ -447,9 +447,9 @@ import-local@^3.0.2:
     resolve-cwd "^3.0.0"
 
 io-ts@^2.2.2:
-  version "2.2.2"
-  resolved "https://registry.yarnpkg.com/io-ts/-/io-ts-2.2.2.tgz#82b9ef96d95a3fb27a1abf5f29f59b07cc9b8cca"
-  integrity sha512-cXXIL4CR5/sWfKw/Ssc/cbZJGG13J4pJv9/RN6SlWJyh+foAPEUE0I9sWTX1kG24dvhiCM9fpO4F+2AsP+WzaQ==
+  version "2.2.4"
+  resolved "https://registry.yarnpkg.com/io-ts/-/io-ts-2.2.4.tgz#c9b5390b8c60b9976ad03f670a6b976fe50d4083"
+  integrity sha512-a8A/3jekTgSPfQ+OG40sTiX2gohXZz89X1+TfKsWJ/vpA2dBilBkrGYPiDE8OaKMMG7xm5ma3SAZL5eNr4Bi2w==
 
 is-arrayish@^0.2.1:
   version "0.2.1"
