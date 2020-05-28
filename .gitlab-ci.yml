@@ -30,6 +30,7 @@ Stop review:
 
 Create Azure DB (dev):
   extends: .autodevops_create_azure_db_dev
+  stage: Deploy
   environment:
     name: ${CI_COMMIT_REF_NAME}-dev2
   image: registry.gitlab.factory.social.gouv.fr/socialgouv/docker/helm:1.21.0
