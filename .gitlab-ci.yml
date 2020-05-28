@@ -42,17 +42,17 @@ Create Azure DB (dev):
     - echo "helm just fetch socialgouv/managed-pg#${HELM_CHART_VERSION}"
     - helm just fetch "socialgouv/managed-pg#${HELM_CHART_VERSION}"
     #
-    - echo 'helm just render helm-chart-managed-pg-test-${CI_JOB_ID} managed-pg --set db.name="db_${CI_COMMIT_SHORT_SHA}" --set db.password="pass_${CI_COMMIT_SHORT_SHA}" --set db.user="user_${CI_COMMIT_SHORT_SHA}" --set env[0].name=NEW_DB_EXTENSIONS --set env[0].value="${NEW_DB_EXTENSIONS}"'
-    - helm just render helm-chart-managed-pg-test-${CI_JOB_ID} managed-pg
+    - echo 'helm just render pg managed-pg --set db.name="db_${CI_COMMIT_SHORT_SHA}" --set db.password="pass_${CI_COMMIT_SHORT_SHA}" --set db.user="user_${CI_COMMIT_SHORT_SHA}" --set env[0].name=NEW_DB_EXTENSIONS --set env[0].value="${NEW_DB_EXTENSIONS}"'
+    - helm just render pg managed-pg
       --set db.name="db_${CI_COMMIT_SHORT_SHA}"
       --set db.password="pass_${CI_COMMIT_SHORT_SHA}"
       --set db.user="user_${CI_COMMIT_SHORT_SHA}"
       --set env[0].name=NEW_DB_EXTENSIONS
       --set env[0].value="${NEW_DB_EXTENSIONS}"
     #
-    - helm just delete helm-chart-managed-pg-test-${CI_JOB_ID}
+    - helm just delete pg
       -l app=create-db-user
-    - helm just apply helm-chart-managed-pg-test-${CI_JOB_ID}
+    - helm just apply pg
       -l app=create-db-user
 
 Register image Hasura:
