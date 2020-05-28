@@ -15,9 +15,7 @@ Create namespace:
   environment:
     name: ${CI_COMMIT_REF_NAME}-dev2
   after_script:
-    # Copy namespace default creds
-    - kubectl get secret sample-next-app-secrets --namespace=sample-next-app-secret --export -o yaml |
-      kubectl apply --namespace=${K8S_NAMESPACE} -f -
+    - kubectl apply --namespace=${K8S_NAMESPACE} -f .k8s/sample-next-app-secrets.sealed.yaml
 
 Stop review:
   extends: .autodevops_stop_review
