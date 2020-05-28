@@ -4,8 +4,8 @@ metadata:
   name: app-env
 data:
   NODE_ENV: production
-  FRONTEND_HOST: ${HOST}
+  FRONTEND_HOST: "${HOST}"
   GRAPHQL_ENDPOINT: http://hasura/v1/graphql
   ACCOUNT_MAIL_SENDER: contact@fabrique.social.gouv.fr
-  FRONTEND_PORT: ${PORT}
+  FRONTEND_PORT: "${PORT}"
   PRODUCTION: false
