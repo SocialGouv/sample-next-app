@@ -40,9 +40,9 @@ Create Azure DB (dev):
     - helm just fetch "socialgouv/managed-pg#${HELM_CHART_VERSION}"
     #
     - helm just render helm-chart-managed-pg-test-${CI_JOB_ID} managed-pg
-      --set db.name=db_${CI_COMMIT_REF_SLUG}
-      --set db.password=pass_${CI_COMMIT_REF_SLUG}
-      --set db.user=user_${CI_COMMIT_REF_SLUG}
+      --set db.name=db_${CI_COMMIT_SHORT_SHA}
+      --set db.password=pass_${CI_COMMIT_SHORT_SHA}
+      --set db.user=user_${CI_COMMIT_SHORT_SHA}
     #
     - helm just apply helm-chart-managed-pg-test-${CI_JOB_ID} -l app=create-db-user
 
