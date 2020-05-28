@@ -12,13 +12,22 @@ variables:
 Create namespace:
   extends:
     - .autodevops_create_namespace
+  environment:
+    name: ${CI_COMMIT_REF_NAME}-dev2
   after_script:
     # Copy namespace default creds
     - kubectl get secret sample-next-app-secrets --namespace=sample-next-app-secret --export -o yaml |
       kubectl apply --namespace=${K8S_NAMESPACE} -f -
 
+Stop review:
+  extends: .autodevops_stop_review
+  environment:
+    name: ${CI_COMMIT_REF_NAME}-dev2
+
 Create Azure DB (dev):
   extends: .autodevops_create_azure_db_dev
+  environment:
+    name: ${CI_COMMIT_REF_NAME}-dev2
   variables:
     NEW_DB_EXTENSIONS: "pgcrypto hstore citext"
 
@@ -26,6 +35,8 @@ Register image Hasura:
   extends: .autodevops_register_image
   dependencies: []
   needs: []
+  environment:
+    name: ${CI_COMMIT_REF_NAME}-dev2
   variables:
     CONTEXT: ./hasura
     DOCKERFILE_PATH: Dockerfile
@@ -33,12 +44,22 @@ Register image Hasura:
 
 Deploy app (dev):
   extends: .autodevops_deploy_app_dev
+  environment:
+    name: ${CI_COMMIT_REF_NAME}-dev2
+
+Deploy app (prod):
+  extends:
+    - .autodevops_deploy_app_prod
+  environment:
+    name: prod2
 
 .deploy_hasura:
   variables:
     PORT: 80
     CONTEXT: hasura
     VALUES_FILE: ./.k8s/hasura.values.yml
+  environment:
+    name: ${CI_COMMIT_REF_NAME}-dev2
 
 Deploy app Hasura (dev):
   extends:
