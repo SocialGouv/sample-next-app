@@ -26,12 +26,11 @@ Create Azure DB (dev):
   extends: .autodevops_create_azure_db_dev
   environment:
     name: ${CI_COMMIT_REF_NAME}-dev2
-  variables:
-    NEW_DB_EXTENSIONS: "pgcrypto hstore citext"
   image: registry.gitlab.factory.social.gouv.fr/socialgouv/docker/helm:1.21.0
   variables:
     JUST_CHARTS_DIRECTORY: charts
     HELM_CHART_VERSION: "6.1.0-alpha.1"
+    NEW_DB_EXTENSIONS: "pgcrypto hstore citext"
   script:
     - helm repo add socialgouv https://github.com/SocialGouv/helm-charts/releases/download/v${HELM_CHART_VERSION}
     - echo "helm just fetch socialgouv/managed-pg#${HELM_CHART_VERSION}"
