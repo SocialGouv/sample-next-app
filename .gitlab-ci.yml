@@ -89,8 +89,8 @@ Deploy app Hasura (dev):
   variables:
     PG_HOST: samplenextappdevserver.postgres.database.azure.com
     HELM_RENDER_ARGS: >-
-      --set deployment.env[7].name=HASURA_GRAPHQL_DATABASE_URL
-      --set deployment.env[7].value=postgresql://user_${CI_COMMIT_SHORT_SHA}%40${PG_HOST}:pass_${CI_COMMIT_SHORT_SHA}@${PG_HOST}:5432/db_${CI_COMMIT_SHORT_SHA}?sslmode=require
+      --set deployment.env[0].name=HASURA_GRAPHQL_DATABASE_URL
+      --set deployment.env[0].value=postgresql://user_${CI_COMMIT_SHORT_SHA}%40${PG_HOST}:pass_${CI_COMMIT_SHORT_SHA}@${PG_HOST}:5432/db_${CI_COMMIT_SHORT_SHA}?sslmode=require
 
 Deploy app Hasura (prod):
   extends:

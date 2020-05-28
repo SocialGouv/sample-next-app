@@ -27,5 +27,6 @@ deployment:
         name: hasura-env
     - secretRef:
         name: hasura-secrets-env
+
 ingress:
   enabled: false
