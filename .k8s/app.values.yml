@@ -30,7 +30,7 @@ deployment:
     - configMapRef:
         name: app-env
     - secretRef:
-        name: app-secrets
+        name: app-env
 ingress:
   enabled: true
   annotations:
