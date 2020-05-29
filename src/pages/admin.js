@@ -1,7 +1,7 @@
 import React from "react";
 import Head from "next/head";
 
-import { withCustomUrqlClient } from "../components/CustomUrqlClient";
+import { withCustomUrqlClient } from "components/CustomUrqlClient";
 import { Role } from "components/Role";
 import { Users } from "components/Users";
 import { withAuthProvider, useAuth } from "components/useAuth";
