@@ -1,8 +1,8 @@
 import Boom from "@hapi/boom";
 import Joi from "@hapi/joi";
 import { hash } from "argon2";
-import { createErrorFor } from "../../../src/lib/apiError";
-import { graphqlClient } from "../../../src/lib/graphqlClient";
+import { createErrorFor } from "src/lib/apiError";
+import { graphqlClient } from "src/lib/graphqlClient";
 import { activateUserMutation } from "./activate.gql";
 
 export function createRequestHandler({

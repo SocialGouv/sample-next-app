@@ -1,15 +1,15 @@
 import Boom from "@hapi/boom";
 import Joi from "@hapi/joi";
 import { v4 as uuidv4 } from "uuid";
-import { createErrorFor } from "../../../src/lib/apiError";
-import { getExpiryDate } from "../../../src/lib/duration";
-import { graphqlClient } from "../../../src/lib/graphqlClient";
-import { generateJwtToken } from "../../../src/lib/jwt";
+import { createErrorFor } from "src/lib/apiError";
+import { getExpiryDate } from "src/lib/duration";
+import { graphqlClient } from "src/lib/graphqlClient";
+import { generateJwtToken } from "src/lib/jwt";
+import { setRefreshTokenCookie } from "src/lib/setRefreshTokenCookie";
 import {
   deletePreviousRefreshTokenMutation,
   getRefreshTokenQuery,
 } from "./refreshToken.gql";
-import { setRefreshTokenCookie } from "lib/setRefreshTokenCookie";
 
 export default async function refresh_token(req, res) {
   const apiError = createErrorFor(res);

@@ -1,9 +1,10 @@
 import React, { createContext, useState, useEffect, useContext } from "react";
 import PropTypes from "prop-types";
-import { getToken, setToken, refreshToken } from "lib/auth";
 import { useQuery } from "urql";
-import { request } from "lib/request";
 import { useRouter } from "next/router";
+
+import { getToken, setToken, refreshToken } from "src/lib/auth";
+import { request } from "src/lib/request";
 
 export const AuthContext = createContext({
   user: null,

@@ -1,16 +1,26 @@
 import React from "react";
 import { useRouter } from "next/router";
 import Head from "next/head";
-import LoginForm from "../components/login";
 
-import { setToken } from "../lib/auth";
-import { request } from "../lib/request";
+import LoginForm from "src/components/login";
+import { setToken } from "src/lib/auth";
+import { request } from "src/lib/request";
 
 export default function LoginPage() {
   const router = useRouter();
 
-  const resetPassword = () => {
-    router.push("/reset-password");
+  const resetPassword = (email) => {
+    //router.push("/reset-password");
+    fetch("/api/reset_password", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ email }),
+    })
+      .then((r) => r.json())
+      .then(console.log)
+      .catch(console.log);
   };
 
   const goAdmin = () => {
