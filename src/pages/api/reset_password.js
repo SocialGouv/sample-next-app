@@ -38,7 +38,6 @@ export default async function reset_password(req, res) {
   }
 
   console.log("[reset_password]", email);
-  // TODO: send email
 
   res.json({ message: "reset password started" });
 }
