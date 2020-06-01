@@ -1,3 +1,10 @@
+# [1.1.0-beta.18](https://github.com/SocialGouv/sample-next-app/compare/v1.1.0-beta.17...v1.1.0-beta.18) (2020-06-01)
+
+
+### Bug Fixes
+
+* **gitlab:** update socialgouv/gitlab-ci-yml to v17.0.0-beta.9 ([9cdde33](https://github.com/SocialGouv/sample-next-app/commit/9cdde33b747d809dc33d0015c6a90b2e0c8a58c1))
+
 # [1.1.0-beta.17](https://github.com/SocialGouv/sample-next-app/compare/v1.1.0-beta.16...v1.1.0-beta.17) (2020-06-01)
 
 
