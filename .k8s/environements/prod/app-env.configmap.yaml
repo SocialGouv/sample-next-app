@@ -3,11 +3,11 @@ apiVersion: v1
 metadata:
   name: app-env
 data:
-  NODE_ENV: "production"
-  FRONTEND_HOST: "${HOST}"
-  GRAPHQL_ENDPOINT: "http://hasura/v1/graphql"
   ACCOUNT_MAIL_SENDER: "contact@fabrique.social.gouv.fr"
+  FRONTEND_HOST: "${HOST}"
   FRONTEND_PORT: "${PORT}"
+  GRAPHQL_ENDPOINT: "http://hasura/v1/graphql"
+  MATOMO_SITE_ID: "15"
+  MATOMO_URL: "https://matomo.fabrique.social.gouv.fr"
+  NODE_ENV: "production"
   PRODUCTION: "true"
-  MATOMO_SITE_ID: 15
-  MATOMO_URL: https://matomo.fabrique.social.gouv.fr
