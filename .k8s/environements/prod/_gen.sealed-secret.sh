@@ -53,6 +53,18 @@ printf '{"type":"HS256","key": "'$(gpg --gen-random --armor 1 512)'"}' \
     'sealed_app_key HASURA_GRAPHQL_JWT_SECRET' \
     'sealed_hasura_key HASURA_GRAPHQL_JWT_SECRET' \
 
+# SENTRY_DSN
+[[ -z $SENTRY_DSN ]] && echo "Expect SENTRY_DSN to be defined" && exit 1;
+printf "${SENTRY_DSN}" \
+  | parallel --pipe --tee -v {} ::: \
+    'sealed_app_key SENTRY_DSN'
+
+# SENTRY_TOKEN
+[[ -z $SENTRY_TOKEN ]] && echo "Expect SENTRY_TOKEN to be defined" && exit 1;
+printf "${SENTRY_TOKEN}" \
+  | parallel --pipe --tee -v {} ::: \
+    'sealed_app_key SENTRY_TOKEN'
+
 # SMTP_URL
 [[ -z $SMTP_URL ]] && echo "Expect SMTP_URL to be defined" && exit 1;
 printf "${SMTP_URL}" \
