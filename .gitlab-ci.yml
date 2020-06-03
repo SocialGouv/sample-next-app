@@ -17,7 +17,7 @@ Create namespace:
   after_script:
     - mv .k8s/environements/dev/app-env.configmap.yaml app-env.configmap.yaml
     - envsubst < ./app-env.configmap.yaml >
-        .k8s/environements/dev/app-env.configmap.yaml
+      .k8s/environements/dev/app-env.configmap.yaml
 
     #
     - kubectl apply --namespace=${K8S_NAMESPACE}
@@ -43,11 +43,12 @@ Create Azure DB (dev):
     - helm just fetch "socialgouv/managed-pg#${HELM_CHART_VERSION}"
     #
     - echo 'helm just render pg managed-pg --set db.name="db_${CI_COMMIT_SHORT_SHA}" --set db.password="pass_${CI_COMMIT_SHORT_SHA}" --set db.user="user_${CI_COMMIT_SHORT_SHA}" --set env[0].name=NEW_DB_EXTENSIONS --set env[0].value="${NEW_DB_EXTENSIONS}"'
+    # TODO(douglasduteil): replace env[0]...NEW_DB_EXTENSIONS by db.extensions
+    # We should use a value db.extensions in SocialGouv/helm-charts v7.0.0
     - helm just render pg managed-pg
       --set db.name="db_${CI_COMMIT_SHORT_SHA}"
       --set db.password="pass_${CI_COMMIT_SHORT_SHA}"
       --set db.user="user_${CI_COMMIT_SHORT_SHA}"
-      # TODO(douglasduteil): replace it with db.extensions in SocialGouv/helm-charts v7.0.0
       --set env[0].name=NEW_DB_EXTENSIONS
       --set env[0].value="${NEW_DB_EXTENSIONS}"
     #
