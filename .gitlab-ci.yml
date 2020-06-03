@@ -47,13 +47,12 @@ Create Azure DB (dev):
       --set db.name="db_${CI_COMMIT_SHORT_SHA}"
       --set db.password="pass_${CI_COMMIT_SHORT_SHA}"
       --set db.user="user_${CI_COMMIT_SHORT_SHA}"
+      # TODO(douglasduteil): replace it with db.extensions in SocialGouv/helm-charts v7.0.0
       --set env[0].name=NEW_DB_EXTENSIONS
       --set env[0].value="${NEW_DB_EXTENSIONS}"
     #
-    - helm just delete pg
-      -l app=create-db-user
-    - helm just apply pg
-      -l app=create-db-user
+    - helm just delete pg -l app=create-db-user
+    - helm just apply pg -l app=create-db-user
 
 Register image Hasura:
   extends: .autodevops_register_image
