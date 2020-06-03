@@ -12,20 +12,47 @@ variables:
 Create namespace:
   extends:
     - .autodevops_create_namespace
-  after_script:
-    # Copy namespace default creds
-    - kubectl get secret sample-next-app-secrets --namespace=sample-next-app-secret --export -o yaml |
-      kubectl apply --namespace=${K8S_NAMESPACE} -f -
+  environment:
+    name: ${CI_COMMIT_REF_NAME}-dev2
+
+Stop review:
+  extends: .autodevops_stop_review
+  environment:
+    name: ${CI_COMMIT_REF_NAME}-dev2
 
 Create Azure DB (dev):
   extends: .autodevops_create_azure_db_dev
+  stage: Deploy
+  environment:
+    name: ${CI_COMMIT_REF_NAME}-dev2
+  image: registry.gitlab.factory.social.gouv.fr/socialgouv/docker/helm:1.21.0
   variables:
+    HELM_CHART_VERSION: "6.1.0-alpha.1"
     NEW_DB_EXTENSIONS: "pgcrypto hstore citext"
+  script:
+    - helm repo add socialgouv https://github.com/SocialGouv/helm-charts/releases/download/v${HELM_CHART_VERSION}
+    - echo "helm just fetch socialgouv/managed-pg#${HELM_CHART_VERSION}"
+    - helm just fetch "socialgouv/managed-pg#${HELM_CHART_VERSION}"
+    #
+    - echo 'helm just render pg managed-pg --set db.name="db_${CI_COMMIT_SHORT_SHA}" --set db.password="pass_${CI_COMMIT_SHORT_SHA}" --set db.user="user_${CI_COMMIT_SHORT_SHA}" --set env[0].name=NEW_DB_EXTENSIONS --set env[0].value="${NEW_DB_EXTENSIONS}"'
+    # TODO(douglasduteil): replace env[0]...NEW_DB_EXTENSIONS by db.extensions
+    # We should use a value db.extensions in SocialGouv/helm-charts v7.0.0
+    - helm just render pg managed-pg
+      --set db.name="db_${CI_COMMIT_SHORT_SHA}"
+      --set db.password="pass_${CI_COMMIT_SHORT_SHA}"
+      --set db.user="user_${CI_COMMIT_SHORT_SHA}"
+      --set env[0].name=NEW_DB_EXTENSIONS
+      --set env[0].value="${NEW_DB_EXTENSIONS}"
+    #
+    - helm just delete pg -l app=create-db-user
+    - helm just apply pg -l app=create-db-user
 
 Register image Hasura:
   extends: .autodevops_register_image
   dependencies: []
   needs: []
+  environment:
+    name: ${CI_COMMIT_REF_NAME}-dev2
   variables:
     CONTEXT: ./hasura
     DOCKERFILE_PATH: Dockerfile
@@ -33,12 +60,43 @@ Register image Hasura:
 
 Deploy app (dev):
   extends: .autodevops_deploy_app_dev
+  environment:
+    name: ${CI_COMMIT_REF_NAME}-dev2
+  after_script:
+    - find .k8s/environements/dev -name '*.yaml' -exec
+      echo '---' \; -exec cat {} \; |
+      envsubst >> manifest.yaml
+    - kubectl apply --namespace=${K8S_NAMESPACE} -f manifest.yaml
+  artifacts:
+    expire_in: 1 week
+    paths:
+      - manifest.yaml
+    when: always
+
+Deploy app (prod):
+  extends:
+    - .autodevops_deploy_app_prod
+  environment:
+    name: prod2
+  after_script:
+    - find .k8s/environements/prod -name '*.yaml' -exec
+      echo '---' \; -exec cat {} \; |
+      envsubst >> ${CI_PROJECT_DIR}/manifest.yaml
+    - kubectl apply --namespace=${K8S_NAMESPACE} -f ${CI_PROJECT_DIR}/manifest.yaml
+  artifacts:
+    expire_in: 1 week
+    paths:
+      - manifest.yaml
+    when: always
+
 
 .deploy_hasura:
   variables:
     PORT: 80
     CONTEXT: hasura
     VALUES_FILE: ./.k8s/hasura.values.yml
+  environment:
+    name: ${CI_COMMIT_REF_NAME}-dev2
 
 Deploy app Hasura (dev):
   extends:
@@ -47,10 +105,29 @@ Deploy app Hasura (dev):
   variables:
     PG_HOST: samplenextappdevserver.postgres.database.azure.com
     HELM_RENDER_ARGS: >-
-      --set deployment.env[7].name=HASURA_GRAPHQL_DATABASE_URL
-      --set deployment.env[7].value=postgresql://user_${CI_COMMIT_SHORT_SHA}%40${PG_HOST}:pass_${CI_COMMIT_SHORT_SHA}@${PG_HOST}:5432/db_${CI_COMMIT_SHORT_SHA}?sslmode=require
+      --set deployment.env[0].name=HASURA_GRAPHQL_DATABASE_URL
+      --set deployment.env[0].value=postgresql://user_${CI_COMMIT_SHORT_SHA}%40${PG_HOST}:pass_${CI_COMMIT_SHORT_SHA}@${PG_HOST}:5432/db_${CI_COMMIT_SHORT_SHA}?sslmode=require
 
 Deploy app Hasura (prod):
   extends:
     - .autodevops_deploy_app_prod
     - .deploy_hasura
+  environment:
+    name: prod2
+
+Notify Fail (review):
+  extends: .autodevops_notify_fail_review
+  environment:
+    name: ${CI_COMMIT_REF_NAME}-dev2
+Notify Success (review):
+  extends: .autodevops_notify_success_review
+  environment:
+    name: ${CI_COMMIT_REF_NAME}-dev2
+Notify Fail (prod):
+  extends: .autodevops_notify_fail_prod
+  environment:
+    name: prod2
+Notify Success (prod):
+  extends: .autodevops_notify_success_prod
+  environment:
+    name: prod2

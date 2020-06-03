@@ -22,24 +22,11 @@ deployment:
       cpu: 1000m
       memory: 1024Mi
 
-  env:
-    - name: NODE_ENV
-      value: "production"
-    - name: HASURA_GRAPHQL_ENABLE_CONSOLE
-      value: "false"
-    - name: HASURA_GRAPHQL_SERVER_PORT
-      value: "80"
-    - name: HASURA_GRAPHQL_ENABLED_LOG_TYPES
-      value: "startup, http-log, webhook-log, websocket-log, query-log"
-    - name: HASURA_GRAPHQL_NO_OF_RETRIES
-      value: "5"
-    - name: HASURA_GRAPHQL_UNAUTHORIZED_ROLE
-      value: "anonymous"
-    - name: ACCOUNT_EMAIL_WEBHOOK_URL
-      value: http://app:3000/api/webhooks/account
-
   envFrom:
+    - configMapRef:
+        name: hasura-env
     - secretRef:
-        name: sample-next-app-secrets
+        name: hasura-env
+
 ingress:
   enabled: false
