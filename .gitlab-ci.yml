@@ -65,8 +65,13 @@ Deploy app (dev):
   after_script:
     - find .k8s/environements/dev -name '*.yaml' -exec
       echo '---' \; -exec cat {} \; |
-      envsubst |
-      kubectl apply --namespace=${K8S_NAMESPACE}
+      envsubst >> manifest.yaml
+    - kubectl apply --namespace=${K8S_NAMESPACE} -f manifest.yaml
+  artifacts:
+    expire_in: 1 week
+    paths:
+      - manifest.yaml
+    when: always
 
 Deploy app (prod):
   extends:
@@ -76,8 +81,14 @@ Deploy app (prod):
   after_script:
     - find .k8s/environements/prod -name '*.yaml' -exec
       echo '---' \; -exec cat {} \; |
-      envsubst |
-      kubectl apply --namespace=${K8S_NAMESPACE}
+      envsubst >> ${CI_PROJECT_DIR}/manifest.yaml
+    - kubectl apply --namespace=${K8S_NAMESPACE} -f ${CI_PROJECT_DIR}/manifest.yaml
+  artifacts:
+    expire_in: 1 week
+    paths:
+      - manifest.yaml
+    when: always
+
 
 .deploy_hasura:
   variables:
