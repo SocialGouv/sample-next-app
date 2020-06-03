@@ -99,3 +99,22 @@ Deploy app Hasura (prod):
   extends:
     - .autodevops_deploy_app_prod
     - .deploy_hasura
+  environment:
+    name: prod2
+
+Notify Fail (review):
+  extends: .autodevops_notify_fail_review
+  environment:
+    name: ${CI_COMMIT_REF_NAME}-dev2
+Notify Success (review):
+  extends: .autodevops_notify_success_review
+  environment:
+    name: ${CI_COMMIT_REF_NAME}-dev2
+Notify Fail (prod):
+  extends: .autodevops_notify_fail_prod
+  environment:
+    name: prod2
+Notify Success (prod):
+  extends: .autodevops_notify_success_prod
+  environment:
+    name: prod2
