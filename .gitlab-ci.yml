@@ -14,14 +14,6 @@ Create namespace:
     - .autodevops_create_namespace
   environment:
     name: ${CI_COMMIT_REF_NAME}-dev2
-  after_script:
-    - mv .k8s/environements/dev/app-env.configmap.yaml app-env.configmap.yaml
-    - envsubst < ./app-env.configmap.yaml >
-      .k8s/environements/dev/app-env.configmap.yaml
-
-    #
-    - kubectl apply --namespace=${K8S_NAMESPACE}
-      -f .k8s/environements/dev/
 
 Stop review:
   extends: .autodevops_stop_review
@@ -70,12 +62,22 @@ Deploy app (dev):
   extends: .autodevops_deploy_app_dev
   environment:
     name: ${CI_COMMIT_REF_NAME}-dev2
+  after_script:
+    - find .k8s/environements/dev -name '*.yaml' -exec
+      echo '---' \; -exec cat {} \; |
+      envsubst |
+      kubectl apply --namespace=${K8S_NAMESPACE}
 
 Deploy app (prod):
   extends:
     - .autodevops_deploy_app_prod
   environment:
     name: prod2
+  after_script:
+    - find .k8s/environements/prod -name '*.yaml' -exec
+      echo '---' \; -exec cat {} \; |
+      envsubst |
+      kubectl apply --namespace=${K8S_NAMESPACE}
 
 .deploy_hasura:
   variables:
