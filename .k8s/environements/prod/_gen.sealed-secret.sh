@@ -53,6 +53,12 @@ printf '{"type":"HS256","key": "'$(gpg --gen-random --armor 1 512)'"}' \
     'sealed_app_key HASURA_GRAPHQL_JWT_SECRET' \
     'sealed_hasura_key HASURA_GRAPHQL_JWT_SECRET' \
 
+# HASURA_GRAPHQL_DATABASE_URL
+[[ -z $HASURA_GRAPHQL_DATABASE_URL ]] && echo "Expect HASURA_GRAPHQL_DATABASE_URL to be defined" && exit 1;
+echo -n "${HASURA_GRAPHQL_DATABASE_URL}" \
+  | parallel --pipe --tee -v {} ::: \
+    'sealed_hasura_key HASURA_GRAPHQL_DATABASE_URL'
+
 # SENTRY_DSN
 [[ -z $SENTRY_DSN ]] && echo "Expect SENTRY_DSN to be defined" && exit 1;
 printf "${SENTRY_DSN}" \
