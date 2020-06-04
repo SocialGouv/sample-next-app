@@ -1,12 +1,12 @@
 import Boom from "@hapi/boom";
 import Joi from "@hapi/joi";
 import { verify } from "argon2";
-import { createErrorFor } from "../../../src/lib/apiError";
-import { getExpiryDate } from "../../../src/lib/duration";
-import { graphqlClient } from "../../../src/lib/graphqlClient";
-import { generateJwtToken } from "../../../src/lib/jwt";
+import { createErrorFor } from "src/lib/apiError";
+import { getExpiryDate } from "src/lib/duration";
+import { graphqlClient } from "src/lib/graphqlClient";
+import { generateJwtToken } from "src/lib/jwt";
+import { setRefreshTokenCookie } from "src/lib/setRefreshTokenCookie";
 import { loginQuery, refreshTokenMutation } from "./login.gql";
-import { setRefreshTokenCookie } from "lib/setRefreshTokenCookie";
 
 export default async function login(req, res) {
   const apiError = createErrorFor(res);

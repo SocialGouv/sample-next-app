@@ -4,7 +4,7 @@ import Head from "next/head";
 import * as Sentry from "@sentry/node";
 
 import { initMatomo } from "../matomo";
-import Nav from "components/Nav";
+import Nav from "src/components/Nav";
 
 import "@socialgouv/bootstrap.core/dist/socialgouv-bootstrap.min.css";
 
