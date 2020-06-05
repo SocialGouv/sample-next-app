@@ -1,6 +1,5 @@
 import Boom from "@hapi/boom";
 import Joi from "@hapi/joi";
-import cookie from "cookie";
 import { v4 as uuidv4 } from "uuid";
 import { createErrorFor } from "../../../src/lib/apiError";
 import { getExpiryDate } from "../../../src/lib/duration";
@@ -10,19 +9,26 @@ import {
   deletePreviousRefreshTokenMutation,
   getRefreshTokenQuery,
 } from "./refreshToken.gql";
+import { setRefreshTokenCookie } from "lib/setRefreshTokenCookie";
 
 export default async function refresh_token(req, res) {
   const apiError = createErrorFor(res);
   const schema = Joi.object({
     refresh_token: Joi.string().guid({ version: "uuidv4" }).required(),
-  });
+  }).unknown();
 
-  let { error, value } = schema.validate(req.cookies);
+  let { error, value } = schema.validate(req.query);
 
   if (error) {
-    res = schema.validate(req.body);
-    error = res.error;
-    value = res.value;
+    const temp = schema.validate(req.query);
+    error = temp.error;
+    value = temp.value;
+  }
+
+  if (error) {
+    const temp = schema.validate(req.cookies);
+    error = temp.error;
+    value = temp.value;
   }
 
   if (error) {
@@ -30,6 +36,7 @@ export default async function refresh_token(req, res) {
   }
 
   const { refresh_token } = value;
+  console.log("[ /api/refresh_token ]", { refresh_token });
   let hasura_data;
   try {
     hasura_data = await graphqlClient.request(getRefreshTokenQuery, {
@@ -41,15 +48,19 @@ export default async function refresh_token(req, res) {
     console.error("Error connecting to GraphQL");
     return apiError(Boom.unauthorized("Invalid 'refresh_token'"));
   }
-
+  console.log("[ /api/refresh_token ]", "query refresh_token ok");
   if (hasura_data.refresh_tokens.length === 0) {
     console.error("Incorrect user id or refresh token");
     return apiError(Boom.unauthorized("Invalid 'refresh_token'"));
   }
+  console.log("[ /api/refresh_token ]", "query refresh_token found");
   const { user } = hasura_data[`refresh_tokens`][0];
 
   const new_refresh_token = uuidv4();
-
+  console.log("[ /api/refresh_token ]", "replace", {
+    refresh_token,
+    new_refresh_token,
+  });
   try {
     await graphqlClient.request(deletePreviousRefreshTokenMutation, {
       old_refresh_token: refresh_token,
@@ -64,18 +75,9 @@ export default async function refresh_token(req, res) {
     console.error("unable to create new refresh token and delete old");
     return apiError(Boom.unauthorized("Invalid 'refresh_token'"));
   }
-
   const jwt_token = generateJwtToken(user);
-  res.setHeader(
-    "Set-Cookie",
-    cookie.serialize("refresh_token", new_refresh_token, {
-      sameSite: "lax",
-      secure: process.env.NODE_ENV === "production",
-      maxAge: (process.env.REFRESH_TOKEN_EXPIRES || 43200) * 60, // maxAge in second
-      httpOnly: true,
-      path: "/",
-    })
-  );
+
+  setRefreshTokenCookie(res, new_refresh_token);
   res.json({
     refresh_token: new_refresh_token,
     jwt_token,
