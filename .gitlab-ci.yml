@@ -25,7 +25,7 @@ Create Azure DB (dev):
   stage: Deploy
   environment:
     name: ${CI_COMMIT_REF_NAME}-dev2
-  image: registry.gitlab.factory.social.gouv.fr/socialgouv/docker/helm:1.24.1
+  image: registry.gitlab.factory.social.gouv.fr/socialgouv/docker/helm:1.24.3
   variables:
     HELM_CHART_VERSION: "6.1.0-alpha.1"
     NEW_DB_EXTENSIONS: "pgcrypto hstore citext"
