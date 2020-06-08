@@ -1,18 +1,11 @@
-FROM node:14-alpine
+FROM tensorflow/serving:2.2.0-rc2
 
-WORKDIR /app
+RUN apt-get update && apt-get install -y curl
 
-COPY package.json yarn.lock ./
+ENV MODEL_NAME sentqam
 
-RUN yarn --production --frozen-lockfile
+WORKDIR /models
 
-COPY next.config.js server.js  ./
-COPY src/sentry.js ./src/sentry.js
-COPY .next/ ./.next
+RUN curl -L https://tfhub.dev/google/universal-sentence-encoder-multilingual-qa/3?tf-hub-format=compressed --output sentqam.tar.gz
 
-USER node
-
-ENV NODE_ENV=production
-ENV NEXT_TELEMETRY_DISABLED=1
-
-CMD ["yarn", "start"]
+RUN  mkdir -p sentqam/3/ & tar -zxf sentqam.tar.gz --directory sentqam/3/
