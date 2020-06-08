@@ -12,15 +12,15 @@ export default {
     secretName: process.env.PRODUCTION ? "www-crt" : "wildcard-crt",
   },
   labels: {
-    component: "next",
+    component: "unknow",
   },
   requests: {
-    cpu: "1m",
-    memory: "64Mi",
+    cpu: "100m",
+    memory: "128Mi",
   },
   limits: {
-    cpu: "50m",
-    memory: "128Mi",
+    cpu: "1000m",
+    memory: "1Gi",
   },
   containerPort: 3030,
   servicePort: 3030,

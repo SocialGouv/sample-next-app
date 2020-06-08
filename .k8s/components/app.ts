@@ -20,22 +20,23 @@ if (
 
 //
 
-const envConfigMap = new ConfigMap({
-  metadata: {
-    ...metadataFromParams(params),
-    name: `${params.name}-env`,
+deployment.spec!.template.spec!.containers[0].livenessProbe = {
+  httpGet: {
+    path: "/v1/models/sentqam",
+    port: "http",
   },
-  data: {
-    NODE_ENV: process.env.NODE_ENV || "production",
+  initialDelaySeconds: 15,
+  timeoutSeconds: 15,
+};
+deployment.spec!.template.spec!.containers[0].readinessProbe = {
+  httpGet: {
+    path: "/v1/models/sentqam",
+    port: "http",
   },
-});
-
-deployment.spec!.template.spec!.containers[0].envFrom = [
-  {
-    configMapRef: { name: `${params.name}-env` },
-  },
-];
+  initialDelaySeconds: 5,
+  timeoutSeconds: 3,
+};
 
 //
 
-export default [deployment, ingress, service, envConfigMap];
+export default [deployment, ingress, service];
