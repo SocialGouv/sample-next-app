@@ -1,9 +1,9 @@
 import Boom from "@hapi/boom";
 import Joi from "@hapi/joi";
 import { v4 as uuidv4 } from "uuid";
-import { createErrorFor } from "../../../src/lib/apiError";
-import { getExpiryDate } from "../../../src/lib/duration";
-import { graphqlClient } from "../../../src/lib/graphqlClient";
+import { createErrorFor } from "src/lib/apiError";
+import { getExpiryDate } from "src/lib/duration";
+import { graphqlClient } from "src/lib/graphqlClient";
 
 export default async function reset_password(req, res) {
   const apiError = createErrorFor(res);
@@ -20,6 +20,7 @@ export default async function reset_password(req, res) {
   const { error, value } = schema.validate(req.body);
 
   if (error) {
+    console.error(error);
     return apiError(Boom.badRequest(error.details[0].message));
   }
 
@@ -38,7 +39,7 @@ export default async function reset_password(req, res) {
 
   console.log("[reset_password]", email);
 
-  res.json("ok!");
+  res.json({ message: "reset password started" });
 }
 
 const udpateSecretTokenMutation = `
@@ -52,11 +53,11 @@ mutation updateSecretTokenMutation(
       _and: {
         email: { _eq: $email} ,
       }
-  	}
+    }
     _set: {
-    	secret_token_expires_at: $expires
+      secret_token_expires_at: $expires
       secret_token: $secret_token
-  	}
+    }
   ){
     affected_rows
   }

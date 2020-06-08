@@ -1,8 +1,8 @@
 import Boom from "@hapi/boom";
 import Joi from "@hapi/joi";
 import { hash } from "argon2";
-import { createErrorFor } from "../../../src/lib/apiError";
-import { graphqlClient } from "../../../src/lib/graphqlClient";
+import { createErrorFor } from "src/lib/apiError";
+import { graphqlClient } from "src/lib/graphqlClient";
 import { activateUserMutation } from "./activate.gql";
 
 export function createRequestHandler({
@@ -46,7 +46,7 @@ export function createRequestHandler({
 
     console.log("[set password]", value.token);
 
-    res.json(success_message);
+    res.json({ message: success_message });
   };
 }
 

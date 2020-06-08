@@ -9,7 +9,7 @@ export default async function logout(req, res) {
 
   const schema = Joi.object({
     refresh_token: Joi.string().guid({ version: "uuidv4" }).required(),
-  });
+  }).unknown();
 
   let { error, value } = schema.validate(req.cookies);
 
@@ -46,7 +46,7 @@ export default async function logout(req, res) {
     })
   );
   console.log("[logout]", refresh_token);
-  res.json("user logout !");
+  res.json({ message: "user logout !" });
 }
 
 const mutation = `mutation  deleteRefreshToken(

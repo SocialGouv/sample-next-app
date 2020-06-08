@@ -1,10 +1,10 @@
 import Boom from "@hapi/boom";
 import Joi from "@hapi/joi";
 import { hash } from "argon2";
-import { createErrorFor } from "../../../src/lib/apiError";
-import { getExpiryDate } from "../../../src/lib/duration";
-import { graphqlClient } from "../../../src/lib/graphqlClient";
-import { verifyJwtToken } from "../../lib/jwt";
+import { createErrorFor } from "src/lib/apiError";
+import { getExpiryDate } from "src/lib/duration";
+import { graphqlClient } from "src/lib/graphqlClient";
+import { verifyJwtToken } from "src/lib/jwt";
 
 export default async function register(req, res) {
   const apiError = createErrorFor(res);

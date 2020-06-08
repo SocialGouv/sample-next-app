@@ -1,11 +1,11 @@
 import Boom from "@hapi/boom";
 import Joi from "@hapi/joi";
 import { verify } from "argon2";
-import cookie from "cookie";
-import { createErrorFor } from "../../../src/lib/apiError";
-import { getExpiryDate } from "../../../src/lib/duration";
-import { graphqlClient } from "../../../src/lib/graphqlClient";
-import { generateJwtToken } from "../../../src/lib/jwt";
+import { createErrorFor } from "src/lib/apiError";
+import { getExpiryDate } from "src/lib/duration";
+import { graphqlClient } from "src/lib/graphqlClient";
+import { generateJwtToken } from "src/lib/jwt";
+import { setRefreshTokenCookie } from "src/lib/setRefreshTokenCookie";
 import { loginQuery, refreshTokenMutation } from "./login.gql";
 
 export default async function login(req, res) {
@@ -79,21 +79,14 @@ export default async function login(req, res) {
   console.log("[login]", user.id);
   const { refresh_token } = hasura_data.insert_data.returning[0];
 
-  // return jwt token and refresh token to client
-  res.setHeader(
-    "Set-Cookie",
-    cookie.serialize("refresh_token", refresh_token, {
-      sameSite: "lax",
-      secure: process.env.NODE_ENV === "production",
-      maxAge: (process.env.REFRESH_TOKEN_EXPIRES || 43200) * 60, // maxAge in second
-      httpOnly: true,
-      path: "/",
-    })
-  );
+  setRefreshTokenCookie(res, refresh_token);
 
   res.json({
     refresh_token,
+    user_id: user.id,
     jwt_token,
-    jwt_token_expiry: parseInt(process.env.JWT_TOKEN_EXPIRES, 10) || 15,
+    jwt_token_expiry: getExpiryDate(
+      parseInt(process.env.JWT_TOKEN_EXPIRES, 10) || 15
+    ),
   });
 }
