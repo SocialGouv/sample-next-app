@@ -16,7 +16,7 @@ Trigger Production:
   rules:
     - if: "$PRODUCTION"
       when: never
-    - if: $CI_COMMIT_TAG =~ /^v/
+    - if: $CI_COMMIT_TAG =~ $AUTO_DEVOPS_PRODUCTION_AUTO
       when: on_success
     - if: "$CI_COMMIT_TAG"
       when: manual
