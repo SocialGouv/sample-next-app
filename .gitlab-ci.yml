@@ -12,7 +12,7 @@ variables:
   AUTO_DEVOPS_PROD_ENVIRONMENT_NAME: "prod2"
 
 Trigger Production:
-  extends: .autodevops_trigger_production*
+  extends: .autodevops_trigger_production
   rules:
     - if: "$PRODUCTION"
       when: never
