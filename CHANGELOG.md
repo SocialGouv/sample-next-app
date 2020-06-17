@@ -1,3 +1,12 @@
+# [1.1.0-beta.21](https://github.com/SocialGouv/sample-next-app/compare/v1.1.0-beta.20...v1.1.0-beta.21) (2020-06-17)
+
+
+### Bug Fixes
+
+* **gitlab:** allow 1.1.0-beta.x version in prod ([9ff76eb](https://github.com/SocialGouv/sample-next-app/commit/9ff76eb9a376ffc1e940e941aa633a3167f4c71e))
+* trigger patch release ([3e56cce](https://github.com/SocialGouv/sample-next-app/commit/3e56cce6b01dd12a35583e3cfbbb8b8fa1cda573))
+* trigger patch release ([b8f918f](https://github.com/SocialGouv/sample-next-app/commit/b8f918fa5d00ef6d85173ea4aa36c9089f6b5cf3))
+
 # [1.1.0-beta.20](https://github.com/SocialGouv/sample-next-app/compare/v1.1.0-beta.19...v1.1.0-beta.20) (2020-06-10)
 
 
