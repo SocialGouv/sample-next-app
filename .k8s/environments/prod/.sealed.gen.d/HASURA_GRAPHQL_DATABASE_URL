@@ -1,0 +1,10 @@
+#!/bin/bash
+
+if [[ -z "${HASURA_GRAPHQL_DATABASE_URL}" ]]; then
+  echo "Expect HASURA_GRAPHQL_DATABASE_URL to be defined";
+  exit 1;
+fi
+
+echo -n "${HASURA_GRAPHQL_DATABASE_URL}" \
+  | parallel --pipe --tee -v {} ::: \
+    "sealed_as hasura-env ${0}"

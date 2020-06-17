@@ -1,0 +1,10 @@
+#!/bin/bash
+
+if [[ -z "${SENTRY_DSN}" ]]; then
+  echo "Expect SENTRY_DSN to be defined";
+  exit 1;
+fi
+
+echo -n "${SENTRY_DSN}" \
+  | parallel --pipe --tee -v {} ::: \
+    "sealed_as app-env ${0}"

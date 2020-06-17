@@ -1,0 +1,10 @@
+#!/bin/bash
+
+if [[ -z "${SMTP_URL}" ]]; then
+  echo "Expect SMTP_URL to be defined";
+  exit 1;
+fi
+
+echo -n "${SMTP_URL}" \
+  | parallel --pipe --tee -v {} ::: \
+    "sealed_as app-env ${0}"
