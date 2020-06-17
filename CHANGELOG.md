@@ -1,3 +1,11 @@
+# [1.1.0-beta.23](https://github.com/SocialGouv/sample-next-app/compare/v1.1.0-beta.22...v1.1.0-beta.23) (2020-06-17)
+
+
+### Bug Fixes
+
+* **gitlab:** debug auto devops production auto ([cec5664](https://github.com/SocialGouv/sample-next-app/commit/cec56647db8f20086f86a24cea68020f65a5de74))
+* **gitlab:** debug auto devops production auto ([0c175db](https://github.com/SocialGouv/sample-next-app/commit/0c175db478d6ec5974ec6d364c276e07188a6997))
+
 # [1.1.0-beta.22](https://github.com/SocialGouv/sample-next-app/compare/v1.1.0-beta.21...v1.1.0-beta.22) (2020-06-17)
 
 
