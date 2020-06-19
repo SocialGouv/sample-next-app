@@ -4,12 +4,8 @@ include:
     ref: v17.0.0-beta.28
 
 variables:
-  AUTO_DEVOPS_RELEASE_AUTO: "true"
-  AUTO_DEVOPS_PRODUCTION_AUTO: "/^v/"
-
-  AUTO_DEVOPS_DEV_ENVIRONMENT_NAME: "-dev2"
-  AUTO_DEVOPS_PREPROD_ENVIRONMENT_NAME: "-dev2"
-  AUTO_DEVOPS_PROD_ENVIRONMENT_NAME: "prod2"
+  AUTO_DEVOPS_RELEASE_AUTO: "🔖"
+  AUTO_DEVOPS_PRODUCTION_AUTO: "🚀"
 
 Trigger Production:
   extends: .autodevops_trigger_production
