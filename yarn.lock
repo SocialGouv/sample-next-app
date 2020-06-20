@@ -1586,21 +1586,21 @@
   resolved "https://registry.yarnpkg.com/@socialgouv/bootstrap.tokens/-/bootstrap.tokens-0.2.0.tgz#ee1aa1df50b0b18dba0b645610d862fdb312d5b3"
   integrity sha512-bBN7oGhmYGA61gyWTqTwSXh3YWkN1RWlMFAfi3NQa6L8ziJsSCgN5yk4FVpBq6uRFDQz061PgH8mlyGAyxwVqg==
 
-"@socialgouv/eslint-config-react@^0.30.0":
-  version "0.30.0"
-  resolved "https://registry.yarnpkg.com/@socialgouv/eslint-config-react/-/eslint-config-react-0.30.0.tgz#64885265c412ec12224225954faa159963b22256"
-  integrity sha512-g1MJVZX+v9AkqHFWKO7cpCjKhcMRIH/CGcYZ4zYnbH8+fYKOB9V1dKSHl6yHva/ILfZdiA7qxBgsbJ93hPAOjw==
+"@socialgouv/eslint-config-react@^0.31.0":
+  version "0.31.0"
+  resolved "https://registry.yarnpkg.com/@socialgouv/eslint-config-react/-/eslint-config-react-0.31.0.tgz#26c9cd3e880b20b8d90666202da33acf9ee9ec05"
+  integrity sha512-QnaQJDoKm9c8FsADu5i0uvJDNXO9h4j969otITe4RcIkiJEOm+zWjRqVc+HuLMnAbbE9Apvp4d6IlQDJn9KReA==
   dependencies:
-    "@socialgouv/eslint-config-recommended" "^0.30.0"
+    "@socialgouv/eslint-config-recommended" "^0.31.0"
     babel-eslint "^10.1.0"
-    eslint-plugin-jsx-a11y "~6.3.0"
+    eslint-plugin-jsx-a11y "~6.3.1"
     eslint-plugin-react "~7.20.0"
     eslint-plugin-react-hooks "~4.0.4"
 
-"@socialgouv/eslint-config-recommended@^0.30.0":
-  version "0.30.0"
-  resolved "https://registry.yarnpkg.com/@socialgouv/eslint-config-recommended/-/eslint-config-recommended-0.30.0.tgz#1bfaa7f74a52ba06ceba7fe581596930d5bcdcd5"
-  integrity sha512-qWeNTnovahL02hl35vA1UYhyCKY/bZpG1k6qsjMzAtSJ4WbnS7gYZ+AgPnLlaEVRI6HWy8s6gQEiDEjPRfE1qg==
+"@socialgouv/eslint-config-recommended@^0.31.0":
+  version "0.31.0"
+  resolved "https://registry.yarnpkg.com/@socialgouv/eslint-config-recommended/-/eslint-config-recommended-0.31.0.tgz#8ac6940bd38a6d8ea930781d64f36168140f2e63"
+  integrity sha512-vJxN2ztTi9SRd0ulwtdMl0A8K7AvvKrFu6+prRGCxXBHjYGrvGRXV9K3lKsLMyv0Ea8gD5vro6pgXacxRR+FaA==
   dependencies:
     eslint-config-prettier "~6.11.0"
     eslint-plugin-import "~2.21.2"
@@ -2157,10 +2157,10 @@ argparse@^1.0.7:
   dependencies:
     sprintf-js "~1.0.2"
 
-aria-query@^4.2.0:
-  version "4.2.0"
-  resolved "https://registry.yarnpkg.com/aria-query/-/aria-query-4.2.0.tgz#3774158e138a84c4790b58afc17e09711071d888"
-  integrity sha512-tpVyXGt6gJVTVwCmu8qgBkDHhvtQ/es80y6J8ziybiwQU/x+LnCy+v8p9CWOTHv3i1BMnH5/IfzMpuTcFPCMQA==
+aria-query@^4.2.2:
+  version "4.2.2"
+  resolved "https://registry.yarnpkg.com/aria-query/-/aria-query-4.2.2.tgz#0d2ca6c9aceb56b8977e9fed6aed7e15bbd2f83b"
+  integrity sha512-o/HelwhuKpTj/frsOsbNLNgnNGVIFsVP/SW2BSF14gVl7kAfMOJ6/8wUAUvG1R1NHKrfG+2sHZTu0yauT1qBrA==
   dependencies:
     "@babel/runtime" "^7.10.2"
     "@babel/runtime-corejs3" "^7.10.2"
@@ -4061,13 +4061,13 @@ eslint-plugin-jest@~23.13.2:
   dependencies:
     "@typescript-eslint/experimental-utils" "^2.5.0"
 
-eslint-plugin-jsx-a11y@~6.3.0:
-  version "6.3.0"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-jsx-a11y/-/eslint-plugin-jsx-a11y-6.3.0.tgz#f6dc42b0a34fd38973b7f8888cb55ac7dab34984"
-  integrity sha512-tHSWX2jXlAaiI45YuEPi3KXJ7MihvQWUZMR9UNB4bUVYvAamwr6AwCm5dgOZOV2rC2qVMjBtjNshBE46n4IG6w==
+eslint-plugin-jsx-a11y@~6.3.1:
+  version "6.3.1"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-jsx-a11y/-/eslint-plugin-jsx-a11y-6.3.1.tgz#99ef7e97f567cc6a5b8dd5ab95a94a67058a2660"
+  integrity sha512-i1S+P+c3HOlBJzMFORRbC58tHa65Kbo8b52/TwCwSKLohwvpfT5rm2GjGWzOHTEuq4xxf2aRlHHTtmExDQOP+g==
   dependencies:
     "@babel/runtime" "^7.10.2"
-    aria-query "^4.2.0"
+    aria-query "^4.2.2"
     array-includes "^3.1.1"
     ast-types-flow "^0.0.7"
     axe-core "^3.5.4"
