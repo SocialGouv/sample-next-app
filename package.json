@@ -52,8 +52,8 @@
   "devDependencies": {
     "@commitlint/cli": "^9.0.1",
     "@commitlint/config-conventional": "^9.0.1",
-    "@socialgouv/eslint-config-react": "^0.32.0",
-    "@socialgouv/eslint-config-recommended": "^0.32.0",
+    "@socialgouv/eslint-config-react": "^0.33.0",
+    "@socialgouv/eslint-config-recommended": "^0.33.0",
     "eslint": "^7.3.0",
     "eslint-plugin-import": "^2.21.2",
     "husky": "^4.2.5",
