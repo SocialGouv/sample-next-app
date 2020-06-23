@@ -1590,25 +1590,25 @@
   resolved "https://registry.yarnpkg.com/@socialgouv/bootstrap.tokens/-/bootstrap.tokens-0.2.0.tgz#ee1aa1df50b0b18dba0b645610d862fdb312d5b3"
   integrity sha512-bBN7oGhmYGA61gyWTqTwSXh3YWkN1RWlMFAfi3NQa6L8ziJsSCgN5yk4FVpBq6uRFDQz061PgH8mlyGAyxwVqg==
 
-"@socialgouv/eslint-config-react@^0.34.0":
-  version "0.34.0"
-  resolved "https://registry.yarnpkg.com/@socialgouv/eslint-config-react/-/eslint-config-react-0.34.0.tgz#d88be830d63c9fca50cd98cbadf714f53167efaa"
-  integrity sha512-MMBkDeehpl9s+lKa7PYZAguSRLdDWV/8BghbREOTwncTkS7LR0WJfF+GCUYYKOfAst9fqd3uATmpp+d28Kemfg==
+"@socialgouv/eslint-config-react@^0.35.0":
+  version "0.35.0"
+  resolved "https://registry.yarnpkg.com/@socialgouv/eslint-config-react/-/eslint-config-react-0.35.0.tgz#5a27cca878d2fb407f99fdc6e281394e5fe9106f"
+  integrity sha512-smIEMO3U7lZiUEJXMt323qVoeFts3wqqcBlgY9jxMBXARupw7JSF8d8O8v8mawoJfAX3z1tEDqIGzcyVPkWw0g==
   dependencies:
-    "@socialgouv/eslint-config-recommended" "^0.34.0"
+    "@socialgouv/eslint-config-recommended" "^0.35.0"
     babel-eslint "^10.1.0"
     eslint-plugin-jsx-a11y "~6.3.1"
     eslint-plugin-react "~7.20.0"
     eslint-plugin-react-hooks "~4.0.4"
 
-"@socialgouv/eslint-config-recommended@^0.34.0":
-  version "0.34.0"
-  resolved "https://registry.yarnpkg.com/@socialgouv/eslint-config-recommended/-/eslint-config-recommended-0.34.0.tgz#86fb5ec6e23ea00e1e16e46f558bb126ed42a025"
-  integrity sha512-ffv+GiLuCElAS25cBcr9QXUSzbLPAIm5ZrCBSUtXkx1z14XxnacHzN/4cR2yX8go1kdeMusJmD6MxVu6bwUlbQ==
+"@socialgouv/eslint-config-recommended@^0.35.0":
+  version "0.35.0"
+  resolved "https://registry.yarnpkg.com/@socialgouv/eslint-config-recommended/-/eslint-config-recommended-0.35.0.tgz#39934e09236ddb5402f8ad6047f0b7f0af8b7a97"
+  integrity sha512-H0uOJi4O4k+xbqwYxqCtlP30MLMTMbViwA9n6dZ+ZWqFJ2kdYRogbQD9hIKDIq1loM1iInVKfydlICWD0rjbFA==
   dependencies:
     eslint-config-prettier "~6.11.0"
     eslint-plugin-import "~2.21.2"
-    eslint-plugin-jest "~23.17.0"
+    eslint-plugin-jest "~23.17.1"
     eslint-plugin-prettier "~3.1.4"
 
 "@types/babel__core@^7.1.7":
@@ -4050,10 +4050,10 @@ eslint-plugin-import@^2.21.2, eslint-plugin-import@~2.21.2:
     resolve "^1.17.0"
     tsconfig-paths "^3.9.0"
 
-eslint-plugin-jest@~23.17.0:
-  version "23.17.0"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-jest/-/eslint-plugin-jest-23.17.0.tgz#06eece5bd37119ea9680e069d521ae22bff6318f"
-  integrity sha512-vp8WwadIvaz95SamnxL5rAQViA5DBNcG2hpWW3jqt3iCgdc2hIg9qul/pZgcqLULerWAvok70VObXRZGFZEHTQ==
+eslint-plugin-jest@~23.17.1:
+  version "23.17.1"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-jest/-/eslint-plugin-jest-23.17.1.tgz#c0f39ba78e0f33b7ee1ce4ec92b773e39026ea3f"
+  integrity sha512-/o36fw67qNbJGWbSBIBMfseMsNP/d88WUHAGHCi1xFwsNB3XXZGdvxbOw49j3iQz6MCW/yw8OeOsuQhi6mM5ZA==
   dependencies:
     "@typescript-eslint/experimental-utils" "^2.5.0"
 
