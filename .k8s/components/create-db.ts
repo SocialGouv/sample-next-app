@@ -9,7 +9,7 @@ const params = env.component("create-db");
 const job = new Job({
   metadata: {
     ...metadataFromParams(params),
-    name: "create-db-user",
+    name: params.dbName,
   },
   spec: {
     backoffLimit: 0,
