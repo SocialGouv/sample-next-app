@@ -1,6 +1,6 @@
 import { metadataFromParams } from "@socialgouv/kosko-charts/components/app/metadata";
 import env from "@kosko/env";
-import { Job } from "kubernetes-models/batch/v1/Job";
+import { Job } from "kubernetes-models/batch/v1beta1/Job";
 
 const params = env.component("create-db");
 
