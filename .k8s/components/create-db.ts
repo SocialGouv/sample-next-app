@@ -86,10 +86,10 @@ const secret = new SealedSecret({
         "AgBzByaq7ERJv4tyWgNdLJoZwbdcDe31UIhitM1CQI9LUhBXTBAKUghkLksrmxu5hkxnp5/Cj78j35FwbX+UQ4vgu3CYRLeh4wqxxwmhuH1oP6pvt312PBpo5upBrbYgGVKRGdT7ph1d8J3RVFTalPIb2NsnGveG2bhkTXmKHim8vE4rD6CZ/WS3KdyYBGqp2LiaCeNq6Ns5oABkBIsd3cKjVpCmLe8PlM/8xHh+PgGcqj/QpQY5umkNhA8cJphtJT3AeaObZOOpFvwOKE8jT6IHOCY18cowmDe7RaH7wbF8uV1zx6K/9vlFNZY5+SAkAF+iqcdCdRidHzH620lVs8JpBjwvFbq0gHnRyfhA7RVH15LIo4qMUtiNsAAM7+KKU+hO7Qb6iKGtWSPb3d1uH9xdkvofRu9qGd9vxGLYRZrjBpdd49KtfP3g99DaZnr3mGR8wd73cJrWG7SpV8rvzjWG0tw9W1+YD5haK5AeG42dWqdjH3gCaDBPhLvx1XYzFntRijQ2Jr59W4dX0eu/fvKVAAQxQORl8bEYVHtK6961kexOPvAgYayrNG1tCG3dldZO3zP4rILxzGHmbvYj06FhJUzE+EqPRwqUD9YCrtFZUf64NX1jqYtk9Qe1c5gX2yCt2thgF1qzoPiyGA+UC3D3RvnkcoaSLtovtjaB252NQGX03cesYhGoZ8yE95buazZ/xT8oejmUDYTMzSE3wXj8DRTVNtyC3U3G980DXbBK7MbqOTDooyBUUw==",
     },
     template: {
+      type: "Opaque",
       metadata: {
         ...metadataFromParams(params),
         name: `azure-pg-admin-user`,
-        creationTimestamp: null,
       },
     },
   },
