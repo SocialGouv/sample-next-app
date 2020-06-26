@@ -8,7 +8,7 @@ export default {
       ? process.env.CI_COMMIT_TAG.slice(1)
       : process.env.CI_COMMIT_SHA,
   },
-  subdomain: `hasura-${process.env.CI_ENVIRONMENT_SLUG}`,
+  // subdomain: `hasura-${process.env.CI_ENVIRONMENT_SLUG}`,
   ingress: {
     secretName: process.env.PRODUCTION ? "hasura-crt" : "wildcard-crt",
   },
