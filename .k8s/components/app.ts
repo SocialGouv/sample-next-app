@@ -28,18 +28,17 @@ const envConfigMap = new ConfigMap({
   },
   data: {
     NODE_ENV: process.env.NODE_ENV || "production",
-    FRONTEND_HOST: "${HOST}",
+    FRONTEND_HOST: "${HOST}", // todo: for emails ?
     GRAPHQL_ENDPOINT: "http://hasura/v1/graphql",
     ACCOUNT_MAIL_SENDER: "contact@fabrique.social.gouv.fr",
     FRONTEND_PORT: "${PORT}",
-    PRODUCTION: "false",
+    PRODUCTION: "false", // todo: override in prod
   },
 });
 
 const secret = new SealedSecret({
   metadata: {
     ...metadataFromParams(params),
-    annotations: { "sealedsecrets.bitnami.com/cluster-wide": "true" },
     name: `${params.name}-env`,
   },
   spec: {

@@ -59,7 +59,6 @@ deployment.spec!.template.spec!.containers[0].envFrom = [
 const secret = new SealedSecret({
   metadata: {
     ...metadataFromParams(params),
-    annotations: { "sealedsecrets.bitnami.com/cluster-wide": "true" },
     name: `${params.name}-env`,
   },
   spec: {
