@@ -69,6 +69,7 @@ const secret = new SealedSecret({
   metadata: {
     ...metadataFromParams(params),
     name: `azure-pg-admin-user`,
+    creationTimestamp: null,
   },
   spec: {
     encryptedData: {
@@ -84,6 +85,13 @@ const secret = new SealedSecret({
         "AgCVlJgkZydJpLaNijpBQLEwpdd6zdld6PZMsUN7yTpNx+sCdBsnmxbyNvxj+hMp7mCWqqksBRMQq3n6bOQfr5hJyYDyI9NNYiWzVXLUUnQNc7BcIXH7lrQg/9urgq3o4l85cfL5MfXQ1cbxOtEmppeGdH9ifl3NZUTzgnqQrOXnLOXeZxxueNIORqKkGxOexwjdpFOBhoDjZ6mYyczMhDgOxB+piXsUpJvd3d9MaMFT7U7rCmQuKD3nDP+B6OUDxhzt2j6N+q1i8fuZ1QD0tPHdRXEJBcnCx8/HY6mtVVObhrO5pQaDotZnDMp95o8eyjR3BRpQ7Q2i2hxgp+z8Uq7UZeiuYZkeoqz+rqx+xmWzuSVcKTuvyhsE/pnk4x+JUq67mr4PjjZpF06xgq9Sc7zGQ25irCKXTlM8UBKdKe/F7MeELnFpsB4QsSStLlsdsmEHTD3xNWwKQkqxlTEDVJis4d1Z/uwS/+DBcWtCwuD74iRs/dsvI/MOUZ676JxBNvoa8c5LsB3K4Z7yxGStmCKjJXQsndzcD8vhTHaUuW9dKpm1tN+7RyIy+snKYe1tDBjAymTOYRBXxe/9rfjaqHAoQEf6tE00aTyXb0am3s5ZwwlUTpmqzgY5tIwR9TYR0wjIaQIvIxBrFy+9mK82dansxaTBH5F/ef+LQYPyimk/ZgkNxtNzlwCauLhofvq6Yef0JVyFcN3v",
       PGUSER:
         "AgBzByaq7ERJv4tyWgNdLJoZwbdcDe31UIhitM1CQI9LUhBXTBAKUghkLksrmxu5hkxnp5/Cj78j35FwbX+UQ4vgu3CYRLeh4wqxxwmhuH1oP6pvt312PBpo5upBrbYgGVKRGdT7ph1d8J3RVFTalPIb2NsnGveG2bhkTXmKHim8vE4rD6CZ/WS3KdyYBGqp2LiaCeNq6Ns5oABkBIsd3cKjVpCmLe8PlM/8xHh+PgGcqj/QpQY5umkNhA8cJphtJT3AeaObZOOpFvwOKE8jT6IHOCY18cowmDe7RaH7wbF8uV1zx6K/9vlFNZY5+SAkAF+iqcdCdRidHzH620lVs8JpBjwvFbq0gHnRyfhA7RVH15LIo4qMUtiNsAAM7+KKU+hO7Qb6iKGtWSPb3d1uH9xdkvofRu9qGd9vxGLYRZrjBpdd49KtfP3g99DaZnr3mGR8wd73cJrWG7SpV8rvzjWG0tw9W1+YD5haK5AeG42dWqdjH3gCaDBPhLvx1XYzFntRijQ2Jr59W4dX0eu/fvKVAAQxQORl8bEYVHtK6961kexOPvAgYayrNG1tCG3dldZO3zP4rILxzGHmbvYj06FhJUzE+EqPRwqUD9YCrtFZUf64NX1jqYtk9Qe1c5gX2yCt2thgF1qzoPiyGA+UC3D3RvnkcoaSLtovtjaB252NQGX03cesYhGoZ8yE95buazZ/xT8oejmUDYTMzSE3wXj8DRTVNtyC3U3G980DXbBK7MbqOTDooyBUUw==",
+    },
+    template: {
+      metadata: {
+        ...metadataFromParams(params),
+        name: `azure-pg-admin-user`,
+        creationTimestamp: null,
+      },
     },
   },
 });
