@@ -1,7 +1,7 @@
-//import { AppComponentEnvironment } from "@socialgouv/kosko-charts/components/app/params";
+import { CreateDbEnvironment } from "index";
 
 export default {
   dbName: "production_db",
   dbUser: "production_user",
   dbPassword: "production_password",
-};
+} as CreateDbEnvironment;
