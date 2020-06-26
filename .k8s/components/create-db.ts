@@ -69,7 +69,6 @@ const secret = new SealedSecret({
   metadata: {
     ...metadataFromParams(params),
     name: `azure-pg-admin-user`,
-    creationTimestamp: null,
   },
   spec: {
     encryptedData: {
