@@ -1,0 +1,115 @@
+- table:
+    schema: auth
+    name: refresh_tokens
+  object_relationships:
+  - name: user
+    using:
+      foreign_key_constraint_on: user_id
+- table:
+    schema: auth
+    name: user_roles
+  object_relationships:
+  - name: roleByRole
+    using:
+      foreign_key_constraint_on: role
+  - name: user
+    using:
+      foreign_key_constraint_on: user_id
+  select_permissions:
+  - role: user
+    permission:
+      columns:
+      - id
+      - role
+      filter: {}
+- table:
+    schema: auth
+    name: users
+  object_relationships:
+  - name: role
+    using:
+      foreign_key_constraint_on: default_role
+  array_relationships:
+  - name: refresh_tokens
+    using:
+      foreign_key_constraint_on:
+        column: user_id
+        table:
+          schema: auth
+          name: refresh_tokens
+  - name: user_roles
+    using:
+      foreign_key_constraint_on:
+        column: user_id
+        table:
+          schema: auth
+          name: user_roles
+  event_triggers:
+  - name: account_email
+    definition:
+      enable_manual: false
+      insert:
+        columns: '*'
+      update:
+        columns:
+        - secret_token
+    retry_conf:
+      num_retries: 1
+      interval_sec: 10
+      timeout_sec: 60
+    webhook_from_env: ACCOUNT_EMAIL_WEBHOOK_URL
+    headers:
+    - name: email-secret
+      value_from_env: ACCOUNT_EMAIL_SECRET
+- table:
+    schema: public
+    name: roles
+  array_relationships:
+  - name: user_roles
+    using:
+      foreign_key_constraint_on:
+        column: role
+        table:
+          schema: auth
+          name: user_roles
+  - name: users
+    using:
+      foreign_key_constraint_on:
+        column: default_role
+        table:
+          schema: auth
+          name: users
+  select_permissions:
+  - role: user
+    permission:
+      columns:
+      - role
+      filter: {}
+- table:
+    schema: public
+    name: users
+  array_relationships:
+  - name: roles
+    using:
+      manual_configuration:
+        remote_table:
+          schema: auth
+          name: user_roles
+        column_mapping:
+          id: user_id
+  select_permissions:
+  - role: user
+    permission:
+      columns:
+      - active
+      - created_at
+      - default_role
+      - email
+      - id
+      - name
+      - secret_token
+      - secret_token_expires_at
+      - updated_at
+      filter:
+        id:
+          _eq: X-Hasura-User-Id
