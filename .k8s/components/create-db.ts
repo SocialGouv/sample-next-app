@@ -36,27 +36,27 @@ const job = new Job({
                 memory: "64Mi",
               },
             },
-            // envFrom: [
-            //   {
-            //     secretRef: {
-            //       name: "azure-pg-admin-user",
-            //     },
-            //   },
-            // ],
-            // env: [
-            //   {
-            //     name: "NEW_DB_NAME",
-            //     value: params.dbName,
-            //   },
-            //   {
-            //     name: "NEW_PASSWORD",
-            //     value: params.dbPassword,
-            //   },
-            //   {
-            //     name: "NEW_USER",
-            //     value: params.dbUser,
-            //   },
-            // ],
+            envFrom: [
+              {
+                secretRef: {
+                  name: "azure-pg-admin-user",
+                },
+              },
+            ],
+            env: [
+              {
+                name: "NEW_DB_NAME",
+                value: params.dbName,
+              },
+              {
+                name: "NEW_PASSWORD",
+                value: params.dbPassword,
+              },
+              {
+                name: "NEW_USER",
+                value: params.dbUser,
+              },
+            ],
           },
         ],
       },
