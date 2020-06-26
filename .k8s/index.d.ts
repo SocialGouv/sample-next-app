@@ -14,6 +14,7 @@ export interface ComponentEnvironment {
   // Specify types for each component
   namespace: NamespaceComponentEnvironment;
   app: AppComponentEnvironment;
+  hasura: AppComponentEnvironment;
   createDb: CreateDbEnvironment;
 }
 
