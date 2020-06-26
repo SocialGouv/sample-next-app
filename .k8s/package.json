@@ -9,6 +9,7 @@
     "kubernetes-models": "^0.8.0"
   },
   "devDependencies": {
+    "@kubernetes-models/sealed-secrets": "^0.1.3",
     "@socialgouv/kosko-charts": "^2.0.0-beta.6",
     "@types/node": "^14.0.5",
     "dotenv": "^8.2.0",
