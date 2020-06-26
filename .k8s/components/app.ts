@@ -27,6 +27,11 @@ const envConfigMap = new ConfigMap({
   },
   data: {
     NODE_ENV: process.env.NODE_ENV || "production",
+    FRONTEND_HOST: "${HOST}",
+    GRAPHQL_ENDPOINT: "http://hasura/v1/graphql",
+    ACCOUNT_MAIL_SENDER: "contact@fabrique.social.gouv.fr",
+    FRONTEND_PORT: "${PORT}",
+    PRODUCTION: "false",
   },
 });
 

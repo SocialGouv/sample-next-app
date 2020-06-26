@@ -33,6 +33,13 @@ const envConfigMap = new ConfigMap({
   },
   data: {
     NODE_ENV: process.env.NODE_ENV || "production",
+    HASURA_GRAPHQL_ENABLE_CONSOLE: "false",
+    HASURA_GRAPHQL_SERVER_PORT: "80",
+    HASURA_GRAPHQL_ENABLED_LOG_TYPES:
+      "startup, http-log, webhook-log, websocket-log, query-log",
+    HASURA_GRAPHQL_NO_OF_RETRIES: "5",
+    HASURA_GRAPHQL_UNAUTHORIZED_ROLE: "anonymous",
+    ACCOUNT_EMAIL_WEBHOOK_URL: "http://app:3000/api/webhooks/account",
   },
 });
 
