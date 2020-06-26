@@ -1,6 +1,6 @@
 import { metadataFromParams } from "@socialgouv/kosko-charts/components/app/metadata";
 import env from "@kosko/env";
-import { Job } from "kubernetes-models/batch/v1beta1/Job";
+import { Job } from "kubernetes-models/batch/v1/Job";
 
 const params = env.component("create-db");
 
@@ -18,6 +18,7 @@ const job = new Job({
         ...metadataFromParams(params),
       },
       spec: {
+        restartPolicy: "Never",
         containers: [
           {
             name: "create-db-user",
@@ -35,30 +36,29 @@ const job = new Job({
                 memory: "64Mi",
               },
             },
-            envFrom: [
-              {
-                secretRef: {
-                  name: "azure-pg-admin-user",
-                },
-              },
-            ],
-            env: [
-              {
-                name: "NEW_DB_NAME",
-                value: params.dbName,
-              },
-              {
-                name: "NEW_PASSWORD",
-                value: params.dbPassword,
-              },
-              {
-                name: "NEW_USER",
-                value: params.dbUser,
-              },
-            ],
+            // envFrom: [
+            //   {
+            //     secretRef: {
+            //       name: "azure-pg-admin-user",
+            //     },
+            //   },
+            // ],
+            // env: [
+            //   {
+            //     name: "NEW_DB_NAME",
+            //     value: params.dbName,
+            //   },
+            //   {
+            //     name: "NEW_PASSWORD",
+            //     value: params.dbPassword,
+            //   },
+            //   {
+            //     name: "NEW_USER",
+            //     value: params.dbUser,
+            //   },
+            // ],
           },
         ],
-        restartPolicy: "Never",
       },
     },
   },
