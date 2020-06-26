@@ -11,6 +11,14 @@ variables:
   CODE_QUALITY_DISABLED: 1
   NOTIFY_DISABLED: 1
 
+Lint:
+  rules:
+    - when: never
+
+Test:
+  rules:
+    - when: never
+
 Register image Hasura:
   extends: .autodevops_register_image
   dependencies: []
