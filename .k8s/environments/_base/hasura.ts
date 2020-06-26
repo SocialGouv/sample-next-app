@@ -1,6 +1,5 @@
 import { AppComponentEnvironment } from "@socialgouv/kosko-charts/components/app/params";
 
-console.log(process.env);
 export default {
   name: "hasura",
   image: {
