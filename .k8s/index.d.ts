@@ -14,6 +14,14 @@ export interface ComponentEnvironment {
   // Specify types for each component
   namespace: NamespaceComponentEnvironment;
   app: AppComponentEnvironment;
+  createDb: CreateDbEnvironment;
+}
+
+// Declare types for component environment variables
+export interface CreateDbEnvironment {
+  dbName: string;
+  dbUser: string;
+  dbPassword: string;
 }
 
 // Extend type declarations of "@kosko/env" module

@@ -2,7 +2,7 @@ import { metadataFromParams } from "@socialgouv/kosko-charts/components/app/meta
 import env from "@kosko/env";
 import { Job } from "kubernetes-models/batch/v1/Job";
 
-const params = env.component("app");
+const params = env.component("create-db");
 
 // image: registry.gitlab.factory.social.gouv.fr/socialgouv/docker/azure-db
 
@@ -45,15 +45,15 @@ const job = new Job({
             env: [
               {
                 name: "NEW_DB_NAME",
-                value: "db_local",
+                value: params.dbName,
               },
               {
                 name: "NEW_PASSWORD",
-                value: "pass_local",
+                value: params.dbPassword,
               },
               {
                 name: "NEW_USER",
-                value: "user_local",
+                value: params.dbUser,
               },
             ],
           },
