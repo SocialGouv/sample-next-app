@@ -77,8 +77,8 @@ const secret = new Secret({
     ...metadataFromParams(params),
     name: `azure-pg-user-${process.env.CI_COMMIT_SHORT_SHA}`,
   },
-  data: {
-    DATABASE_URL: `postgresql://${params.dbUser}%40${PG_HOST}:${params.dbPassword}@${PG_HOST}/${params.dbName}?sslmode=require`,
+  stringData: {
+    DATABASE_URL: `postgresql://${params.dbUser}%40${PG_HOST}:${params.dbPassword}@${PG_HOST}/${params.dbName}?sslmode=require`.toString(),
     PGDATABASE: params.dbName,
     PGHOST: PG_HOST,
     PGPASSWORD: params.dbPassword,
