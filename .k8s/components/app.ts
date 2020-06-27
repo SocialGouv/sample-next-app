@@ -62,7 +62,6 @@ const secret = new SealedSecret({
         "AgBK/Pc4L9ODWsZnBpeHi7BWYJth6BAr9L0V+HAdqlUO+/aYUAlh0IN2ITVLu+PUXY7pIWCVBXoWbuSSXeoeQQFV/dK1mLqT5AFwg0u//gUUcGGVaImZCzWLQsI0k6mZY7Z6E/jSkcQnPJdAHEVf5yKlaR2HwEfuMxHWb8BWhr8NUxmDu1rcAdmMkP3d7U6fnn9Sy7fX9jH/GCg20ecAcBxAMwmmGeK4z7CuD1a+ddIAYPogg3w6vdG1zRSxtx327eRzATClW37ktadYcSAImfnbAFk72X4bY/dswXYOr/NljXxSZ6rPD1zmVZ+QXLWJDoBV5RHB6AZ7RJBIgpXd9hpG19JNy7KQVn7oZsHr6cZgJ1hu2dU+OxdviDPWQb4nbeRGLOkr9mp9WOtZUb+fLb/BWwj5Aw4uRcuOg3xPeem1qS4eWY5e6RS8FV7YLxefEWoAhQpNLuEmQX8dzXVaPvS2Bos9CcBZTS2S1lYGGqZNg1A4tlpZ71hiTir7upmR5hMFQ8DRAH2THUD6Y6EYZj9zIusBHo+YgL3j1V1Hn1GRHh16Wot/cb903XsF0LpwkbHLJ3hqbGAn0clsUOlqE0Gs0RBcskb5JFAcoYk9YzA4kImbKT6yQl2ZRt+c7BJ0wM9TBClUortMh+wlMaeU15gsn3MbuM5Vgng6nNCo29oZQ2l6yERg3aC9m7ctEChKYs4R0/mDInBZmiBWdksenkt7",
     },
     template: {
-      type: "Opaque",
       metadata: {
         ...metadataFromParams(params),
         name: `${params.name}-env`,
