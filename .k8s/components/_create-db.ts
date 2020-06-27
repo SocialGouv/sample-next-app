@@ -1,14 +1,18 @@
-import { metadataFromParams } from "@socialgouv/kosko-charts/components/app/metadata";
 import env from "@kosko/env";
+import { metadataFromParams } from "@socialgouv/kosko-charts/components/app/metadata";
 import { Job } from "kubernetes-models/batch/v1/Job";
-import { SealedSecret } from "@kubernetes-models/sealed-secrets/bitnami.com/v1alpha1/SealedSecret";
+import { Secret } from "kubernetes-models/v1/Secret";
+import { CreateDbEnvironment } from "index";
 
 const params = env.component("create-db");
+
+// todo ?
+const PG_HOST = "samplenextappdevserver.postgres.database.azure.com";
 
 const job = new Job({
   metadata: {
     ...metadataFromParams(params),
-    name: params.jobName,
+    name: `create-db-${process.env.CI_COMMIT_SHORT_SHA}`,
   },
   spec: {
     backoffLimit: 0,
@@ -67,9 +71,26 @@ const job = new Job({
   },
 });
 
+// crerate the user secret for dynamic environements (dev)
+const secret = new Secret({
+  metadata: {
+    ...metadataFromParams(params),
+    name: `azure-pg-user-${process.env.CI_COMMIT_SHORT_SHA}`,
+  },
+  data: {
+    DATABASE_URL: `postgresql://${params.dbUser}%40${PG_HOST}:${params.dbPassword}@${PG_HOST}/${params.dbName}?sslmode=require`,
+    PGDATABASE: params.dbName,
+    PGHOST: PG_HOST,
+    PGPASSWORD: params.dbPassword,
+    PGSSLMODE: "require",
+    PGUSER: params.dbUser,
+  },
+});
+
 const defaultExport = [];
 
 if (process.env.ENABLE_AZURE_POSTGRES) {
+  defaultExport.push(secret);
   defaultExport.push(job);
 }
 export default defaultExport;
