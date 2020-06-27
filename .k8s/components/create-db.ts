@@ -57,7 +57,7 @@ const job = new Job({
               },
               {
                 name: "NEW_DB_EXTENSIONS",
-                value: "pgcrypto hstore",
+                value: "pgcrypto hstore citext",
               },
             ],
           },
