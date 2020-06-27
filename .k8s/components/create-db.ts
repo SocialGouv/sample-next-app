@@ -101,5 +101,10 @@ const secret = new SealedSecret({
   },
 });
 
-// todo: only when process.env.ENABLE_AZURE_POSTGRES
-export default [secret, job];
+const defaultExport = [];
+
+if (process.env.ENABLE_AZURE_POSTGRES) {
+  defaultExport.push(secret);
+  defaultExport.push(job);
+}
+export default defaultExport;
