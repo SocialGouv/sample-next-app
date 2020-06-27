@@ -65,7 +65,7 @@ deployment.spec!.template.spec!.containers[0].env = [
     name: "HASURA_GRAPHQL_DATABASE_URL",
     // from  create-db
     // todo: extract to some secret
-    value: `postgresql://user_${process.env.CI_COMMIT_SHORT_SHA}%40${PG_HOST}:password_${process.env.CI_COMMIT_SHORT_SHA}@${PG_HOST}/db_${process.env.CI_COMMIT_SHORT_SHA}?sslmode=require`,
+    value: `postgresql://user_${process.env.CI_COMMIT_SHORT_SHA}%40${PG_HOST}:password_${process.env.CI_COMMIT_SHORT_SHA}@${PG_HOST}/autodevops_${process.env.CI_COMMIT_SHORT_SHA}?sslmode=require`,
   },
 ];
 
