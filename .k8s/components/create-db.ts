@@ -55,6 +55,10 @@ const job = new Job({
                 name: "NEW_USER",
                 value: params.dbUser,
               },
+              {
+                name: "NEW_DB_EXTENSIONS",
+                value: "pgcrypto hstore",
+              },
             ],
           },
         ],
