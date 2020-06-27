@@ -56,6 +56,16 @@ const secret = new SealedSecret({
       SMTP_URL:
         "AgDVilgKuupA5C2U/aA69wX3hl3Rbv58xFS7WGeUjq7ubq5meZhRyT3QG3Ly1rXzoPCfB3LDC0JDjRMJ1G2jmn9o0znEXYks/49m6hDaKhcwnnlIE/ThBJ/BBqnZtoAjxzoeBSvaEhV/dd/a7GrIQYiswfT8P3LVza4gKdj1li5vs7htCLnZfOrAgAqfXSxILDfHlEk9lmbL5J4JdYlVKesp6XNjcnUWaP2ycc0vW3qWlwrFU2DJw45wZCoE/76hG2s+Tk3VF5Q6kiNJCKTCf88jpeiggxIpntjLJk8nmrr9/aZ8fl8gDWUYV+15UFgh5jSP0nlWlCTmxAMmEL2lwBb9289rt0o3ZM7L+yfzLGD9QTy/Ns0hm2M4Cynwh0SD1ti/lMv/GO73XFShUO2glHM96isPFqvbBdBGua8ksp59W0TYQRMFFHbygZEj4k5K516w3gV4XonZN6INOqKt4s27R9oiOoFup2mQo0ns1sH7XB8q/wXVmro3km/dqToSOFRa/0v+fZNfzlh1X0JlqI+940CQz7I3rusrFDR5kfryVt0A6AP9tjyG9jQAjiM0lwcJgHrDARpNXuo9qzLf0yDK68NrR49XGWNugRuKHEA8Ka7vLmbeIvZOElsfn/ZCpnWrUNcRO/5dvxIQgNRIKiHVcqM1QV6V31YZMa6ZfJI/zhLaWEoOV0svcYrO9jy9H0rRtrMEqXZO0IQ8pYVfHhNxbA==",
     },
+    template: {
+      type: "Opaque",
+      metadata: {
+        annotations: {
+          "sealedsecrets.bitnami.com/cluster-wide": "true",
+        },
+        ...metadataFromParams(params),
+        name: `${params.name}-env`,
+      },
+    },
   },
 });
 
