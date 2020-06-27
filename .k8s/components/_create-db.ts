@@ -4,7 +4,7 @@ import { Job } from "kubernetes-models/batch/v1/Job";
 import { Secret } from "kubernetes-models/v1/Secret";
 import { CreateDbEnvironment } from "index";
 
-const params = env.component("create-db");
+const params = env.component("hasura");
 
 // todo ?
 const PG_HOST = "samplenextappdevserver.postgres.database.azure.com";

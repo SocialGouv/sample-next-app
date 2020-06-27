@@ -2,6 +2,8 @@ import { metadataFromParams } from "@socialgouv/kosko-charts/components/app/meta
 import env from "@kosko/env";
 import { SealedSecret } from "@kubernetes-models/sealed-secrets/bitnami.com/v1alpha1/SealedSecret";
 
+const params = env.component("hasura");
+
 const secret = new SealedSecret({
   metadata: {
     ...metadataFromParams(params),
