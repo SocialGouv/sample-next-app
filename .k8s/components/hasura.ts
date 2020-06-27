@@ -67,9 +67,9 @@ const secret = new SealedSecret({
   metadata: {
     ...metadataFromParams(params),
     name: `hasura-env-${process.env.CI_COMMIT_SHORT_SHA}`,
-    // annotations: {
-    //   "sealedsecrets.bitnami.com/cluster-wide": "true",
-    // },
+    annotations: {
+      "sealedsecrets.bitnami.com/cluster-wide": "true",
+    },
   },
   spec: {
     encryptedData: {
