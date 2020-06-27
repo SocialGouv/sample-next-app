@@ -1,7 +1,7 @@
 import { AppComponentEnvironment } from "@socialgouv/kosko-charts/components/app/params";
 
 export default {
-  name: "www",
+  name: "app",
   image: {
     name: process.env.CI_REGISTRY_IMAGE,
     tag: process.env.CI_COMMIT_TAG

@@ -4,7 +4,7 @@ import { Job } from "kubernetes-models/batch/v1/Job";
 import { Secret } from "kubernetes-models/v1/Secret";
 import { CreateDbEnvironment } from "index";
 
-const params = env.component("hasura");
+const params = env.component("createDb");
 
 // todo ?
 const PG_HOST = "samplenextappdevserver.postgres.database.azure.com";
@@ -71,7 +71,7 @@ const job = new Job({
   },
 });
 
-// crerate the user secret for dynamic environements (dev)
+// crerate the azure-pg-user secret for dynamic environements (dev)
 const secret = new Secret({
   metadata: {
     ...metadataFromParams(params),
