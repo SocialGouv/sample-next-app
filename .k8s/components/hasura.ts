@@ -8,6 +8,9 @@ import { SealedSecret } from "@kubernetes-models/sealed-secrets/bitnami.com/v1al
 const params = env.component("hasura");
 const { deployment, ingress, service } = create(params);
 
+// todo ?
+const PG_HOST = "samplenextappdevserver.postgres.database.azure.com";
+
 //
 ok(process.env.CI_ENVIRONMENT_NAME);
 if (
@@ -59,10 +62,10 @@ deployment.spec!.template.spec!.containers[0].envFrom = [
 
 deployment.spec!.template.spec!.containers[0].env = [
   {
-    name: "DATABASE_URL",
+    name: "HASURA_GRAPHQL_DATABASE_URL",
     // from  create-db
     // todo: extract to some secret
-    value: `postgres:user_${process.env.CI_COMMIT_SHORT_SHA}%40samplenextappdevserver:password_${process.env.CI_COMMIT_SHORT_SHA}@samplenextappdevserver.postgres.database.azure.com/db_${process.env.CI_COMMIT_SHORT_SHA}?sslmode=require`,
+    value: `postgresql://user_${process.env.CI_COMMIT_SHORT_SHA}%40${PG_HOST}:password_${process.env.CI_COMMIT_SHORT_SHA}@${PG_HOST}/db_${process.env.CI_COMMIT_SHORT_SHA}?sslmode=require`,
   },
 ];
 
