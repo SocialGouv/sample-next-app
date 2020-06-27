@@ -63,6 +63,9 @@ deployment.spec!.template.spec!.containers[0].envFrom = [
   {
     configMapRef: { name: `${params.name}-env` },
   },
+  {
+    secretRef: { name: `${params.name}-env` },
+  },
 ];
 
 //
