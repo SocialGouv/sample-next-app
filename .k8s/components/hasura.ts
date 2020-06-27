@@ -20,13 +20,7 @@ if (
 }
 
 //
-/*
-  envFrom:
-    - configMapRef:
-        name: hasura-env
-    - secretRef:
-        name: hasura-env
-*/
+
 const envConfigMap = new ConfigMap({
   metadata: {
     ...metadataFromParams(params),
@@ -61,6 +55,15 @@ deployment.spec!.template.spec!.containers[0].envFrom = [
   //   {
   //     secretRef: { name: `azure-pg-user` },
   //   },
+];
+
+deployment.spec!.template.spec!.containers[0].env = [
+  {
+    name: "DATABASE_URL",
+    // from  create-db
+    // todo: extract to some secret
+    value: `postgres:user_${process.env.CI_COMMIT_SHORT_SHA}%40samplenextappdevserver:password_${process.env.CI_COMMIT_SHORT_SHA}@samplenextappdevserver.postgres.database.azure.com/db_${process.env.CI_COMMIT_SHORT_SHA}?sslmode=require`,
+  },
 ];
 
 const secret = new SealedSecret({
