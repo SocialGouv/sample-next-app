@@ -40,7 +40,7 @@ const job = new Job({
             envFrom: [
               {
                 secretRef: {
-                  name: "azure-pg-admin-user",
+                  name: `azure-pg-admin-user-${process.env.CI_COMMIT_SHORT_SHA}`,
                 },
               },
             ],
@@ -68,8 +68,7 @@ const job = new Job({
 const secret = new SealedSecret({
   metadata: {
     ...metadataFromParams(params),
-
-    name: `azure-pg-admin-user`,
+    name: `azure-pg-admin-user-${process.env.CI_COMMIT_SHORT_SHA}`,
   },
   spec: {
     encryptedData: {
@@ -89,7 +88,7 @@ const secret = new SealedSecret({
     template: {
       metadata: {
         ...metadataFromParams(params),
-        name: `azure-pg-admin-user`,
+        name: `azure-pg-admin-user-${process.env.CI_COMMIT_SHORT_SHA}`,
       },
     },
   },

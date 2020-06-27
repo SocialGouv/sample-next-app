@@ -24,7 +24,7 @@ if (
 const envConfigMap = new ConfigMap({
   metadata: {
     ...metadataFromParams(params),
-    name: `${params.name}-env`,
+    name: `${params.name}-env-${process.env.CI_COMMIT_SHORT_SHA}`,
   },
   data: {
     NODE_ENV: process.env.NODE_ENV || "production",
@@ -42,7 +42,7 @@ const envConfigMap = new ConfigMap({
 const secret = new SealedSecret({
   metadata: {
     ...metadataFromParams(params),
-    name: `${params.name}-env`,
+    name: `${params.name}-env-${process.env.CI_COMMIT_SHORT_SHA}`,
   },
   spec: {
     encryptedData: {
@@ -64,7 +64,7 @@ const secret = new SealedSecret({
     template: {
       metadata: {
         ...metadataFromParams(params),
-        name: `${params.name}-env`,
+        name: `${params.name}-env-${process.env.CI_COMMIT_SHORT_SHA}`,
       },
     },
   },
@@ -72,10 +72,14 @@ const secret = new SealedSecret({
 
 deployment.spec!.template.spec!.containers[0].envFrom = [
   {
-    configMapRef: { name: `${params.name}-env` },
+    configMapRef: {
+      name: `${params.name}-env-${process.env.CI_COMMIT_SHORT_SHA}`,
+    },
   },
   {
-    secretRef: { name: `${params.name}-env` },
+    secretRef: {
+      name: `${params.name}-env-${process.env.CI_COMMIT_SHORT_SHA}`,
+    },
   },
 ];
 
