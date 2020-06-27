@@ -45,7 +45,6 @@ const secret = new SealedSecret({
     name: `${params.name}-env-${process.env.CI_COMMIT_SHORT_SHA}`,
     annotations: {
       "sealedsecrets.bitnami.com/cluster-wide": "true",
-      creationTimestamp: null,
     },
   },
   spec: {
@@ -69,9 +68,9 @@ const secret = new SealedSecret({
       metadata: {
         ...metadataFromParams(params),
         name: `${params.name}-env-${process.env.CI_COMMIT_SHORT_SHA}`,
+        creationTimestamp: null,
         annotations: {
           "sealedsecrets.bitnami.com/cluster-wide": "true",
-          creationTimestamp: null,
         },
       },
     },
