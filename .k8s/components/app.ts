@@ -42,9 +42,6 @@ const envConfigMap = new ConfigMap({
 const secret = new SealedSecret({
   metadata: {
     ...metadataFromParams(params),
-    annotations: {
-      "sealedsecrets.bitnami.com/cluster-wide": "true",
-    },
     name: `${params.name}-env`,
   },
   spec: {
@@ -67,9 +64,6 @@ const secret = new SealedSecret({
     template: {
       type: "Opaque",
       metadata: {
-        annotations: {
-          "sealedsecrets.bitnami.com/cluster-wide": "true",
-        },
         ...metadataFromParams(params),
         name: `${params.name}-env`,
       },

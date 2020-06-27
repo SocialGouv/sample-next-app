@@ -76,9 +76,6 @@ const secret = new SealedSecret({
       template: {
         type: "Opaque",
         metadata: {
-          annotations: {
-            "sealedsecrets.bitnami.com/cluster-wide": "true",
-          },
           ...metadataFromParams(params),
           name: `${params.name}-env`,
         },

@@ -68,9 +68,7 @@ const job = new Job({
 const secret = new SealedSecret({
   metadata: {
     ...metadataFromParams(params),
-    annotations: {
-      "sealedsecrets.bitnami.com/cluster-wide": "true",
-    },
+
     name: `azure-pg-admin-user`,
   },
   spec: {
@@ -91,9 +89,6 @@ const secret = new SealedSecret({
     template: {
       type: "Opaque",
       metadata: {
-        annotations: {
-          "sealedsecrets.bitnami.com/cluster-wide": "true",
-        },
         ...metadataFromParams(params),
         name: `azure-pg-admin-user`,
       },
