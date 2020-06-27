@@ -89,7 +89,6 @@ const secret = new SealedSecret({
         annotations: {
           "sealedsecrets.bitnami.com/cluster-wide": "true",
         },
-        creationTimestamp: null,
       },
     },
   },
