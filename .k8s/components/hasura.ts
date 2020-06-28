@@ -36,6 +36,7 @@ const [envSecret] = getEnvironmentComponent(
     loader: koskoMigrateLoader,
   }
 );
+
 const hasuraSecret = new SealedSecret({
   metadata: {
     ...metadataFromParams(params),
@@ -69,12 +70,12 @@ const configmap = merge(envConfigMap, hasuraConfigMap);
 deployment.spec!.template.spec!.containers[0].envFrom = [
   {
     configMapRef: {
-      name: `${params.name}-env-${process.env.CI_COMMIT_SHORT_SHA}`,
+      name: `${params.name}-env`,
     },
   },
   {
     secretRef: {
-      name: `${params.name}-env-${process.env.CI_COMMIT_SHORT_SHA}`,
+      name: `${params.name}-env`,
     },
   },
   //   {
