@@ -12,7 +12,6 @@ const PG_HOST = "samplenextappdevserver.postgres.database.azure.com";
 const job = new Job({
   metadata: {
     ...metadataFromParams(params),
-    name: `create-db-${process.env.CI_COMMIT_SHORT_SHA}`,
   },
   spec: {
     backoffLimit: 0,

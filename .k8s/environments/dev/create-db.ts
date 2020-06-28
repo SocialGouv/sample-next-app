@@ -9,4 +9,4 @@ export default {
   dbName: `autodevops_${sha}`,
   dbUser: `user_${sha}`,
   dbPassword: `password_${sha}`,
-} as CreateDbEnvironment;
+} as Partial<CreateDbEnvironment>;

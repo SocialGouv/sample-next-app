@@ -1,10 +1,11 @@
 //
 
 import type {
-  AppComponentEnvironment,
   GlobalEnvironment,
   NamespaceComponentEnvironment,
+  NamedComponentEnvironment,
 } from "@socialgouv/kosko-charts/types";
+import { AppComponentEnvironment } from "@socialgouv/kosko-charts/components/app/params";
 
 // Declare types for component environment variables
 export interface ComponentEnvironment {
@@ -19,7 +20,7 @@ export interface ComponentEnvironment {
 }
 
 // Declare types for component environment variables
-export interface CreateDbEnvironment {
+export interface CreateDbEnvironment extends NamedComponentEnvironment {
   dbName: string;
   dbUser: string;
   dbPassword: string;
