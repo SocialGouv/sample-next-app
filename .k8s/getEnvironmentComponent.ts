@@ -33,7 +33,11 @@ export function getEnvironmentComponent(
       environment: env,
       component: filename,
     });
-    return readFileSync(join(cwd, path));
+    try {
+      return readFileSync(join(cwd, path));
+    } catch (e) {
+      console.log(e);
+    }
   });
 
   if (!legitEnv) return [];
