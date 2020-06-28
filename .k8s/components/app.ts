@@ -57,15 +57,23 @@ const configmap = merge(envConfigMap, appConfigMap);
 deployment.spec!.template.spec!.containers[0].envFrom = [
   {
     configMapRef: {
-      name: `${params.name}-env-${process.env.CI_COMMIT_SHORT_SHA}`,
+      name: `${params.name}-env`,
     },
   },
   {
     secretRef: {
-      name: `${params.name}-env-${process.env.CI_COMMIT_SHORT_SHA}`,
+      name: `${params.name}-env`,
     },
   },
 ];
+
+if (process.env.ENABLE_AZURE_POSTGRES) {
+  deployment.spec!.template.spec!.containers[0].envFrom.push({
+    secretRef: {
+      name: `azure-pg-user-${process.env.CI_COMMIT_SHORT_SHA}`,
+    },
+  });
+}
 
 //
 

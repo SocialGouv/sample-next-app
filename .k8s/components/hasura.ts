@@ -78,9 +78,6 @@ deployment.spec!.template.spec!.containers[0].envFrom = [
       name: `${params.name}-env`,
     },
   },
-  //   {
-  //     secretRef: { name: `azure-pg-user` },
-  //   },
 ];
 
 if (process.env.ENABLE_AZURE_POSTGRES) {
@@ -89,15 +86,6 @@ if (process.env.ENABLE_AZURE_POSTGRES) {
       name: `azure-pg-user-${process.env.CI_COMMIT_SHORT_SHA}`,
     },
   });
-  //();
-  // (deployment.spec!.template.spec!.containers[0].env = [
-  //   {
-  //     name: "HASURA_GRAPHQL_DATABASE_URL",
-  //     // from  create-db
-  //     // todo: extract to some secret
-  //     value: `postgresql://user_${process.env.CI_COMMIT_SHORT_SHA}%40${PG_HOST}:password_${process.env.CI_COMMIT_SHORT_SHA}@${PG_HOST}/autodevops_${process.env.CI_COMMIT_SHORT_SHA}?sslmode=require`,
-  //   },
-  // ])
 }
 
 //
