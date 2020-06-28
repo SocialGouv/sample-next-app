@@ -7,7 +7,7 @@ import { merge } from "@socialgouv/kosko-charts/utils/merge";
 import {
   koskoMigrateLoader,
   getEnvironmentComponent,
-} from "getEnvironmentComponent";
+} from "../getEnvironmentComponent";
 import { SealedSecret } from "@kubernetes-models/sealed-secrets/bitnami.com/v1alpha1/SealedSecret";
 
 const params = env.component("hasura");
