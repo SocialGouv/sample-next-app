@@ -3,6 +3,12 @@ import { create } from "@socialgouv/kosko-charts/components/app";
 import { metadataFromParams } from "@socialgouv/kosko-charts/components/app/metadata";
 import env from "@kosko/env";
 import { ConfigMap } from "kubernetes-models/v1/ConfigMap";
+import { merge } from "@socialgouv/kosko-charts/utils/merge";
+import {
+  koskoMigrateLoader,
+  getEnvironmentComponent,
+} from "getEnvironmentComponent";
+import { SealedSecret } from "@kubernetes-models/sealed-secrets/bitnami.com/v1alpha1/SealedSecret";
 
 const params = env.component("hasura");
 const { deployment, ingress, service } = create(params);
@@ -23,25 +29,42 @@ if (
 
 //
 
-const envConfigMap = new ConfigMap({
+const [envSecret] = getEnvironmentComponent(
+  env,
+  "hasura-env.sealed-secret.yaml",
+  {
+    loader: koskoMigrateLoader,
+  }
+);
+const hasuraSecret = new SealedSecret({
   metadata: {
     ...metadataFromParams(params),
-    name: `${params.name}-env-${process.env.CI_COMMIT_SHORT_SHA}`,
-  },
-  data: {
-    NODE_ENV: process.env.NODE_ENV || "production",
-    HASURA_GRAPHQL_ENABLE_CONSOLE: "false",
-    HASURA_GRAPHQL_SERVER_PORT: "80",
-    HASURA_GRAPHQL_ENABLED_LOG_TYPES:
-      "startup, http-log, webhook-log, websocket-log, query-log",
-    HASURA_GRAPHQL_NO_OF_RETRIES: "5",
-    HASURA_GRAPHQL_UNAUTHORIZED_ROLE: "anonymous",
-    ACCOUNT_EMAIL_WEBHOOK_URL: "http://app:3000/api/webhooks/account",
-    HASURA_GRAPHQL_JWT_SECRET:
-      '{"type":"RS256","key":"-----BEGIN PUBLIC KEY-----\\nMIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEAyY1EP+OUFipUuogV+2H5\\ndrOTtJS1E6HzXd7WaKHUlXEmvEPVDLI2RDU7Lno12EuFmtz+mtwXXSGzFCSfMI+8\\n84bCAL5SpJ1jpM3vMGRMIV0Qj3I06jdQEDhDUDapmkSXy1WuGEZOqSTxQ0DAW+vj\\nTorDhyslyWqLGwXZ73ikuQ94/3g34L9tHVez+e6M2DGODAdCnfR1g0rRByV5SIPf\\ncrG4I+vnSK9riuxWYCxtD7mFn2Trvp+rVejj47/yydY8fAVgPSrSREuOVb87XPwP\\n4a46ZEZK1SGiKsQlWyxUnEDNGgHaGG9zxe65IFulFZ2YDRMt9OCT6q2Di+s9+4GM\\n5mZGmeYkgYS7Wmz6XCEPWAnXzHPHmPdXu4u46jFmvkL//sfMxs8GbFCoyEyfoPhb\\nZxthfn00qWYJFE7xryYE3R7gVfyyTZCzypUNtePvEd2WzgJPSPgLbgrhXQcirIZl\\nvjXP5nSM/9rk3sOB1V93QiZlVah8EPbgkzpwlLVGL7ohYyKovwvZ7zjGpRPWuaH5\\nYZ5Neqvo3nuCPnqGSZKDuEuI27mgCdvQWa7XO1OO+tXB/p9JlUx+/eZB3N1eyXIe\\nxm4wgcSUsFkreCivnyaE4yG1ArixBvk1S1CP2YCnKF/q2BjJaUJzRMjnDr3kd9wi\\n3n2+OQJ4KBgBu/TtFzWtKj0CAwEAAQ==\\n-----END PUBLIC KEY-----"}',
-    HASURA_GRAPHQL_ADMIN_SECRET: "someDummySecret",
+    name: `hasura-env`,
+    annotations: {
+      "sealedsecrets.bitnami.com/cluster-wide": "true",
+    },
   },
 });
+const secret = merge(envSecret, hasuraSecret);
+
+//
+
+const [envConfigMap] = getEnvironmentComponent(
+  env,
+  "hasura-env.configmap.yaml",
+  {
+    loader: koskoMigrateLoader,
+  }
+);
+const hasuraConfigMap = new ConfigMap({
+  metadata: {
+    ...metadataFromParams(params),
+    name: `hasura-env`,
+  },
+});
+const configmap = merge(envConfigMap, hasuraConfigMap);
+
+//
 
 deployment.spec!.template.spec!.containers[0].envFrom = [
   {
@@ -78,4 +101,4 @@ if (process.env.ENABLE_AZURE_POSTGRES) {
 
 //
 
-export default [deployment, ingress, service, envConfigMap];
+export default [deployment, ingress, service, configmap, secret];
