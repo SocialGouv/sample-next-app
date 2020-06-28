@@ -3,7 +3,7 @@ import { metadataFromParams } from "@socialgouv/kosko-charts/components/app/meta
 import { Job } from "kubernetes-models/batch/v1/Job";
 import { Secret } from "kubernetes-models/v1/Secret";
 
-const params = env.component("createDb");
+const params = env.component("create-db");
 
 // todo ?
 const PG_HOST = "samplenextappdevserver.postgres.database.azure.com";
@@ -41,7 +41,7 @@ const job = new Job({
             envFrom: [
               {
                 secretRef: {
-                  name: `azure-pg-admin-user-${process.env.CI_COMMIT_SHORT_SHA}`,
+                  name: `azure-pg-admin-user`,
                 },
               },
             ],
