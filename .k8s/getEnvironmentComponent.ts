@@ -36,7 +36,7 @@ export function getEnvironmentComponent(
     try {
       return readFileSync(join(cwd, path));
     } catch (e) {
-      console.log(e);
+      // console.log(e);
     }
   });
 
