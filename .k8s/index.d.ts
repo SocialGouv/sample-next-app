@@ -16,7 +16,8 @@ export interface ComponentEnvironment {
   namespace: NamespaceComponentEnvironment;
   app: AppComponentEnvironment;
   hasura: AppComponentEnvironment;
-  createDb: CreateDbEnvironment;
+  pgweb: AppComponentEnvironment;
+  "create-db": CreateDbEnvironment;
 }
 
 // Declare types for component environment variables

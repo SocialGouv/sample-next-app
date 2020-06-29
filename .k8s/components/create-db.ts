@@ -83,7 +83,7 @@ const secret = new Secret({
     PGHOST: PG_HOST,
     PGPASSWORD: params.dbPassword,
     PGSSLMODE: "require",
-    PGUSER: params.dbUser,
+    PGUSER: `${params.dbUser}@${PG_HOST}`,
   },
 });
 

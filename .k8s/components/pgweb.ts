@@ -5,10 +5,6 @@ import env from "@kosko/env";
 import { merge } from "@socialgouv/kosko-charts/utils/merge";
 import { ConfigMap } from "kubernetes-models/v1/ConfigMap";
 import { SealedSecret } from "@kubernetes-models/sealed-secrets/bitnami.com/v1alpha1/SealedSecret";
-import {
-  koskoMigrateLoader,
-  getEnvironmentComponent,
-} from "../getEnvironmentComponent";
 
 const params = env.component("pgweb");
 const { deployment, ingress, service } = create(params);
@@ -23,6 +19,23 @@ if (
   // Our cluster v1 is stuck in k8s v1.14 :(
   delete deployment.spec!.template.spec!.containers[0].startupProbe;
 }
+
+deployment.spec!.template.spec!.containers[0].livenessProbe = {
+  httpGet: {
+    path: "/",
+    port: "http",
+  },
+  initialDelaySeconds: 5,
+  timeoutSeconds: 3,
+};
+deployment.spec!.template.spec!.containers[0].readinessProbe = {
+  httpGet: {
+    path: "/",
+    port: "http",
+  },
+  initialDelaySeconds: 5,
+  timeoutSeconds: 3,
+};
 
 if (process.env.ENABLE_AZURE_POSTGRES) {
   deployment.spec!.template.spec!.containers[0].envFrom = [
