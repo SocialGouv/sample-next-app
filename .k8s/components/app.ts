@@ -49,6 +49,9 @@ const appConfigMap = new ConfigMap({
     ...metadataFromParams(params),
     name: `app-env`,
   },
+  data: {
+    FRONTEND_HOST: ingress.spec!.rules![0].host!,
+  },
 });
 const configmap = merge(envConfigMap, appConfigMap);
 

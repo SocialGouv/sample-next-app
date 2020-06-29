@@ -1,12 +1,18 @@
 import env from "@kosko/env";
+import { ok } from "assert";
 import { metadataFromParams } from "@socialgouv/kosko-charts/components/app/metadata";
 import { Job } from "kubernetes-models/batch/v1/Job";
 import { Secret } from "kubernetes-models/v1/Secret";
 
 const params = env.component("create-db");
 
+ok(process.env.CI_PROJECT_NAME, "Expect CI_PROJECT_NAME to be defined");
+
 // todo ?
-const PG_HOST = "samplenextappdevserver.postgres.database.azure.com";
+const PG_HOST = `${process.env.CI_PROJECT_NAME.replace(
+  /-/g,
+  ""
+)}devserver.postgres.database.azure.com`;
 
 const job = new Job({
   metadata: {
