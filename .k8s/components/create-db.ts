@@ -78,6 +78,7 @@ const secret = new Secret({
   },
   stringData: {
     DATABASE_URL: `postgresql://${params.dbUser}%40${PG_HOST}:${params.dbPassword}@${PG_HOST}/${params.dbName}?sslmode=require`.toString(),
+    HASURA_GRAPHQL_DATABASE_URL: `postgresql://${params.dbUser}%40${PG_HOST}:${params.dbPassword}@${PG_HOST}/${params.dbName}?sslmode=require`.toString(),
     PGDATABASE: params.dbName,
     PGHOST: PG_HOST,
     PGPASSWORD: params.dbPassword,
