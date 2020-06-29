@@ -5,6 +5,7 @@
 //
 
 // TODO(douglasduteil): move this function to `@socialgouv/kosko-chart`
+// TODO(douglasduteil): explain why it exist and how useful it is
 
 //
 //
