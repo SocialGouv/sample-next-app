@@ -3,6 +3,13 @@
     "@socialgouv/eslint-config-recommended",
     "@socialgouv/eslint-config-react"
   ],
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "moduleDirectory": ["node_modules", "."]
+      }
+    }
+  },
   "rules": {
     "jsx-a11y/anchor-is-valid": "warn",
     "react/prop-types": "warn"

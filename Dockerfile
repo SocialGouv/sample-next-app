@@ -1,4 +1,4 @@
-FROM node:14-alpine
+FROM node:12.16.2-alpine
 
 WORKDIR /app
 
@@ -9,6 +9,7 @@ RUN yarn --production --frozen-lockfile
 COPY next.config.js server.js  ./
 COPY src/sentry.js ./src/sentry.js
 COPY .next/ ./.next
+COPY public/ ./
 
 USER node
 

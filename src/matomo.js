@@ -6,6 +6,9 @@ export function initMatomo({
   jsTrackerFile = "piwik.js",
   phpTrackerFile = "piwik.php",
 }) {
+  if (!piwikUrl) {
+    return;
+  }
   window._paq = window._paq || [];
   let previousPath = "";
   matopush(["setSiteId", siteId]);
