@@ -55,7 +55,7 @@
     "@socialgouv/eslint-config-react": "^0.35.0",
     "@socialgouv/eslint-config-recommended": "^0.35.0",
     "eslint": "^7.3.1",
-    "eslint-plugin-import": "^2.21.2",
+    "eslint-plugin-import": "^2.22.0",
     "husky": "^4.2.5",
     "jest-cli": "^26.1.0",
     "prettier": "^2.0.5"
