@@ -2,6 +2,7 @@ import { AppComponentEnvironment } from "@socialgouv/kosko-charts/components/app
 
 export default {
   name: "pgweb",
+  subdomain: `pgweb-${process.env.CI_PROJECT_NAME as string}`,
   image: {
     name: "sosedoff/pgweb",
     tag: "0.11.6",
