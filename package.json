@@ -7,31 +7,47 @@
     ]
   },
   "dependencies": {
-    "@sentry/browser": "^5.15.5",
-    "@sentry/integrations": "^5.15.5",
-    "@sentry/node": "^5.15.5",
+    "@hapi/boom": "^9.1.0",
+    "@hapi/joi": "^17.1.1",
+    "@sentry/browser": "^5.18.1",
+    "@sentry/integrations": "^5.18.1",
+    "@sentry/node": "^5.18.1",
     "@socialgouv/bootstrap.core": "^0.2.1",
     "@zeit/next-source-maps": "^0.0.3",
+    "argon2": "^0.26.2",
+    "cookie": "^0.4.1",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
-    "next": "^9.4.0",
+    "graphql": "^15.2.0",
+    "graphql-request": "^2.0.0",
+    "http-proxy-middleware": "^1.0.4",
+    "jsonwebtoken": "^8.5.1",
+    "next": "^9.4.4",
+    "next-urql": "^1.0.1",
+    "nodemailer": "^6.4.10",
     "react": "^16.13.1",
+    "react-bootstrap": "^1.0.1",
     "react-dom": "^16.13.1",
-    "sentry-testkit": "^3.2.1"
+    "react-is": "^16.13.1",
+    "sentry-testkit": "^3.2.1",
+    "urql": "^1.9.8",
+    "uuid": "^8.2.0",
+    "wonka": "^4.0.14"
   },
   "devDependencies": {
-    "@commitlint/cli": "^8.3.5",
-    "@commitlint/config-conventional": "^8.3.4",
-    "@socialgouv/eslint-config-react": "^0.21.0",
-    "@socialgouv/eslint-config-recommended": "^0.21.0",
-    "eslint": "^7.0.0",
+    "@commitlint/cli": "^9.0.1",
+    "@commitlint/config-conventional": "^9.0.1",
+    "@socialgouv/eslint-config-react": "^0.35.0",
+    "@socialgouv/eslint-config-recommended": "^0.35.0",
+    "eslint": "^7.3.1",
+    "eslint-plugin-import": "^2.22.0",
     "husky": "^4.2.5",
-    "jest-cli": "^26.0.1",
+    "jest": "^26.1.0",
     "prettier": "^2.0.5"
   },
   "husky": {
     "hooks": {
-      "pre-commit": "yarn lint",
+      "pre-commit": "eslint src/*",
       "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
     }
   },
@@ -40,7 +56,7 @@
   "private": true,
   "scripts": {
     "build": "next build",
-    "dev": "node server.js",
+    "dev": "node -r dotenv/config server.js dotenv_config_path=.env.development",
     "k8s": "yarn --silent --cwd .k8s",
     "lint": "eslint src/*",
     "start": "NODE_ENV=production node server.js",
