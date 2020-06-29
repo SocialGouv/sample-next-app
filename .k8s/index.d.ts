@@ -22,9 +22,9 @@ export interface ComponentEnvironment {
 
 // Declare types for component environment variables
 export interface CreateDbEnvironment extends NamedComponentEnvironment {
-  dbName: string;
-  dbUser: string;
-  dbPassword: string;
+  database: string;
+  user: string;
+  password: string;
 }
 
 // Extend type declarations of "@kosko/env" module

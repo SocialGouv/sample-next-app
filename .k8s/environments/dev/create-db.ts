@@ -6,7 +6,8 @@ ok(process.env.CI_COMMIT_SHORT_SHA);
 const sha = process.env.CI_COMMIT_SHORT_SHA;
 
 export default {
-  dbName: `autodevops_${sha}`,
-  dbUser: `user_${sha}`,
-  dbPassword: `password_${sha}`,
+  name: "create-db-job",
+  database: `autodevops_${sha}`,
+  user: `user_${sha}`,
+  password: `password_${sha}`,
 } as Partial<CreateDbEnvironment>;
