@@ -1611,13 +1611,13 @@
     eslint-plugin-jest "~23.17.1"
     eslint-plugin-prettier "~3.1.4"
 
-"@socialgouv/kosko-charts@2.0.0-beta.15":
-  version "2.0.0-beta.15"
-  resolved "https://registry.yarnpkg.com/@socialgouv/kosko-charts/-/kosko-charts-2.0.0-beta.15.tgz#05e72e1f75dce0544823b170aa22b145fe6128cc"
-  integrity sha512-aDM3/Z0wMDVAsPaBlyGJh9S9UVKT67zg8OkKqvWCgEgLRJkxoAB97cEKSJQg3z1L5I7odUCQIfDRToiwXxOXbw==
+"@socialgouv/kosko-charts@2.0.0-beta.16":
+  version "2.0.0-beta.16"
+  resolved "https://registry.yarnpkg.com/@socialgouv/kosko-charts/-/kosko-charts-2.0.0-beta.16.tgz#c4157925e8a26169d45ed7dee6fe460ea47823fa"
+  integrity sha512-TWXExUJeMFIfK3XtlqkTXi7Qih6vxogSXqDHpnNRbP/VO48dXmoep507pnlD1DMkpWptQ9PA+Wyln4l47rJosw==
   dependencies:
     fp-ts "^2.6.6"
-    io-ts "2.2.6"
+    io-ts "2.2.7"
 
 "@types/babel__core@^7.0.0", "@types/babel__core@^7.1.7":
   version "7.1.9"
@@ -5229,10 +5229,10 @@ invariant@^2.2.2, invariant@^2.2.4:
   dependencies:
     loose-envify "^1.0.0"
 
-io-ts@2.2.6:
-  version "2.2.6"
-  resolved "https://registry.yarnpkg.com/io-ts/-/io-ts-2.2.6.tgz#809305ef9af646c4edf79145671298835e321758"
-  integrity sha512-UcO9I/ptnGttBKRAF3KW0G6fiS7uqfjUSDdeq+qmMKH0k8sZrbDMnNP8I/TTSkoztPr5OZstnQxb1Vo5Ua8MOg==
+io-ts@2.2.7:
+  version "2.2.7"
+  resolved "https://registry.yarnpkg.com/io-ts/-/io-ts-2.2.7.tgz#5c05477580bff4c0154b474316c8916253e87c44"
+  integrity sha512-kCusyu/Fa0oax5ue2Id/ZqVLEk5JOWyrXHcLbD4kHoVM50MhDEWUtcHlN7RrD94I8OrWILcVltM6OllnZiHJmg==
 
 ip-regex@^2.1.0:
   version "2.1.0"
