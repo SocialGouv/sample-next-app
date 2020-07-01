@@ -2,7 +2,7 @@ import { SealedSecret } from "@kubernetes-models/sealed-secrets/bitnami.com/v1al
 import env from "@kosko/env";
 import { metadataFromParams } from "@socialgouv/kosko-charts/components/app/metadata";
 
-const params = env.component("createDb");
+const params = env.component("create-db");
 
 const secret = new SealedSecret({
   metadata: {

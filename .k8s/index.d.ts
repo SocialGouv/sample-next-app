@@ -6,6 +6,8 @@ import type {
   NamedComponentEnvironment,
 } from "@socialgouv/kosko-charts/types";
 import { AppComponentEnvironment } from "@socialgouv/kosko-charts/components/app/params";
+import { CreateDbJobParameters } from "@socialgouv/kosko-charts/components/azure-db/params";
+import { PostresSecretParameters } from "@socialgouv/kosko-charts/components/pg-secret/params";
 
 // Declare types for component environment variables
 export interface ComponentEnvironment {
@@ -17,14 +19,8 @@ export interface ComponentEnvironment {
   app: AppComponentEnvironment;
   hasura: AppComponentEnvironment;
   pgweb: AppComponentEnvironment;
-  "create-db": CreateDbEnvironment;
-}
-
-// Declare types for component environment variables
-export interface CreateDbEnvironment extends NamedComponentEnvironment {
-  database: string;
-  user: string;
-  password: string;
+  "create-db": CreateDbJobParameters;
+  "pg-secret": PostresSecretParameters;
 }
 
 // Extend type declarations of "@kosko/env" module
