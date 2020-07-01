@@ -13,6 +13,7 @@
     "@sentry/integrations": "^5.18.1",
     "@sentry/node": "^5.18.1",
     "@socialgouv/bootstrap.core": "^0.2.1",
+    "@socialgouv/kosko-charts": "2.0.0-beta.15",
     "@zeit/next-source-maps": "^0.0.3",
     "argon2": "^0.26.2",
     "cookie": "^0.4.1",
