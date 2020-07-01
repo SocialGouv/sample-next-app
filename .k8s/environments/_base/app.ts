@@ -22,6 +22,6 @@ export default {
     cpu: "50m",
     memory: "128Mi",
   },
-  containerPort: 3030,
-  servicePort: 3030,
+  containerPort: 3000,
+  servicePort: 3000,
 } as Readonly<AppComponentEnvironment>;
