@@ -1,8 +1,3 @@
-import { CreateDbJobParameters } from "@socialgouv/kosko-charts/components/azure-db/params";
+import { ok } from "assert";
 
-export default {
-  name: "create-db-job",
-  database: "production_db",
-  user: "production_user",
-  password: "production_password",
-} as CreateDbJobParameters;
+export default {};

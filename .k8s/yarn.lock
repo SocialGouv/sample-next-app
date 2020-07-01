@@ -125,13 +125,9 @@
     "@nodelib/fs.scandir" "2.1.3"
     fastq "^1.6.0"
 
-"@socialgouv/kosko-charts@2.0.0-beta.16":
-  version "2.0.0-beta.16"
-  resolved "https://registry.yarnpkg.com/@socialgouv/kosko-charts/-/kosko-charts-2.0.0-beta.16.tgz#c4157925e8a26169d45ed7dee6fe460ea47823fa"
-  integrity sha512-TWXExUJeMFIfK3XtlqkTXi7Qih6vxogSXqDHpnNRbP/VO48dXmoep507pnlD1DMkpWptQ9PA+Wyln4l47rJosw==
-  dependencies:
-    fp-ts "^2.6.6"
-    io-ts "2.2.7"
+"@socialgouv/kosko-charts@link:../../kosko-charts":
+  version "0.0.0"
+  uid ""
 
 "@types/color-name@^1.1.1":
   version "1.1.1"
@@ -456,10 +452,10 @@ import-local@^3.0.2:
     pkg-dir "^4.2.0"
     resolve-cwd "^3.0.0"
 
-io-ts@2.2.7:
-  version "2.2.7"
-  resolved "https://registry.yarnpkg.com/io-ts/-/io-ts-2.2.7.tgz#5c05477580bff4c0154b474316c8916253e87c44"
-  integrity sha512-kCusyu/Fa0oax5ue2Id/ZqVLEk5JOWyrXHcLbD4kHoVM50MhDEWUtcHlN7RrD94I8OrWILcVltM6OllnZiHJmg==
+io-ts@2.2.6:
+  version "2.2.6"
+  resolved "https://registry.yarnpkg.com/io-ts/-/io-ts-2.2.6.tgz#809305ef9af646c4edf79145671298835e321758"
+  integrity sha512-UcO9I/ptnGttBKRAF3KW0G6fiS7uqfjUSDdeq+qmMKH0k8sZrbDMnNP8I/TTSkoztPr5OZstnQxb1Vo5Ua8MOg==
 
 is-arrayish@^0.2.1:
   version "0.2.1"

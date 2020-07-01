@@ -3,7 +3,9 @@ import { create } from "@socialgouv/kosko-charts/components/app";
 import { metadataFromParams } from "@socialgouv/kosko-charts/components/app/metadata";
 import env from "@kosko/env";
 import { merge } from "@socialgouv/kosko-charts/utils/merge";
+import { addToEnvFrom } from "@socialgouv/kosko-charts/utils/addToEnvFrom";
 import { ConfigMap } from "kubernetes-models/v1/ConfigMap";
+import { EnvFromSource } from "kubernetes-models/v1/EnvFromSource";
 import { SealedSecret } from "@kubernetes-models/sealed-secrets/bitnami.com/v1alpha1/SealedSecret";
 import {
   koskoMigrateLoader,
@@ -24,11 +26,16 @@ if (
   delete deployment.spec!.template.spec!.containers[0].startupProbe;
 }
 
-const [envSecret] = getEnvironmentComponent(env, "app-env.sealed-secret.yaml", {
-  loader: koskoMigrateLoader,
-});
+// TODO: export to kosko-charts
+const loadYaml = (path: string) => {
+  const [obj] = getEnvironmentComponent(env, path, {
+    loader: koskoMigrateLoader,
+  });
+  return obj;
+};
 
-const appSecret = new SealedSecret({
+const secret = new SealedSecret({
+  ...loadYaml("app-env.sealed-secret.yaml"),
   metadata: {
     ...metadataFromParams(params),
     name: `app-env`,
@@ -37,14 +44,9 @@ const appSecret = new SealedSecret({
     },
   },
 });
-const secret = merge(envSecret, appSecret);
 
-//
-
-const [envConfigMap] = getEnvironmentComponent(env, "app-env.configmap.yaml", {
-  loader: koskoMigrateLoader,
-});
-const appConfigMap = new ConfigMap({
+const configMap = new ConfigMap({
+  ...loadYaml("app-env.configmap.yaml"),
   metadata: {
     ...metadataFromParams(params),
     name: `app-env`,
@@ -53,31 +55,38 @@ const appConfigMap = new ConfigMap({
     FRONTEND_HOST: ingress.spec!.rules![0].host!,
   },
 });
-const configmap = merge(envConfigMap, appConfigMap);
 
 //
 
-deployment.spec!.template.spec!.containers[0].envFrom = [
-  {
-    configMapRef: {
-      name: `${params.name}-env`,
-    },
+const secretSource = new EnvFromSource({
+  secretRef: {
+    name: `app-env`,
   },
-  {
-    secretRef: {
-      name: `${params.name}-env`,
-    },
+});
+
+const configMapSource = new EnvFromSource({
+  configMapRef: {
+    name: `app-env`,
   },
-];
+});
+
+addToEnvFrom({
+  deployment,
+  data: [secretSource, configMapSource],
+});
 
 if (process.env.ENABLE_AZURE_POSTGRES) {
-  deployment.spec!.template.spec!.containers[0].envFrom.push({
+  const azureSecretSource = new EnvFromSource({
     secretRef: {
       name: `azure-pg-user-${process.env.CI_COMMIT_SHORT_SHA}`,
     },
+  });
+  addToEnvFrom({
+    deployment,
+    data: [azureSecretSource],
   });
 }
 
 //
 
-export default [secret, configmap, deployment, ingress, service];
+export default [secret, configMap, deployment, ingress, service];

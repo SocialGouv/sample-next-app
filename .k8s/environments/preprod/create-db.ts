@@ -5,5 +5,5 @@ ok(process.env.CI_COMMIT_SHORT_SHA, "Expect CI_COMMIT_SHORT_SHA to be defined");
 
 const sha = process.env.CI_COMMIT_SHORT_SHA;
 
-// create database autodevops_[sha] and user_[sha]
-export default getDevDatabaseParameters({ suffix: sha });
+// create database autodevops_preprod_[sha] and user_preprod_[sha]
+export default getDevDatabaseParameters({ suffix: `preprod_${sha}` });
