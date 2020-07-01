@@ -6,7 +6,7 @@ ok(process.env.CI_COMMIT_SHORT_SHA, "Expect CI_COMMIT_SHORT_SHA to be defined");
 const sha = process.env.CI_COMMIT_SHORT_SHA;
 
 export default {
-  name: `create-db-job_${sha}`,
+  name: `create_db_job_${sha}`,
   database: `autodevops_${sha}`,
   user: `user_${sha}`,
   password: `password_${sha}`,
