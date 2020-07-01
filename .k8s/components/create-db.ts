@@ -1,12 +1,6 @@
 import env from "@kosko/env";
 import { ok } from "assert";
 
-import { metadataFromParams } from "@socialgouv/kosko-charts/components/app/metadata";
-import { getPgServerHostname } from "@socialgouv/kosko-charts/utils/getPgServerHostname";
-
-import { Job } from "kubernetes-models/batch/v1/Job";
-import { Secret } from "kubernetes-models/v1/Secret";
-
 import { create as createDb } from "@socialgouv/kosko-charts/components/azure-db";
 import { create as createSecret } from "@socialgouv/kosko-charts/components/pg-secret";
 

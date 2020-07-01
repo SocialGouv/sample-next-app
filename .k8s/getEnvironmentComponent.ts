@@ -63,6 +63,14 @@ export function tryRequireComponent(loader: (id: string) => string) {
   };
 }
 
+// TODO: export to kosko-charts
+export function loadYaml(env: Environment, path: string) {
+  const [obj] = getEnvironmentComponent(env, path, {
+    loader: koskoMigrateLoader,
+  });
+  return obj;
+}
+
 export function koskoMigrateLoader(id: string) {
   return migrateString(readFileSync(id, "utf-8"));
 }
