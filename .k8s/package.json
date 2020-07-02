@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@kosko/env": "^0.5.2",
-    "@socialgouv/kosko-charts": "link:../../kosko-charts",
+    "@socialgouv/kosko-charts": "2.0.0-beta.17",
     "kubernetes-models": "^0.8.0"
   },
   "devDependencies": {
