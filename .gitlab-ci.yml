@@ -6,3 +6,26 @@ include:
 variables:
   AUTO_DEVOPS_RELEASE_AUTO: "🔖"
   AUTO_DEVOPS_PRODUCTION_AUTO: "🚀"
+  ENABLE_AZURE_POSTGRES: 1
+  TEST_DISABLED: 1
+  CODE_QUALITY_DISABLED: 1
+  NOTIFY_DISABLED: 1
+
+Lint:
+  rules:
+    - when: never
+
+Test:
+  rules:
+    - when: never
+
+Register image Hasura:
+  extends: .autodevops_register_image
+  dependencies: []
+  needs: []
+  environment:
+    name: ${CI_COMMIT_REF_NAME}-dev2
+  variables:
+    CONTEXT: ./hasura
+    DOCKERFILE_PATH: Dockerfile
+    IMAGE_NAME: $CI_REGISTRY_IMAGE/hasura

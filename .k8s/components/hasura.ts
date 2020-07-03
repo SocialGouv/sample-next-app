@@ -2,36 +2,37 @@ import { ok } from "assert";
 import { create } from "@socialgouv/kosko-charts/components/app";
 import { metadataFromParams } from "@socialgouv/kosko-charts/components/app/metadata";
 import env from "@kosko/env";
-import { addToEnvFrom } from "@socialgouv/kosko-charts/utils/addToEnvFrom";
 import { ConfigMap } from "kubernetes-models/v1/ConfigMap";
+import { addToEnvFrom } from "@socialgouv/kosko-charts/utils/addToEnvFrom";
 import { EnvFromSource } from "kubernetes-models/v1/EnvFromSource";
-import { SealedSecret } from "@kubernetes-models/sealed-secrets/bitnami.com/v1alpha1/SealedSecret";
 import { loadYaml } from "../getEnvironmentComponent";
+import { SealedSecret } from "@kubernetes-models/sealed-secrets/bitnami.com/v1alpha1/SealedSecret";
 
 ok(process.env.CI_COMMIT_SHORT_SHA, "Expect CI_COMMIT_SHORT_SHA to be defined");
 
-const params = env.component("app");
+const params = env.component("hasura");
 const { deployment, ingress, service } = create(params);
 
+//
+
 const secret = new SealedSecret({
-  ...loadYaml(env, "app-env.sealed-secret.yaml"),
+  ...loadYaml(env, "hasura-env.sealed-secret.yaml"),
   metadata: {
     ...metadataFromParams(params),
-    name: `app-env`,
+    name: `hasura-env`,
     annotations: {
       "sealedsecrets.bitnami.com/cluster-wide": "true",
     },
   },
 });
 
+//
+
 const configMap = new ConfigMap({
-  ...loadYaml(env, "app-env.configmap.yaml"),
+  ...loadYaml(env, "hasura-env.configmap.yaml"),
   metadata: {
     ...metadataFromParams(params),
-    name: `app-env`,
-  },
-  data: {
-    FRONTEND_HOST: ingress.spec!.rules![0].host!,
+    name: `hasura-env`,
   },
 });
 
@@ -39,13 +40,13 @@ const configMap = new ConfigMap({
 
 const secretSource = new EnvFromSource({
   secretRef: {
-    name: `app-env`,
+    name: `hasura-env`,
   },
 });
 
 const configMapSource = new EnvFromSource({
   configMapRef: {
-    name: `app-env`,
+    name: `hasura-env`,
   },
 });
 
@@ -68,4 +69,4 @@ if (process.env.ENABLE_AZURE_POSTGRES) {
 
 //
 
-export default [secret, configMap, deployment, ingress, service];
+export default [deployment, ingress, service, configMap, secret];
