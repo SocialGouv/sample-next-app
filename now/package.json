@@ -1,0 +1,15 @@
+{
+  "name": "@socialgouv/now",
+  "version": "0.0.0",
+  "bin": {
+    "now": "./index.js"
+  },
+  "dependencies": {
+    "toml": "^3.0.0"
+  },
+  "devDependencies": {},
+  "license": "MIT",
+  "main": "index.js",
+  "private": true,
+  "scripts": {}
+}
