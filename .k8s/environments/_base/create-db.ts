@@ -1,3 +1,5 @@
 import { ok } from "assert";
 
-export default {};
+export default {
+  name: "create",
+};
