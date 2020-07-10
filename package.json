@@ -23,7 +23,7 @@
     "next-urql": "^1.0.2",
     "nodemailer": "^6.4.10",
     "react": "^16.13.1",
-    "react-bootstrap": "^1.2.0",
+    "react-bootstrap": "^1.2.1",
     "react-dom": "^16.13.1",
     "react-is": "^16.13.1",
     "sentry-testkit": "^3.2.1",
