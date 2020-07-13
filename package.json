@@ -17,7 +17,7 @@
     "express": "^4.17.1",
     "graphql": "^15.3.0",
     "graphql-request": "^2.0.0",
-    "http-proxy-middleware": "^1.0.4",
+    "http-proxy-middleware": "^1.0.5",
     "jsonwebtoken": "^8.5.1",
     "next": "^9.4.4",
     "next-urql": "^1.0.2",
