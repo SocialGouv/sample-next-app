@@ -1,0 +1,204 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should return a deployment, an ingress and service 1`] = `
+Array [
+  Object {
+    "apiVersion": "v1",
+    "kind": "Namespace",
+    "metadata": Object {
+      "annotations": Object {
+        "app.gitlab.com/app": "socialgouv-kosko-chart",
+        "app.gitlab.com/env": "env-dev",
+        "app.gitlab.com/env.name": "env-dev",
+        "field.cattle.io/creatorId": "gitlab",
+        "field.cattle.io/projectId": "",
+        "git/branch": "",
+        "git/remote": "",
+      },
+      "labels": Object {
+        "app": "kosko-chart-85-beta-db-12-dev2",
+        "application": "env-dev-kosko-chart",
+        "cert": "wildcard",
+        "owner": "kosko-chart",
+        "team": "kosko-chart",
+      },
+      "name": "kosko-chart-85-beta-db-12-dev2",
+    },
+  },
+  Object {
+    "apiVersion": "apps/v1",
+    "kind": "Deployment",
+    "metadata": Object {
+      "annotations": Object {
+        "app.gitlab.com/app": "socialgouv-kosko-chart",
+        "app.gitlab.com/env": "env-dev",
+        "app.gitlab.com/env.name": "env-dev",
+      },
+      "labels": Object {
+        "app": "www",
+        "application": "env-dev-kosko-chart",
+        "component": "www",
+        "owner": "kosko-chart",
+        "team": "kosko-chart",
+      },
+      "name": "www",
+      "namespace": "kosko-chart-85-beta-db-12-dev2",
+    },
+    "spec": Object {
+      "replicas": 1,
+      "selector": Object {
+        "matchLabels": Object {
+          "app": "www",
+        },
+      },
+      "template": Object {
+        "metadata": Object {
+          "annotations": Object {
+            "app.gitlab.com/app": "socialgouv-kosko-chart",
+            "app.gitlab.com/env": "env-dev",
+            "app.gitlab.com/env.name": "env-dev",
+          },
+          "labels": Object {
+            "app": "www",
+            "application": "env-dev-kosko-chart",
+            "component": "www",
+            "owner": "kosko-chart",
+            "team": "kosko-chart",
+          },
+        },
+        "spec": Object {
+          "containers": Array [
+            Object {
+              "image": "registry.gitlab.factory.social.gouv.fr/socialgouv/kosko-chart:c58c0974f7023063b1296d3a5a285b46b92771f8",
+              "livenessProbe": Object {
+                "failureThreshold": 6,
+                "httpGet": Object {
+                  "path": "/healthz",
+                  "port": "http",
+                },
+                "initialDelaySeconds": 30,
+                "periodSeconds": 5,
+                "timeoutSeconds": 5,
+              },
+              "name": "www",
+              "ports": Array [
+                Object {
+                  "containerPort": 8080,
+                  "name": "http",
+                },
+              ],
+              "readinessProbe": Object {
+                "failureThreshold": 15,
+                "httpGet": Object {
+                  "path": "/healthz",
+                  "port": "http",
+                },
+                "initialDelaySeconds": 0,
+                "periodSeconds": 5,
+                "successThreshold": 1,
+                "timeoutSeconds": 1,
+              },
+              "resources": Object {
+                "limits": Object {
+                  "cpu": "50m",
+                  "memory": "128Mi",
+                },
+                "requests": Object {
+                  "cpu": "1m",
+                  "memory": "64Mi",
+                },
+              },
+              "startupProbe": Object {
+                "failureThreshold": 12,
+                "httpGet": Object {
+                  "path": "/healthz",
+                  "port": "http",
+                },
+                "periodSeconds": 5,
+              },
+            },
+          ],
+        },
+      },
+    },
+  },
+  Object {
+    "apiVersion": "extensions/v1beta1",
+    "kind": "Ingress",
+    "metadata": Object {
+      "annotations": Object {
+        "certmanager.k8s.io/cluster-issuer": "letsencrypt-prod",
+        "kubernetes.io/ingress.class": "nginx",
+        "kubernetes.io/tls-acme": "true",
+      },
+      "labels": Object {
+        "app": "www",
+        "application": "env-dev-kosko-chart",
+        "component": "www",
+        "owner": "kosko-chart",
+        "team": "kosko-chart",
+      },
+      "name": "www",
+      "namespace": "kosko-chart-85-beta-db-12-dev2",
+    },
+    "spec": Object {
+      "rules": Array [
+        Object {
+          "host": "env-dev-kosko-chart.dev2.fabrique.social.gouv.fr",
+          "http": Object {
+            "paths": Array [
+              Object {
+                "backend": Object {
+                  "serviceName": "www",
+                  "servicePort": 80,
+                },
+                "path": "/",
+              },
+            ],
+          },
+        },
+      ],
+      "tls": Array [
+        Object {
+          "hosts": Array [
+            "env-dev-kosko-chart.dev2.fabrique.social.gouv.fr",
+          ],
+          "secretName": "wildcard-crt",
+        },
+      ],
+    },
+  },
+  Object {
+    "apiVersion": "v1",
+    "kind": "Service",
+    "metadata": Object {
+      "annotations": Object {
+        "app.gitlab.com/app": "socialgouv-kosko-chart",
+        "app.gitlab.com/env": "env-dev",
+        "app.gitlab.com/env.name": "env-dev",
+      },
+      "labels": Object {
+        "app": "www",
+        "application": "env-dev-kosko-chart",
+        "component": "www",
+        "owner": "kosko-chart",
+        "team": "kosko-chart",
+      },
+      "name": "www",
+      "namespace": "kosko-chart-85-beta-db-12-dev2",
+    },
+    "spec": Object {
+      "ports": Array [
+        Object {
+          "port": 80,
+          "targetPort": 8080,
+        },
+      ],
+      "selector": Object {
+        "app": "www",
+      },
+      "type": "ClusterIP",
+    },
+  },
+]
+`;

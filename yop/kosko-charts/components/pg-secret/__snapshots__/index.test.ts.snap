@@ -1,0 +1,55 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should return a new PG secret 1`] = `
+Object {
+  "createSecret": Object {
+    "apiVersion": "v1",
+    "kind": "Secret",
+    "metadata": Object {
+      "labels": Object {
+        "app": "test-job",
+      },
+      "name": "test-job",
+      "namespace": "sample-42-my-test",
+    },
+    "stringData": Object {
+      "DATABASE_URL": "postgresql://tester%40pouet.com:passw0rd@pouet.com/some-db?sslmode=require",
+      "HASURA_GRAPHQL_DATABASE_URL": "postgresql://tester%40pouet.com:passw0rd@pouet.com/some-db?sslmode=require",
+      "PGDATABASE": "some-db",
+      "PGHOST": "pouet.com",
+      "PGPASSWORD": "passw0rd",
+      "PGSSLMODE": "require",
+      "PGUSER": "tester@pouet.com",
+    },
+  },
+}
+`;
+
+exports[`should throw because of missing variables 1`] = `
+"BadArgument:required property \\"database\\"
+└─ cannot decode undefined, should be string
+required property \\"host\\"
+└─ cannot decode undefined, should be string
+required property \\"password\\"
+└─ cannot decode undefined, should be string
+required property \\"user\\"
+└─ cannot decode undefined, should be string"
+`;
+
+exports[`should throw because of missing variables 2`] = `
+"BadArgument:required property \\"database\\"
+└─ cannot decode undefined, should be string
+required property \\"host\\"
+└─ cannot decode undefined, should be string
+required property \\"password\\"
+└─ cannot decode undefined, should be string"
+`;
+
+exports[`should throw because of missing variables 3`] = `
+"BadArgument:required property \\"database\\"
+└─ cannot decode \\"\\", should be NonEmptyString
+required property \\"password\\"
+└─ cannot decode \\"\\", should be NonEmptyString
+required property \\"user\\"
+└─ cannot decode \\"\\", should be NonEmptyString"
+`;

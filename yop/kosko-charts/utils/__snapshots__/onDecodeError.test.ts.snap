@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`onDecodeError should draw an error mesage 1`] = `
+"BadArgument:required property \\"a\\"
+└─ cannot decode undefined, should be string
+required property \\"b\\"
+└─ cannot decode undefined, should be number
+required property \\"c\\"
+└─ optional index 0
+   └─ cannot decode 1, should be boolean
+required property \\"d\\"
+├─ member 0
+│  └─ cannot decode undefined, should be null
+└─ member 1
+   └─ cannot decode undefined, should be string"
+`;

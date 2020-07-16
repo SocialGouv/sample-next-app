@@ -1,0 +1,7 @@
+/components
+/environments
+/lib
+/types
+/utils
+coverage
+node_modules

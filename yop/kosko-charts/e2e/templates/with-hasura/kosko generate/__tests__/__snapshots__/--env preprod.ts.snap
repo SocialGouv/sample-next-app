@@ -1,0 +1,265 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`--env preprod : should generate dev manifest 1`] = `
+"---
+metadata:
+  annotations:
+    app.gitlab.com/app: socialgouv-sample-next-app
+    app.gitlab.com/env: e2e-branch-42
+    app.gitlab.com/env.name: e2e-branch-dev
+    field.cattle.io/creatorId: gitlab
+    field.cattle.io/projectId: 'c-kk8xm:p-4fxg8'
+    git/branch: e2e-branch
+    git/remote: 'git@github.com:SocialGouv/sample-next-app.git'
+  labels:
+    app: preprod-sample-next-app
+    application: preprod-sample-next-app
+    owner: sample-next-app
+    team: sample-next-app
+    cert: wildcard
+  name: preprod-sample-next-app
+apiVersion: v1
+kind: Namespace
+---
+metadata:
+  annotations:
+    app.gitlab.com/app: socialgouv-sample-next-app
+    app.gitlab.com/env: e2e-branch-42
+    app.gitlab.com/env.name: e2e-branch-dev
+  labels:
+    app: hasura
+    application: preprod-sample-next-app
+    owner: sample-next-app
+    team: sample-next-app
+    component: hasura
+  name: hasura
+  namespace: preprod-sample-next-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hasura
+  template:
+    metadata:
+      annotations:
+        app.gitlab.com/app: socialgouv-sample-next-app
+        app.gitlab.com/env: e2e-branch-42
+        app.gitlab.com/env.name: e2e-branch-dev
+      labels:
+        app: hasura
+        application: preprod-sample-next-app
+        owner: sample-next-app
+        team: sample-next-app
+        component: hasura
+    spec:
+      containers:
+        - image: >-
+            registry.gitlab.factory.social.gouv.fr/socialgouv/sample-next-app/hasura:1.2.3
+          livenessProbe:
+            failureThreshold: 6
+            httpGet:
+              path: /healthz
+              port: http
+            initialDelaySeconds: 30
+            periodSeconds: 5
+            timeoutSeconds: 5
+          name: hasura
+          ports:
+            - containerPort: 8080
+              name: http
+          readinessProbe:
+            failureThreshold: 15
+            httpGet:
+              path: /healthz
+              port: http
+            initialDelaySeconds: 0
+            periodSeconds: 5
+            successThreshold: 1
+            timeoutSeconds: 1
+          resources:
+            limits:
+              cpu: 500m
+              memory: 128Mi
+            requests:
+              cpu: 5m
+              memory: 16Mi
+          startupProbe:
+            failureThreshold: 12
+            httpGet:
+              path: /healthz
+              port: http
+            periodSeconds: 5
+apiVersion: apps/v1
+kind: Deployment
+---
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: nginx
+  labels:
+    app: hasura
+    application: preprod-sample-next-app
+    owner: sample-next-app
+    team: sample-next-app
+    component: hasura
+  name: hasura
+  namespace: preprod-sample-next-app
+spec:
+  rules:
+    - host: preprod-sample-next-app.dev.fabrique.social.gouv.fr
+      http:
+        paths:
+          - backend:
+              serviceName: hasura
+              servicePort: 80
+            path: /
+  tls:
+    - hosts:
+        - preprod-sample-next-app.dev.fabrique.social.gouv.fr
+      secretName: wildcard-crt
+apiVersion: extensions/v1beta1
+kind: Ingress
+---
+metadata:
+  annotations:
+    app.gitlab.com/app: socialgouv-sample-next-app
+    app.gitlab.com/env: e2e-branch-42
+    app.gitlab.com/env.name: e2e-branch-dev
+  labels:
+    app: hasura
+    application: preprod-sample-next-app
+    owner: sample-next-app
+    team: sample-next-app
+    component: hasura
+  name: hasura
+  namespace: preprod-sample-next-app
+spec:
+  ports:
+    - port: 80
+      targetPort: 8080
+  selector:
+    app: hasura
+  type: ClusterIP
+apiVersion: v1
+kind: Service
+---
+metadata:
+  annotations:
+    app.gitlab.com/app: socialgouv-sample-next-app
+    app.gitlab.com/env: e2e-branch-42
+    app.gitlab.com/env.name: e2e-branch-dev
+  labels:
+    app: www
+    application: preprod-sample-next-app
+    owner: sample-next-app
+    team: sample-next-app
+    component: www
+  name: www
+  namespace: preprod-sample-next-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: www
+  template:
+    metadata:
+      annotations:
+        app.gitlab.com/app: socialgouv-sample-next-app
+        app.gitlab.com/env: e2e-branch-42
+        app.gitlab.com/env.name: e2e-branch-dev
+      labels:
+        app: www
+        application: preprod-sample-next-app
+        owner: sample-next-app
+        team: sample-next-app
+        component: www
+    spec:
+      containers:
+        - image: >-
+            registry.gitlab.factory.social.gouv.fr/socialgouv/sample-next-app:1.2.3
+          livenessProbe:
+            failureThreshold: 6
+            httpGet:
+              path: /healthz
+              port: http
+            initialDelaySeconds: 30
+            periodSeconds: 5
+            timeoutSeconds: 5
+          name: www
+          ports:
+            - containerPort: 8080
+              name: http
+          readinessProbe:
+            failureThreshold: 15
+            httpGet:
+              path: /healthz
+              port: http
+            initialDelaySeconds: 0
+            periodSeconds: 5
+            successThreshold: 1
+            timeoutSeconds: 1
+          resources:
+            limits:
+              cpu: 500m
+              memory: 128Mi
+            requests:
+              cpu: 5m
+              memory: 16Mi
+          startupProbe:
+            failureThreshold: 12
+            httpGet:
+              path: /healthz
+              port: http
+            periodSeconds: 5
+apiVersion: apps/v1
+kind: Deployment
+---
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: nginx
+  labels:
+    app: www
+    application: preprod-sample-next-app
+    owner: sample-next-app
+    team: sample-next-app
+    component: www
+  name: www
+  namespace: preprod-sample-next-app
+spec:
+  rules:
+    - host: preprod-sample-next-app.dev.fabrique.social.gouv.fr
+      http:
+        paths:
+          - backend:
+              serviceName: www
+              servicePort: 80
+            path: /
+  tls:
+    - hosts:
+        - preprod-sample-next-app.dev.fabrique.social.gouv.fr
+      secretName: wildcard-crt
+apiVersion: extensions/v1beta1
+kind: Ingress
+---
+metadata:
+  annotations:
+    app.gitlab.com/app: socialgouv-sample-next-app
+    app.gitlab.com/env: e2e-branch-42
+    app.gitlab.com/env.name: e2e-branch-dev
+  labels:
+    app: www
+    application: preprod-sample-next-app
+    owner: sample-next-app
+    team: sample-next-app
+    component: www
+  name: www
+  namespace: preprod-sample-next-app
+spec:
+  ports:
+    - port: 80
+      targetPort: 8080
+  selector:
+    app: www
+  type: ClusterIP
+apiVersion: v1
+kind: Service"
+`;

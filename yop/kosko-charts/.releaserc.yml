@@ -1,0 +1,17 @@
+plugins:
+  - "@semantic-release/commit-analyzer"
+  - "@semantic-release/release-notes-generator"
+  - "@semantic-release/npm"
+  - "@semantic-release/changelog"
+  - - "@semantic-release/exec"
+    - prepareCmd: |-
+        sed -i -e 's/\/templates\/simple#v.*" /\/templates\/simple#v${nextRelease.version}" /g' README.md
+        sed -i -e 's/"@socialgouv\/kosko-charts": "^.*",/"@socialgouv\/kosko-charts": "^${nextRelease.version}",/g' templates/simple/package.json
+  - - "@semantic-release/git"
+    - assets:
+        - CHANGELOG.md
+        - package.json
+        - README.md
+        - templates/*/package.json
+      message: "chore(release): version ${nextRelease.version}\n\n${nextRelease.notes}"
+  - "@semantic-release/github"

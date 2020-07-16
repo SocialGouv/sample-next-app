@@ -35,7 +35,7 @@
     "wonka": "^4.0.14"
   },
   "devDependencies": {
-    "@socialgouv/now": "link:./now",
+    "@socialgouv/yop": "link:./yop",
     "@commitlint/cli": "^9.0.1",
     "@commitlint/config-conventional": "^9.0.1",
     "@socialgouv/eslint-config-react": "^0.35.0",
@@ -61,6 +61,7 @@
     "k8s": "yarn --silent --cwd .k8s",
     "lint": "eslint src/*",
     "start": "NODE_ENV=production node server.js",
-    "test": "jest"
+    "test": "jest",
+    "yop": "yop"
   }
 }

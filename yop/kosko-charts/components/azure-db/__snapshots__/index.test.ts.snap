@@ -1,0 +1,164 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should return a create-db job 1`] = `
+Object {
+  "createDbJob": Object {
+    "apiVersion": "batch/v1",
+    "kind": "Job",
+    "metadata": Object {
+      "labels": Object {
+        "app": "test-job",
+      },
+      "name": "test-job",
+      "namespace": "sample-42-my-test",
+    },
+    "spec": Object {
+      "backoffLimit": 0,
+      "template": Object {
+        "spec": Object {
+          "containers": Array [
+            Object {
+              "command": Array [
+                "create-db-user",
+              ],
+              "env": Array [
+                Object {
+                  "name": "NEW_DB_NAME",
+                  "value": "some-db",
+                },
+                Object {
+                  "name": "NEW_USER",
+                  "value": "tester",
+                },
+                Object {
+                  "name": "NEW_PASSWORD",
+                  "value": "passw0rd",
+                },
+                Object {
+                  "name": "NEW_DB_EXTENSIONS",
+                  "value": "hstore pgcrypto citext",
+                },
+              ],
+              "envFrom": Array [
+                Object {
+                  "secretRef": Object {
+                    "name": "azure-pg-admin-user",
+                  },
+                },
+              ],
+              "image": "registry.gitlab.factory.social.gouv.fr/socialgouv/docker/azure-db:0.28.0",
+              "imagePullPolicy": "IfNotPresent",
+              "name": "create-db-user",
+              "resources": Object {
+                "limits": Object {
+                  "cpu": "300m",
+                  "memory": "256Mi",
+                },
+                "requests": Object {
+                  "cpu": "100m",
+                  "memory": "64Mi",
+                },
+              },
+            },
+          ],
+          "restartPolicy": "Never",
+        },
+      },
+    },
+  },
+}
+`;
+
+exports[`should throw because of missing variables 1`] = `
+"BadArgument:required property \\"database\\"
+└─ cannot decode undefined, should be string
+required property \\"password\\"
+└─ cannot decode undefined, should be string
+required property \\"user\\"
+└─ cannot decode undefined, should be string"
+`;
+
+exports[`should throw because of missing variables 2`] = `
+"BadArgument:required property \\"database\\"
+└─ cannot decode undefined, should be string
+required property \\"password\\"
+└─ cannot decode undefined, should be string"
+`;
+
+exports[`should throw because of missing variables 3`] = `
+"BadArgument:required property \\"database\\"
+└─ cannot decode \\"\\", should be NonEmptyString
+required property \\"password\\"
+└─ cannot decode \\"\\", should be NonEmptyString
+required property \\"user\\"
+└─ cannot decode \\"\\", should be NonEmptyString"
+`;
+
+exports[`should use custom extensions 1`] = `
+Object {
+  "createDbJob": Object {
+    "apiVersion": "batch/v1",
+    "kind": "Job",
+    "metadata": Object {
+      "labels": Object {
+        "app": "test-job",
+      },
+      "name": "test-job",
+      "namespace": "sample-42-my-test",
+    },
+    "spec": Object {
+      "backoffLimit": 0,
+      "template": Object {
+        "spec": Object {
+          "containers": Array [
+            Object {
+              "command": Array [
+                "create-db-user",
+              ],
+              "env": Array [
+                Object {
+                  "name": "NEW_DB_NAME",
+                  "value": "some-db",
+                },
+                Object {
+                  "name": "NEW_USER",
+                  "value": "tester",
+                },
+                Object {
+                  "name": "NEW_PASSWORD",
+                  "value": "passw0rd",
+                },
+                Object {
+                  "name": "NEW_DB_EXTENSIONS",
+                  "value": "pgjwt",
+                },
+              ],
+              "envFrom": Array [
+                Object {
+                  "secretRef": Object {
+                    "name": "azure-pg-admin-user",
+                  },
+                },
+              ],
+              "image": "registry.gitlab.factory.social.gouv.fr/socialgouv/docker/azure-db:0.28.0",
+              "imagePullPolicy": "IfNotPresent",
+              "name": "create-db-user",
+              "resources": Object {
+                "limits": Object {
+                  "cpu": "300m",
+                  "memory": "256Mi",
+                },
+                "requests": Object {
+                  "cpu": "100m",
+                  "memory": "64Mi",
+                },
+              },
+            },
+          ],
+          "restartPolicy": "Never",
+        },
+      },
+    },
+  },
+}
+`;
