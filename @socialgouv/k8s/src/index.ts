@@ -1,4 +1,4 @@
-export * from "./App";
+export * from "./charts/app";
 export * from "./Config";
 export * from "./Namespace";
 export * from "./printYaml";

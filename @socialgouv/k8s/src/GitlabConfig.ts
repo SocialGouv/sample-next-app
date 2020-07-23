@@ -1,4 +1,5 @@
 import { Config } from "./Config";
+import { ok } from "assert";
 
 export class GitlabConfig extends Config {
   constructor(env = process.env) {
@@ -24,5 +25,37 @@ export class GitlabConfig extends Config {
         cert: "wildcard",
       },
     };
+
+    const isProductionCluster = Boolean(env.PRODUCTION);
+    ok(env.CI_PROJECT_PATH_SLUG, "Missing env.CI_PROJECT_PATH_SLUG");
+    ok(env.CI_ENVIRONMENT_SLUG, "Missing env.CI_ENVIRONMENT_SLUG");
+    ok(env.CI_ENVIRONMENT_NAME, "Missing env.CI_ENVIRONMENT_NAME");
+    ok(env.CI_PROJECT_NAME, "Missing env.CI_PROJECT_NAME");
+    ok(env.KUBE_INGRESS_BASE_DOMAIN, "Missing env.KUBE_INGRESS_BASE_DOMAIN");
+    const application = isProductionCluster
+      ? env.CI_PROJECT_NAME
+      : env.CI_COMMIT_TAG
+      ? `${env.CI_COMMIT_TAG.replace(/\./g, "-")}-${env.CI_PROJECT_NAME}`
+      : `${env.CI_ENVIRONMENT_SLUG}-${env.CI_PROJECT_NAME}`;
+
+    this.app = {
+      metadata: {
+        annotations: {
+          "app.gitlab.com/app": env.CI_PROJECT_PATH_SLUG,
+          "app.gitlab.com/env": env.CI_ENVIRONMENT_SLUG,
+          "app.gitlab.com/env.name": env.CI_ENVIRONMENT_NAME,
+        },
+        labels: {
+          application,
+          owner: env.CI_PROJECT_NAME,
+          team: env.CI_PROJECT_NAME,
+        },
+      },
+      domain: env.KUBE_INGRESS_BASE_DOMAIN,
+      subdomain: application,
+    };
+
+    ok(env.CI_REGISTRY_IMAGE, "Missing env.CI_REGISTRY_IMAGE");
+    this.registry = env.CI_REGISTRY_IMAGE;
   }
 }
