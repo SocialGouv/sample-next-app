@@ -36,6 +36,7 @@
   },
   "devDependencies": {
     "@socialgouv/yop": "link:./yop",
+    "@socialgouv/k8s": "link:./@socialgouv/k8s",
     "@commitlint/cli": "^9.0.1",
     "@commitlint/config-conventional": "^9.0.1",
     "@socialgouv/eslint-config-react": "^0.35.0",
@@ -58,7 +59,7 @@
   "scripts": {
     "build": "next build",
     "dev": "node -r dotenv/config server.js dotenv_config_path=.env.development",
-    "k8s": "yarn --silent --cwd .k8s",
+    "k8s": "./@socialgouv/k8s/bin/k8s",
     "lint": "eslint src/*",
     "start": "NODE_ENV=production node server.js",
     "test": "jest",

@@ -1,0 +1,49 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should return a namespace 1`] = `
+Object {
+  "namespace": Object {
+    "apiVersion": "v1",
+    "kind": "Namespace",
+    "metadata": Object {
+      "labels": Object {
+        "app": "sample-42-my-test",
+      },
+      "name": "sample-42-my-test",
+    },
+  },
+}
+`;
+
+exports[`should return a namespace with extra labels and annotations 1`] = `
+Object {
+  "namespace": Object {
+    "apiVersion": "v1",
+    "kind": "Namespace",
+    "metadata": Object {
+      "annotations": Object {
+        "app.gitlab.com/app": "socialgouv-sample",
+        "app.gitlab.com/env": "my-test",
+      },
+      "labels": Object {
+        "app": "sample-42-my-test",
+        "application": "sample",
+        "owner": "sample",
+        "team": "sample",
+      },
+      "name": "sample-42-my-test",
+    },
+  },
+}
+`;
+
+exports[`should throw because of missing variables 1`] = `
+"BadArgument:required property \\"namespace\\"
+└─ cannot decode undefined, should be object"
+`;
+
+exports[`should throw because the namespace name is emptys 1`] = `
+"BadArgument:required property \\"namespace\\"
+└─ required property \\"name\\"
+   └─ cannot decode \\"\\", should be NonEmptyString"
+`;
