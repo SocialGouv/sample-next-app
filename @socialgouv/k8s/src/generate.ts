@@ -1,11 +1,12 @@
-import { load } from "./config";
+import { load } from "./config.old";
 import { ok } from "assert";
 import { join } from "path";
 import { generate as koskoGenerate, print, PrintFormat } from "@kosko/generate";
 import { create } from "./charts/namespace";
 export async function generate() {
-  const config = await load();
-  // console.log(config);
+  const config: any = await load();
+  console.log(config);
+  console.log(config.services.app.deployment);
   // console.log(create);
   require("dotenv/config");
   // require("ts-node/register");
