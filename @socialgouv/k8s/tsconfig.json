@@ -20,5 +20,5 @@
     "target": "ESNext",
     "types": ["dotenv", "jest", "node"]
   },
-  "files": ["src/cli.ts", "src/index.ts"]
+  "files": ["src/index.ts"]
 }
