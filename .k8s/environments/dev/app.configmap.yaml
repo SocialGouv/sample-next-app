@@ -1,7 +1,7 @@
 kind: ConfigMap
 apiVersion: v1
 metadata:
-  name: app-env
+  name: app-configmap
 data:
   NODE_ENV: "production"
   GRAPHQL_ENDPOINT: "http://hasura/v1/graphql"
