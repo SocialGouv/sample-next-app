@@ -1,7 +1,7 @@
 kind: ConfigMap
 apiVersion: v1
 metadata:
-  name: hasura-env
+  name: hasura-configmap
 data:
   ACCOUNT_EMAIL_SECRET: "ACCOUNT_EMAIL_SECRET"
   ACCOUNT_EMAIL_WEBHOOK_URL: "http://app:3000/api/webhooks/account"
