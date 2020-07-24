@@ -1,12 +1,12 @@
 import { SealedSecret } from "@kubernetes-models/sealed-secrets/bitnami.com/v1alpha1/SealedSecret";
 import env from "@kosko/env";
-import { metadataFromParams } from "@socialgouv/kosko-charts/components/app/metadata";
+//import { metadataFromParams } from "@socialgouv/kosko-charts/components/app/metadata";
 
 const params = env.component("create-db");
 
 const secret = new SealedSecret({
   metadata: {
-    ...metadataFromParams(params),
+    //  ...metadataFromParams(params),
     name: `azure-pg-admin-user`,
     annotations: {
       "sealedsecrets.bitnami.com/cluster-wide": "true",
