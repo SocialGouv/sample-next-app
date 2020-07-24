@@ -1,22 +1,17 @@
 import { IIoK8sApimachineryPkgApisMetaV1ObjectMeta } from "kubernetes-models/_definitions/IoK8sApimachineryPkgApisMetaV1ObjectMeta";
 
 export class Config {
-  constructor(env = process.env) {
-    this.namespace = {
-      metadata: {},
-    };
-
-    this.app = {
-      metadata: {},
-      domain: "",
-      subdomain: "",
-    };
-  }
   app: {
     metadata: IIoK8sApimachineryPkgApisMetaV1ObjectMeta;
-    domain: string;
-    subdomain: string;
+  } = {
+    metadata: {},
   };
-  namespace: { metadata: IIoK8sApimachineryPkgApisMetaV1ObjectMeta };
+  namespace: { metadata: IIoK8sApimachineryPkgApisMetaV1ObjectMeta } = {
+    metadata: {},
+  };
   registry: string = "";
+  domain: string = "";
+  subdomain: string = "";
+  commitTag?: string;
+  commitSha: string = "";
 }

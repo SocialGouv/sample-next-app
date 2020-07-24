@@ -1,36 +1,20 @@
-import { GlobalEnvironment } from "@socialgouv/kosko-charts/types";
-import { Integer } from "@socialgouv/kosko-charts/utils/Integer";
-import { NonEmptyString } from "@socialgouv/kosko-charts/utils/NonEmptyString";
-import { pipe } from "fp-ts/lib/pipeable";
-import * as D from "io-ts/lib/Decoder";
+import { IIoK8sApiCoreV1Container } from "kubernetes-models/_definitions/IoK8sApiCoreV1Container";
+import { IIoK8sApiCoreV1ServiceSpec } from "kubernetes-models/_definitions/IoK8sApiCoreV1ServiceSpec";
+import { Deployment } from "kubernetes-models/apps/v1/Deployment";
+import { Ingress } from "kubernetes-models/extensions/v1beta1/Ingress";
+import { Service } from "kubernetes-models/v1/Service";
+import { IIoK8sApiAppsV1DeploymentSpec } from "kubernetes-models/_definitions/IoK8sApiAppsV1DeploymentSpec";
+import { IIoK8sApiCoreV1PodTemplateSpec } from "kubernetes-models/_definitions/IoK8sApiCoreV1PodTemplateSpec";
+import { IIoK8sApiCoreV1PodSpec } from "kubernetes-models/_definitions/IoK8sApiCoreV1PodSpec";
 
-export const AppComponentParams = pipe(
-  D.type({
-    containerPort: Integer,
-    image: D.type({
-      name: NonEmptyString,
-      tag: NonEmptyString,
-    }),
-    name: D.string,
-    namespace: D.type({
-      name: NonEmptyString,
-    }),
-    servicePort: Integer,
-  }),
-  D.intersect(
-    D.partial({
-      ingress: D.partial({
-        secretName: D.string,
-      }),
-      labels: D.record(D.string),
-      limits: D.type({ cpu: D.string, memory: D.string }),
-      requests: D.type({ cpu: D.string, memory: D.string }),
-    })
-  )
-);
-
-export type AppComponentEnvironment = Omit<
-  D.TypeOf<typeof AppComponentParams>,
-  "namespace"
->;
-export type Params = AppComponentEnvironment & GlobalEnvironment;
+export interface Params {
+  deployment: Deployment & {
+    spec: IIoK8sApiAppsV1DeploymentSpec & {
+      template: IIoK8sApiCoreV1PodTemplateSpec & {
+        spec: IIoK8sApiCoreV1PodSpec;
+      };
+    };
+  };
+  service: Service;
+  ingress: Ingress & {};
+}

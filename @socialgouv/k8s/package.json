@@ -10,7 +10,8 @@
     "@socialgouv/eslint-config-typescript": "^1.9.0",
     "@socialgouv/kosko-charts": "2.0.0-beta.17",
     "kosko": "^0.9.2",
-    "kubernetes-models": "^0.8.0",
+    "kubernetes-models": "^0.8.1",
+    "@kubernetes-models/sealed-secrets": "^0.1.4",
     "toml": "^3.0.0",
     "ts-node": "^8.10.2",
     "typescript": "^3.9.6"

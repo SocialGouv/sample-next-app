@@ -3,7 +3,7 @@ import { ok } from "assert";
 
 export class GitlabConfig extends Config {
   constructor(env = process.env) {
-    super(env);
+    super();
 
     this.namespace.metadata = {
       name: env.CI_PROJECT_NAME,
@@ -31,7 +31,7 @@ export class GitlabConfig extends Config {
     ok(env.CI_ENVIRONMENT_SLUG, "Missing env.CI_ENVIRONMENT_SLUG");
     ok(env.CI_ENVIRONMENT_NAME, "Missing env.CI_ENVIRONMENT_NAME");
     ok(env.CI_PROJECT_NAME, "Missing env.CI_PROJECT_NAME");
-    ok(env.KUBE_INGRESS_BASE_DOMAIN, "Missing env.KUBE_INGRESS_BASE_DOMAIN");
+
     const application = isProductionCluster
       ? env.CI_PROJECT_NAME
       : env.CI_COMMIT_TAG
@@ -51,11 +51,16 @@ export class GitlabConfig extends Config {
           team: env.CI_PROJECT_NAME,
         },
       },
-      domain: env.KUBE_INGRESS_BASE_DOMAIN,
-      subdomain: application,
     };
 
     ok(env.CI_REGISTRY_IMAGE, "Missing env.CI_REGISTRY_IMAGE");
     this.registry = env.CI_REGISTRY_IMAGE;
+    ok(env.KUBE_INGRESS_BASE_DOMAIN, "Missing env.KUBE_INGRESS_BASE_DOMAIN");
+    this.domain = env.KUBE_INGRESS_BASE_DOMAIN;
+    this.subdomain = application;
+
+    ok(env.CI_COMMIT_SHA, "Missing env.CI_COMMIT_SHA");
+    this.commitSha = env.CI_COMMIT_SHA;
+    this.commitTag = env.COMMIT_TAG;
   }
 }
