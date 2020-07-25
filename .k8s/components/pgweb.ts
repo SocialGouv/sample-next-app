@@ -1,8 +1,7 @@
 import env from "@kosko/env";
 
 import { create } from "@socialgouv/kosko-charts/components/app";
-import { addToEnvFrom } from "@socialgouv/kosko-charts/utils/addToEnvFrom";
-import { EnvFromSource } from "kubernetes-models/v1/EnvFromSource";
+import { addPostgresUserSecret } from "@socialgouv/kosko-charts/utils/addPostgresUserSecret";
 
 const manifests = create("pgweb", {
   env,
@@ -32,31 +31,6 @@ const manifests = create("pgweb", {
 // DEV: add secret to access DB
 //@ts-expect-error
 const deployment = manifests.find((manifest) => manifest.kind === "Deployment");
-if (deployment) {
-  const azureSecretSource = new EnvFromSource({
-    secretRef: {
-      name: `azure-pg-user-${process.env.CI_COMMIT_SHORT_SHA}`,
-    },
-  });
-  addToEnvFrom({
-    //@ts-expect-error
-    deployment,
-    data: [azureSecretSource],
-  });
-}
+addPostgresUserSecret(deployment);
 
 export default manifests;
-
-/*
-
-if (process.env.ENABLE_AZURE_POSTGRES) {
-  deployment.spec!.template.spec!.containers[0].envFrom = [
-    {
-      secretRef: {
-        name: `azure-pg-user-${process.env.CI_COMMIT_SHORT_SHA}`,
-      },
-    },
-  ];
-}
-
-*/
