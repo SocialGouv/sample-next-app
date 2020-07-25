@@ -5,6 +5,8 @@ import { create } from "@socialgouv/kosko-charts/components/app";
 const manifests = create("hasura", {
   env,
   config: {
+    image:
+      "registry.gitlab.factory.social.gouv.fr/socialgouv/sample-next-app/hasura:002b0f68266e5243e733fe7c896b610f49757718",
     subdomain: `hasura-${process.env.CI_PROJECT_NAME as string}`,
     requests: {
       cpu: "100m",
