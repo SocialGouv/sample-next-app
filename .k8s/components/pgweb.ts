@@ -5,7 +5,7 @@ import { create } from "@socialgouv/kosko-charts/components/app";
 const manifests = create("pgweb", {
   env,
   config: {
-    image: "pouet:42",
+    image: "sosedoff/pgweb:latest",
     subdomain: `pgweb-${process.env.CI_PROJECT_NAME as string}`,
     livenessProbe: {
       httpGet: {
