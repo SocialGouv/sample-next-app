@@ -3,6 +3,7 @@ import env from "@kosko/env";
 import { create } from "@socialgouv/kosko-charts/components/app";
 import { addPostgresUserSecret } from "@socialgouv/kosko-charts/utils/addPostgresUserSecret";
 
+// todo: extract to @socialgouv/kosko-charts/components/hasura
 const manifests = create("hasura", {
   env,
   config: {
