@@ -6,38 +6,29 @@ const data = toml.parse(
 );
 console.dir(data);
 
-const kosko = require("@kosko/generate");
-console.log("GENERATE:", kosko);
-const options = {
-  path: "/Users/gvanwoerkens/Work/dsi/sample-next-app/.k8s/components",
-  components: ["*"],
-  require: ["ts-node/register"],
-  baseEnvironment: "_base",
-};
+("use strict");
 
-// console.log("\nKUBE_NAMESPACE", process.env.KUBE_NAMESPACE, "\n");
+const env = require("@kosko/env");
+const { generate, print, PrintFormat } = require("@kosko/generate");
+const { join } = require("path");
 
-kosko.generate(options);
-// import { generate, print, PrintFormat, Result } from "@kosko/generate";
-// ****** MAPPER ******** { name: 'sample-next-app-85-beta-db-12-dev2' }
+(async () => {
+  // Set environment
+  env.env = "dev";
 
-// $$$$$$$$$$ PARAMS $$$$$$$$$$ {
-//   annotations: {
-//     'app.gitlab.com/app': 'socialgouv-sample-next-app',
-//     'app.gitlab.com/env': 'beta-db-12-dev2',
-//     'app.gitlab.com/env.name': 'beta-db-12-dev2',
-//     'field.cattle.io/creatorId': 'gitlab',
-//     'field.cattle.io/projectId': 'c-f8qps:p-46tj7',
-//     'git/branch': 'beta-db-12',
-//     'git/remote': ''
-//   },
-//   domain: 'dev2.fabrique.social.gouv.fr',
-//   labels: {
-//     application: 'beta-db-12-dev2-sample-next-app',
-//     owner: 'sample-next-app',
-//     team: 'sample-next-app',
-//     cert: 'wildcard'
-//   },
-//   namespace: { name: 'sample-next-app-85-beta-db-12-dev2' },
-//   subdomain: 'beta-db-12-dev2-sample-next-app'
-// }
+  // Set CWD (Optional)
+  env.cwd = __dirname;
+
+  // Generate manifests
+  const result = await generate({
+    path: join(env.cwd, "components"),
+    components: ["*"],
+    baseEnvironment: "_base",
+  });
+
+  // Print manifests to stdout
+  print(result, {
+    format: PrintFormat.YAML,
+    writer: process.stdout,
+  });
+})();
