@@ -19,6 +19,11 @@ Test:
   rules:
     - when: never
 
+Register image:
+  extends: .autodevops_register_image
+  variables:
+    IMAGE_NAME: $CI_REGISTRY_IMAGE/app
+
 Register image Hasura:
   extends: .autodevops_register_image
   dependencies: []
