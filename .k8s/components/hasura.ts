@@ -16,6 +16,16 @@ const manifests = create("hasura", {
       cpu: "500m",
       memory: "256Mi",
     },
+    livenessProbe: {
+      path: "/healthz",
+      initialDelaySeconds: 60,
+      periodSeconds: 20,
+    },
+    readinessProbe: {
+      path: "/healthz",
+      initialDelaySeconds: 60,
+      periodSeconds: 20,
+    },
     containerPort: 80,
   },
 });
