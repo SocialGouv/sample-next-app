@@ -17,12 +17,18 @@ const manifests = create("hasura", {
       memory: "256Mi",
     },
     livenessProbe: {
-      path: "/healthz",
+      httpGet: {
+        path: "/healthz",
+        port: "http",
+      },
       initialDelaySeconds: 60,
       periodSeconds: 20,
     },
     readinessProbe: {
-      path: "/healthz",
+      httpGet: {
+        path: "/healthz",
+        port: "http",
+      },
       initialDelaySeconds: 60,
       periodSeconds: 20,
     },
