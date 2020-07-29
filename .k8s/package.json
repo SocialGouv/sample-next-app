@@ -6,12 +6,15 @@
     "generate:prod": "kosko generate  --env prod",
     "gitlab": "DOTENV_CONFIG_PATH=./environments/.gitlab-ci.env kosko generate --require dotenv/config",
     "gitlab:dev": "yarn --silent gitlab --env dev",
-    "gitlab:prod": "yarn --silent gitlab --env prod"
+    "gitlab:preprod": "yarn --silent gitlab --env preprod",
+    "gitlab:prod": "yarn --silent gitlab --env prod",
+    "xxx": "DOTENV_CONFIG_PATH=./environments/.gitlab-ci.env npx ts-node --require dotenv/config ./main.js"
   },
   "dependencies": {
     "@kosko/env": "^0.5.2",
-    "@socialgouv/kosko-charts": "2.0.0-beta.17",
-    "kubernetes-models": "^0.8.0"
+    "@socialgouv/kosko-charts": "2.0.0-alpha.28",
+    "kubernetes-models": "^0.8.0",
+    "toml": "^3.0.0"
   },
   "devDependencies": {
     "@kubernetes-models/sealed-secrets": "^0.1.3",
