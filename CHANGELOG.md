@@ -1,3 +1,45 @@
+# [2.0.0-beta.1](https://github.com/SocialGouv/sample-next-app/compare/v1.1.0-beta.26...v2.0.0-beta.1) (2020-07-29)
+
+
+### Bug Fixes
+
+* **deps:** update dependency graphql to ^15.2.0 ([#315](https://github.com/SocialGouv/sample-next-app/issues/315)) ([e7f1297](https://github.com/SocialGouv/sample-next-app/commit/e7f12975445b5859df29dd569fee116c82e334ea))
+* **deps:** update dependency graphql-request to v2 ([#223](https://github.com/SocialGouv/sample-next-app/issues/223)) ([4d1d79f](https://github.com/SocialGouv/sample-next-app/commit/4d1d79f11190a956625431a784064c5c7290f070))
+* **deps:** update dependency http-proxy-middleware to ^1.0.4 ([#209](https://github.com/SocialGouv/sample-next-app/issues/209)) ([e2b3c54](https://github.com/SocialGouv/sample-next-app/commit/e2b3c54647eb354518b97ac09f352aceb77fc7ba))
+* **deps:** update dependency next to ^9.4.1 ([#207](https://github.com/SocialGouv/sample-next-app/issues/207)) ([424a102](https://github.com/SocialGouv/sample-next-app/commit/424a102a7ca6643786c44e4b079574bc3af9a490))
+* **deps:** update dependency next to ^9.4.2 ([#212](https://github.com/SocialGouv/sample-next-app/issues/212)) ([960eaf6](https://github.com/SocialGouv/sample-next-app/commit/960eaf6b3cc353e50cd566fa0994aee3e8bb7f44))
+* **deps:** update dependency next to ^9.4.4 ([#224](https://github.com/SocialGouv/sample-next-app/issues/224)) ([e562fa0](https://github.com/SocialGouv/sample-next-app/commit/e562fa0d978167242b30b095e68366266dee1878))
+* **deps:** update dependency next-urql to ^1.0.1 ([#275](https://github.com/SocialGouv/sample-next-app/issues/275)) ([f1461ee](https://github.com/SocialGouv/sample-next-app/commit/f1461eee783333e494a08c4e57216ea102a14718))
+* **deps:** update dependency next-urql to v1 ([#259](https://github.com/SocialGouv/sample-next-app/issues/259)) ([5624536](https://github.com/SocialGouv/sample-next-app/commit/562453686c06a0c950ff75658fc1c34e21a2ec2d))
+* **deps:** update dependency nodemailer to ^6.4.10 ([#274](https://github.com/SocialGouv/sample-next-app/issues/274)) ([9f5a81c](https://github.com/SocialGouv/sample-next-app/commit/9f5a81cf86971c322aada8c56738f7c6e709457a))
+* **deps:** update dependency nodemailer to ^6.4.7 ([#225](https://github.com/SocialGouv/sample-next-app/issues/225)) ([8e11a6f](https://github.com/SocialGouv/sample-next-app/commit/8e11a6f97f9fdd77167202a22edb0f723deae60f))
+* **deps:** update dependency nodemailer to ^6.4.8 ([#226](https://github.com/SocialGouv/sample-next-app/issues/226)) ([1a4b92e](https://github.com/SocialGouv/sample-next-app/commit/1a4b92e105b92c8b8c0ff7f78499268798344af2))
+* **deps:** update dependency urql to ^1.9.8 ([#258](https://github.com/SocialGouv/sample-next-app/issues/258)) ([b51ff2f](https://github.com/SocialGouv/sample-next-app/commit/b51ff2f0abf3f4db10ad1603f3a9766b31086492))
+* **deps:** update dependency uuid to ^8.1.0 ([#211](https://github.com/SocialGouv/sample-next-app/issues/211)) ([8e5a523](https://github.com/SocialGouv/sample-next-app/commit/8e5a523d96844cf25386aa443d64a1f47a4d825c))
+* **deps:** update dependency uuid to ^8.2.0 ([#299](https://github.com/SocialGouv/sample-next-app/issues/299)) ([b9f8242](https://github.com/SocialGouv/sample-next-app/commit/b9f8242c6b2cd7e7a3bce416119167df164d1a1d))
+* **deps:** update dependency wonka to ^4.0.14 ([#248](https://github.com/SocialGouv/sample-next-app/issues/248)) ([b067d5c](https://github.com/SocialGouv/sample-next-app/commit/b067d5c3db437656a4247d92b9cd02a487962e53))
+* **deps:** update sentry monorepo to ^5.16.0 ([#231](https://github.com/SocialGouv/sample-next-app/issues/231)) ([d57986c](https://github.com/SocialGouv/sample-next-app/commit/d57986cbced3bf077ce043978be3c676c55be77d))
+* **deps:** update sentry monorepo to ^5.16.1 ([#233](https://github.com/SocialGouv/sample-next-app/issues/233)) ([e774a6e](https://github.com/SocialGouv/sample-next-app/commit/e774a6e2a855f2dfde4ed9303dfb30b383696eae))
+* **deps:** update sentry monorepo to ^5.17.0 ([#249](https://github.com/SocialGouv/sample-next-app/issues/249)) ([c2f5a44](https://github.com/SocialGouv/sample-next-app/commit/c2f5a44f562e0089a249cf13c04f6eccb06ec35f))
+* **deps:** update sentry monorepo to ^5.18.0 ([#294](https://github.com/SocialGouv/sample-next-app/issues/294)) ([13a9f96](https://github.com/SocialGouv/sample-next-app/commit/13a9f96580ada0e41121dd0da31637b10ca0e092))
+* **deps:** update sentry monorepo to ^5.18.1 ([#304](https://github.com/SocialGouv/sample-next-app/issues/304)) ([3a312c1](https://github.com/SocialGouv/sample-next-app/commit/3a312c1c338531a33b92e55ca28f48a68197d318))
+* **Dockefile:** add /public folder ([#217](https://github.com/SocialGouv/sample-next-app/issues/217)) ([0e9416e](https://github.com/SocialGouv/sample-next-app/commit/0e9416e603e7534c871cdfb96738a68272616e9e))
+
+
+### Features
+
+* kosko v2 ([#363](https://github.com/SocialGouv/sample-next-app/issues/363)) ([7f41655](https://github.com/SocialGouv/sample-next-app/commit/7f41655c44d041d3a9892e96f05011050cc9bc2e))
+* **api:** add user auth ([#193](https://github.com/SocialGouv/sample-next-app/issues/193)) ([6bda869](https://github.com/SocialGouv/sample-next-app/commit/6bda86990fdfd2dd2bbc0bbb7f57d1ec028b40d5)), closes [#194](https://github.com/SocialGouv/sample-next-app/issues/194) [#195](https://github.com/SocialGouv/sample-next-app/issues/195)
+* **auth:** add client auth ([#205](https://github.com/SocialGouv/sample-next-app/issues/205)) ([31a76e0](https://github.com/SocialGouv/sample-next-app/commit/31a76e02ee45b5d9d2dd658f6ce6430f9b0a9ab9)), closes [#229](https://github.com/SocialGouv/sample-next-app/issues/229)
+
+
+* ci(gitlab)!: deploy to cluster dev2 (#228) ([efa7b85](https://github.com/SocialGouv/sample-next-app/commit/efa7b854701ae37f853a0cf2ca5e44482ef33535)), closes [#228](https://github.com/SocialGouv/sample-next-app/issues/228)
+
+
+### BREAKING CHANGES
+
+* the production url will change !
+
 # [1.1.0-beta.26](https://github.com/SocialGouv/sample-next-app/compare/v1.1.0-beta.25...v1.1.0-beta.26) (2020-06-19)
 
 
