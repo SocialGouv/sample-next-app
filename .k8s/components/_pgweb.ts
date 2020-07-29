@@ -8,28 +8,31 @@ const manifests = create("pgweb", {
   config: {
     image: "sosedoff/pgweb:latest",
     subdomain: `pgweb-${process.env.CI_PROJECT_NAME as string}`,
-    livenessProbe: {
-      httpGet: {
-        path: "/",
-        port: "http",
+  },
+  deployment: {
+    container: {
+      livenessProbe: {
+        httpGet: {
+          path: "/",
+          port: "http",
+        },
+        initialDelaySeconds: 5,
+        timeoutSeconds: 3,
       },
-      initialDelaySeconds: 5,
-      timeoutSeconds: 3,
-    },
-    readinessProbe: {
-      httpGet: {
-        path: "/",
-        port: "http",
+      readinessProbe: {
+        httpGet: {
+          path: "/",
+          port: "http",
+        },
+        initialDelaySeconds: 5,
+        timeoutSeconds: 3,
       },
-      initialDelaySeconds: 5,
-      timeoutSeconds: 3,
     },
     containerPort: 8081,
   },
 });
 
 // DEV: add secret to access DB
-//@ts-expect-error
 const deployment = manifests.find((manifest) => manifest.kind === "Deployment");
 addPostgresUserSecret(deployment);
 
