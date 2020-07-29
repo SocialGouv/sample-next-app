@@ -1,3 +1,19 @@
+# [2.0.0-beta.2](https://github.com/SocialGouv/sample-next-app/compare/v2.0.0-beta.1...v2.0.0-beta.2) (2020-07-29)
+
+
+### Bug Fixes
+
+* **hasura:** force load pg-user fixed secret in preprod/prod ([8be2489](https://github.com/SocialGouv/sample-next-app/commit/8be248921e6443c2c307ce26da0f428e2aa6817d))
+* **pg:** rm underscore, load pg-user secret in pg ([26202c5](https://github.com/SocialGouv/sample-next-app/commit/26202c52cc2c93dedda53a4319af1980a3c6caed))
+* prod pg-user secret name ([77f4866](https://github.com/SocialGouv/sample-next-app/commit/77f48663f83c3479814bdf6aa4ab89217fafa63f))
+* use prod controller to seal prod secrets... ([584e4f8](https://github.com/SocialGouv/sample-next-app/commit/584e4f81631208e487d34e07de11a4194208cd5d))
+
+
+### Features
+
+* add preprod/pg-user.sealed-secret.yaml ([77819bd](https://github.com/SocialGouv/sample-next-app/commit/77819bdb8081e530b1f99d11ad8512f57aac25aa))
+* add prod/pg-user.sealed-secret.yaml ([0229a50](https://github.com/SocialGouv/sample-next-app/commit/0229a5097bb5617aa214c6e2b2681173d9483e5d))
+
 # [2.0.0-beta.1](https://github.com/SocialGouv/sample-next-app/compare/v1.1.0-beta.26...v2.0.0-beta.1) (2020-07-29)
 
 
