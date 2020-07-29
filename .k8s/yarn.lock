@@ -149,10 +149,10 @@
   resolved "https://registry.yarnpkg.com/@sindresorhus/is/-/is-3.1.0.tgz#d8735532635bea69ad39119df5f0f10099bd09dc"
   integrity sha512-n4J+zu52VdY43kdi/XdI9DzuMr1Mur8zFL5ZRG2opCans9aiFwkPxHYFEb5Xgy7n1Z4K6WfI4FpqUqsh3E8BPQ==
 
-"@socialgouv/kosko-charts@2.0.0-alpha.24":
-  version "2.0.0-alpha.24"
-  resolved "https://registry.yarnpkg.com/@socialgouv/kosko-charts/-/kosko-charts-2.0.0-alpha.24.tgz#e3c533aa947c33fb39b20ed04720fbaa4d90e500"
-  integrity sha512-Qom23c1+fZGUAtYV6RQssZ0x9Y4ot/0BwAXsmpIkO5qWeBg1O4tmfMW91pzrY3au4Mdkt2VQwPhAZ1+bo1i9tw==
+"@socialgouv/kosko-charts@^2.0.0-alpha.26":
+  version "2.0.0-alpha.26"
+  resolved "https://registry.yarnpkg.com/@socialgouv/kosko-charts/-/kosko-charts-2.0.0-alpha.26.tgz#078eba137ff41a43fda07e08b282111feed13e8a"
+  integrity sha512-gnGYkRnztI3DZFv6KT7TNfCO016YwJjYOl3vZW4eqW8rPdJ5CG5y4mVkAY5bWEe3/EindEtwi1ne1iwzS1p1qQ==
   dependencies:
     "@kubernetes-models/sealed-secrets" "^0.1.4"
     "@sindresorhus/is" "^3.0.0"
