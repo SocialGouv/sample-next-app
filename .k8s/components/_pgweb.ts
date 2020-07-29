@@ -11,6 +11,7 @@ const manifests = create("pgweb", {
   config: {
     image: "sosedoff/pgweb:latest",
     containerPort: 8081,
+    subDomainPrefix: "pgweb-",
   },
   deployment: {
     container: {
