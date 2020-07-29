@@ -8,6 +8,7 @@ const manifests = create("pgweb", {
   config: {
     image: "sosedoff/pgweb:latest",
     subdomain: `pgweb-${process.env.CI_PROJECT_NAME as string}`,
+    containerPort: 8081,
   },
   deployment: {
     container: {
@@ -28,7 +29,6 @@ const manifests = create("pgweb", {
         timeoutSeconds: 3,
       },
     },
-    containerPort: 8081,
   },
 });
 
