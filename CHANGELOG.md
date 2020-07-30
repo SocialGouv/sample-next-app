@@ -1,3 +1,12 @@
+# [2.0.0-beta.8](https://github.com/SocialGouv/sample-next-app/compare/v2.0.0-beta.7...v2.0.0-beta.8) (2020-07-30)
+
+
+### Bug Fixes
+
+* **ci:** fix prod/hasura.sealed-secret ([4fca8ff](https://github.com/SocialGouv/sample-next-app/commit/4fca8ff96267c19277e92bde4b07b271b57b44f3))
+* **k8s:** update app-sealed-secret in prod ([3dcbc73](https://github.com/SocialGouv/sample-next-app/commit/3dcbc73ad5654a057b33340a4d658bb997a355f9))
+* **k8s:** update front end prod port ([a4dfe68](https://github.com/SocialGouv/sample-next-app/commit/a4dfe6840ab13b835fcbf83beaaf1739e97c1d40))
+
 # [2.0.0-beta.7](https://github.com/SocialGouv/sample-next-app/compare/v2.0.0-beta.6...v2.0.0-beta.7) (2020-07-30)
 
 
