@@ -23,7 +23,7 @@ Register image:
   extends: .autodevops_register_image
   variables:
     DOCKER_BUILD_ARGS: >-
-      --shm-size 256
+      --shm-size 256m
     IMAGE_NAME: $CI_REGISTRY_IMAGE/app
 
 Register image Hasura:
