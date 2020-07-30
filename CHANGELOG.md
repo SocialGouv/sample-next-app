@@ -1,3 +1,10 @@
+# [2.0.0-beta.5](https://github.com/SocialGouv/sample-next-app/compare/v2.0.0-beta.4...v2.0.0-beta.5) (2020-07-30)
+
+
+### Bug Fixes
+
+* **k8s:** restore pg-user.sealed-secret.yaml ([55460c2](https://github.com/SocialGouv/sample-next-app/commit/55460c232457521f87f597691e75fef1ec26a551))
+
 # [2.0.0-beta.4](https://github.com/SocialGouv/sample-next-app/compare/v2.0.0-beta.3...v2.0.0-beta.4) (2020-07-30)
 
 
