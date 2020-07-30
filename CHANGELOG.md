@@ -1,3 +1,16 @@
+# [2.0.0-beta.6](https://github.com/SocialGouv/sample-next-app/compare/v2.0.0-beta.5...v2.0.0-beta.6) (2020-07-30)
+
+
+### Bug Fixes
+
+* **ci:** fix PGUSER preprod ([6707050](https://github.com/SocialGouv/sample-next-app/commit/6707050904f23ea358c830b49907c79a71e9ffd9))
+
+
+### Features
+
+* **k8s:** add HASURA_GRAPHQL_DATABASE_URL in preprod ([afdb972](https://github.com/SocialGouv/sample-next-app/commit/afdb9729fe8a6f577303d59f7be27c8d5fcc452a))
+* **k8s:** add HASURA_GRAPHQL_DATABASE_URL in prod ([2755943](https://github.com/SocialGouv/sample-next-app/commit/2755943bca7943390f5747301b59e64492961530))
+
 # [2.0.0-beta.5](https://github.com/SocialGouv/sample-next-app/compare/v2.0.0-beta.4...v2.0.0-beta.5) (2020-07-30)
 
 
