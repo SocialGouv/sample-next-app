@@ -1,10 +1,10 @@
-FROM node:12.16.2-alpine
+FROM node:14.6.0-alpine3.12
 
 WORKDIR /app
 
 COPY package.json yarn.lock ./
 
-RUN yarn --production --frozen-lockfile
+RUN yarn install --production --frozen-lockfile --prefer-offline --cache-folder /dev/shm/yarn
 
 COPY next.config.js server.js  ./
 COPY src/sentry.js ./src/sentry.js
