@@ -22,6 +22,8 @@ Test:
 Register image:
   extends: .autodevops_register_image
   variables:
+    DOCKER_BUILD_ARGS: >-
+      --shm-size 256
     IMAGE_NAME: $CI_REGISTRY_IMAGE/app
 
 Register image Hasura:
@@ -32,5 +34,4 @@ Register image Hasura:
     name: ${CI_COMMIT_REF_NAME}-dev2
   variables:
     CONTEXT: ./hasura
-    DOCKERFILE_PATH: Dockerfile
     IMAGE_NAME: $CI_REGISTRY_IMAGE/hasura
