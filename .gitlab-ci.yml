@@ -1,7 +1,7 @@
 include:
   - project: SocialGouv/gitlab-ci-yml
     file: /autodevops_simple_app.yml
-    ref: v16.2.0
+    ref: v17.1.0
 
 variables:
   PORT: 3000
