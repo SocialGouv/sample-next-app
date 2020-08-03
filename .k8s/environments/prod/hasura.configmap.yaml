@@ -1,7 +1,7 @@
 kind: ConfigMap
 apiVersion: v1
 metadata:
-  name: hasura-env
+  name: hasura-configmap
 data:
   HASURA_GRAPHQL_ENABLE_CONSOLE: "false"
   HASURA_GRAPHQL_SERVER_PORT: "80"

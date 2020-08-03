@@ -1,8 +1,11 @@
 {
   "name": "sample-next-app",
-  "version": "1.0.0",
-  "main": "index.js",
-  "license": "MIT",
+  "version": "2.0.0-beta.8",
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
+  },
   "dependencies": {
     "@hapi/boom": "^9.1.0",
     "@hapi/joi": "^17.1.1",
@@ -31,24 +34,6 @@
     "uuid": "^8.3.0",
     "wonka": "^4.0.14"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "eslint src/*",
-      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
-    }
-  },
-  "commitlint": {
-    "extends": [
-      "@commitlint/config-conventional"
-    ]
-  },
-  "scripts": {
-    "dev": "node -r dotenv/config server.js dotenv_config_path=.env.development",
-    "build": "next build",
-    "start": "NODE_ENV=production node server.js",
-    "lint": "eslint src/*",
-    "test": "jest"
-  },
   "devDependencies": {
     "@commitlint/cli": "^9.1.1",
     "@commitlint/config-conventional": "^9.1.1",
@@ -57,7 +42,24 @@
     "eslint": "^7.6.0",
     "eslint-plugin-import": "^2.22.0",
     "husky": "^4.2.5",
-    "jest-cli": "^26.2.2",
+    "jest": "^26.2.2",
     "prettier": "^2.0.5"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "eslint src/*",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
+  "license": "MIT",
+  "main": "index.js",
+  "private": true,
+  "scripts": {
+    "build": "next build",
+    "dev": "node -r dotenv/config server.js dotenv_config_path=.env.development",
+    "k8s": "yarn --silent --cwd .k8s",
+    "lint": "eslint src/*",
+    "start": "NODE_ENV=production node server.js",
+    "test": "jest"
   }
 }

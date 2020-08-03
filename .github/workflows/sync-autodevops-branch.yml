@@ -1,12 +1,12 @@
 name: Sync the `autodevops-test` branch
 
 on:
-  push:
-    branches:
-      - master
+  - push
 
 jobs:
-  build:
+  sync_master:
+    if: |
+      github.ref == 'refs/heads/master'
     runs-on: ubuntu-latest
 
     steps:
@@ -25,4 +25,3 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           branch: 'autodevops-master'
           force: true
-
