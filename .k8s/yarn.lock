@@ -85,7 +85,7 @@
     is-plain-object "^3.0.0"
     tslib "^1.10.0"
 
-"@kubernetes-models/sealed-secrets@^0.1.3", "@kubernetes-models/sealed-secrets@^0.1.4":
+"@kubernetes-models/sealed-secrets@^0.1.4":
   version "0.1.4"
   resolved "https://registry.yarnpkg.com/@kubernetes-models/sealed-secrets/-/sealed-secrets-0.1.4.tgz#a6bfedd4f916ff85ccb9f2edf9ebcbf53b015091"
   integrity sha512-2jzvOpCK7tirMMm0ChcbphMBJv1wJ9SzhD/Q9IpNPcQFwbjirk+v4QDVBLQN1yBBw3c5Ky2rI9w9BGHb/VZC1A==
