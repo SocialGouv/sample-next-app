@@ -85,7 +85,7 @@
     is-plain-object "^3.0.0"
     tslib "^1.10.0"
 
-"@kubernetes-models/sealed-secrets@^0.1.3", "@kubernetes-models/sealed-secrets@^0.1.4":
+"@kubernetes-models/sealed-secrets@^0.1.4":
   version "0.1.4"
   resolved "https://registry.yarnpkg.com/@kubernetes-models/sealed-secrets/-/sealed-secrets-0.1.4.tgz#a6bfedd4f916ff85ccb9f2edf9ebcbf53b015091"
   integrity sha512-2jzvOpCK7tirMMm0ChcbphMBJv1wJ9SzhD/Q9IpNPcQFwbjirk+v4QDVBLQN1yBBw3c5Ky2rI9w9BGHb/VZC1A==
@@ -145,7 +145,7 @@
   resolved "https://registry.yarnpkg.com/@types/color-name/-/color-name-1.1.1.tgz#1c1261bbeaa10a8055bbc5d8ab84b7b2afc846a0"
   integrity sha512-rr+OQyAjxze7GgWrSaJwydHStIhHq2lvY3BOC2Mj7KnzI7XK0Uw1TOOdI9lDoajEbSWLiYgoo4f1R51erQfhPQ==
 
-"@types/node@^14.0.14":
+"@types/node@^14.0.27":
   version "14.0.27"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-14.0.27.tgz#a151873af5a5e851b51b3b065c9e63390a9e0eb1"
   integrity sha512-kVrqXhbclHNHGu9ztnAwSncIgJv/FaxmzXJvGXNdcCpV1b8u1/Mi6z6m0vwy0LzKeXFTPLH0NzwmoJ3fNCIq0g==
@@ -535,7 +535,7 @@ kosko@^0.9.2:
     "@kosko/cli" "^0.9.2"
     import-local "^3.0.2"
 
-kubernetes-models@^0.8.0, kubernetes-models@^0.8.1:
+kubernetes-models@^0.8.1:
   version "0.8.1"
   resolved "https://registry.yarnpkg.com/kubernetes-models/-/kubernetes-models-0.8.1.tgz#478072f62fea7425fe14a205f4161a4268296993"
   integrity sha512-zJDKVBlP74hC95iqi6fItXz8KOFHbqOnsLVRNf4OsSS+xF/v21mk0ms5zp5enlQgJ6VNhGarYzLKejFXQPoqeg==
