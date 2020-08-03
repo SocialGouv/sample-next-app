@@ -48,6 +48,8 @@ E2E test on deployed branch:
     variables:
       # Don't run when deploying in production
       - $PRODUCTION
+      # Don't run when releasing
+      - $RELEASE
   environment:
     name: ${CI_COMMIT_REF_NAME}-dev2
     url: https://${CI_ENVIRONMENT_SLUG}-${CI_PROJECT_NAME}.${KUBE_INGRESS_BASE_DOMAIN}
