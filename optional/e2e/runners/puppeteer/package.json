@@ -1,0 +1,13 @@
+{
+  "name": "@optional/e2e.runner.puppeteer",
+  "version": "0.0.0",
+  "description": "",
+  "main": "codecept.conf.js",
+  "scripts": {
+    "test": "codeceptjs run-rerun --features --steps"
+  },
+  "dependencies": {
+    "codeceptjs": "^2.6.5",
+    "puppeteer": "^3.3.0"
+  }
+}
