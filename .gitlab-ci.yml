@@ -36,10 +36,10 @@ Register image Hasura:
     CONTEXT: ./hasura
     IMAGE_NAME: $CI_REGISTRY_IMAGE/hasura
 
-
 E2E test on deployed branch:
   stage: Deploy
   image: registry.gitlab.factory.social.gouv.fr/socialgouv/docker/puppeteer:1.21.2
+  allow_failure: true
   except:
     refs:
       # Don't run on release
@@ -71,4 +71,3 @@ E2E test on deployed branch:
     - yarn --frozen-lockfile
     - "echo CODECEPT_BASEURL: $CODECEPT_BASEURL"
     - yarn test
-
