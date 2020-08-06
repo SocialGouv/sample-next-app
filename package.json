@@ -64,14 +64,14 @@
     "e2e": "yarn --cwd=./optional/e2e/runners/puppeteer"
   },
   "devDependencies": {
-    "@commitlint/cli": "^9.0.1",
-    "@commitlint/config-conventional": "^9.0.1",
+    "@commitlint/cli": "^9.1.1",
+    "@commitlint/config-conventional": "^9.1.1",
     "@socialgouv/eslint-config-react": "^0.35.0",
     "@socialgouv/eslint-config-recommended": "^0.35.0",
-    "eslint": "^7.3.1",
-    "eslint-plugin-import": "^2.21.2",
+    "eslint": "^7.6.0",
+    "eslint-plugin-import": "^2.22.0",
     "husky": "^4.2.5",
-    "jest-cli": "^26.1.0",
+    "jest-cli": "^26.2.2",
     "prettier": "^2.0.5"
   }
 }
