@@ -9,3 +9,8 @@ export function toSecond(minutes = 0) {
 export function getExpiryDate(minutes = 0) {
   return new Date(Date.now() + toMs(minutes));
 }
+
+export function plop() {
+  return "plop";
+}
+
