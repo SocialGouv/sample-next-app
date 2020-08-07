@@ -1,6 +1,6 @@
 {
   "name": "sample-next-app",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "commitlint": {
     "extends": [
       "@commitlint/config-conventional"
@@ -37,12 +37,12 @@
   "devDependencies": {
     "@commitlint/cli": "^9.1.1",
     "@commitlint/config-conventional": "^9.1.1",
-    "@socialgouv/eslint-config-react": "^1.21.0",
-    "@socialgouv/eslint-config-recommended": "^1.21.0",
+    "@socialgouv/eslint-config-react": "^0.35.0",
+    "@socialgouv/eslint-config-recommended": "^0.35.0",
     "eslint": "^7.6.0",
     "eslint-plugin-import": "^2.22.0",
     "husky": "^4.2.5",
-    "jest": "^26.2.2",
+    "jest-cli": "^26.2.2",
     "prettier": "^2.0.5"
   },
   "husky": {
@@ -62,16 +62,5 @@
     "start": "NODE_ENV=production node server.js",
     "test": "jest",
     "e2e": "yarn --cwd=./optional/e2e/runners/puppeteer"
-  },
-  "devDependencies": {
-    "@commitlint/cli": "^9.1.1",
-    "@commitlint/config-conventional": "^9.1.1",
-    "@socialgouv/eslint-config-react": "^0.35.0",
-    "@socialgouv/eslint-config-recommended": "^0.35.0",
-    "eslint": "^7.6.0",
-    "eslint-plugin-import": "^2.22.0",
-    "husky": "^4.2.5",
-    "jest-cli": "^26.2.2",
-    "prettier": "^2.0.5"
   }
 }

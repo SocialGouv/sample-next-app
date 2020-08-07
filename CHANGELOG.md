@@ -1,3 +1,10 @@
+## [2.0.1](https://github.com/SocialGouv/sample-next-app/compare/v2.0.0...v2.0.1) (2020-08-07)
+
+
+### Bug Fixes
+
+* **k8s:** add preprod subDomain ([#384](https://github.com/SocialGouv/sample-next-app/issues/384)) ([f8659d2](https://github.com/SocialGouv/sample-next-app/commit/f8659d21679c165ff3bd5a081e9636dc8e3d4ae1))
+
 # [2.0.0](https://github.com/SocialGouv/sample-next-app/compare/v1.0.0...v2.0.0) (2020-08-03)
 
 
