@@ -18,7 +18,7 @@
   },
   "devDependencies": {
     "@kubernetes-models/sealed-secrets": "^0.1.4",
-    "@types/node": "^14.11.8",
+    "@types/node": "^14.11.10",
     "dotenv": "^8.2.0",
     "kosko": "^0.9.2",
     "ts-node": "^9.0.0",
