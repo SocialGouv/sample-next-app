@@ -1,3 +1,10 @@
+## [2.0.2-alpha.1](https://github.com/SocialGouv/sample-next-app/compare/v2.0.1...v2.0.2-alpha.1) (2020-10-28)
+
+
+### Bug Fixes
+
+* Use rulez-gary autodevops version. ([ed240e8](https://github.com/SocialGouv/sample-next-app/commit/ed240e866741968b64bcce80caca18e675b13417))
+
 ## [2.0.1](https://github.com/SocialGouv/sample-next-app/compare/v2.0.0...v2.0.1) (2020-08-07)
 
 
