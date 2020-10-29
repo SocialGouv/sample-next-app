@@ -1,3 +1,26 @@
+## [2.0.2-alpha.2](https://github.com/SocialGouv/sample-next-app/compare/v2.0.2-alpha.1...v2.0.2-alpha.2) (2020-10-29)
+
+
+### Bug Fixes
+
+* Add always rules case. ([53f3448](https://github.com/SocialGouv/sample-next-app/commit/53f3448556ccafde663eb26ee51dde767ba0654e))
+* Add build step, again and again. ([73adc9d](https://github.com/SocialGouv/sample-next-app/commit/73adc9dffd923509b7e66a3f78140c9fa922ce84))
+* Add build step, again. ([f152f22](https://github.com/SocialGouv/sample-next-app/commit/f152f22a493d3978183ba208bf1851cb829b3b55))
+* Add build step. ([06569db](https://github.com/SocialGouv/sample-next-app/commit/06569db4211231d5dd29f44739cef97b1bd7f474))
+* Add Hasura registration. ([d5b3202](https://github.com/SocialGouv/sample-next-app/commit/d5b3202f7bd010fb6dc26b4de8187ac6afb03976))
+* Add Lint step. ([88fbd55](https://github.com/SocialGouv/sample-next-app/commit/88fbd550904ac07608ab764ecfd7301f33162111))
+* Add register stage. ([3d7e897](https://github.com/SocialGouv/sample-next-app/commit/3d7e897f10a9afbe8a8d797868f2484a688240c8))
+* Add test job. ([c40005a](https://github.com/SocialGouv/sample-next-app/commit/c40005adfc907d9435039edadb9eb3e13f8818d7))
+* Build job disabled. ([bec938d](https://github.com/SocialGouv/sample-next-app/commit/bec938d49f06a868774d9cb97dde8fcc8830e78a))
+* Direct push to Gitlab. ([541236d](https://github.com/SocialGouv/sample-next-app/commit/541236dc6acc1fc166c52dd3d390952bcaaaf300))
+* Disable all other rules. ([0416363](https://github.com/SocialGouv/sample-next-app/commit/0416363d4eeb782901305948b8a0940e0a85aaf7))
+* Disable test job, again. ([172360d](https://github.com/SocialGouv/sample-next-app/commit/172360d4b92a4e26594c5d9e5fa52921e787bc08))
+* Disable test job. ([1b03f76](https://github.com/SocialGouv/sample-next-app/commit/1b03f76604f16e87411c18d98d03efa3a8c17e61))
+* Enable register job. ([2d6f736](https://github.com/SocialGouv/sample-next-app/commit/2d6f736e2ebc8876f1ff225147968cda7f66c7f7))
+* Enable register job. ([623be65](https://github.com/SocialGouv/sample-next-app/commit/623be65b671236bd47b3655f6cf754c3b20e04be))
+* Release only. ([3d66ef5](https://github.com/SocialGouv/sample-next-app/commit/3d66ef5af0319aad889700fe5839e575d3a6c1e3))
+* Remove all extra steps from CI workflow. ([1b830c3](https://github.com/SocialGouv/sample-next-app/commit/1b830c3d3a35d317865238793b20717bcaf865df))
+
 ## [2.0.2-alpha.2](https://github.com/SocialGouv/sample-next-app/compare/v2.0.2-alpha.1...v2.0.2-alpha.2) (2020-10-28)
 
 
