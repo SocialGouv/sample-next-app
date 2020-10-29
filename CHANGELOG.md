@@ -1,3 +1,10 @@
+# [2.1.0-alpha.4](https://github.com/SocialGouv/sample-next-app/compare/v2.1.0-alpha.3...v2.1.0-alpha.4) (2020-10-29)
+
+
+### Bug Fixes
+
+* Populate CI_COMMIT_TAG, plus log. ([622aa37](https://github.com/SocialGouv/sample-next-app/commit/622aa37ea1409a73dedcfbcff20c3e3d47580021))
+
 # [2.1.0-alpha.3](https://github.com/SocialGouv/sample-next-app/compare/v2.1.0-alpha.2...v2.1.0-alpha.3) (2020-10-29)
 
 
