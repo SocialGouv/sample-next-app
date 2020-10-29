@@ -1,3 +1,10 @@
+# [2.1.0-alpha.6](https://github.com/SocialGouv/sample-next-app/compare/v2.1.0-alpha.5...v2.1.0-alpha.6) (2020-10-29)
+
+
+### Bug Fixes
+
+* Pass version from build to register. ([507c47c](https://github.com/SocialGouv/sample-next-app/commit/507c47c9344c516c808e1eb2e0fee0a1ce4c67d9))
+
 # [2.1.0-alpha.5](https://github.com/SocialGouv/sample-next-app/compare/v2.1.0-alpha.4...v2.1.0-alpha.5) (2020-10-29)
 
 
