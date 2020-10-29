@@ -1,3 +1,10 @@
+## [2.0.2-alpha.4](https://github.com/SocialGouv/sample-next-app/compare/v2.0.2-alpha.3...v2.0.2-alpha.4) (2020-10-29)
+
+
+### Bug Fixes
+
+* Preinstall. ([89d317e](https://github.com/SocialGouv/sample-next-app/commit/89d317e14d7d88d75acde293463b78cebc7a9326))
+
 ## [2.0.2-alpha.3](https://github.com/SocialGouv/sample-next-app/compare/v2.0.2-alpha.2...v2.0.2-alpha.3) (2020-10-29)
 
 
