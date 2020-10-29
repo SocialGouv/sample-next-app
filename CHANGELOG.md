@@ -1,3 +1,10 @@
+## [2.0.2-alpha.7](https://github.com/SocialGouv/sample-next-app/compare/v2.0.2-alpha.6...v2.0.2-alpha.7) (2020-10-29)
+
+
+### Bug Fixes
+
+* Check version. ([56e4efd](https://github.com/SocialGouv/sample-next-app/commit/56e4efd4d1ac5adbea04949b36b02d33af36fdb5))
+
 ## [2.0.2-alpha.6](https://github.com/SocialGouv/sample-next-app/compare/v2.0.2-alpha.5...v2.0.2-alpha.6) (2020-10-29)
 
 
