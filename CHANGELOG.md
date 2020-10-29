@@ -1,3 +1,10 @@
+# [2.1.0-alpha.2](https://github.com/SocialGouv/sample-next-app/compare/v2.1.0-alpha.1...v2.1.0-alpha.2) (2020-10-29)
+
+
+### Bug Fixes
+
+* One backslash. ([38e1938](https://github.com/SocialGouv/sample-next-app/commit/38e19384cc5747e8e3328d529a224d52fc3793b2))
+
 # [2.1.0-alpha.1](https://github.com/SocialGouv/sample-next-app/compare/v2.0.2-alpha.7...v2.1.0-alpha.1) (2020-10-29)
 
 
