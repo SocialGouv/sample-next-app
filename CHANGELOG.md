@@ -1,3 +1,10 @@
+# [2.1.0-alpha.5](https://github.com/SocialGouv/sample-next-app/compare/v2.1.0-alpha.4...v2.1.0-alpha.5) (2020-10-29)
+
+
+### Bug Fixes
+
+* Use before_script. ([844026a](https://github.com/SocialGouv/sample-next-app/commit/844026af3043a0b68bdcd7fd154f78b9f395fdfe))
+
 # [2.1.0-alpha.4](https://github.com/SocialGouv/sample-next-app/compare/v2.1.0-alpha.3...v2.1.0-alpha.4) (2020-10-29)
 
 
