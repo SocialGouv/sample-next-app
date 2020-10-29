@@ -24,16 +24,16 @@ Register:
     DOCKER_BUILD_ARGS: >-
       --shm-size 512M
     IMAGE_NAME: $CI_REGISTRY_IMAGE/app
-# Register image Hasura:
-#   extends: .autodevops_register_image
-#   dependencies: []
-#   needs: []
-#   environment:
-#     name: ${CI_COMMIT_REF_NAME}-dev2
-#   variables:
-#     CONTEXT: ./hasura
-#     IMAGE_NAME: $CI_REGISTRY_IMAGE/hasura
 
+Register image Hasura:
+  extends: .autodevops_register_image
+  dependencies: []
+  needs: []
+  environment:
+    name: ${CI_COMMIT_REF_NAME}-dev2
+  variables:
+    CONTEXT: ./hasura
+    IMAGE_NAME: $CI_REGISTRY_IMAGE/hasura
 # E2E test on deployed branch:
 #   stage: Deploy
 #   image: registry.gitlab.factory.social.gouv.fr/socialgouv/docker/puppeteer:1.54.2
