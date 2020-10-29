@@ -1,3 +1,10 @@
+## [2.0.2-alpha.6](https://github.com/SocialGouv/sample-next-app/compare/v2.0.2-alpha.5...v2.0.2-alpha.6) (2020-10-29)
+
+
+### Bug Fixes
+
+* No pipe on tag, at all. ([570ee3e](https://github.com/SocialGouv/sample-next-app/commit/570ee3e7b16da244e7fa5257280ba3476bfc33cc))
+
 ## [2.0.2-alpha.5](https://github.com/SocialGouv/sample-next-app/compare/v2.0.2-alpha.4...v2.0.2-alpha.5) (2020-10-29)
 
 
