@@ -1,3 +1,10 @@
+## [2.0.2-alpha.3](https://github.com/SocialGouv/sample-next-app/compare/v2.0.2-alpha.2...v2.0.2-alpha.3) (2020-10-29)
+
+
+### Bug Fixes
+
+* Bump version, again. ([97176cb](https://github.com/SocialGouv/sample-next-app/commit/97176cbc8a9734664311714eaf7535ab75e52316))
+
 ## [2.0.2-alpha.2](https://github.com/SocialGouv/sample-next-app/compare/v2.0.2-alpha.1...v2.0.2-alpha.2) (2020-10-29)
 
 
