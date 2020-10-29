@@ -1,3 +1,10 @@
+# [2.1.0-alpha.3](https://github.com/SocialGouv/sample-next-app/compare/v2.1.0-alpha.2...v2.1.0-alpha.3) (2020-10-29)
+
+
+### Bug Fixes
+
+* Populate CI_COMMIT_TAG. ([443e3b2](https://github.com/SocialGouv/sample-next-app/commit/443e3b2cadb41daaea8944e600596fb141e1322b))
+
 # [2.1.0-alpha.2](https://github.com/SocialGouv/sample-next-app/compare/v2.1.0-alpha.1...v2.1.0-alpha.2) (2020-10-29)
 
 
