@@ -1,3 +1,22 @@
+# [2.1.0-alpha.1](https://github.com/SocialGouv/sample-next-app/compare/v2.0.2-alpha.7...v2.1.0-alpha.1) (2020-10-29)
+
+
+### Bug Fixes
+
+* Check version, again and again. ([8001c35](https://github.com/SocialGouv/sample-next-app/commit/8001c3510d906d4147111b59abf53b94d6a10e0d))
+* Check version, again. ([d97bcd9](https://github.com/SocialGouv/sample-next-app/commit/d97bcd9e3ccf274ef5e886f01f5a998c6fd60fb6))
+* Fix regex, again. ([03a0d34](https://github.com/SocialGouv/sample-next-app/commit/03a0d348d80edcb306b0319e34cce5272d18841c))
+* Fix regex. ([2060d1a](https://github.com/SocialGouv/sample-next-app/commit/2060d1a9e889b1d8e04bb6d75288183d4236fe66))
+* remove quotes, again and again and again. ([24445c8](https://github.com/SocialGouv/sample-next-app/commit/24445c86800fc4d4779364c832f4d52805a02edd))
+* remove quotes, again and again. ([049d2d9](https://github.com/SocialGouv/sample-next-app/commit/049d2d9fd043e66cbea7db86da321476098a6f0c))
+* remove quotes, again. ([6e78f2c](https://github.com/SocialGouv/sample-next-app/commit/6e78f2cb39d4edd556f14c23978458a6775505fb))
+* remove quotes. ([289d4e3](https://github.com/SocialGouv/sample-next-app/commit/289d4e391df29de99e3544c7cb08aebacbd20978))
+
+
+### Features
+
+* bump version. ([909b718](https://github.com/SocialGouv/sample-next-app/commit/909b718f8ef2a74fd88d9f168c076b71500badce))
+
 ## [2.0.2-alpha.8](https://github.com/SocialGouv/sample-next-app/compare/v2.0.2-alpha.7...v2.0.2-alpha.8) (2020-10-29)
 
 
