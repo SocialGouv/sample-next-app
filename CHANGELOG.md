@@ -1,3 +1,10 @@
+# [2.1.0-alpha.9](https://github.com/SocialGouv/sample-next-app/compare/v2.1.0-alpha.8...v2.1.0-alpha.9) (2020-10-29)
+
+
+### Bug Fixes
+
+* Skip quality check. ([3660bcf](https://github.com/SocialGouv/sample-next-app/commit/3660bcfdda7a7aa73848d409aff030744778ffe9))
+
 # [2.1.0-alpha.8](https://github.com/SocialGouv/sample-next-app/compare/v2.1.0-alpha.7...v2.1.0-alpha.8) (2020-10-29)
 
 
