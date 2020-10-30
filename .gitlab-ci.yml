@@ -19,14 +19,14 @@ variables:
 #   rules:
 #     - when: never
 
-Register:
-  extends: .autodevops_register_image
-  variables:
-    DOCKER_BUILD_ARGS: >-
-      --shm-size 512M
-    IMAGE_NAME: $CI_REGISTRY_IMAGE/app
+# Register:
+#   extends: .autodevops_register_image
+#   variables:
+#     DOCKER_BUILD_ARGS: >-
+#       --shm-size 512M
+#     IMAGE_NAME: $CI_REGISTRY_IMAGE/app
 
-Register image Hasura:
+Register Hasura:
   extends: .autodevops_register_image
   dependencies: []
   # needs: []
