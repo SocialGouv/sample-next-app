@@ -1,3 +1,10 @@
+# [2.1.0-alpha.11](https://github.com/SocialGouv/sample-next-app/compare/v2.1.0-alpha.10...v2.1.0-alpha.11) (2020-10-31)
+
+
+### Bug Fixes
+
+* Alpha pr3 ([#414](https://github.com/SocialGouv/sample-next-app/issues/414)) ([aef9ef5](https://github.com/SocialGouv/sample-next-app/commit/aef9ef5995c750bd0e070518db0db4396462f907))
+
 # [2.1.0-alpha.10](https://github.com/SocialGouv/sample-next-app/compare/v2.1.0-alpha.9...v2.1.0-alpha.10) (2020-10-30)
 
 
