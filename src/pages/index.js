@@ -27,7 +27,7 @@ const Page = () => (
     <Head>
       <title>Home | sample next app</title>
     </Head>
-    <p>Yoooooo !!!</p>
+    <p>Yuuuuu !!!</p>
     <p>
       <Link href="/page2">
         <a>Go to page 2</a>
