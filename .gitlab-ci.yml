@@ -1,7 +1,7 @@
 include:
   - project: SocialGouv/gitlab-ci-yml
-    file: /autodevops.yml
-    ref: rulez-gary
+    file: /autodevops_simple.yml
+    ref: rulez-gary2
 
 variables:
   AUTO_DEVOPS_RELEASE_AUTO: "🔖"
