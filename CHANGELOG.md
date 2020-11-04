@@ -1,3 +1,10 @@
+# [2.1.0-alpha.12](https://github.com/SocialGouv/sample-next-app/compare/v2.1.0-alpha.11...v2.1.0-alpha.12) (2020-11-04)
+
+
+### Bug Fixes
+
+* Use autodevops simple. ([#425](https://github.com/SocialGouv/sample-next-app/issues/425)) ([ec8a935](https://github.com/SocialGouv/sample-next-app/commit/ec8a935768a750661b7b909d5aab56e2d244ce4e))
+
 # [2.1.0-alpha.11](https://github.com/SocialGouv/sample-next-app/compare/v2.1.0-alpha.10...v2.1.0-alpha.11) (2020-10-31)
 
 
