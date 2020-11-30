@@ -3,6 +3,7 @@ include:
     file: /autodevops.yml
     ref: v17.10.0
 
+
 variables:
   AUTO_DEVOPS_RELEASE_AUTO: "🔖"
   AUTO_DEVOPS_PRODUCTION_AUTO: "🚀"
