@@ -31,6 +31,14 @@ const manifests = create("pgweb", {
         initialDelaySeconds: 5,
         timeoutSeconds: 3,
       },
+      startupProbe: {
+        httpGet: {
+          path: "/",
+          port: "http",
+        },
+        initialDelaySeconds: 5,
+        timeoutSeconds: 3,
+      },
     },
   },
 });
