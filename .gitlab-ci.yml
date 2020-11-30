@@ -25,6 +25,7 @@ Register image:
   variables:
     DOCKER_BUILD_ARGS: >-
       --shm-size 512M
+      --build-arg BUILDKIT_INLINE_CACHE=1
     IMAGE_NAME: $CI_REGISTRY_IMAGE/app
 
 Register image Hasura:
@@ -36,6 +37,8 @@ Register image Hasura:
   variables:
     CONTEXT: ./hasura
     IMAGE_NAME: $CI_REGISTRY_IMAGE/hasura
+    DOCKER_BUILD_ARGS: >-
+      --build-arg BUILDKIT_INLINE_CACHE=1
 
 E2E test on deployed branch:
   stage: Deploy
