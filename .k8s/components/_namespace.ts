@@ -1,5 +1,13 @@
 import { createNamespace } from "@socialgouv/kosko-charts/utils/createNamespace";
 
-const manifests = createNamespace();
+const namespace = createNamespace();
 
-export default manifests;
+// todo: use future kosko-charts
+if (namespace && namespace.metadata) {
+  namespace.metadata.labels = {
+    ...namespace.metadata.labels,
+    "pg-admin-secret": "sample-next-app"
+  }
+}
+
+export default namespace;

@@ -158,7 +158,7 @@
   resolved "https://registry.yarnpkg.com/@sindresorhus/is/-/is-4.0.0.tgz#2ff674e9611b45b528896d820d3d7a812de2f0e4"
   integrity sha512-FyD2meJpDPjyNQejSjvnhpgI/azsQkA4lGbuu5BQZfjvJ9cbRZXzeWL2HceCekW4lixO9JPesIIQkSoLjeJHNQ==
 
-"@socialgouv/kosko-charts@3.2.5":
+"@socialgouv/kosko-charts@^3.2.5":
   version "3.2.5"
   resolved "https://registry.yarnpkg.com/@socialgouv/kosko-charts/-/kosko-charts-3.2.5.tgz#0c5a3d14a35db229f62792e473adb49cb9ed432c"
   integrity sha512-4aMsWRq7sC76Lnpj+IjteuJjBdMSM92aJEcLYmCeSpK7JB06icmB++1cQMUuNbsHR86va6xrUJRyZVXOxtmdWg==
