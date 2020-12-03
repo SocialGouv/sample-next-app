@@ -547,6 +547,36 @@ spec:
 apiVersion: v1
 kind: Service
 ---
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    app.gitlab.com/app: socialgouv-sample-next-app
+    app.gitlab.com/env: preprod-dev2
+    app.gitlab.com/env.name: preprod-dev2
+  labels:
+    app: hasura
+    application: v1-2-3-sample-next-app
+    owner: sample-next-app
+    team: sample-next-app
+    cert: wildcard
+  name: hasura
+  namespace: sample-next-app-85-preprod-dev2
+spec:
+  rules:
+    - host: hasura-preprod-sample-next-app.dev2.fabrique.social.gouv.fr
+      http:
+        paths:
+          - backend:
+              serviceName: hasura
+              servicePort: 80
+            path: /
+  tls:
+    - hosts:
+        - hasura-preprod-sample-next-app.dev2.fabrique.social.gouv.fr
+      secretName: wildcard-crt
+apiVersion: extensions/v1beta1
+kind: Ingress
+---
 apiVersion: bitnami.com/v1alpha1
 kind: SealedSecret
 metadata:
