@@ -8,15 +8,16 @@
     "gitlab:dev": "yarn --silent gitlab --env dev",
     "gitlab:preprod": "yarn --silent gitlab --env preprod",
     "gitlab:prod": "yarn --silent gitlab --env prod",
-    "xxx": "DOTENV_CONFIG_PATH=./environments/.gitlab-ci.env npx ts-node --require dotenv/config ./main.js"
+    "test": "npx jest"
   },
   "dependencies": {
     "@kosko/env": "^0.5.2",
-    "@socialgouv/kosko-charts": "^2.7.2",
-    "kubernetes-models": "^0.8.1",
-    "toml": "^3.0.0"
+    "@socialgouv/kosko-charts": "^4.0.0-alpha.7",
+    "kubernetes-models": "^0.8.1"
   },
   "devDependencies": {
+    "@babel/core": "^7.12.9",
+    "@babel/plugin-transform-modules-commonjs": "^7.12.1",
     "@kubernetes-models/sealed-secrets": "^0.1.4",
     "@types/node": "^14.11.10",
     "dotenv": "^8.2.0",

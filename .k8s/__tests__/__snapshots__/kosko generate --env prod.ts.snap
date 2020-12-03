@@ -1,0 +1,586 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`kosko generate --prod 1`] = `
+"---
+metadata:
+  annotations:
+    field.cattle.io/creatorId: gitlab
+    field.cattle.io/projectId: ''
+    git/branch: master
+    git/remote: >-
+      https://gitlab-ci-token:[MASKED]@gitlab.factory.social.gouv.fr/SocialGouv/sample-next-app.git
+    app.gitlab.com/app: socialgouv-sample-next-app
+    app.gitlab.com/env: master-dev2
+    app.gitlab.com/env.name: master-dev2
+  labels:
+    application: master-dev2-sample-next-app
+    owner: sample-next-app
+    team: sample-next-app
+    cert: wildcard
+  name: sample-next-app-85-master-dev2
+apiVersion: v1
+kind: Namespace
+---
+metadata:
+  annotations:
+    app.gitlab.com/app: socialgouv-sample-next-app
+    app.gitlab.com/env: master-dev2
+    app.gitlab.com/env.name: master-dev2
+  labels:
+    app: pgweb
+    application: master-dev2-sample-next-app
+    owner: sample-next-app
+    team: sample-next-app
+    cert: wildcard
+    component: pgweb
+  name: pgweb
+  namespace: sample-next-app-85-master-dev2
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: pgweb
+  template:
+    metadata:
+      annotations:
+        app.gitlab.com/app: socialgouv-sample-next-app
+        app.gitlab.com/env: master-dev2
+        app.gitlab.com/env.name: master-dev2
+      labels:
+        app: pgweb
+        application: master-dev2-sample-next-app
+        owner: sample-next-app
+        team: sample-next-app
+        cert: wildcard
+        component: pgweb
+    spec:
+      containers:
+        - image: 'sosedoff/pgweb:0.11.7'
+          livenessProbe:
+            failureThreshold: 6
+            httpGet:
+              path: /
+              port: http
+            initialDelaySeconds: 30
+            periodSeconds: 5
+            timeoutSeconds: 5
+          name: pgweb
+          ports:
+            - containerPort: 8081
+              name: http
+          readinessProbe:
+            failureThreshold: 15
+            httpGet:
+              path: /
+              port: http
+            initialDelaySeconds: 0
+            periodSeconds: 5
+            successThreshold: 1
+            timeoutSeconds: 1
+          resources:
+            limits:
+              cpu: 500m
+              memory: 256Mi
+            requests:
+              cpu: 100m
+              memory: 64Mi
+          startupProbe:
+            failureThreshold: 12
+            httpGet:
+              path: /
+              port: http
+            periodSeconds: 5
+          envFrom:
+            - secretRef:
+                name: azure-pg-user-c18cfdbb
+      initContainers:
+        - env:
+            - name: WAIT_FOR_RETRIES
+              value: '24'
+          envFrom:
+            - secretRef:
+                name: azure-pg-user-c18cfdbb
+          image: >-
+            registry.gitlab.factory.social.gouv.fr/socialgouv/docker/wait-for-postgres:2.0.0
+          imagePullPolicy: Always
+          name: wait-for-postgres
+          resources:
+            limits:
+              cpu: 20m
+              memory: 32Mi
+            requests:
+              cpu: 5m
+              memory: 16Mi
+apiVersion: apps/v1
+kind: Deployment
+---
+metadata:
+  labels:
+    app: pgweb
+    application: master-dev2-sample-next-app
+    owner: sample-next-app
+    team: sample-next-app
+    cert: wildcard
+  name: pgweb
+  annotations:
+    app.gitlab.com/app: socialgouv-sample-next-app
+    app.gitlab.com/env: master-dev2
+    app.gitlab.com/env.name: master-dev2
+  namespace: sample-next-app-85-master-dev2
+spec:
+  ports:
+    - name: http
+      port: 80
+      targetPort: 8081
+  selector:
+    app: pgweb
+  type: ClusterIP
+apiVersion: v1
+kind: Service
+---
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    app.gitlab.com/app: socialgouv-sample-next-app
+    app.gitlab.com/env: master-dev2
+    app.gitlab.com/env.name: master-dev2
+  labels:
+    app: pgweb
+    application: master-dev2-sample-next-app
+    owner: sample-next-app
+    team: sample-next-app
+    cert: wildcard
+  name: pgweb
+  namespace: sample-next-app-85-master-dev2
+spec:
+  rules:
+    - host: pgweb-master-dev2-sample-next-app.dev2.fabrique.social.gouv.fr
+      http:
+        paths:
+          - backend:
+              serviceName: pgweb
+              servicePort: 80
+            path: /
+  tls:
+    - hosts:
+        - pgweb-master-dev2-sample-next-app.dev2.fabrique.social.gouv.fr
+      secretName: wildcard-crt
+apiVersion: extensions/v1beta1
+kind: Ingress
+---
+metadata:
+  annotations:
+    app.gitlab.com/app: socialgouv-sample-next-app
+    app.gitlab.com/env: master-dev2
+    app.gitlab.com/env.name: master-dev2
+  labels:
+    app: app
+    application: master-dev2-sample-next-app
+    owner: sample-next-app
+    team: sample-next-app
+    cert: wildcard
+  name: app
+  namespace: sample-next-app-85-master-dev2
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app
+  template:
+    metadata:
+      annotations:
+        app.gitlab.com/app: socialgouv-sample-next-app
+        app.gitlab.com/env: master-dev2
+        app.gitlab.com/env.name: master-dev2
+      labels:
+        app: app
+        application: master-dev2-sample-next-app
+        owner: sample-next-app
+        team: sample-next-app
+        cert: wildcard
+    spec:
+      containers:
+        - image: >-
+            registry.gitlab.factory.social.gouv.fr/socialgouv/sample-next-app/app:c18cfdbb191c5c401f4110e1f15707b21ca995df
+          livenessProbe:
+            failureThreshold: 6
+            httpGet:
+              path: /healthz
+              port: http
+            initialDelaySeconds: 30
+            periodSeconds: 5
+            timeoutSeconds: 5
+          name: app
+          ports:
+            - containerPort: 3030
+              name: http
+          readinessProbe:
+            failureThreshold: 15
+            httpGet:
+              path: /healthz
+              port: http
+            initialDelaySeconds: 0
+            periodSeconds: 5
+            successThreshold: 1
+            timeoutSeconds: 1
+          resources:
+            limits:
+              cpu: 50m
+              memory: 128Mi
+            requests:
+              cpu: 1m
+              memory: 64Mi
+          startupProbe:
+            failureThreshold: 12
+            httpGet:
+              path: /healthz
+              port: http
+            periodSeconds: 5
+          envFrom:
+            - secretRef:
+                name: app-sealed-secret
+            - configMapRef:
+                name: app-configmap
+apiVersion: apps/v1
+kind: Deployment
+---
+apiVersion: bitnami.com/v1alpha1
+kind: SealedSecret
+metadata:
+  creationTimestamp: null
+  name: app-sealed-secret
+  namespace: sample-next-app-85-master-dev2
+  annotations:
+    app.gitlab.com/app: socialgouv-sample-next-app
+    app.gitlab.com/env: master-dev2
+    app.gitlab.com/env.name: master-dev2
+  labels:
+    application: master-dev2-sample-next-app
+    owner: sample-next-app
+    team: sample-next-app
+    cert: wildcard
+spec:
+  encryptedData:
+    SMTP_EMAIL_PASSWORD: >-
+      AgBALuAy8FMnipiISs30CXaNMYmKWYF+J/0Ey1jUUNLC926nRNpniqDjjUlpA/SaQP0RvDXKdUKg4v3f595WyAsT6gL3Oq3UyK8iwKNUpJTwcF4wWuVDii2hcInUIK+wqkFLH4xG+UkWHBrWaLrnd3rQ0Kg8pcFA5L9XRj6BecHc0fGm+Uwd3Vlk+3CWQyK821eLDL+wjdqnj3ujbxNsfvfAqLZXLQ6CLPkFsNodH8qP1OLSkbWGMOgdRhRxP7HZa508++ZSY77cY/r3Yb/fD4h2FAW8IQS4tn1+5qNCsYeQaiglQJwfePPfjOHZs5M8zLORj5xxZ0XUugUOV2H3nWY3XqyAEV33rru351Nx3Ln5HcSS7IVCyXOSLtlCCtth8q3YFFy8z6RAXoiGyH9M6MMlUZvrMHi1g2LfHGGZmZYJYG93m/ecPL+lKCCtEn1B9SmSc6qoHQSxdvXhfv5wJH80Gys30LGeyR2ImjEPA+5Ibpx02jR+y+73lbQFGT1NR/QiovwDubhtI8a2XiyU7sQs6lysXpcmCXdcNVO3XBIWugGghTXTedOb1pFyBIatgkX2OOW96CLO83jmeYMX5lmXO4hcVJCZawkug6MRGjT8wo/EJNvoekT5Djw4hZ4thDg8WzuFa+fCnMki7h6alEHBOUBgHv4JBBysMpNuh3eMoVw8VvqddTC5z8N6iX2awPYrMEVa5ppOCP2TD6ALZ/NoSfBsAFekeIBWkgfkrbfMYA==
+    SMTP_EMAIL_USER: >-
+      AgApYSnX5gRMakn2yx6tv8mq2lAQtIPzv8xAVlnQzs1HeU7vVtE/2/piZ6WEX/+eVJWONiYFbFyOiQHmJdBfPN1jj7oY5BKBrpu9Srj5ci2Wmol566mUtCc/FxEHaTuAhaiqZsEFVDDDjoQxmnS4svmeIrA1dhHwrhKjzX1vCt+P3EC/aRcohCjtmdRuEeVGTsaMDPceGdNsVdN6Mbzq73nfkO2zZA4MnfpH5F1B+awz7hNy12lVeW6d2OpW6fyKYnv8TBRMO80vCeEvv+Vm3VQUaD/yT75ypPQY/4BbZyfrB58Ki+AZzQOz4cJ8h9qmXvs1LmysopfjZxM2ckBG47/UZFONEk44QkQFXTd9aCKRUD0uHRg5Mxe6ZEvU+VVH80R5Kjh8qY7DTfdV3UeWwd0/E9jnYfPBYQXaktqYM5CltgrmvHzrIzP+4tkjUgZGWoPMtndrVCtRdWx4TakP4cmAC9NWLVInpfACaoag5tX9deLAJ1K+f363ZFCIRlxmDIC+xjrn3oSgCRfGaJ6rqy3v2jjDjy7T9eyHpupS+GCNb1YCNc7SRk5YXG4MBO9w1dOOpENOfC+m+Z8mNJDG3uG1Nkn/lNg5/GX6WwB3OviHJo6EjkxZnPPqwXgjKnZSEeCbmiXsWcPJ4+LPMS+gPDYAhcM6THtcTxvVMp3heSsjHed9L5TsKu8pcfAdE8hXBmh71T4RxOXhnvCqSKGi4vygAL5cDc+i20DpyO/LkH8KZQ==
+    SMTP_URL: >-
+      AgBEdghMrr+4sREEr2oe9DozWVjZMCZW1pAjO89EVP4JgTDoEPyTrvuHQixWcZwGmcID9TYaQMMftMpltSzmmc1VBbXi/6zeTqofPg+/k+B3EIxtHjKRfzvt2XEgyXQx5+w2/dx3XB/DWmWO/AibnNmIUV/5pY5dXYnaaUNLbQ/R5FSsk2hAZROqtS/+PC2e0+LlU/cQvKO8GqFoxfF3Y51ioDEetCOjz1msML74dXkBnDwECl3fCPaNaz6aJOglEqQ8m1g8M+h1KrFE5OT0lbKROOBHQTM7QdJNzIe6oiBnPZV2sk7kM29u7S5425hZ6MlTVmebJmkjOUQLQVoNGcaKPdL653qqzHFgyPGESIavH1xeseVJJwrzadD/QTOw9NswINrF6qMBsp2MtU5RpZTdFlf7f2voc+JjJOW1hNE/NZY4k0r8f188FGUmHAsTMTBJEvxZS4n6pJfXzU9UpHkwNBOHBisVuvTuZX/8vz/KvlUZ+nPRUMNxqghZr3TYXApc1F2MhZntw9BmXw5VsvGePSAPXPbYbh10JLkyAtCu66f0Hyjl9Ay/nTdTNYar9lwzlbfifmFWyNpB72qvRofy75IvhyBm2tOh/G0ebT9MO/jYuJcGqoUYYaHI7r3VD8Gi7McEi1dzv8DzO3wyjrDQONBbuDU0j0mirOZbxAm2iK3YG8ElXei5br4RHv64V4I0LkYK0QtfcWoGKUlufeONNg==
+  template:
+    metadata:
+      creationTimestamp: null
+      name: app-sealed-secret
+      annotations:
+        app.gitlab.com/app: socialgouv-sample-next-app
+        app.gitlab.com/env: master-dev2
+        app.gitlab.com/env.name: master-dev2
+      labels:
+        application: master-dev2-sample-next-app
+        owner: sample-next-app
+        team: sample-next-app
+        cert: wildcard
+    type: Opaque
+---
+metadata:
+  name: app-configmap
+  annotations:
+    app.gitlab.com/app: socialgouv-sample-next-app
+    app.gitlab.com/env: master-dev2
+    app.gitlab.com/env.name: master-dev2
+  labels:
+    application: master-dev2-sample-next-app
+    owner: sample-next-app
+    team: sample-next-app
+    cert: wildcard
+  namespace: sample-next-app-85-master-dev2
+data:
+  NODE_ENV: production
+  GRAPHQL_ENDPOINT: 'http://hasura/v1/graphql'
+  ACCOUNT_MAIL_SENDER: contact@fabrique.social.gouv.fr
+  FRONTEND_PORT: '3030'
+  PRODUCTION: 'true'
+apiVersion: v1
+kind: ConfigMap
+---
+metadata:
+  labels:
+    app: app
+    application: master-dev2-sample-next-app
+    owner: sample-next-app
+    team: sample-next-app
+    cert: wildcard
+  name: app
+  annotations:
+    app.gitlab.com/app: socialgouv-sample-next-app
+    app.gitlab.com/env: master-dev2
+    app.gitlab.com/env.name: master-dev2
+  namespace: sample-next-app-85-master-dev2
+spec:
+  ports:
+    - name: http
+      port: 80
+      targetPort: 3030
+  selector:
+    app: app
+  type: ClusterIP
+apiVersion: v1
+kind: Service
+---
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    app.gitlab.com/app: socialgouv-sample-next-app
+    app.gitlab.com/env: master-dev2
+    app.gitlab.com/env.name: master-dev2
+  labels:
+    app: app
+    application: master-dev2-sample-next-app
+    owner: sample-next-app
+    team: sample-next-app
+    cert: wildcard
+  name: app
+  namespace: sample-next-app-85-master-dev2
+spec:
+  rules:
+    - host: master-dev2-sample-next-app.dev2.fabrique.social.gouv.fr
+      http:
+        paths:
+          - backend:
+              serviceName: app
+              servicePort: 80
+            path: /
+  tls:
+    - hosts:
+        - master-dev2-sample-next-app.dev2.fabrique.social.gouv.fr
+      secretName: wildcard-crt
+apiVersion: extensions/v1beta1
+kind: Ingress
+---
+metadata:
+  annotations:
+    app.gitlab.com/app: socialgouv-sample-next-app
+    app.gitlab.com/env: master-dev2
+    app.gitlab.com/env.name: master-dev2
+  labels:
+    app: hasura
+    application: master-dev2-sample-next-app
+    owner: sample-next-app
+    team: sample-next-app
+    cert: wildcard
+  name: hasura
+  namespace: sample-next-app-85-master-dev2
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hasura
+  template:
+    metadata:
+      annotations:
+        app.gitlab.com/app: socialgouv-sample-next-app
+        app.gitlab.com/env: master-dev2
+        app.gitlab.com/env.name: master-dev2
+      labels:
+        app: hasura
+        application: master-dev2-sample-next-app
+        owner: sample-next-app
+        team: sample-next-app
+        cert: wildcard
+    spec:
+      containers:
+        - image: >-
+            registry.gitlab.factory.social.gouv.fr/socialgouv/sample-next-app/hasura:c18cfdbb191c5c401f4110e1f15707b21ca995df
+          livenessProbe:
+            failureThreshold: 6
+            httpGet:
+              path: /healthz
+              port: http
+            initialDelaySeconds: 30
+            periodSeconds: 5
+            timeoutSeconds: 5
+          name: hasura
+          ports:
+            - containerPort: 80
+              name: http
+          readinessProbe:
+            failureThreshold: 15
+            httpGet:
+              path: /healthz
+              port: http
+            initialDelaySeconds: 0
+            periodSeconds: 5
+            successThreshold: 1
+            timeoutSeconds: 1
+          resources:
+            limits:
+              cpu: 500m
+              memory: 512Mi
+            requests:
+              cpu: 100m
+              memory: 64Mi
+          startupProbe:
+            failureThreshold: 12
+            httpGet:
+              path: /healthz
+              port: http
+            periodSeconds: 5
+          envFrom:
+            - secretRef:
+                name: azure-pg-user-c18cfdbb
+            - secretRef:
+                name: hasura-sealed-secret
+            - configMapRef:
+                name: hasura-configmap
+      initContainers:
+        - env:
+            - name: WAIT_FOR_RETRIES
+              value: '24'
+          envFrom:
+            - secretRef:
+                name: azure-pg-user-c18cfdbb
+          image: >-
+            registry.gitlab.factory.social.gouv.fr/socialgouv/docker/wait-for-postgres:2.0.0
+          imagePullPolicy: Always
+          name: wait-for-postgres
+          resources:
+            limits:
+              cpu: 20m
+              memory: 32Mi
+            requests:
+              cpu: 5m
+              memory: 16Mi
+apiVersion: apps/v1
+kind: Deployment
+---
+apiVersion: bitnami.com/v1alpha1
+kind: SealedSecret
+metadata:
+  creationTimestamp: null
+  name: hasura-sealed-secret
+  annotations:
+    app.gitlab.com/app: socialgouv-sample-next-app
+    app.gitlab.com/env: master-dev2
+    app.gitlab.com/env.name: master-dev2
+  labels:
+    application: master-dev2-sample-next-app
+    owner: sample-next-app
+    team: sample-next-app
+    cert: wildcard
+  namespace: sample-next-app-85-master-dev2
+spec:
+  encryptedData:
+    ACCOUNT_EMAIL_SECRET: >-
+      AgBc+UqJhU2ZBfuplyiI3pPekRjm36i62WYR1lVpM9PIwK636R78mpfckIeGU09qKAxWGYBqtYtvNP3lTG8OwEUqKLnUxZPZKbtwc78GwzEzaPpnWmM+j78uBDxqHDiW+jKwnD/6XiWxsfyd1ZU/qS0LDEJBnVRoDyUI0NxzFWLxG8ylr6oK3q+oD3338D588TimklZGOvRm/hI95d5uwKsYPz0zYOj28pgHzNMVycreOXi9l562agyg2hdb8AkFD41utLEURxJOomJUl2xZIjv6FX++R9OJQzRsX6WsCAkLZPO7VEi1cvG6QzPf/uchwystfQfW5c+5ofVJer5mLJJjFcO8OfNbsg/JYlndv4F90cjH2dojSHv/qH/ddpObPgkDpVzCljdTvrir5bl3z3KeqLb20ja1hLJlwOue4zHDCQ6Fwza8VN6BjbHZLYhOO5qlYfWezjwt+B6RdFVzD8wu2JbuWsJo5w2HhMl2Nckar1B8CPxzgRXnFwc/QsFTDXOXX+rtxnC4FJfffZ/2frV745c642AhOArDxk8OGDFkrexr5OMv0iJcY15cl6K9dfZWOKfFd5mxfWFhDWUSAoUZJsz4uVxpTCCoSJBe8Nf1aKk7PkZ+bXtV5bpuktySoPh0hG1M1dUg0WsSC2i6zp75AUxVW6c4GG7d9FMsTHIwyD7fEbV3TMRanSRFYNPOmft/oI7Q3oNGOGg26KCtX414FG02EnpmrttHQguY7cnHGG7i7s8mnyGv
+    HASURA_GRAPHQL_ADMIN_SECRET: >-
+      AgAQ9npiVSZcI8IA6kHHQ9tMaKYahCPmiYh9PoEmKIvisGCM4hQ2Q+UUoUvA2N3Id/GCxNZh3hqmTjLp+mHPy0e8rr9+/WVB5jrrqWO/oX2R1kXq0dbITF27UOjmTaUkZefPf7diHKpCXKGamkP6YbVuZa+1BBmBBfkIDJsraKO1CS/EO0QZAb0fHJiOkNy30j4pTTlg16JdugEj3kXdXXXZD/F8OyvlLBY1jivC/uFMGppNh1eRivgi4Y+krCDCuLphAa5YVslLMf7bboDD5Tk1b2HOCNYxQ96dxvkqCVtNd2rxXfDsYy9vMbQfYnsBjsIT7VZhk3GaMpVmPTRjp89XQDvj86+PrPtuFlgmfLrNvbvcqJ30y5lkD46c4Bd9zgwN4FeeVuY/oCKgfrN1qdCOT+ZYchkVQuCbKT+qK0gfOkYRt+B5feL5MtaEXX2MyhPS8wCvNLyAEth6NbmYxdXOPBXQrfGNcZYg/qjeB/muAzkd4wEPsR9ExoY5envlJ8Mx8LUQ/7A2tRp1jd+uy8s1hdb94BgOhcCqgzdqRkIVp40GiVHzVkFWQEkMEoX1Mw4iifs0QtAZu8qPyFWYORf9fty8zG/WX0RStdYbTuahCLb+Vqs2A5UEbg8nRdfl16aZJ3RY2fIoF1kYNG7XiZmp+bltOOqvYcOBnAr3Dy/y1PV1NrBMCULxibM57+nRyXrJe6TYLrJWPnp7meLLKppKPN3tgvx21s1/8bpbxC0xgshPZFgXQXgB
+    HASURA_GRAPHQL_JWT_SECRET: >-
+      AgAyuiPLqj0UMvhEkyEGF04LOp8al2O59/YGOei4hfkqcEw83rmJnb/o3nz96oLYG4gX/JlMT8grhUmR8wPG+Ah5UDuGK9POP75YYyNDQ05FrMDPCjQtEXNslqNp+oVS91ONUwJ7ARUr47vfQdxRoK03cFCboY0wEF8HMZzRjn5fXccttyT21kJV75Y0MtCif5jNCj+gtX2DIP9dNfvAJKCvOCzNJDALLmhv4tY71ZquGAiXf/+mJVP5ugRjFL0wYoKThAr3vph5cOPUo44swVilESu54gAoRlPNxFgOBXHS5Uu0VWryzTJyQGOElkYCxyBC45YzFZGMB3RWxaZtuForw76bD0RYWTVNsI+N/KmZdbYZO5Cs6HdqE2nptb3QAgpH0JOeWnzZGxTmkSOpEwCUGCJG+7ApPB5obIaVMZG39lWvZc/VTBZkTr7ufvOyIvwtYc9eh+AiNSy02gUXMzIkxK/eyWmKXowJcqXYK8K9iIgkLfMclUdWFQtHCN0h4OEyenRreP9qX8E34eeZ1ZwiDgJGOki8Ys4bphaFjSXZd82KRwuHDTIamAEGCUm7rLW9yOGE77AJpBTdqt2Qz9SUCXWbJewukbvtZwVtAEpEI/O+/KKNinObH0Lmhj8bRLn01rLgt9WsB972vEjboyzkT2gC7/G2Nx8O3IFiiJ9Ki5/hko5A4oorXdkCfuP7UfiKFR/pkXKqCOMrqi7uD7N0/qNtZ2j3satfeInOEldn1M6h7mz2IiRdszxq/RTsdFEO6h3X3lZLELXcDjgkZqCMXaPToAPRS2EKi6Ihs151VepGAerGOeq+DL+NU1aOwenivXe91vqDm9O0Cc3K756VBkUZA7ufFp3RKujk5fWygk0N8w0Zd9qU/tL7NqE/5n8xIdknzBI+qoHCrrOTnyMUpUEPuYbxY2lYkhb/4Afzte2nyM0K50I/4imEYWVsC+vNQ59OeYCoYcJBe19D+dm2rfxvYgy/H7scFjsl9rwCe23aPWQOJBJvcEnmgKOMRkG0cw6gvhBPVZ2w8gvIAfffLsj+zsag1izfgzcaajrfRr/kkxYk6R6Gz5tdjYSUz6P1Xk8LyCyB6st9IE433qlel4bwxjwh1CYz3pGUvAwj+TKsAF4xeiFd/LN3nitE74yGAOerbB/MrQqCcGbD6Anz2DWaFkhRxYKlJQsyy1rsxPzfo2wr8W/zpX7Jf17fHXJ96OG/WV2uZvudw7EjVdvxLhauabodjh3eC1/Kn9yvxJ5GTQLjJ04C/o7QgiIz+vNyxSqfvWf6zAsPJrAoHZXXoPbOaZVG2Sx1eWrhEIi8eV2z1x54SKLM0yy8lRTc2170AhLxqf4PaDTMR4ZTkhaIwPONeAIdHGnk3DVgYa/97WNO3j48ZnXwjKvp8mcKoe2Q9Y3WYuu4XafZg9UdDLbtePJiBlSF42uUbZsS4/oEU8ErRyodcOQPUYEM5SGuxceTvyxi6v7zhgYv3TiwWGgkoxznvFZ9H8m3SN0hCY4TINo9bnBAm2XRzZrhmGRpoKTOvQbkIXKoOzKeoQRgopjUdWW5X4EcKOW76X7B20x+2sPVkqwN/u5KFX3+HY3z1ui1+nIIKlbjUCY17QwxuVDP7yMU6xeBhtwUz0FkFGyHuSbrk+NhpA==
+  template:
+    metadata:
+      creationTimestamp: null
+      name: hasura-sealed-secret
+      annotations:
+        app.gitlab.com/app: socialgouv-sample-next-app
+        app.gitlab.com/env: master-dev2
+        app.gitlab.com/env.name: master-dev2
+      labels:
+        application: master-dev2-sample-next-app
+        owner: sample-next-app
+        team: sample-next-app
+        cert: wildcard
+    type: Opaque
+---
+metadata:
+  name: hasura-configmap
+  annotations:
+    app.gitlab.com/app: socialgouv-sample-next-app
+    app.gitlab.com/env: master-dev2
+    app.gitlab.com/env.name: master-dev2
+  labels:
+    application: master-dev2-sample-next-app
+    owner: sample-next-app
+    team: sample-next-app
+    cert: wildcard
+  namespace: sample-next-app-85-master-dev2
+data:
+  HASURA_GRAPHQL_ENABLE_CONSOLE: 'false'
+  HASURA_GRAPHQL_SERVER_PORT: '80'
+  HASURA_GRAPHQL_ENABLED_LOG_TYPES: 'startup, http-log, webhook-log, websocket-log, query-log'
+  HASURA_GRAPHQL_NO_OF_RETRIES: '5'
+  HASURA_GRAPHQL_UNAUTHORIZED_ROLE: anonymous
+  ACCOUNT_EMAIL_WEBHOOK_URL: 'http://app:3000/api/webhooks/account'
+apiVersion: v1
+kind: ConfigMap
+---
+metadata:
+  labels:
+    app: hasura
+    application: master-dev2-sample-next-app
+    owner: sample-next-app
+    team: sample-next-app
+    cert: wildcard
+  name: hasura
+  annotations:
+    app.gitlab.com/app: socialgouv-sample-next-app
+    app.gitlab.com/env: master-dev2
+    app.gitlab.com/env.name: master-dev2
+  namespace: sample-next-app-85-master-dev2
+spec:
+  ports:
+    - name: http
+      port: 80
+      targetPort: 80
+  selector:
+    app: hasura
+  type: ClusterIP
+apiVersion: v1
+kind: Service
+---
+apiVersion: bitnami.com/v1alpha1
+kind: SealedSecret
+metadata:
+  creationTimestamp: null
+  name: azure-pg-user
+  annotations:
+    app.gitlab.com/app: socialgouv-sample-next-app
+    app.gitlab.com/env: master-dev2
+    app.gitlab.com/env.name: master-dev2
+  labels:
+    application: master-dev2-sample-next-app
+    owner: sample-next-app
+    team: sample-next-app
+    cert: wildcard
+  namespace: sample-next-app-85-master-dev2
+spec:
+  encryptedData:
+    DATABASE_URL: >-
+      AgChXoL9ubO3gDoiVwOZrKKfXL9QeDWc+doOmKL+rumyq21Tm79aJNtzDigc4Sm/BMPCLuTxCNqHc2ZJdoGuxCXIkVqfx8vXDNnum+W/iQVWCMIs63FaMol1VV0EmFZDCNpL1iSSiZXoX9D6gcV4VwtZer/rJohGTqhyem7y0SND0hTp7MCzUP2B+u71S5rGUyzlmWJfHaf5kSuTb85LxNC7naMPGaI2pspaKW1FWHONWfj/ozfzmt7yhzjBTcZe8MOwqBwn4WhKn4YfVvFWQE2FqE1xQZ3u4cCqP2c0UigTSypVeIcgM5yYcJplbLNSOoVXJHR8uYqKqGxblTTf1bzRMlXlbLQwSfFx17GrDTz3flZxoiMHmGyD4R7CMUJNUjwCFHUVaTz0J/AI8wPiORZwOPhA0ldrPkbE7ZokqB1MLRRnkvZ9qpBCV23rhixuX/wlkwpL3JsakTZQads7H5246DMVEEip4t7BwkjSv65UKMlXKuFMy+Z1kISxWen54PyTIsaXpqid0s3tXW96j++gp2m1JfgDy0IL3c46XP5WJTdD45KxIrra8MEMWEM/68aNqRQa8ihjBL0ZTMUC5Y/x6Smyst4qfXzcEZD3zw6657pf5KzdjSW+3Q3nCkvQdkLBKcfrBKuqSQemqPjQeLZw2CfFLAnPMgh19VH36+WpzCcsRdFOTSTuJGWr0o5Trm9bmaqKlJuS6yuKVg2nU8WRjxjFK4N+5t0rkUSuYSl0pzLzt53vSlV0JfUbocp4wEfvGYmsmGpJk4O0iK6SRHFpGadXd44jZ1MQBgoNOFS33astaJyiue15IsSe/82Z8Nt6/CxWMya/ur2WzYzpVggAg68HE3E8dEAmThOkuvGIB66IppNZ4oda7ZKbd+DfddsqG3FravN8+SjU6A2aNxeh3HIY1YDXxMA2uBaXQdVF
+    HASURA_GRAPHQL_DATABASE_URL: >-
+      AgChXoL9ubO3gDoiVwOZrKKfXL9QeDWc+doOmKL+rumyq21Tm79aJNtzDigc4Sm/BMPCLuTxCNqHc2ZJdoGuxCXIkVqfx8vXDNnum+W/iQVWCMIs63FaMol1VV0EmFZDCNpL1iSSiZXoX9D6gcV4VwtZer/rJohGTqhyem7y0SND0hTp7MCzUP2B+u71S5rGUyzlmWJfHaf5kSuTb85LxNC7naMPGaI2pspaKW1FWHONWfj/ozfzmt7yhzjBTcZe8MOwqBwn4WhKn4YfVvFWQE2FqE1xQZ3u4cCqP2c0UigTSypVeIcgM5yYcJplbLNSOoVXJHR8uYqKqGxblTTf1bzRMlXlbLQwSfFx17GrDTz3flZxoiMHmGyD4R7CMUJNUjwCFHUVaTz0J/AI8wPiORZwOPhA0ldrPkbE7ZokqB1MLRRnkvZ9qpBCV23rhixuX/wlkwpL3JsakTZQads7H5246DMVEEip4t7BwkjSv65UKMlXKuFMy+Z1kISxWen54PyTIsaXpqid0s3tXW96j++gp2m1JfgDy0IL3c46XP5WJTdD45KxIrra8MEMWEM/68aNqRQa8ihjBL0ZTMUC5Y/x6Smyst4qfXzcEZD3zw6657pf5KzdjSW+3Q3nCkvQdkLBKcfrBKuqSQemqPjQeLZw2CfFLAnPMgh19VH36+WpzCcsRdFOTSTuJGWr0o5Trm9bmaqKlJuS6yuKVg2nU8WRjxjFK4N+5t0rkUSuYSl0pzLzt53vSlV0JfUbocp4wEfvGYmsmGpJk4O0iK6SRHFpGadXd44jZ1MQBgoNOFS33astaJyiue15IsSe/82Z8Nt6/CxWMya/ur2WzYzpVggAg68HE3E8dEAmThOkuvGIB66IppNZ4oda7ZKbd+DfddsqG3FravN8+SjU6A2aNxeh3HIY1YDXxMA2uBaXQdVF
+    PGDATABASE: >-
+      AgCPmg9L23oNElDuc4fMjBr4qSBO+RFTdyWnI9AVei5yW9My5lQKOx+b2Fu8aZHuzzmU5pkmK0tpBpmoJR6QDds1jQtR/XBw3j+o74lgLU8C9PNQypxx/myqIG2ASlnCO8evsvQI2mofKCwfl7eMLwdEl2C5k5Y3AlH+Qjn+z3feu/w3h/bHwNj6n2Wv0W8YI+bPPCO/4UrVP+rb6/dqmhZI+9vFhFHW4ACTtzP/ILh5nEt3qP5TnfK9BuQSrIEyeXG2H8+TQ+pix+zWkr5XbMg0Un/DmCh/fVjRyO0sQwNMOr+P7ePcUZ8zt09/5zn/NPQE8Jz9CRSQmod0kyH6SOgHcN79HLfuV1Ov6i72IQLC1p7NAA90lN0FSUAyYUH5l7tSGOg5QyEPMMto3KjLgBKiOCLMBKyfySqG7C0dMBOizwV9T4WrabMPCeG10f/gYr1+LHzyi95A6NEapBPeGPS4zv/S+fBGP+sKxiFzekdo3Xk7DNrVewkzwyeKqn0IWKq2idDYn5H1R2dHsKacNzV7kvNDM9AzkMvxMFw18etpyQ7coiIbQZieIbp7AywEUmfs98/ld/KCli1ayTK8KIKW64mohufiG3vD5C2mY0w9qpI3JvD3czYyeFNUEE+Swgn/Psqifp/K6twQVB/jF/y8ADF7so4iKzckcR3hzvNZTwc9T3JlBKfUq6bthACfF5huD9jbzExlfgLrt2YZ
+    PGHOST: >-
+      AgAHMLNN6/Lire1zToAZvMVgUakKXeD29rSsczSEvF3IHhXZHkoSUkr5shFwnTnpyvK81U6ftv0hhXb052Xg43CQzJIZF3rLhLIYMs8rD0jlBtFxWuqFRe9Eq2ZbBL6JKJJJgmNOSSvV3fOQLwH9Nm9tiELUlVB8AwF7+ZhwF1w5PIJJOaxEBchscheBePwFumxqnZ8RS7uwStOYrkbKzzk3UYckkGRO7zViZhu6sBqR+Q+gEX7MJ1zZgLiOGA/AlrCc8I1YQcHabAgjxH1uzUmE2Yxa+O0G0eZyYDzgTylueLKgN+kIkut6E/1TdBAZdHP9u1LkUW3+Y8Ma9ZK3FR8AXulOk7W5VJZxdzgn0cRn7SgBYS7BMdJTmMcsb7XynW1P0614acVSAINFqKjsUSDTl/AUqqm1thefE3eDk8aYkaeis1MB5ZdvQAXhFZJ2nQyh7geib0LLVDg4huC+rhEvBRvGsw9AfRXmGGfMN1fyVHxL6uCaJWoOraBTEPrXaHwXyp9pDIya/ulWDHSes/wTQBgF75yqf/L1VnDKBJ70WSnVd7Sbq8C5Xuw+n2vf7/Fnu7TYDTCgRepjnWo5Dsl4hD5zcI9nZqk8wEHO/Id9ZK8cwiDSkniuES51LHrx0gFcMaxaTXI/7Xx2+3j6rpsZfoEM3BqV8wFYOB0bc1RwRuMqC3xGPV5YagtOKjLY+8G4mLYvMbKKrqstSOBR6bg0wVSycNn0BascDt6i89Jlkc/lHOu1mwxZaSNPDIYDMSLtEGY=
+    PGPASSWORD: >-
+      AgB2f0i3Lv8mgeyS/0XBbzLjaRZ8PfPCvomzEy+cAjAiaJQQPXZ0tzRtit9m8bwOO/HilZKqeuxQnDpOPEIvcJ/7AUpxescN2rReGQnMzNHk6p1ilPj5PIjyrQtVCn1ezB9RIULdYgRteh98uTHIjXO8gFls8zZj7jG1rep7upSfyBDlsU5nq98bH6olj0b2Jz/MBsgyryBB/lSNUut+T1X1tAblurd6CejRMgqtMO2K/wnZspc5Rvd3NIfbtsMgpokTZ2wbcFexMWlIBpbyU6FrHUOWe/he7TPTjW49pOVwTMNqT7bmU4EdhZOtHm6qhPmDYHiD2K91+cPCq6C7ys/FJk3uSo0wdBGWNLb0AQV61LOImnsVRHuM3fs7rVJ+wCd5o3ticYfpyXj6hLYFzFlJv4Etp/Bnqy5KDazLBKmsXWAL9CsVbVuSkiXGHuVGBhVZ71Kd4IRmzHqbBQwZhfKSuk8l7AXAFjf0S97StsyLeF6WeEk9JBLFYv7l24cRmISM/Kjqm9otOwohOIAd0tYGTm3i6sl2Ym6rkEtZy2Qa6SyjFS+ic2VJ53//Mx6XnnAlVltZKB2TL2bFpTt4avZUb8NMhggQhp9a8Mch0kXN47CZgc/ETciI1mzY4WUcJ92OCggIxSIKwOZqAM6xqMHT81kry1roRByqxa0/LktyEUfmuNtQuAbSS14JzOkrNK5LdCitHUR99yC9b+M1AOBI1HReN184fg6/C1TxlFmdSDUlP09wSn42
+    PGSSLMODE: >-
+      AgAINM6BMnjTbcNLUgVFpgiaVsKfYG/4U4eQeopY9MUg3lJo7eWIHDvPJ4aXZorCm7hykM4bge+bkOhtZt16/DWCel28ziw7OvjUhVgaU4ua5Zse560BOauInEFty9IsLYsoIslxdkG4b577FpjTV12f5xw4lGJATqPavZGpLJgCtct2EYxiXgMySpx0bbK6uCSlu9yw9SLO1kjctzZtgNOI2E423ppaPOKFWc73ImgTOem/rtKdEIbY91/PtXR4iW8u7b0IEwrl+sp/lKz0wMqejEU59eqa2iiFu7kzJBWurEFrQKiYsySeXVeeRs0Kdx1+Xq8ti+vmJiDJOEPQhFNWlYMNksIAKMQPCuZf/1V2Yd+tImd9Hs5sJPYEWZqIObCYR36CoK7ipnumVZDBtyzQ8PZp9E4la+EnrBxJ0LOkDkT95ta9At/0XLMGmiyCqk+S1fW5IeSSneMrS6tiPkUjpDq43rOgWnN7fTWzOcu7w/DU5pIh4l6nIOD78Gbvh0wCBqxG6LUhOSPxCjc7BX6RxnxSWJe4Kn5aXFCsJFhNcwpwklgDbGivFnZiamaW0piCwmzY4LPqQXxie9a5lJblThKw1hNQ50hRCeODQW/G69NS9KSnMJg+54jWd6sJ+XbMtOHNvjmqZB2KeG8Px5IwncZt8eH7elN3a8IT74HkVH8SIGEuN8v/e82/BHvrKbVCsnVzqVNM
+    PGUSER: >-
+      AgCC+9O3guxzQyUwCqIJRqaDj35mMU/nI2hFc4ICluzJHXxVzzWhBEUokuU4wPltFY2Zumoo0UH7CKlsZj7xi/my4IpgjDU+c8QH36Mw2xj8RSjRzB58wstowRFZ9jvk9wqElr8pfkAJh+eOkMxypTAp8EIPZyzsqS2f4x75xwcmphftMGA4ygCiqLEVneM6fsrdeViOz1PfYS/wbml/vaBpmTnXygrwPdgXs9+4pswqw+SH59ySD5nUzQ1MMzQ9JAo8FT6TurbQJ+xx8jrYO0VlL/k26u2idDPzWHzL+IVZP2fpNEExQkFYYYzQ716ChZ2X09i4CLT8KxnS2Bq9E5KboCAVdhLjOx7sPv9FV5CW4oWuiNadqhQNvleyRFkwabga7jbO0YmlCsoK4jqgUUiNFSmXACQLjyYRKX4BaOL3LxCCMAk9VZUjTvsKRXjjCP62l4aAceSOmbsFwZeG4Q+RWyMIIpEhhI+0TevK29ZY9uUtPnColGFzJ2RG5v+wxMqdTeMk/5635bzU6Do8MrQj9eHGwpJ/2URH0O+e1WLcEe9uv09M2cDf5DfkUK2tZ7CPKl7Uzwxzucsmae4XzvfqnO55GuZZ6d55CnNYHwhjd8ig2RLHKn89XGraV7gZmYp//6qOOcyvxCxbKajvRtYncOVF6SG6MF40a/Qdujd7U5WA2T1IO6LuoPxWY/sdJZsl2sjt+SneqnShKveiL5HvsZgfm6TOwRebImOuLNIb2t3TGaVy
+  template:
+    metadata:
+      creationTimestamp: null
+      name: azure-pg-user
+      annotations:
+        app.gitlab.com/app: socialgouv-sample-next-app
+        app.gitlab.com/env: master-dev2
+        app.gitlab.com/env.name: master-dev2
+      labels:
+        application: master-dev2-sample-next-app
+        owner: sample-next-app
+        team: sample-next-app
+        cert: wildcard
+    type: Opaque
+"
+`;
