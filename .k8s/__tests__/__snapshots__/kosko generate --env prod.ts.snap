@@ -32,6 +32,7 @@ metadata:
     owner: sample-next-app
     team: sample-next-app
     cert: wildcard
+    component: pgweb
   name: pgweb
   namespace: sample-next-app-85-master-dev2
 spec:
@@ -51,17 +52,18 @@ spec:
         owner: sample-next-app
         team: sample-next-app
         cert: wildcard
+        component: pgweb
     spec:
       containers:
-        - image: 'sosedoff/pgweb:latest'
+        - image: 'sosedoff/pgweb:0.11.7'
           livenessProbe:
             failureThreshold: 6
             httpGet:
               path: /
               port: http
-            initialDelaySeconds: 5
+            initialDelaySeconds: 30
             periodSeconds: 5
-            timeoutSeconds: 3
+            timeoutSeconds: 5
           name: pgweb
           ports:
             - containerPort: 8081
@@ -71,21 +73,21 @@ spec:
             httpGet:
               path: /
               port: http
-            initialDelaySeconds: 5
+            initialDelaySeconds: 0
             periodSeconds: 5
             successThreshold: 1
-            timeoutSeconds: 3
+            timeoutSeconds: 1
           resources:
             limits:
               cpu: 500m
-              memory: 128Mi
+              memory: 256Mi
             requests:
-              cpu: 5m
-              memory: 16Mi
+              cpu: 100m
+              memory: 64Mi
           startupProbe:
             failureThreshold: 12
             httpGet:
-              path: /healthz
+              path: /
               port: http
             periodSeconds: 5
           envFrom:
