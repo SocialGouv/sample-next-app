@@ -6,7 +6,7 @@ const namespace = createNamespace();
 if (namespace && namespace.metadata) {
   namespace.metadata.labels = {
     ...namespace.metadata.labels,
-    "azure-pg-admin-secret": "sample-next-app",
+    "azure-pg-admin-user": "sample-next-app",
   };
 }
 
