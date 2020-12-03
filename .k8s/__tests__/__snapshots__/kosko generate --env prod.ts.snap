@@ -4,183 +4,16 @@ exports[`kosko generate --prod 1`] = `
 "---
 metadata:
   annotations:
-    field.cattle.io/creatorId: gitlab
-    field.cattle.io/projectId: ''
-    git/branch: master
-    git/remote: >-
-      https://gitlab-ci-token:[MASKED]@gitlab.factory.social.gouv.fr/SocialGouv/sample-next-app.git
     app.gitlab.com/app: socialgouv-sample-next-app
-    app.gitlab.com/env: master-dev2
-    app.gitlab.com/env.name: master-dev2
-  labels:
-    application: master-dev2-sample-next-app
-    owner: sample-next-app
-    team: sample-next-app
-    cert: wildcard
-  name: sample-next-app-85-master-dev2
-apiVersion: v1
-kind: Namespace
----
-metadata:
-  annotations:
-    app.gitlab.com/app: socialgouv-sample-next-app
-    app.gitlab.com/env: master-dev2
-    app.gitlab.com/env.name: master-dev2
-  labels:
-    app: pgweb
-    application: master-dev2-sample-next-app
-    owner: sample-next-app
-    team: sample-next-app
-    cert: wildcard
-    component: pgweb
-  name: pgweb
-  namespace: sample-next-app-85-master-dev2
-spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: pgweb
-  template:
-    metadata:
-      annotations:
-        app.gitlab.com/app: socialgouv-sample-next-app
-        app.gitlab.com/env: master-dev2
-        app.gitlab.com/env.name: master-dev2
-      labels:
-        app: pgweb
-        application: master-dev2-sample-next-app
-        owner: sample-next-app
-        team: sample-next-app
-        cert: wildcard
-        component: pgweb
-    spec:
-      containers:
-        - image: 'sosedoff/pgweb:0.11.7'
-          livenessProbe:
-            failureThreshold: 6
-            httpGet:
-              path: /
-              port: http
-            initialDelaySeconds: 30
-            periodSeconds: 5
-            timeoutSeconds: 5
-          name: pgweb
-          ports:
-            - containerPort: 8081
-              name: http
-          readinessProbe:
-            failureThreshold: 15
-            httpGet:
-              path: /
-              port: http
-            initialDelaySeconds: 0
-            periodSeconds: 5
-            successThreshold: 1
-            timeoutSeconds: 1
-          resources:
-            limits:
-              cpu: 500m
-              memory: 256Mi
-            requests:
-              cpu: 100m
-              memory: 64Mi
-          startupProbe:
-            failureThreshold: 12
-            httpGet:
-              path: /
-              port: http
-            periodSeconds: 5
-          envFrom:
-            - secretRef:
-                name: azure-pg-user-c18cfdbb
-      initContainers:
-        - env:
-            - name: WAIT_FOR_RETRIES
-              value: '24'
-          envFrom:
-            - secretRef:
-                name: azure-pg-user-c18cfdbb
-          image: >-
-            registry.gitlab.factory.social.gouv.fr/socialgouv/docker/wait-for-postgres:2.0.0
-          imagePullPolicy: Always
-          name: wait-for-postgres
-          resources:
-            limits:
-              cpu: 20m
-              memory: 32Mi
-            requests:
-              cpu: 5m
-              memory: 16Mi
-apiVersion: apps/v1
-kind: Deployment
----
-metadata:
-  labels:
-    app: pgweb
-    application: master-dev2-sample-next-app
-    owner: sample-next-app
-    team: sample-next-app
-    cert: wildcard
-  name: pgweb
-  annotations:
-    app.gitlab.com/app: socialgouv-sample-next-app
-    app.gitlab.com/env: master-dev2
-    app.gitlab.com/env.name: master-dev2
-  namespace: sample-next-app-85-master-dev2
-spec:
-  ports:
-    - name: http
-      port: 80
-      targetPort: 8081
-  selector:
-    app: pgweb
-  type: ClusterIP
-apiVersion: v1
-kind: Service
----
-metadata:
-  annotations:
-    kubernetes.io/ingress.class: nginx
-    app.gitlab.com/app: socialgouv-sample-next-app
-    app.gitlab.com/env: master-dev2
-    app.gitlab.com/env.name: master-dev2
-  labels:
-    app: pgweb
-    application: master-dev2-sample-next-app
-    owner: sample-next-app
-    team: sample-next-app
-    cert: wildcard
-  name: pgweb
-  namespace: sample-next-app-85-master-dev2
-spec:
-  rules:
-    - host: pgweb-master-dev2-sample-next-app.dev2.fabrique.social.gouv.fr
-      http:
-        paths:
-          - backend:
-              serviceName: pgweb
-              servicePort: 80
-            path: /
-  tls:
-    - hosts:
-        - pgweb-master-dev2-sample-next-app.dev2.fabrique.social.gouv.fr
-      secretName: wildcard-crt
-apiVersion: extensions/v1beta1
-kind: Ingress
----
-metadata:
-  annotations:
-    app.gitlab.com/app: socialgouv-sample-next-app
-    app.gitlab.com/env: master-dev2
-    app.gitlab.com/env.name: master-dev2
+    app.gitlab.com/env: prod2
+    app.gitlab.com/env.name: prod2
   labels:
     app: app
-    application: master-dev2-sample-next-app
+    application: sample-next-app
     owner: sample-next-app
     team: sample-next-app
-    cert: wildcard
   name: app
-  namespace: sample-next-app-85-master-dev2
+  namespace: sample-next-app
 spec:
   replicas: 1
   selector:
@@ -190,14 +23,13 @@ spec:
     metadata:
       annotations:
         app.gitlab.com/app: socialgouv-sample-next-app
-        app.gitlab.com/env: master-dev2
-        app.gitlab.com/env.name: master-dev2
+        app.gitlab.com/env: prod2
+        app.gitlab.com/env.name: prod2
       labels:
         app: app
-        application: master-dev2-sample-next-app
+        application: sample-next-app
         owner: sample-next-app
         team: sample-next-app
-        cert: wildcard
     spec:
       containers:
         - image: >-
@@ -249,16 +81,15 @@ kind: SealedSecret
 metadata:
   creationTimestamp: null
   name: app-sealed-secret
-  namespace: sample-next-app-85-master-dev2
+  namespace: sample-next-app
   annotations:
     app.gitlab.com/app: socialgouv-sample-next-app
-    app.gitlab.com/env: master-dev2
-    app.gitlab.com/env.name: master-dev2
+    app.gitlab.com/env: prod2
+    app.gitlab.com/env.name: prod2
   labels:
-    application: master-dev2-sample-next-app
+    application: sample-next-app
     owner: sample-next-app
     team: sample-next-app
-    cert: wildcard
 spec:
   encryptedData:
     SMTP_EMAIL_PASSWORD: >-
@@ -273,27 +104,25 @@ spec:
       name: app-sealed-secret
       annotations:
         app.gitlab.com/app: socialgouv-sample-next-app
-        app.gitlab.com/env: master-dev2
-        app.gitlab.com/env.name: master-dev2
+        app.gitlab.com/env: prod2
+        app.gitlab.com/env.name: prod2
       labels:
-        application: master-dev2-sample-next-app
+        application: sample-next-app
         owner: sample-next-app
         team: sample-next-app
-        cert: wildcard
     type: Opaque
 ---
 metadata:
   name: app-configmap
   annotations:
     app.gitlab.com/app: socialgouv-sample-next-app
-    app.gitlab.com/env: master-dev2
-    app.gitlab.com/env.name: master-dev2
+    app.gitlab.com/env: prod2
+    app.gitlab.com/env.name: prod2
   labels:
-    application: master-dev2-sample-next-app
+    application: sample-next-app
     owner: sample-next-app
     team: sample-next-app
-    cert: wildcard
-  namespace: sample-next-app-85-master-dev2
+  namespace: sample-next-app
 data:
   NODE_ENV: production
   GRAPHQL_ENDPOINT: 'http://hasura/v1/graphql'
@@ -306,16 +135,15 @@ kind: ConfigMap
 metadata:
   labels:
     app: app
-    application: master-dev2-sample-next-app
+    application: sample-next-app
     owner: sample-next-app
     team: sample-next-app
-    cert: wildcard
   name: app
   annotations:
     app.gitlab.com/app: socialgouv-sample-next-app
-    app.gitlab.com/env: master-dev2
-    app.gitlab.com/env.name: master-dev2
-  namespace: sample-next-app-85-master-dev2
+    app.gitlab.com/env: prod2
+    app.gitlab.com/env.name: prod2
+  namespace: sample-next-app
 spec:
   ports:
     - name: http
@@ -330,20 +158,21 @@ kind: Service
 metadata:
   annotations:
     kubernetes.io/ingress.class: nginx
+    certmanager.k8s.io/cluster-issuer: letsencrypt-prod
+    kubernetes.io/tls-acme: 'true'
     app.gitlab.com/app: socialgouv-sample-next-app
-    app.gitlab.com/env: master-dev2
-    app.gitlab.com/env.name: master-dev2
+    app.gitlab.com/env: prod2
+    app.gitlab.com/env.name: prod2
   labels:
     app: app
-    application: master-dev2-sample-next-app
+    application: sample-next-app
     owner: sample-next-app
     team: sample-next-app
-    cert: wildcard
   name: app
-  namespace: sample-next-app-85-master-dev2
+  namespace: sample-next-app
 spec:
   rules:
-    - host: master-dev2-sample-next-app.dev2.fabrique.social.gouv.fr
+    - host: sample-next-app.fabrique.social.gouv.fr
       http:
         paths:
           - backend:
@@ -352,24 +181,23 @@ spec:
             path: /
   tls:
     - hosts:
-        - master-dev2-sample-next-app.dev2.fabrique.social.gouv.fr
-      secretName: wildcard-crt
+        - sample-next-app.fabrique.social.gouv.fr
+      secretName: app-crt
 apiVersion: extensions/v1beta1
 kind: Ingress
 ---
 metadata:
   annotations:
     app.gitlab.com/app: socialgouv-sample-next-app
-    app.gitlab.com/env: master-dev2
-    app.gitlab.com/env.name: master-dev2
+    app.gitlab.com/env: prod2
+    app.gitlab.com/env.name: prod2
   labels:
     app: hasura
-    application: master-dev2-sample-next-app
+    application: sample-next-app
     owner: sample-next-app
     team: sample-next-app
-    cert: wildcard
   name: hasura
-  namespace: sample-next-app-85-master-dev2
+  namespace: sample-next-app
 spec:
   replicas: 1
   selector:
@@ -379,14 +207,13 @@ spec:
     metadata:
       annotations:
         app.gitlab.com/app: socialgouv-sample-next-app
-        app.gitlab.com/env: master-dev2
-        app.gitlab.com/env.name: master-dev2
+        app.gitlab.com/env: prod2
+        app.gitlab.com/env.name: prod2
       labels:
         app: hasura
-        application: master-dev2-sample-next-app
+        application: sample-next-app
         owner: sample-next-app
         team: sample-next-app
-        cert: wildcard
     spec:
       containers:
         - image: >-
@@ -460,14 +287,13 @@ metadata:
   name: hasura-sealed-secret
   annotations:
     app.gitlab.com/app: socialgouv-sample-next-app
-    app.gitlab.com/env: master-dev2
-    app.gitlab.com/env.name: master-dev2
+    app.gitlab.com/env: prod2
+    app.gitlab.com/env.name: prod2
   labels:
-    application: master-dev2-sample-next-app
+    application: sample-next-app
     owner: sample-next-app
     team: sample-next-app
-    cert: wildcard
-  namespace: sample-next-app-85-master-dev2
+  namespace: sample-next-app
 spec:
   encryptedData:
     ACCOUNT_EMAIL_SECRET: >-
@@ -482,27 +308,25 @@ spec:
       name: hasura-sealed-secret
       annotations:
         app.gitlab.com/app: socialgouv-sample-next-app
-        app.gitlab.com/env: master-dev2
-        app.gitlab.com/env.name: master-dev2
+        app.gitlab.com/env: prod2
+        app.gitlab.com/env.name: prod2
       labels:
-        application: master-dev2-sample-next-app
+        application: sample-next-app
         owner: sample-next-app
         team: sample-next-app
-        cert: wildcard
     type: Opaque
 ---
 metadata:
   name: hasura-configmap
   annotations:
     app.gitlab.com/app: socialgouv-sample-next-app
-    app.gitlab.com/env: master-dev2
-    app.gitlab.com/env.name: master-dev2
+    app.gitlab.com/env: prod2
+    app.gitlab.com/env.name: prod2
   labels:
-    application: master-dev2-sample-next-app
+    application: sample-next-app
     owner: sample-next-app
     team: sample-next-app
-    cert: wildcard
-  namespace: sample-next-app-85-master-dev2
+  namespace: sample-next-app
 data:
   HASURA_GRAPHQL_ENABLE_CONSOLE: 'false'
   HASURA_GRAPHQL_SERVER_PORT: '80'
@@ -516,16 +340,15 @@ kind: ConfigMap
 metadata:
   labels:
     app: hasura
-    application: master-dev2-sample-next-app
+    application: sample-next-app
     owner: sample-next-app
     team: sample-next-app
-    cert: wildcard
   name: hasura
   annotations:
     app.gitlab.com/app: socialgouv-sample-next-app
-    app.gitlab.com/env: master-dev2
-    app.gitlab.com/env.name: master-dev2
-  namespace: sample-next-app-85-master-dev2
+    app.gitlab.com/env: prod2
+    app.gitlab.com/env.name: prod2
+  namespace: sample-next-app
 spec:
   ports:
     - name: http
@@ -544,14 +367,13 @@ metadata:
   name: azure-pg-user
   annotations:
     app.gitlab.com/app: socialgouv-sample-next-app
-    app.gitlab.com/env: master-dev2
-    app.gitlab.com/env.name: master-dev2
+    app.gitlab.com/env: prod2
+    app.gitlab.com/env.name: prod2
   labels:
-    application: master-dev2-sample-next-app
+    application: sample-next-app
     owner: sample-next-app
     team: sample-next-app
-    cert: wildcard
-  namespace: sample-next-app-85-master-dev2
+  namespace: sample-next-app
 spec:
   encryptedData:
     DATABASE_URL: >-
@@ -574,13 +396,12 @@ spec:
       name: azure-pg-user
       annotations:
         app.gitlab.com/app: socialgouv-sample-next-app
-        app.gitlab.com/env: master-dev2
-        app.gitlab.com/env.name: master-dev2
+        app.gitlab.com/env: prod2
+        app.gitlab.com/env.name: prod2
       labels:
-        application: master-dev2-sample-next-app
+        application: sample-next-app
         owner: sample-next-app
         team: sample-next-app
-        cert: wildcard
     type: Opaque
 "
 `;
