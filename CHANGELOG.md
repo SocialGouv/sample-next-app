@@ -1,3 +1,10 @@
+## [2.1.1](https://github.com/SocialGouv/sample-next-app/compare/v2.1.0...v2.1.1) (2020-12-03)
+
+
+### Bug Fixes
+
+* **k8s:** update k8s snapshots to allow test to pass on preprod ([06e0c1a](https://github.com/SocialGouv/sample-next-app/commit/06e0c1a261e282c419a4660d544e65ae7182a473))
+
 # [2.1.0](https://github.com/SocialGouv/sample-next-app/compare/v2.0.1...v2.1.0) (2020-12-03)
 
 
