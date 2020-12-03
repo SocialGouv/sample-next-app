@@ -1,3 +1,10 @@
+# [2.1.0](https://github.com/SocialGouv/sample-next-app/compare/v2.0.1...v2.1.0) (2020-12-03)
+
+
+### Features
+
+* **k8s:** use @socialgouv/kosko-charts@alpha ([#428](https://github.com/SocialGouv/sample-next-app/issues/428)) ([b44df6d](https://github.com/SocialGouv/sample-next-app/commit/b44df6dcda552f5dfe9fac3ffdf04be1a045471d))
+
 ## [2.0.1](https://github.com/SocialGouv/sample-next-app/compare/v2.0.0...v2.0.1) (2020-08-07)
 
 
