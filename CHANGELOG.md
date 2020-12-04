@@ -1,3 +1,10 @@
+## [2.1.2-beta.3](https://github.com/SocialGouv/sample-next-app/compare/v2.1.2-beta.2...v2.1.2-beta.3) (2020-12-04)
+
+
+### Bug Fixes
+
+* **k8s:** patch conflicting variables ([b2397e3](https://github.com/SocialGouv/sample-next-app/commit/b2397e3424351bc4f1189c87384aaf723e762170))
+
 ## [2.1.2-beta.2](https://github.com/SocialGouv/sample-next-app/compare/v2.1.2-beta.1...v2.1.2-beta.2) (2020-12-04)
 
 
