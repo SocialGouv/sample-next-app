@@ -1,7 +1,7 @@
 include:
   - project: SocialGouv/gitlab-ci-yml
     file: /autodevops.yml
-    ref: v19.0.0
+    ref: douglasduteil/feat-kosko-share-env-with-the-user
 
 variables:
   AUTO_DEVOPS_RELEASE_AUTO: "🔖"
