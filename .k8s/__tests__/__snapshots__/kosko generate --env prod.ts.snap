@@ -33,7 +33,7 @@ spec:
     spec:
       containers:
         - image: >-
-            registry.gitlab.factory.social.gouv.fr/socialgouv/sample-next-app/app:c18cfdbb191c5c401f4110e1f15707b21ca995df
+            registry.gitlab.factory.social.gouv.fr/socialgouv/sample-next-app/app:0123456789abcdefghijklmnopqrstuvwxyz0123
           livenessProbe:
             failureThreshold: 6
             httpGet:
@@ -217,7 +217,7 @@ spec:
     spec:
       containers:
         - image: >-
-            registry.gitlab.factory.social.gouv.fr/socialgouv/sample-next-app/hasura:c18cfdbb191c5c401f4110e1f15707b21ca995df
+            registry.gitlab.factory.social.gouv.fr/socialgouv/sample-next-app/hasura:0123456789abcdefghijklmnopqrstuvwxyz0123
           livenessProbe:
             failureThreshold: 6
             httpGet:
@@ -254,7 +254,7 @@ spec:
             periodSeconds: 5
           envFrom:
             - secretRef:
-                name: azure-pg-user-c18cfdbb
+                name: azure-pg-user-0123456
             - secretRef:
                 name: hasura-sealed-secret
             - configMapRef:
@@ -265,7 +265,7 @@ spec:
               value: '24'
           envFrom:
             - secretRef:
-                name: azure-pg-user-c18cfdbb
+                name: azure-pg-user-0123456
           image: >-
             registry.gitlab.factory.social.gouv.fr/socialgouv/docker/wait-for-postgres:2.0.0
           imagePullPolicy: Always

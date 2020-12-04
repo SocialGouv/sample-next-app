@@ -13,6 +13,7 @@ metadata:
     app.gitlab.com/env: preprod-dev2
     app.gitlab.com/env.name: preprod-dev2
   labels:
+    azure-pg-admin-user: sample-next-app
     application: v1-2-3-sample-next-app
     owner: sample-next-app
     team: sample-next-app
