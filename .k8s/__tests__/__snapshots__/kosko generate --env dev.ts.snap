@@ -593,7 +593,7 @@ spec:
             - name: NEW_PASSWORD
               value: password_0123456
             - name: NEW_DB_EXTENSIONS
-              value: hstore pgcrypto citext
+              value: hstore pgcrypto citext uuid-ossp
           envFrom:
             - secretRef:
                 name: azure-pg-admin-user
@@ -633,7 +633,7 @@ metadata:
     team: sample-next-app
     cert: wildcard
   name: create-db-job-0123456
-  namespace: sample-next-app-secret
+  namespace: sample-next-app-85-master-dev2
 ---
 stringData:
   DATABASE_URL: >-
