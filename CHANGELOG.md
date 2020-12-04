@@ -1,3 +1,13 @@
+## [2.1.2](https://github.com/SocialGouv/sample-next-app/compare/v2.1.1...v2.1.2) (2020-12-04)
+
+
+### Bug Fixes
+
+* **k8s:** patch conflicting variables ([b2397e3](https://github.com/SocialGouv/sample-next-app/commit/b2397e3424351bc4f1189c87384aaf723e762170))
+* force path version ([8e5653b](https://github.com/SocialGouv/sample-next-app/commit/8e5653b17f536ad8d7f7a909d7f1b25c730189db))
+* force path version ([725b1a7](https://github.com/SocialGouv/sample-next-app/commit/725b1a786271b3d6a68f7c6ad12e25b0406ea969))
+* **gitlab:** test SocialGouv/gitlab-ci-yml#f2ee09e commit ([9a6afd5](https://github.com/SocialGouv/sample-next-app/commit/9a6afd5f37771d6a2d6b2f5493203f5b7be46019)), closes [SocialGouv/gitlab-ci-yml#f2ee09](https://github.com/SocialGouv/gitlab-ci-yml/issues/f2ee09)
+
 ## [2.1.2-beta.3](https://github.com/SocialGouv/sample-next-app/compare/v2.1.2-beta.2...v2.1.2-beta.3) (2020-12-04)
 
 
