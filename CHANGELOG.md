@@ -1,3 +1,11 @@
+## [2.1.2-beta.2](https://github.com/SocialGouv/sample-next-app/compare/v2.1.2-beta.1...v2.1.2-beta.2) (2020-12-04)
+
+
+### Bug Fixes
+
+* force path version ([8e5653b](https://github.com/SocialGouv/sample-next-app/commit/8e5653b17f536ad8d7f7a909d7f1b25c730189db))
+* force path version ([725b1a7](https://github.com/SocialGouv/sample-next-app/commit/725b1a786271b3d6a68f7c6ad12e25b0406ea969))
+
 ## [2.1.2-beta.1](https://github.com/SocialGouv/sample-next-app/compare/v2.1.1...v2.1.2-beta.1) (2020-12-04)
 
 
