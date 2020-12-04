@@ -1,3 +1,10 @@
+## [2.1.3](https://github.com/SocialGouv/sample-next-app/compare/v2.1.2...v2.1.3) (2020-12-04)
+
+
+### Reverts
+
+* Revert "fix(gitlab): test SocialGouv/gitlab-ci-yml#f2ee09e commit" ([6b10284](https://github.com/SocialGouv/sample-next-app/commit/6b1028469e92ddf2eea322db0c37d75e1a23a75b)), closes [SocialGouv/gitlab-ci-yml#f2ee09](https://github.com/SocialGouv/gitlab-ci-yml/issues/f2ee09)
+
 ## [2.1.2](https://github.com/SocialGouv/sample-next-app/compare/v2.1.1...v2.1.2) (2020-12-04)
 
 
