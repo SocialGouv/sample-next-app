@@ -1,3 +1,10 @@
+## [2.1.2-beta.1](https://github.com/SocialGouv/sample-next-app/compare/v2.1.1...v2.1.2-beta.1) (2020-12-04)
+
+
+### Bug Fixes
+
+* **gitlab:** test SocialGouv/gitlab-ci-yml#f2ee09e commit ([9a6afd5](https://github.com/SocialGouv/sample-next-app/commit/9a6afd5f37771d6a2d6b2f5493203f5b7be46019)), closes [SocialGouv/gitlab-ci-yml#f2ee09](https://github.com/SocialGouv/gitlab-ci-yml/issues/f2ee09)
+
 ## [2.1.1](https://github.com/SocialGouv/sample-next-app/compare/v2.1.0...v2.1.1) (2020-12-03)
 
 
