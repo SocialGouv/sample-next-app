@@ -8,6 +8,7 @@
     "gitlab:dev": "yarn --silent gitlab --env dev",
     "gitlab:preprod": "yarn --silent gitlab --env preprod",
     "gitlab:prod": "yarn --silent gitlab --env prod",
+    "test": "exit 0",
     "xxx": "DOTENV_CONFIG_PATH=./environments/.gitlab-ci.env npx ts-node --require dotenv/config ./main.js"
   },
   "dependencies": {
