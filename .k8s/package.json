@@ -13,7 +13,7 @@
   "dependencies": {
     "@kosko/env": "^0.5.2",
     "@socialgouv/kosko-charts": "^4.0.0-alpha.13",
-    "kubernetes-models": "^0.8.1"
+    "kubernetes-models": "^1.0.1"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",
