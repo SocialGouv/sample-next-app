@@ -36,7 +36,7 @@
   },
   "devDependencies": {
     "@commitlint/cli": "^11.0.0",
-    "@commitlint/config-conventional": "^9.1.2",
+    "@commitlint/config-conventional": "^11.0.0",
     "@socialgouv/eslint-config-react": "^0.35.0",
     "@socialgouv/eslint-config-recommended": "^0.35.0",
     "eslint": "^7.10.0",
