@@ -1,3 +1,56 @@
+## [2.1.3](https://github.com/SocialGouv/sample-next-app/compare/v2.1.2...v2.1.3) (2020-12-04)
+
+
+### Reverts
+
+* Revert "fix(gitlab): test SocialGouv/gitlab-ci-yml#f2ee09e commit" ([6b10284](https://github.com/SocialGouv/sample-next-app/commit/6b1028469e92ddf2eea322db0c37d75e1a23a75b)), closes [SocialGouv/gitlab-ci-yml#f2ee09](https://github.com/SocialGouv/gitlab-ci-yml/issues/f2ee09)
+
+## [2.1.2](https://github.com/SocialGouv/sample-next-app/compare/v2.1.1...v2.1.2) (2020-12-04)
+
+
+### Bug Fixes
+
+* **k8s:** patch conflicting variables ([b2397e3](https://github.com/SocialGouv/sample-next-app/commit/b2397e3424351bc4f1189c87384aaf723e762170))
+* force path version ([8e5653b](https://github.com/SocialGouv/sample-next-app/commit/8e5653b17f536ad8d7f7a909d7f1b25c730189db))
+* force path version ([725b1a7](https://github.com/SocialGouv/sample-next-app/commit/725b1a786271b3d6a68f7c6ad12e25b0406ea969))
+* **gitlab:** test SocialGouv/gitlab-ci-yml#f2ee09e commit ([9a6afd5](https://github.com/SocialGouv/sample-next-app/commit/9a6afd5f37771d6a2d6b2f5493203f5b7be46019)), closes [SocialGouv/gitlab-ci-yml#f2ee09](https://github.com/SocialGouv/gitlab-ci-yml/issues/f2ee09)
+
+## [2.1.2-beta.3](https://github.com/SocialGouv/sample-next-app/compare/v2.1.2-beta.2...v2.1.2-beta.3) (2020-12-04)
+
+
+### Bug Fixes
+
+* **k8s:** patch conflicting variables ([b2397e3](https://github.com/SocialGouv/sample-next-app/commit/b2397e3424351bc4f1189c87384aaf723e762170))
+
+## [2.1.2-beta.2](https://github.com/SocialGouv/sample-next-app/compare/v2.1.2-beta.1...v2.1.2-beta.2) (2020-12-04)
+
+
+### Bug Fixes
+
+* force path version ([8e5653b](https://github.com/SocialGouv/sample-next-app/commit/8e5653b17f536ad8d7f7a909d7f1b25c730189db))
+* force path version ([725b1a7](https://github.com/SocialGouv/sample-next-app/commit/725b1a786271b3d6a68f7c6ad12e25b0406ea969))
+
+## [2.1.2-beta.1](https://github.com/SocialGouv/sample-next-app/compare/v2.1.1...v2.1.2-beta.1) (2020-12-04)
+
+
+### Bug Fixes
+
+* **gitlab:** test SocialGouv/gitlab-ci-yml#f2ee09e commit ([9a6afd5](https://github.com/SocialGouv/sample-next-app/commit/9a6afd5f37771d6a2d6b2f5493203f5b7be46019)), closes [SocialGouv/gitlab-ci-yml#f2ee09](https://github.com/SocialGouv/gitlab-ci-yml/issues/f2ee09)
+
+## [2.1.1](https://github.com/SocialGouv/sample-next-app/compare/v2.1.0...v2.1.1) (2020-12-03)
+
+
+### Bug Fixes
+
+* **k8s:** update k8s snapshots to allow test to pass on preprod ([06e0c1a](https://github.com/SocialGouv/sample-next-app/commit/06e0c1a261e282c419a4660d544e65ae7182a473))
+
+# [2.1.0](https://github.com/SocialGouv/sample-next-app/compare/v2.0.1...v2.1.0) (2020-12-03)
+
+
+### Features
+
+* **k8s:** use @socialgouv/kosko-charts@alpha ([#428](https://github.com/SocialGouv/sample-next-app/issues/428)) ([b44df6d](https://github.com/SocialGouv/sample-next-app/commit/b44df6dcda552f5dfe9fac3ffdf04be1a045471d))
+
 ## [2.0.1](https://github.com/SocialGouv/sample-next-app/compare/v2.0.0...v2.0.1) (2020-08-07)
 
 
