@@ -12,14 +12,14 @@
   },
   "dependencies": {
     "@kosko/env": "^0.5.2",
-    "@socialgouv/kosko-charts": "^4.0.0-alpha.13",
+    "@socialgouv/kosko-charts": "^4.0.0-beta.11",
     "kubernetes-models": "^1.0.1"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",
     "@babel/plugin-transform-modules-commonjs": "^7.12.1",
     "@kubernetes-models/sealed-secrets": "^0.1.4",
-    "@types/jest": "^26.0.16",
+    "@types/jest": "^26.0.18",
     "@types/node": "^14.11.10",
     "dotenv": "^8.2.0",
     "kosko": "^0.9.2",
