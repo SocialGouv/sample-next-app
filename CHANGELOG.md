@@ -1,3 +1,10 @@
+## [2.1.5](https://github.com/SocialGouv/sample-next-app/compare/v2.1.4...v2.1.5) (2020-12-10)
+
+
+### Bug Fixes
+
+* **k8s:** fix preprod secret ([#432](https://github.com/SocialGouv/sample-next-app/issues/432)) ([e304f19](https://github.com/SocialGouv/sample-next-app/commit/e304f199f0a37c871df13c5b0faaf6b21ba364a0))
+
 ## [2.1.4](https://github.com/SocialGouv/sample-next-app/compare/v2.1.3...v2.1.4) (2020-12-10)
 
 
