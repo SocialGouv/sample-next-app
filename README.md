@@ -2,6 +2,7 @@
 
 https://sample-next-app.fabrique.social.gouv.Fr
 
+
 A sample SSR Next.js app with :
 
 - ✅ sentry
