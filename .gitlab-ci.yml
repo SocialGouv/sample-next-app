@@ -6,7 +6,7 @@ include:
 variables:
   AUTO_DEVOPS_RELEASE_AUTO: "🔖"
   AUTO_DEVOPS_PRODUCTION_AUTO: "🚀"
-  AUTODEVOPS_ENABLE_KAPP: "🚀"
+  AUTO_DEVOPS_ENABLE_KAPP: "🚀"
 
 Register image:
   extends: .autodevops_register_image
