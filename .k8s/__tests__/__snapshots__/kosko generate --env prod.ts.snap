@@ -7,6 +7,8 @@ metadata:
     app.gitlab.com/app: socialgouv-sample-next-app
     app.gitlab.com/env: prod2
     app.gitlab.com/env.name: prod2
+    kapp.k14s.io/disable-default-ownership-label-rules: ''
+    kapp.k14s.io/disable-default-label-scoping-rules: ''
   labels:
     app: app
     application: sample-next-app
@@ -25,6 +27,8 @@ spec:
         app.gitlab.com/app: socialgouv-sample-next-app
         app.gitlab.com/env: prod2
         app.gitlab.com/env.name: prod2
+        kapp.k14s.io/disable-default-ownership-label-rules: ''
+        kapp.k14s.io/disable-default-label-scoping-rules: ''
       labels:
         app: app
         application: sample-next-app
@@ -86,6 +90,8 @@ metadata:
     app.gitlab.com/app: socialgouv-sample-next-app
     app.gitlab.com/env: prod2
     app.gitlab.com/env.name: prod2
+    kapp.k14s.io/disable-default-ownership-label-rules: ''
+    kapp.k14s.io/disable-default-label-scoping-rules: ''
   labels:
     application: sample-next-app
     owner: sample-next-app
@@ -106,6 +112,8 @@ spec:
         app.gitlab.com/app: socialgouv-sample-next-app
         app.gitlab.com/env: prod2
         app.gitlab.com/env.name: prod2
+        kapp.k14s.io/disable-default-ownership-label-rules: ''
+        kapp.k14s.io/disable-default-label-scoping-rules: ''
       labels:
         application: sample-next-app
         owner: sample-next-app
@@ -118,6 +126,8 @@ metadata:
     app.gitlab.com/app: socialgouv-sample-next-app
     app.gitlab.com/env: prod2
     app.gitlab.com/env.name: prod2
+    kapp.k14s.io/disable-default-ownership-label-rules: ''
+    kapp.k14s.io/disable-default-label-scoping-rules: ''
   labels:
     application: sample-next-app
     owner: sample-next-app
@@ -143,6 +153,8 @@ metadata:
     app.gitlab.com/app: socialgouv-sample-next-app
     app.gitlab.com/env: prod2
     app.gitlab.com/env.name: prod2
+    kapp.k14s.io/disable-default-ownership-label-rules: ''
+    kapp.k14s.io/disable-default-label-scoping-rules: ''
   namespace: sample-next-app
 spec:
   ports:
@@ -163,6 +175,8 @@ metadata:
     app.gitlab.com/app: socialgouv-sample-next-app
     app.gitlab.com/env: prod2
     app.gitlab.com/env.name: prod2
+    kapp.k14s.io/disable-default-ownership-label-rules: ''
+    kapp.k14s.io/disable-default-label-scoping-rules: ''
   labels:
     app: app
     application: sample-next-app
@@ -191,6 +205,8 @@ metadata:
     app.gitlab.com/app: socialgouv-sample-next-app
     app.gitlab.com/env: prod2
     app.gitlab.com/env.name: prod2
+    kapp.k14s.io/disable-default-ownership-label-rules: ''
+    kapp.k14s.io/disable-default-label-scoping-rules: ''
   labels:
     app: hasura
     application: sample-next-app
@@ -209,6 +225,8 @@ spec:
         app.gitlab.com/app: socialgouv-sample-next-app
         app.gitlab.com/env: prod2
         app.gitlab.com/env.name: prod2
+        kapp.k14s.io/disable-default-ownership-label-rules: ''
+        kapp.k14s.io/disable-default-label-scoping-rules: ''
       labels:
         app: hasura
         application: sample-next-app
@@ -289,6 +307,8 @@ metadata:
     app.gitlab.com/app: socialgouv-sample-next-app
     app.gitlab.com/env: prod2
     app.gitlab.com/env.name: prod2
+    kapp.k14s.io/disable-default-ownership-label-rules: ''
+    kapp.k14s.io/disable-default-label-scoping-rules: ''
   labels:
     application: sample-next-app
     owner: sample-next-app
@@ -310,6 +330,8 @@ spec:
         app.gitlab.com/app: socialgouv-sample-next-app
         app.gitlab.com/env: prod2
         app.gitlab.com/env.name: prod2
+        kapp.k14s.io/disable-default-ownership-label-rules: ''
+        kapp.k14s.io/disable-default-label-scoping-rules: ''
       labels:
         application: sample-next-app
         owner: sample-next-app
@@ -322,6 +344,8 @@ metadata:
     app.gitlab.com/app: socialgouv-sample-next-app
     app.gitlab.com/env: prod2
     app.gitlab.com/env.name: prod2
+    kapp.k14s.io/disable-default-ownership-label-rules: ''
+    kapp.k14s.io/disable-default-label-scoping-rules: ''
   labels:
     application: sample-next-app
     owner: sample-next-app
@@ -348,6 +372,8 @@ metadata:
     app.gitlab.com/app: socialgouv-sample-next-app
     app.gitlab.com/env: prod2
     app.gitlab.com/env.name: prod2
+    kapp.k14s.io/disable-default-ownership-label-rules: ''
+    kapp.k14s.io/disable-default-label-scoping-rules: ''
   namespace: sample-next-app
 spec:
   ports:
