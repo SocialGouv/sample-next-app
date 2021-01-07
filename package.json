@@ -23,7 +23,7 @@
     "http-proxy-middleware": "^1.0.6",
     "jsonwebtoken": "^8.5.1",
     "next": "^9.5.5",
-    "next-urql": "^1.2.0",
+    "next-urql": "^2.1.1",
     "nodemailer": "^6.4.16",
     "react": "^16.13.1",
     "react-bootstrap": "^1.4.0",
