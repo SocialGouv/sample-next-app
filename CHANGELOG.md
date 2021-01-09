@@ -1,3 +1,10 @@
+## [2.1.6](https://github.com/SocialGouv/sample-next-app/compare/v2.1.5...v2.1.6) (2021-01-09)
+
+
+### Bug Fixes
+
+* **deps:** update dependency next-urql to v2 ([#419](https://github.com/SocialGouv/sample-next-app/issues/419)) ([b32cbfd](https://github.com/SocialGouv/sample-next-app/commit/b32cbfdeaaee1522b717e31ef8db7db0e5b9348a))
+
 ## [2.1.5](https://github.com/SocialGouv/sample-next-app/compare/v2.1.4...v2.1.5) (2020-12-10)
 
 
