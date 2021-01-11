@@ -1,3 +1,10 @@
+# [2.2.0](https://github.com/SocialGouv/sample-next-app/compare/v2.1.6...v2.2.0) (2021-01-11)
+
+
+### Features
+
+* test kapp ([#438](https://github.com/SocialGouv/sample-next-app/issues/438)) ([97b17b8](https://github.com/SocialGouv/sample-next-app/commit/97b17b836e3b5df56f67c0786e2ee0feaa9be8e0))
+
 ## [2.1.6](https://github.com/SocialGouv/sample-next-app/compare/v2.1.5...v2.1.6) (2021-01-09)
 
 
