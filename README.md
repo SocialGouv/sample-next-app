@@ -1,5 +1,6 @@
 # sample next.js app [![pipeline status](https://gitlab.factory.social.gouv.fr/SocialGouv/sample-next-app/badges/master/pipeline.svg)](https://gitlab.factory.social.gouv.fr/SocialGouv/sample-next-app/commits/master)
 
+
 https://sample-next-app.fabrique.social.gouv.Fr
 
 A sample SSR Next.js app with :

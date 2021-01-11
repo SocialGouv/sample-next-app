@@ -1,12 +1,12 @@
 include:
   - project: SocialGouv/gitlab-ci-yml
     file: /autodevops.yml
-    ref: v20.0.0
+    ref: kapp
 
 variables:
   AUTO_DEVOPS_RELEASE_AUTO: "🔖"
   AUTO_DEVOPS_PRODUCTION_AUTO: "🚀"
-  ENABLE_AZURE_POSTGRES: 1
+  AUTO_DEVOPS_ENABLE_KAPP: "🚀"
 
 Register image:
   extends: .autodevops_register_image
