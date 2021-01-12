@@ -1,3 +1,11 @@
+## [2.2.1](https://github.com/SocialGouv/sample-next-app/compare/v2.2.0...v2.2.1) (2021-01-12)
+
+
+### Bug Fixes
+
+* increase shm-size ([8cc10ff](https://github.com/SocialGouv/sample-next-app/commit/8cc10ff9696733f2ddb9b0626c9d9750f1154644))
+* test branch ([#439](https://github.com/SocialGouv/sample-next-app/issues/439)) ([ed354c7](https://github.com/SocialGouv/sample-next-app/commit/ed354c7f777bac63dbc4c55036d96ecca9823323))
+
 # [2.2.0](https://github.com/SocialGouv/sample-next-app/compare/v2.1.6...v2.2.0) (2021-01-11)
 
 
