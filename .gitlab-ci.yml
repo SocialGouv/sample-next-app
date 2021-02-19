@@ -11,6 +11,7 @@ variables:
 
 Register another image:
   extends: .base_register_kaniko_stage
+  stage: Registration
   dependencies: []
   needs: []
   variables:
