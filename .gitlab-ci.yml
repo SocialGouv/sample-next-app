@@ -15,7 +15,7 @@ Register another image:
   dependencies: []
   needs: []
   variables:
-    CONTEXT: ./hasura
+    CONTEXT: hasura
     IMAGE_NAME: hasura
 
 E2E test on deployed branch:
