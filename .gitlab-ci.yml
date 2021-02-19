@@ -7,23 +7,15 @@ variables:
   AUTO_DEVOPS_RELEASE_AUTO: "🔖"
   AUTO_DEVOPS_PRODUCTION_AUTO: "🚀"
   AUTO_DEVOPS_ENABLE_KAPP: "🚀"
+  AUTO_DEVOPS_KANIKO: "🕹️"
 
-Register image:
-  extends: .autodevops_register_image
-  variables:
-    DOCKER_BUILD_ARGS: >-
-      --shm-size 1024M
-    IMAGE_NAME: $CI_REGISTRY_IMAGE/app
-
-Register image Hasura:
-  extends: .autodevops_register_image
+Register another image:
+  extends: .base_register_kaniko_stage
   dependencies: []
   needs: []
-  environment:
-    name: ${CI_COMMIT_REF_NAME}-dev2
   variables:
     CONTEXT: ./hasura
-    IMAGE_NAME: $CI_REGISTRY_IMAGE/hasura
+    IMAGE_NAME: hasura
 
 E2E test on deployed branch:
   stage: Deploy
