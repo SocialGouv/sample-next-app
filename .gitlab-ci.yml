@@ -21,7 +21,8 @@ Register hasura image:
   dependencies: []
   needs: []
   variables:
-    CONTEXT: hasura
+    DOCKER_BUILD_ARGS: >-
+      --context-sub-path=hasura
     IMAGE_NAME: sna/hasura
 
 E2E test on deployed branch:
