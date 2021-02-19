@@ -21,6 +21,8 @@ Register hasura image:
   dependencies: []
   needs: []
   variables:
+    DOCKER_BUILD_ARGS: >-
+      --dockerfile=hasura/Dockerfile
     CONTEXT: hasura
     IMAGE_NAME: sna/hasura
 
