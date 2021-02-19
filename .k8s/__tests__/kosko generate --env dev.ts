@@ -5,6 +5,7 @@ import { project } from "@socialgouv/kosko-charts/testing/fake/gitlab-ci.env";
 
 jest.setTimeout(1000 * 60);
 test("kosko generate --dev", async () => {
+  process.env.HARBOR_PROJECT = "fabrique";
   expect(
     await getEnvManifests("dev", "", {
       ...project("sample-next-app").dev,
