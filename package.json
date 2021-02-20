@@ -11,6 +11,7 @@
     "url": "git+https://github.com/SocialGouv/sample-next-app"
   },
   "dependencies": {
+    "@gouvfr/all": "^0.5.3",
     "@hapi/boom": "^9.1.1",
     "@hapi/joi": "^17.1.1",
     "@sentry/browser": "^5.30.0",

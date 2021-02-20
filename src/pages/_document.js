@@ -9,9 +9,21 @@ class MyDocument extends Document {
 
   render() {
     return (
-      <Html>
+      <Html lang="fr" data-rf-theme="light" data-rf-reset>
         <Head>
-          <link rel="shortcut icon" href="/favicon.ico" />
+          <meta charSet="utf-8" />
+          <link
+            rel="icon"
+            type="image/png"
+            sizes="16x16"
+            href="/favicon-16x16.png"
+          />
+          <link
+            rel="icon"
+            type="image/png"
+            sizes="32x32"
+            href="/favicon-32x32.png"
+          />
         </Head>
         <body>
           <Main />

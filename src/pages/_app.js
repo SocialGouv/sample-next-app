@@ -1,11 +1,14 @@
-import "@socialgouv/bootstrap.core/dist/socialgouv-bootstrap.min.css";
+//import "@socialgouv/bootstrap.core/dist/socialgouv-bootstrap.min.css";
+
+import "@gouvfr/all/dist/css/all.css";
 
 import * as Sentry from "@sentry/node";
 import { init } from "@socialgouv/matomo-next";
 import App from "next/app";
 import Head from "next/head";
 import React from "react";
-import Nav from "src/components/Nav";
+
+import { Layout } from "../components/dse";
 
 Sentry.init({
   dsn: process.env.SENTRY_DSN,
@@ -29,19 +32,14 @@ class MyApp extends App {
       <React.Fragment>
         <Head>
           <title>sample-next-app</title>
+          <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1, shrink-to-fit=no"
+          />
         </Head>
-        <Nav />
-        <div className="container">
-          <div className="jumbotron" style={{ marginTop: 40 }}>
-            <h1 className="display-4">Hello, SocialGouv!</h1>
-            <p className="lead">Welcome to this Next.js sample project</p>
-          </div>
-          <div className="row">
-            <div className="col">
-              <Component {...modifiedPageProps} />
-            </div>
-          </div>
-        </div>
+        <Layout>
+          <Component {...modifiedPageProps} />
+        </Layout>
       </React.Fragment>
     );
   }
