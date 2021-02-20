@@ -1,28 +1,49 @@
+import clsx from "clsx";
+import NextLink from "next/link";
+import { useRouter } from "next/router";
 import React from "react";
+
+// prevent issue with Link and Func components https://github.com/vercel/next.js/issues/7915
+function LinkWrap({ children, refAs, ...props }, ref) {
+  if (refAs) {
+    props[refAs] = ref;
+  }
+  return React.isValidElement(children)
+    ? React.cloneElement(children, props)
+    : null;
+}
+
+const LinkWrapper = React.forwardRef(LinkWrap);
+
+export const Link = ({ refAs, children, ...props }) => (
+  <NextLink {...props} passHref>
+    <LinkWrapper refAs={refAs}>{children}</LinkWrapper>
+  </NextLink>
+);
 
 export const SkipLinks = () => (
   <div className="rf-skiplinks">
     <div className="rf-container">
       <ul className="rf-skiplinks__list">
         <li>
-          <a className="rf-link" href="#contenu">
-            Accéder au contenu
-          </a>
+          <Link href="#contenu">
+            <a className="rf-link">Accéder au contenu</a>
+          </Link>
         </li>
         <li>
-          <a className="rf-link" href="#header-navigation">
-            Accéder au menu
-          </a>
+          <Link href="#header-navigation">
+            <a className="rf-link">Accéder au menu</a>
+          </Link>
         </li>
         <li>
-          <a className="rf-link" href="#header-search">
-            Accéder à la recherche
-          </a>
+          <Link href="#header-search">
+            <a className="rf-link">Accéder à la recherche</a>
+          </Link>
         </li>
         <li>
-          <a className="rf-link" href="#footer">
-            Accéder au footer
-          </a>
+          <Link href="#footer">
+            <a className="rf-link">Accéder au footer</a>
+          </Link>
         </li>
       </ul>
     </div>
@@ -32,73 +53,88 @@ export const SkipLinks = () => (
 export const NavBar = () => (
   <div className="rf-header__navbar">
     <div className="rf-service">
-      <a className="rf-service__title" href="/" title="<%= appName %>">
-        AppName
-      </a>
+      <Link href="/">
+        <a className="rf-service__title" title="AppName">
+          AppName
+        </a>
+      </Link>
       <p className="rf-service__tagline">AppDescription</p>
     </div>
   </div>
 );
 
-export const Nav = () => (
-  <nav
-    className="rf-nav"
-    role="navigation"
-    aria-label="Menu principal"
-    id="header-navigation"
-  >
-    <ul className="rf-nav__list">
-      <li className="rf-nav__item <% if (page === '/') { %> rf-nav__item--active <% } %>">
-        <a className="rf-link" href="/" target="_self">
-          Accueil
-        </a>
-      </li>
-      <li className="rf-nav__item <% if (page === '/components') { %> rf-nav__item--active <% } %>">
-        <a className="rf-link" href="/components" target="_self">
-          Des composants
-        </a>
-      </li>
-      <li className="rf-nav__item <% if (page === '/formulaire') { %> rf-nav__item--active <% } %>">
-        <a className="rf-link" href="/formulaire" target="_self">
-          Un formulaire
-        </a>
-      </li>
-      <li className="rf-nav__item <% if (page === '/colors') { %> rf-nav__item--active <% } %>">
-        <button
-          className="rf-btn"
-          aria-expanded="false"
-          aria-controls="rf-nav-colors"
+export const Nav = () => {
+  const router = useRouter();
+  return (
+    <nav
+      className="rf-nav"
+      role="navigation"
+      aria-label="Menu principal"
+      id="header-navigation"
+    >
+      <ul className="rf-nav__list">
+        <li
+          className={clsx({
+            "rf-nav__item": true,
+            "rf-nav__item--active": router.pathname === "/",
+          })}
         >
-          Des couleurs
-        </button>
-        <div className="rf-menu rf-collapse" id="rf-nav-colors">
-          <ul className="rf-menu__list">
-            <li className="rf-menu__item">
-              <a className="rf-link" href="/colors" target="_self">
-                Palette de couleur
-              </a>
-            </li>
-            <li className="rf-menu__item">
-              <a className="rf-link" href="/colors#combinaisons" target="_self">
-                Combinaisons accessibles
-              </a>
-            </li>
-            <li className="rf-menu__item">
-              <a className="rf-link" href="/colors#variables" target="_self">
-                Palette de couleur
-              </a>
-            </li>
-          </ul>
-        </div>
-      </li>
-      <li className="rf-nav__item <% if (page === '/ressources') { %> rf-nav__item--active <% } %>">
-        <a className="rf-link" href="/ressources" target="_self">
-          Ressources
-        </a>
-      </li>
-    </ul>
-  </nav>
-);
+          <Link href="/">
+            <a className="rf-link" title="Accueil">
+              Accueil
+            </a>
+          </Link>
+        </li>
+        <li
+          className={clsx({
+            "rf-nav__item": true,
+            "rf-nav__item--active": router.pathname === "/page2",
+          })}
+        >
+          <Link href="/page2">
+            <a className="rf-link">Page 2</a>
+          </Link>
+        </li>
+        <li
+          className={clsx({
+            "rf-nav__item": true,
+          })}
+        >
+          <button
+            className="rf-btn"
+            aria-expanded="false"
+            aria-controls="rf-nav-colors"
+          >
+            Des couleurs
+          </button>
+          <div className="rf-menu rf-collapse" id="rf-nav-colors">
+            <ul className="rf-menu__list">
+              <li className="rf-menu__item">
+                <a className="rf-link" href="/colors" target="_self">
+                  Palette de couleur
+                </a>
+              </li>
+              <li className="rf-menu__item">
+                <a
+                  className="rf-link"
+                  href="/colors#combinaisons"
+                  target="_self"
+                >
+                  Combinaisons accessibles
+                </a>
+              </li>
+              <li className="rf-menu__item">
+                <a className="rf-link" href="/colors#variables" target="_self">
+                  Palette de couleur
+                </a>
+              </li>
+            </ul>
+          </div>
+        </li>
+      </ul>
+    </nav>
+  );
+};
 
 export const HeaderBrand = () => (
   <div className="rf-header__brand">
@@ -245,11 +281,13 @@ export const Footer = () => (
   </footer>
 );
 
+export const Button = (props) => <button className="rf-btn" {...props} />;
+
 export const Layout = ({ children }) => (
   <>
     <SkipLinks />
     <Header />
-    {children}
+    <div className="rf-container rf-py-6w rf-pt-2w">{children}</div>
     <Footer />
   </>
 );

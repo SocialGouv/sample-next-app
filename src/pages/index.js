@@ -1,7 +1,8 @@
 import { push } from "@socialgouv/matomo-next";
 import Head from "next/head";
-import Link from "next/link";
 import React from "react";
+
+import { Button, Link } from "../components/dse";
 
 const triggerClientError = () => {
   throw new Error("Client-side error");
@@ -28,40 +29,34 @@ const Page = () => (
     </Head>
     <p>
       <Link href="/page2">
-        <a>Go to page 2</a>
+        <Button>Go to page 2</Button>
       </Link>
     </p>
 
     <p>
       <Link href="/page3">
-        <a>Go to unknown page</a>
+        <Button>Go to unknown page</Button>
       </Link>
     </p>
     <p>
-      <button className="btn btn-primary" onClick={apiCall}>
+      <Button onClick={apiCall}>
         trigger api call to /api/answer/anything
-      </button>
+      </Button>
     </p>
     <p>
-      <button className="btn btn-primary" onClick={faultyApiCall}>
-        trigger api call to /api/faulty
-      </button>
+      <Button onClick={faultyApiCall}>trigger api call to /api/faulty</Button>
     </p>
     <p>
-      <button className="btn btn-primary" onClick={trackEvent}>
-        trigger Matomo event
-      </button>
+      <Button onClick={trackEvent}>trigger Matomo event</Button>
     </p>
     <p>
-      <button className="btn btn-warning" onClick={triggerClientError}>
+      <Button onClick={triggerClientError}>
         trigger Sentry client-side error
-      </button>
+      </Button>
     </p>
     <p>
       <Link href="/page-error">
-        <button className="btn btn-warning">
-          trigger Sentry server-side error
-        </button>
+        <Button>trigger Sentry server-side error</Button>
       </Link>
     </p>
   </React.Fragment>

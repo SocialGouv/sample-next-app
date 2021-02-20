@@ -2,7 +2,6 @@
 
 https://sample-next-app.fabrique.social.gouv.Fr
 
-
 A sample SSR Next.js app with :
 
 - ✅ sentry
@@ -10,6 +9,7 @@ A sample SSR Next.js app with :
 - ✅ jest tests
 - ✅ [@SocialGouv linters](https://github.com/SocialGouv/linters/)
 - ✅ [@SocialGouv bootstrap](https://github.com/SocialGouv/bootstrap)
+- ✅ [Design system de l'état](https://github.com/betagouv/template-design-system-de-l-etat), cf [template](http://template.incubateur.net/)
 - ✅ precommit hooks
 - ✅ docker-compose for local dev
 - ✅ gitlab-ci

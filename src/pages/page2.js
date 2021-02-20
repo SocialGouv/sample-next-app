@@ -1,10 +1,11 @@
-import Link from "next/link";
 import React from "react";
+
+import { Button, Link } from "../components/dse";
 
 const Page2 = () => (
   <p>
     <Link href="/">
-      <a>Go to index</a>
+      <Button>Go to index</Button>
     </Link>
   </p>
 );
