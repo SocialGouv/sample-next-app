@@ -1,6 +1,5 @@
 # sample next.js app [![pipeline status](https://gitlab.factory.social.gouv.fr/SocialGouv/sample-next-app/badges/master/pipeline.svg)](https://gitlab.factory.social.gouv.fr/SocialGouv/sample-next-app/commits/master)
 
-
 https://sample-next-app.fabrique.social.gouv.Fr
 
 A sample SSR Next.js app with :
@@ -10,19 +9,19 @@ A sample SSR Next.js app with :
 - ✅ jest tests
 - ✅ [@SocialGouv linters](https://github.com/SocialGouv/linters/)
 - ✅ [@SocialGouv bootstrap](https://github.com/SocialGouv/bootstrap)
-- ✅ @SocialGouv polyfill.io
 - ✅ precommit hooks
-- ✅ docker build
+- ✅ docker-compose for local dev
 - ✅ gitlab-ci
   - ✅ quality
   - ✅ docker build+push
-  - ✅ releases + changelog
-  - ✅ features-branches envs
+  - ✅ [semantic-release](https://github.com/semantic-release/semantic-release)
+  - ✅ features-branches environments
+  - ✅ a PGweb for debug in dev
   - ✅ prod env
 
 ## Development
 
-Start hasura and local postgres using 
+Start hasura and local postgres using
 
 ```sh
 docker-compose up
@@ -30,13 +29,13 @@ docker-compose up
 
 Hasura migrations and metadata will be automatically applied.
 
-to launch the Hasura console, you can run the command 
+to launch the Hasura console, you can run the command
 
 ```sh
 hasura console --envfile ../.env --project hasura
 ```
 
-And then launch the frontend (next.js app) using  
+And then launch the frontend (next.js app) using
 
 ```sh
 yarn dev
