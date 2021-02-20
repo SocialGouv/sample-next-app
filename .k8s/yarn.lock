@@ -628,7 +628,7 @@
   dependencies:
     "@sinonjs/commons" "^1.7.0"
 
-"@socialgouv/kosko-charts@^4.7.11":
+"@socialgouv/kosko-charts@^4.8.2":
   version "4.8.2"
   resolved "https://registry.yarnpkg.com/@socialgouv/kosko-charts/-/kosko-charts-4.8.2.tgz#a3e3187c40a8942c1df48a8935346a78009d6a88"
   integrity sha512-zcDc8GQjwZRcykaWzFCh2ZmhTBCFS1SuCcGwgrIpvt2mjbgh6BMcpiHp09/nNQlRBtWv9/xX+zLvksNW6U6j+w==
