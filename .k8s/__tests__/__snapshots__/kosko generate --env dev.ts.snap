@@ -2,10 +2,12 @@
 
 exports[`kosko generate --dev 1`] = `
 "---
+apiVersion: v1
+kind: Namespace
 metadata:
   annotations:
     field.cattle.io/creatorId: gitlab
-    field.cattle.io/projectId: 'c-bd7z2:p-7ms8p'
+    field.cattle.io/projectId: c-bd7z2:p-7ms8p
     git/branch: master
     git/remote: >-
       https://gitlab-ci-token:[MASKED]@gitlab.factory.social.gouv.fr/SocialGouv/sample-next-app.git
@@ -19,16 +21,16 @@ metadata:
     team: sample-next-app
     cert: wildcard
   name: sample-next-app-85-master-dev2
-apiVersion: v1
-kind: Namespace
 ---
+apiVersion: apps/v1
+kind: Deployment
 metadata:
   annotations:
+    kapp.k14s.io/disable-default-ownership-label-rules: ''
+    kapp.k14s.io/disable-default-label-scoping-rules: ''
     app.gitlab.com/app: socialgouv-sample-next-app
     app.gitlab.com/env: master-dev2
     app.gitlab.com/env.name: master-dev2
-    kapp.k14s.io/disable-default-ownership-label-rules: ''
-    kapp.k14s.io/disable-default-label-scoping-rules: ''
   labels:
     app: pgweb
     application: master-dev2-sample-next-app
@@ -46,11 +48,11 @@ spec:
   template:
     metadata:
       annotations:
+        kapp.k14s.io/disable-default-ownership-label-rules: ''
+        kapp.k14s.io/disable-default-label-scoping-rules: ''
         app.gitlab.com/app: socialgouv-sample-next-app
         app.gitlab.com/env: master-dev2
         app.gitlab.com/env.name: master-dev2
-        kapp.k14s.io/disable-default-ownership-label-rules: ''
-        kapp.k14s.io/disable-default-label-scoping-rules: ''
       labels:
         app: pgweb
         application: master-dev2-sample-next-app
@@ -60,7 +62,7 @@ spec:
         component: pgweb
     spec:
       containers:
-        - image: 'sosedoff/pgweb:0.11.7'
+        - image: sosedoff/pgweb:0.11.7
           livenessProbe:
             failureThreshold: 6
             httpGet:
@@ -106,7 +108,7 @@ spec:
             - secretRef:
                 name: azure-pg-user-0123456
           image: >-
-            registry.gitlab.factory.social.gouv.fr/socialgouv/docker/wait-for-postgres:2.0.0
+            registry.gitlab.factory.social.gouv.fr/socialgouv/docker/wait-for-postgres:4.3.1
           imagePullPolicy: Always
           name: wait-for-postgres
           resources:
@@ -116,9 +118,9 @@ spec:
             requests:
               cpu: 5m
               memory: 16Mi
-apiVersion: apps/v1
-kind: Deployment
 ---
+apiVersion: v1
+kind: Service
 metadata:
   labels:
     app: pgweb
@@ -128,11 +130,11 @@ metadata:
     cert: wildcard
   name: pgweb
   annotations:
+    kapp.k14s.io/disable-default-ownership-label-rules: ''
+    kapp.k14s.io/disable-default-label-scoping-rules: ''
     app.gitlab.com/app: socialgouv-sample-next-app
     app.gitlab.com/env: master-dev2
     app.gitlab.com/env.name: master-dev2
-    kapp.k14s.io/disable-default-ownership-label-rules: ''
-    kapp.k14s.io/disable-default-label-scoping-rules: ''
   namespace: sample-next-app-85-master-dev2
 spec:
   ports:
@@ -142,17 +144,17 @@ spec:
   selector:
     app: pgweb
   type: ClusterIP
-apiVersion: v1
-kind: Service
 ---
+apiVersion: extensions/v1beta1
+kind: Ingress
 metadata:
   annotations:
     kubernetes.io/ingress.class: nginx
+    kapp.k14s.io/disable-default-ownership-label-rules: ''
+    kapp.k14s.io/disable-default-label-scoping-rules: ''
     app.gitlab.com/app: socialgouv-sample-next-app
     app.gitlab.com/env: master-dev2
     app.gitlab.com/env.name: master-dev2
-    kapp.k14s.io/disable-default-ownership-label-rules: ''
-    kapp.k14s.io/disable-default-label-scoping-rules: ''
   labels:
     app: pgweb
     application: master-dev2-sample-next-app
@@ -174,16 +176,16 @@ spec:
     - hosts:
         - pgweb-master-dev2-sample-next-app.dev2.fabrique.social.gouv.fr
       secretName: wildcard-crt
-apiVersion: extensions/v1beta1
-kind: Ingress
 ---
+apiVersion: apps/v1
+kind: Deployment
 metadata:
   annotations:
+    kapp.k14s.io/disable-default-ownership-label-rules: ''
+    kapp.k14s.io/disable-default-label-scoping-rules: ''
     app.gitlab.com/app: socialgouv-sample-next-app
     app.gitlab.com/env: master-dev2
     app.gitlab.com/env.name: master-dev2
-    kapp.k14s.io/disable-default-ownership-label-rules: ''
-    kapp.k14s.io/disable-default-label-scoping-rules: ''
   labels:
     app: app
     application: master-dev2-sample-next-app
@@ -200,11 +202,11 @@ spec:
   template:
     metadata:
       annotations:
+        kapp.k14s.io/disable-default-ownership-label-rules: ''
+        kapp.k14s.io/disable-default-label-scoping-rules: ''
         app.gitlab.com/app: socialgouv-sample-next-app
         app.gitlab.com/env: master-dev2
         app.gitlab.com/env.name: master-dev2
-        kapp.k14s.io/disable-default-ownership-label-rules: ''
-        kapp.k14s.io/disable-default-label-scoping-rules: ''
       labels:
         app: app
         application: master-dev2-sample-next-app
@@ -214,7 +216,7 @@ spec:
     spec:
       containers:
         - image: >-
-            registry.gitlab.factory.social.gouv.fr/socialgouv/sample-next-app/app:0123456789abcdefghijklmnopqrstuvwxyz0123
+            harbor.fabrique.social.gouv.fr/fabrique/app:0123456789abcdefghijklmnopqrstuvwxyz0123
           livenessProbe:
             failureThreshold: 6
             httpGet:
@@ -254,19 +256,17 @@ spec:
                 name: app-sealed-secret
             - configMapRef:
                 name: app-configmap
-apiVersion: apps/v1
-kind: Deployment
 ---
 apiVersion: bitnami.com/v1alpha1
 kind: SealedSecret
 metadata:
   annotations:
     sealedsecrets.bitnami.com/cluster-wide: 'true'
+    kapp.k14s.io/disable-default-ownership-label-rules: ''
+    kapp.k14s.io/disable-default-label-scoping-rules: ''
     app.gitlab.com/app: socialgouv-sample-next-app
     app.gitlab.com/env: master-dev2
     app.gitlab.com/env.name: master-dev2
-    kapp.k14s.io/disable-default-ownership-label-rules: ''
-    kapp.k14s.io/disable-default-label-scoping-rules: ''
   creationTimestamp: null
   name: app-sealed-secret
   labels:
@@ -293,11 +293,11 @@ spec:
     metadata:
       annotations:
         sealedsecrets.bitnami.com/cluster-wide: 'true'
+        kapp.k14s.io/disable-default-ownership-label-rules: ''
+        kapp.k14s.io/disable-default-label-scoping-rules: ''
         app.gitlab.com/app: socialgouv-sample-next-app
         app.gitlab.com/env: master-dev2
         app.gitlab.com/env.name: master-dev2
-        kapp.k14s.io/disable-default-ownership-label-rules: ''
-        kapp.k14s.io/disable-default-label-scoping-rules: ''
       creationTimestamp: null
       name: app-sealed-secret
       labels:
@@ -306,14 +306,16 @@ spec:
         team: sample-next-app
         cert: wildcard
 ---
+apiVersion: v1
+kind: ConfigMap
 metadata:
   name: app-configmap
   annotations:
+    kapp.k14s.io/disable-default-ownership-label-rules: ''
+    kapp.k14s.io/disable-default-label-scoping-rules: ''
     app.gitlab.com/app: socialgouv-sample-next-app
     app.gitlab.com/env: master-dev2
     app.gitlab.com/env.name: master-dev2
-    kapp.k14s.io/disable-default-ownership-label-rules: ''
-    kapp.k14s.io/disable-default-label-scoping-rules: ''
   labels:
     application: master-dev2-sample-next-app
     owner: sample-next-app
@@ -322,13 +324,13 @@ metadata:
   namespace: sample-next-app-85-master-dev2
 data:
   NODE_ENV: production
-  GRAPHQL_ENDPOINT: 'http://hasura/v1/graphql'
+  GRAPHQL_ENDPOINT: http://hasura/v1/graphql
   ACCOUNT_MAIL_SENDER: contact@fabrique.social.gouv.fr
   FRONTEND_PORT: '3030'
   PRODUCTION: 'false'
-apiVersion: v1
-kind: ConfigMap
 ---
+apiVersion: v1
+kind: Service
 metadata:
   labels:
     app: app
@@ -338,11 +340,11 @@ metadata:
     cert: wildcard
   name: app
   annotations:
+    kapp.k14s.io/disable-default-ownership-label-rules: ''
+    kapp.k14s.io/disable-default-label-scoping-rules: ''
     app.gitlab.com/app: socialgouv-sample-next-app
     app.gitlab.com/env: master-dev2
     app.gitlab.com/env.name: master-dev2
-    kapp.k14s.io/disable-default-ownership-label-rules: ''
-    kapp.k14s.io/disable-default-label-scoping-rules: ''
   namespace: sample-next-app-85-master-dev2
 spec:
   ports:
@@ -352,17 +354,17 @@ spec:
   selector:
     app: app
   type: ClusterIP
-apiVersion: v1
-kind: Service
 ---
+apiVersion: extensions/v1beta1
+kind: Ingress
 metadata:
   annotations:
     kubernetes.io/ingress.class: nginx
+    kapp.k14s.io/disable-default-ownership-label-rules: ''
+    kapp.k14s.io/disable-default-label-scoping-rules: ''
     app.gitlab.com/app: socialgouv-sample-next-app
     app.gitlab.com/env: master-dev2
     app.gitlab.com/env.name: master-dev2
-    kapp.k14s.io/disable-default-ownership-label-rules: ''
-    kapp.k14s.io/disable-default-label-scoping-rules: ''
   labels:
     app: app
     application: master-dev2-sample-next-app
@@ -384,16 +386,16 @@ spec:
     - hosts:
         - master-dev2-sample-next-app.dev2.fabrique.social.gouv.fr
       secretName: wildcard-crt
-apiVersion: extensions/v1beta1
-kind: Ingress
 ---
+apiVersion: apps/v1
+kind: Deployment
 metadata:
   annotations:
+    kapp.k14s.io/disable-default-ownership-label-rules: ''
+    kapp.k14s.io/disable-default-label-scoping-rules: ''
     app.gitlab.com/app: socialgouv-sample-next-app
     app.gitlab.com/env: master-dev2
     app.gitlab.com/env.name: master-dev2
-    kapp.k14s.io/disable-default-ownership-label-rules: ''
-    kapp.k14s.io/disable-default-label-scoping-rules: ''
   labels:
     app: hasura
     application: master-dev2-sample-next-app
@@ -410,11 +412,11 @@ spec:
   template:
     metadata:
       annotations:
+        kapp.k14s.io/disable-default-ownership-label-rules: ''
+        kapp.k14s.io/disable-default-label-scoping-rules: ''
         app.gitlab.com/app: socialgouv-sample-next-app
         app.gitlab.com/env: master-dev2
         app.gitlab.com/env.name: master-dev2
-        kapp.k14s.io/disable-default-ownership-label-rules: ''
-        kapp.k14s.io/disable-default-label-scoping-rules: ''
       labels:
         app: hasura
         application: master-dev2-sample-next-app
@@ -424,7 +426,7 @@ spec:
     spec:
       containers:
         - image: >-
-            registry.gitlab.factory.social.gouv.fr/socialgouv/sample-next-app/hasura:0123456789abcdefghijklmnopqrstuvwxyz0123
+            harbor.fabrique.social.gouv.fr/fabrique/hasura:0123456789abcdefghijklmnopqrstuvwxyz0123
           livenessProbe:
             failureThreshold: 6
             httpGet:
@@ -474,7 +476,7 @@ spec:
             - secretRef:
                 name: azure-pg-user-0123456
           image: >-
-            registry.gitlab.factory.social.gouv.fr/socialgouv/docker/wait-for-postgres:2.0.0
+            registry.gitlab.factory.social.gouv.fr/socialgouv/docker/wait-for-postgres:4.3.1
           imagePullPolicy: Always
           name: wait-for-postgres
           resources:
@@ -484,19 +486,17 @@ spec:
             requests:
               cpu: 5m
               memory: 16Mi
-apiVersion: apps/v1
-kind: Deployment
 ---
 apiVersion: bitnami.com/v1alpha1
 kind: SealedSecret
 metadata:
   annotations:
     sealedsecrets.bitnami.com/cluster-wide: 'true'
+    kapp.k14s.io/disable-default-ownership-label-rules: ''
+    kapp.k14s.io/disable-default-label-scoping-rules: ''
     app.gitlab.com/app: socialgouv-sample-next-app
     app.gitlab.com/env: master-dev2
     app.gitlab.com/env.name: master-dev2
-    kapp.k14s.io/disable-default-ownership-label-rules: ''
-    kapp.k14s.io/disable-default-label-scoping-rules: ''
   creationTimestamp: null
   name: hasura-sealed-secret
   labels:
@@ -517,11 +517,11 @@ spec:
     metadata:
       annotations:
         sealedsecrets.bitnami.com/cluster-wide: 'true'
+        kapp.k14s.io/disable-default-ownership-label-rules: ''
+        kapp.k14s.io/disable-default-label-scoping-rules: ''
         app.gitlab.com/app: socialgouv-sample-next-app
         app.gitlab.com/env: master-dev2
         app.gitlab.com/env.name: master-dev2
-        kapp.k14s.io/disable-default-ownership-label-rules: ''
-        kapp.k14s.io/disable-default-label-scoping-rules: ''
       creationTimestamp: null
       name: hasura-sealed-secret
       labels:
@@ -531,14 +531,16 @@ spec:
         cert: wildcard
     type: Opaque
 ---
+apiVersion: v1
+kind: ConfigMap
 metadata:
   name: hasura-configmap
   annotations:
+    kapp.k14s.io/disable-default-ownership-label-rules: ''
+    kapp.k14s.io/disable-default-label-scoping-rules: ''
     app.gitlab.com/app: socialgouv-sample-next-app
     app.gitlab.com/env: master-dev2
     app.gitlab.com/env.name: master-dev2
-    kapp.k14s.io/disable-default-ownership-label-rules: ''
-    kapp.k14s.io/disable-default-label-scoping-rules: ''
   labels:
     application: master-dev2-sample-next-app
     owner: sample-next-app
@@ -546,16 +548,16 @@ metadata:
     cert: wildcard
   namespace: sample-next-app-85-master-dev2
 data:
-  ACCOUNT_EMAIL_WEBHOOK_URL: 'http://app:80/api/webhooks/account'
+  ACCOUNT_EMAIL_WEBHOOK_URL: http://app:80/api/webhooks/account
   HASURA_GRAPHQL_ENABLE_CONSOLE: 'true'
-  HASURA_GRAPHQL_ENABLED_LOG_TYPES: 'startup, http-log, webhook-log, websocket-log, query-log'
+  HASURA_GRAPHQL_ENABLED_LOG_TYPES: startup, http-log, webhook-log, websocket-log, query-log
   HASURA_GRAPHQL_LOG_LEVEL: debug
   HASURA_GRAPHQL_NO_OF_RETRIES: '5'
   HASURA_GRAPHQL_SERVER_PORT: '80'
   HASURA_GRAPHQL_UNAUTHORIZED_ROLE: anonymous
-apiVersion: v1
-kind: ConfigMap
 ---
+apiVersion: v1
+kind: Service
 metadata:
   labels:
     app: hasura
@@ -565,11 +567,11 @@ metadata:
     cert: wildcard
   name: hasura
   annotations:
+    kapp.k14s.io/disable-default-ownership-label-rules: ''
+    kapp.k14s.io/disable-default-label-scoping-rules: ''
     app.gitlab.com/app: socialgouv-sample-next-app
     app.gitlab.com/env: master-dev2
     app.gitlab.com/env.name: master-dev2
-    kapp.k14s.io/disable-default-ownership-label-rules: ''
-    kapp.k14s.io/disable-default-label-scoping-rules: ''
   namespace: sample-next-app-85-master-dev2
 spec:
   ports:
@@ -579,17 +581,17 @@ spec:
   selector:
     app: hasura
   type: ClusterIP
-apiVersion: v1
-kind: Service
 ---
+apiVersion: extensions/v1beta1
+kind: Ingress
 metadata:
   annotations:
     kubernetes.io/ingress.class: nginx
+    kapp.k14s.io/disable-default-ownership-label-rules: ''
+    kapp.k14s.io/disable-default-label-scoping-rules: ''
     app.gitlab.com/app: socialgouv-sample-next-app
     app.gitlab.com/env: master-dev2
     app.gitlab.com/env.name: master-dev2
-    kapp.k14s.io/disable-default-ownership-label-rules: ''
-    kapp.k14s.io/disable-default-label-scoping-rules: ''
   labels:
     app: hasura
     application: master-dev2-sample-next-app
@@ -611,9 +613,9 @@ spec:
     - hosts:
         - hasura-master-dev2-sample-next-app.dev2.fabrique.social.gouv.fr
       secretName: wildcard-crt
-apiVersion: extensions/v1beta1
-kind: Ingress
 ---
+apiVersion: batch/v1
+kind: Job
 spec:
   backoffLimit: 0
   template:
@@ -634,7 +636,7 @@ spec:
             - secretRef:
                 name: azure-pg-admin-user
           image: >-
-            registry.gitlab.factory.social.gouv.fr/socialgouv/docker/azure-db:2.5.0
+            registry.gitlab.factory.social.gouv.fr/socialgouv/docker/azure-db:2.6.1
           imagePullPolicy: IfNotPresent
           name: create-db-user
           resources:
@@ -656,8 +658,6 @@ spec:
         team: sample-next-app
         cert: wildcard
   ttlSecondsAfterFinished: 86400
-apiVersion: batch/v1
-kind: Job
 metadata:
   annotations:
     app.gitlab.com/app: socialgouv-sample-next-app
@@ -671,6 +671,8 @@ metadata:
   name: create-db-job-0123456
   namespace: sample-next-app-85-master-dev2
 ---
+apiVersion: v1
+kind: Secret
 stringData:
   DATABASE_URL: >-
     postgresql://user_0123456%40samplenextappdevserver.postgres.database.azure.com:password_0123456@samplenextappdevserver.postgres.database.azure.com/autodevops_0123456?sslmode=require
@@ -685,8 +687,6 @@ stringData:
     postgresql://user_0123456%40samplenextappdevserver.postgres.database.azure.com:password_0123456@samplenextappdevserver.postgres.database.azure.com/autodevops_0123456?sslmode=require
   PGSSLMODE: require
   PGUSER: user_0123456@samplenextappdevserver.postgres.database.azure.com
-apiVersion: v1
-kind: Secret
 metadata:
   annotations:
     app.gitlab.com/app: socialgouv-sample-next-app

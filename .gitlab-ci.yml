@@ -1,29 +1,30 @@
 include:
   - project: SocialGouv/gitlab-ci-yml
     file: /autodevops.yml
-    ref: kapp
+    ref: v20.7.3
 
 variables:
   AUTO_DEVOPS_RELEASE_AUTO: "🔖"
   AUTO_DEVOPS_PRODUCTION_AUTO: "🚀"
   AUTO_DEVOPS_ENABLE_KAPP: "🚀"
+  AUTO_DEVOPS_KANIKO: "🕹️"
 
-Register image:
-  extends: .autodevops_register_image
+Register Kaniko image:
+  extends: .base_register_kaniko_stage
+  stage: Registration
   variables:
-    DOCKER_BUILD_ARGS: >-
-      --shm-size 1024M
-    IMAGE_NAME: $CI_REGISTRY_IMAGE/app
+    IMAGE_NAME: app
 
-Register image Hasura:
-  extends: .autodevops_register_image
+Register hasura image:
+  extends: .base_register_kaniko_stage
+  stage: Registration
   dependencies: []
   needs: []
-  environment:
-    name: ${CI_COMMIT_REF_NAME}-dev2
   variables:
-    CONTEXT: ./hasura
-    IMAGE_NAME: $CI_REGISTRY_IMAGE/hasura
+    DOCKER_BUILD_ARGS: >-
+      --dockerfile=hasura/Dockerfile
+    CONTEXT: hasura
+    IMAGE_NAME: hasura
 
 E2E test on deployed branch:
   stage: Deploy

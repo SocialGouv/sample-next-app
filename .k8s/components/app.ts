@@ -1,17 +1,15 @@
 import env from "@kosko/env";
 
 import { create } from "@socialgouv/kosko-charts/components/app";
+import { getHarborImagePath } from "@socialgouv/kosko-charts/utils/getHarborImagePath";
 
 const manifests = create("app", {
   env,
   config: {
     containerPort: 3030,
-    annotations: {
-      "kapp.k14s.io/disable-default-ownership-label-rules": "",
-      "kapp.k14s.io/disable-default-label-scoping-rules": "",
-    },
   },
   deployment: {
+    image: getHarborImagePath({ name: "app" }),
     container: {
       resources: {
         requests: {
