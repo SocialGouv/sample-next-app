@@ -1,4 +1,4 @@
-import { dedupExchange, cacheExchange, fetchExchange } from "@urql/core";
+import { cacheExchange, dedupExchange, fetchExchange } from "@urql/core";
 import { withUrqlClient } from "next-urql";
 import { refreshToken } from "src/lib/auth";
 import { authExchange } from "src/lib/authTokenExchange";
@@ -11,11 +11,11 @@ export const withCustomUrqlClient = (Component) =>
         hostname = `${ctx.req.protocol}://${ctx.req.headers.host}`;
       }
       return {
-        requestPolicy: "cache-and-network",
-        url: `${hostname}/graphql`,
         fetchOptions: {
           refreshToken: () => refreshToken(ctx),
         },
+        requestPolicy: "cache-and-network",
+        url: `${hostname}/graphql`,
       };
     },
     (ssrExchange) => [

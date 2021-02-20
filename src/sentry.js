@@ -5,10 +5,10 @@ const SentryIntegrations = require("@sentry/integrations");
 
 module.exports = (release = process.env.SENTRY_RELEASE) => {
   const sentryOptions = {
-    dsn: process.env.SENTRY_DSN,
-    release,
-    maxBreadcrumbs: 50,
     attachStacktrace: true,
+    dsn: process.env.SENTRY_DSN,
+    maxBreadcrumbs: 50,
+    release,
   };
 
   // When we're developing locally

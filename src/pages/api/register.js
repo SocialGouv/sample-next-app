@@ -54,13 +54,13 @@ export default async function register(req, res) {
   try {
     await graphqlClient.request(mutation, {
       user: {
-        name,
         email,
+        name,
         password: await hash(new Date().toISOString()),
-        user_roles: { data: [{ role: "user" }] },
         secret_token_expires_at: getExpiryDate(
           parseInt(process.env.ACTIVATION_TOKEN_EXPIRES, 10) || 10080
         ),
+        user_roles: { data: [{ role: "user" }] },
       },
     });
   } catch (error) {

@@ -1,6 +1,6 @@
-import React, { useState } from "react";
 import PropTypes from "prop-types";
-import { Button, Form, Alert } from "react-bootstrap";
+import React, { useState } from "react";
+import { Alert, Button, Form } from "react-bootstrap";
 
 const LoginForm = ({ authenticate, resetPassword, onSuccess }) => {
   const [status, setStatus] = useState("idle");
@@ -79,6 +79,6 @@ export default LoginForm;
 
 LoginForm.propTypes = {
   authenticate: PropTypes.func.isRequired,
-  resetPassword: PropTypes.func.isRequired,
   onSuccess: PropTypes.func.isRequired,
+  resetPassword: PropTypes.func.isRequired,
 };

@@ -1,6 +1,6 @@
 import React from "react";
-import { useQuery } from "urql";
 import { Alert, Badge } from "react-bootstrap";
+import { useQuery } from "urql";
 
 const query = `
 query getRoles{

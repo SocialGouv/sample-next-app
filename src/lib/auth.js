@@ -1,6 +1,7 @@
-import Router from "next/router";
-import { request } from "./request";
 import { parse, serialize } from "cookie";
+import Router from "next/router";
+
+import { request } from "./request";
 import { setRefreshTokenCookie } from "./setRefreshTokenCookie";
 
 let token = null;
@@ -33,10 +34,10 @@ async function refreshToken(ctx) {
       }
     }
     const tokenData = await request(`${hostname}/api/refresh_token`, {
-      credentials: "include",
-      mode: "same-origin",
-      headers,
       body: { refresh_token: token?.refresh_token },
+      credentials: "include",
+      headers,
+      mode: "same-origin",
     });
 
     // for ServerSide call, we need to set the Cookie header

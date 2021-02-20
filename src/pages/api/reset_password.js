@@ -1,9 +1,9 @@
 import Boom from "@hapi/boom";
 import Joi from "@hapi/joi";
-import { v4 as uuidv4 } from "uuid";
 import { createErrorFor } from "src/lib/apiError";
 import { getExpiryDate } from "src/lib/duration";
 import { graphqlClient } from "src/lib/graphqlClient";
+import { v4 as uuidv4 } from "uuid";
 
 export default async function reset_password(req, res) {
   const apiError = createErrorFor(res);
@@ -29,8 +29,8 @@ export default async function reset_password(req, res) {
   try {
     await graphqlClient.request(udpateSecretTokenMutation, {
       email,
-      secret_token: uuidv4(),
       expires: getExpiryDate(process.env.ACTIVATION_TOKEN_EXPIRES || 10080),
+      secret_token: uuidv4(),
     });
   } catch (error) {
     // silently fail to not disclose if user exists or not
