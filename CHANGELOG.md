@@ -1,3 +1,11 @@
+## [2.2.2](https://github.com/SocialGouv/sample-next-app/compare/v2.2.1...v2.2.2) (2021-02-20)
+
+
+### Bug Fixes
+
+* **ci:** notify ([#449](https://github.com/SocialGouv/sample-next-app/issues/449)) ([e128c22](https://github.com/SocialGouv/sample-next-app/commit/e128c22517e8d79528319408510e2d3750cda5e6))
+* kaniko + harbor ([#441](https://github.com/SocialGouv/sample-next-app/issues/441)) ([6d0a00c](https://github.com/SocialGouv/sample-next-app/commit/6d0a00cf5a87f57add08918d53169cc639214f6b))
+
 ## [2.2.1](https://github.com/SocialGouv/sample-next-app/compare/v2.2.0...v2.2.1) (2021-01-12)
 
 
