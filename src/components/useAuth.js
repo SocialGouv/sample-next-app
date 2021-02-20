@@ -1,14 +1,13 @@
-import React, { createContext, useState, useEffect, useContext } from "react";
-import PropTypes from "prop-types";
-import { useQuery } from "urql";
 import { useRouter } from "next/router";
-
-import { getToken, setToken, refreshToken } from "src/lib/auth";
+import PropTypes from "prop-types";
+import React, { createContext, useContext, useEffect, useState } from "react";
+import { getToken, refreshToken, setToken } from "src/lib/auth";
 import { request } from "src/lib/request";
+import { useQuery } from "urql";
 
 export const AuthContext = createContext({
-  user: null,
   setUser: () => {},
+  user: null,
 });
 
 const getUserQuery = `
@@ -38,7 +37,7 @@ export function AuthProvider({ children }) {
   }, [result.data, token]);
 
   return (
-    <AuthContext.Provider value={{ user, setUser }}>
+    <AuthContext.Provider value={{ setUser, user }}>
       {children}
     </AuthContext.Provider>
   );
@@ -66,9 +65,9 @@ export function useAuth() {
 
   const isAuth = Boolean(user);
   return {
-    user,
     isAuth,
     logout,
+    user,
   };
 }
 

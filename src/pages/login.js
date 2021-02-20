@@ -1,7 +1,6 @@
-import React from "react";
-import { useRouter } from "next/router";
 import Head from "next/head";
-
+import { useRouter } from "next/router";
+import React from "react";
 import LoginForm from "src/components/login";
 import { setToken } from "src/lib/auth";
 import { request } from "src/lib/request";
@@ -12,11 +11,11 @@ export default function LoginPage() {
   const resetPassword = (email) => {
     //router.push("/reset-password");
     fetch("/api/reset_password", {
-      method: "POST",
+      body: JSON.stringify({ email }),
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ email }),
+      method: "POST",
     })
       .then((r) => r.json())
       .then(console.log)
@@ -30,10 +29,10 @@ export default function LoginPage() {
 
   const authenticate = ({ email, password }) => {
     return request("/api/login", {
+      body: { password, username: email },
       headers: {
         "Cache-Control": "no-cache",
       },
-      body: { username: email, password },
     }).then((tokenData) => {
       setToken(tokenData);
     });

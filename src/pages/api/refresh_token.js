@@ -1,11 +1,12 @@
 import Boom from "@hapi/boom";
 import Joi from "@hapi/joi";
-import { v4 as uuidv4 } from "uuid";
 import { createErrorFor } from "src/lib/apiError";
 import { getExpiryDate } from "src/lib/duration";
 import { graphqlClient } from "src/lib/graphqlClient";
 import { generateJwtToken } from "src/lib/jwt";
 import { setRefreshTokenCookie } from "src/lib/setRefreshTokenCookie";
+import { v4 as uuidv4 } from "uuid";
+
 import {
   deletePreviousRefreshTokenMutation,
   getRefreshTokenQuery,
@@ -38,8 +39,8 @@ export default async function refresh_token(req, res) {
   let hasura_data;
   try {
     hasura_data = await graphqlClient.request(getRefreshTokenQuery, {
-      refresh_token,
       current_timestampz: new Date(),
+      refresh_token,
     });
   } catch (e) {
     console.error(e);
@@ -57,18 +58,18 @@ export default async function refresh_token(req, res) {
   const new_refresh_token = uuidv4();
 
   console.log("[ /api/refresh_token ]", "replace", {
-    refresh_token,
     new_refresh_token,
+    refresh_token,
   });
 
   try {
     await graphqlClient.request(deletePreviousRefreshTokenMutation, {
-      old_refresh_token: refresh_token,
       new_refresh_token_data: {
-        user_id: user.id,
-        refresh_token: new_refresh_token,
         expires_at: getExpiryDate(process.env.REFRESH_TOKEN_EXPIRES),
+        refresh_token: new_refresh_token,
+        user_id: user.id,
       },
+      old_refresh_token: refresh_token,
     });
   } catch (e) {
     console.error(e);
@@ -80,9 +81,9 @@ export default async function refresh_token(req, res) {
   setRefreshTokenCookie(res, new_refresh_token);
 
   res.json({
-    refresh_token: new_refresh_token,
-    user_id: user.id,
     jwt_token,
     jwt_token_expiry: parseInt(process.env.JWT_TOKEN_EXPIRES, 10) || 15,
+    refresh_token: new_refresh_token,
+    user_id: user.id,
   });
 }

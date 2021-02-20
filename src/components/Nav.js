@@ -1,9 +1,10 @@
-import React from "react";
 import Link from "next/link";
+import React from "react";
+
 const Nav = () => {
   return (
     <nav className="navbar sgb-navbar-marianne navbar-expand-lg navbar-light bg-light">
-      <div className="sgb-marianne"></div>
+      <div className="sgb-marianne" />
       <div className="navbar-brand">
         <Link href="/">
           <a>sample-next-app</a>
@@ -21,7 +22,7 @@ const Nav = () => {
         aria-expanded="false"
         aria-label="Toggle navigation"
       >
-        <span className="navbar-toggler-icon"></span>
+        <span className="navbar-toggler-icon" />
       </button>
       <div id="navbarSupportedContent" className="navbar-collapse collapse">
         <ul className="navbar-nav mr-auto">

@@ -1,4 +1,5 @@
 import jwt, { verify } from "jsonwebtoken";
+
 const { HASURA_GRAPHQL_JWT_SECRET, JWT_TOKEN_EXPIRES = 15 } = process.env;
 const jwtSecret = JSON.parse(HASURA_GRAPHQL_JWT_SECRET);
 
@@ -27,13 +28,13 @@ export function generateJwtToken(user) {
 
 export function verifyJwtToken(authorizationHeader) {
   if (!authorizationHeader) {
-    throw { type: "badRequest", message: "no authorization header" };
+    throw { message: "no authorization header", type: "badRequest" };
   }
 
   const auth_split = authorizationHeader.toString().split(" ");
 
   if (auth_split[0] !== "Bearer" || !auth_split[1]) {
-    throw { type: "badRequest", message: "malformed authorization header" };
+    throw { message: "malformed authorization header", type: "badRequest" };
   }
 
   // get jwt token
@@ -45,7 +46,7 @@ export function verifyJwtToken(authorizationHeader) {
     claims = verify(token, jwtSecret.key, { algorithms: jwtSecret.type });
   } catch (e) {
     console.error(e);
-    throw { type: "unauthorized", message: "Incorrect JWT Token" };
+    throw { message: "Incorrect JWT Token", type: "unauthorized" };
   }
 
   return claims;
