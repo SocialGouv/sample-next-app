@@ -12,12 +12,20 @@ variables:
 Register Kaniko image:
   extends: .base_register_kaniko_stage
   stage: Registration
+  rules:
+    - if: "$PRODUCTION || $RELEASE"
+      when: never
+    - when: on_success
   variables:
     IMAGE_NAME: app
 
 Register hasura image:
   extends: .base_register_kaniko_stage
   stage: Registration
+  rules:
+    - if: "$PRODUCTION || $RELEASE"
+      when: never
+    - when: on_success
   dependencies: []
   needs: []
   variables:
