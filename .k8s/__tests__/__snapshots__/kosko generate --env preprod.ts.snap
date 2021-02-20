@@ -215,7 +215,7 @@ spec:
         cert: wildcard
     spec:
       containers:
-        - image: harbor.fabrique.social.gouv.fr/fabrique/sna/app:1.2.3
+        - image: harbor.fabrique.social.gouv.fr/fabrique/app:1.2.3
           livenessProbe:
             failureThreshold: 6
             httpGet:
@@ -424,7 +424,7 @@ spec:
         cert: wildcard
     spec:
       containers:
-        - image: harbor.fabrique.social.gouv.fr/fabrique/sna/hasura:1.2.3
+        - image: harbor.fabrique.social.gouv.fr/fabrique/hasura:1.2.3
           livenessProbe:
             failureThreshold: 6
             httpGet:

@@ -216,7 +216,7 @@ spec:
     spec:
       containers:
         - image: >-
-            harbor.fabrique.social.gouv.fr/fabrique/sna/app:0123456789abcdefghijklmnopqrstuvwxyz0123
+            harbor.fabrique.social.gouv.fr/fabrique/app:0123456789abcdefghijklmnopqrstuvwxyz0123
           livenessProbe:
             failureThreshold: 6
             httpGet:
@@ -426,7 +426,7 @@ spec:
     spec:
       containers:
         - image: >-
-            harbor.fabrique.social.gouv.fr/fabrique/sna/hasura:0123456789abcdefghijklmnopqrstuvwxyz0123
+            harbor.fabrique.social.gouv.fr/fabrique/hasura:0123456789abcdefghijklmnopqrstuvwxyz0123
           livenessProbe:
             failureThreshold: 6
             httpGet:

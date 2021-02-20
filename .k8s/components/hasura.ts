@@ -9,7 +9,7 @@ const manifests = create({
     ingress: true,
   },
   deployment: {
-    image: getHarborImagePath({ name: "sna/hasura" }),
+    image: getHarborImagePath({ name: "hasura" }),
   },
 });
 

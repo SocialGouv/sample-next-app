@@ -9,7 +9,7 @@ const manifests = create("app", {
     containerPort: 3030,
   },
   deployment: {
-    image: getHarborImagePath({ name: "sna/app" }),
+    image: getHarborImagePath({ name: "app" }),
     container: {
       resources: {
         requests: {
