@@ -6,6 +6,10 @@
       "@commitlint/config-conventional"
     ]
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SocialGouv/sample-next-app"
+  },
   "dependencies": {
     "@hapi/boom": "^9.1.1",
     "@hapi/joi": "^17.1.1",
