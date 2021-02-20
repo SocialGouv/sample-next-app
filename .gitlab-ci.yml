@@ -11,22 +11,12 @@ variables:
   PROJECT_PATH: "socialgouv/sample-next-app" # for notify
 
 Register Kaniko image:
-  extends: .base_register_kaniko_stage
-  stage: Registration
-  rules:
-    - if: "$PRODUCTION || $RELEASE"
-      when: never
-    - when: on_success
+  extends: .autodevops_register_kaniko_image
   variables:
     IMAGE_NAME: app
 
 Register hasura image:
-  extends: .base_register_kaniko_stage
-  stage: Registration
-  rules:
-    - if: "$PRODUCTION || $RELEASE"
-      when: never
-    - when: on_success
+  extends: .autodevops_register_kaniko_image
   dependencies: []
   needs: []
   variables:
