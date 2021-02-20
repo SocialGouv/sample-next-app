@@ -13,7 +13,7 @@ Register Kaniko image:
   extends: .base_register_kaniko_stage
   stage: Registration
   variables:
-    IMAGE_NAME: sna/app
+    IMAGE_NAME: app
 
 Register hasura image:
   extends: .base_register_kaniko_stage
@@ -24,7 +24,7 @@ Register hasura image:
     DOCKER_BUILD_ARGS: >-
       --dockerfile=hasura/Dockerfile
     CONTEXT: hasura
-    IMAGE_NAME: sna/hasura
+    IMAGE_NAME: hasura
 
 E2E test on deployed branch:
   stage: Deploy
