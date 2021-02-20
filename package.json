@@ -6,6 +6,10 @@
       "@commitlint/config-conventional"
     ]
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SocialGouv/sample-next-app"
+  },
   "dependencies": {
     "@hapi/boom": "^9.1.1",
     "@hapi/joi": "^17.1.1",
@@ -13,6 +17,7 @@
     "@sentry/integrations": "^5.29.2",
     "@sentry/node": "^5.29.2",
     "@socialgouv/bootstrap.core": "^0.2.1",
+    "@socialgouv/matomo-next": "^1.2.1",
     "@zeit/next-source-maps": "^0.0.3",
     "argon2": "^0.27.1",
     "cookie": "^0.4.1",

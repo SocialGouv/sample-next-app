@@ -941,6 +941,11 @@
     eslint-plugin-simple-import-sort "~7.0.0"
     eslint-plugin-sort-keys-fix "~1.1.1"
 
+"@socialgouv/matomo-next@^1.2.1":
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/@socialgouv/matomo-next/-/matomo-next-1.2.1.tgz#2adf7fdf0fc2275216122505c3ca62643df1466e"
+  integrity sha512-ImnL6V5ICxxHOVqKillcq8KsiuXtQwtbDiHGKjDjE/Bygbe1wgaefA2xCNFOPmjLDPs9QgssVTfxtnr2MSn68w==
+
 "@types/babel__core@^7.0.0", "@types/babel__core@^7.1.7":
   version "7.1.9"
   resolved "https://registry.yarnpkg.com/@types/babel__core/-/babel__core-7.1.9.tgz#77e59d438522a6fb898fa43dc3455c6e72f3963d"
