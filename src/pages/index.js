@@ -1,15 +1,14 @@
+import { push } from "@socialgouv/matomo-next";
 import Head from "next/head";
 import Link from "next/link";
 import React from "react";
-
-import { matopush } from "../matomo";
 
 const triggerClientError = () => {
   throw new Error("Client-side error");
 };
 
 const trackEvent = () => {
-  matopush(["trackEvent", "click", "button-test-matomo"]);
+  push(["trackEvent", "click", "button-test-matomo"]);
 };
 
 const apiCall = () =>

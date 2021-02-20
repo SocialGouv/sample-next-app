@@ -1,23 +1,22 @@
 import "@socialgouv/bootstrap.core/dist/socialgouv-bootstrap.min.css";
 
 import * as Sentry from "@sentry/node";
+import { init } from "@socialgouv/matomo-next";
 import App from "next/app";
 import Head from "next/head";
 import React from "react";
 import Nav from "src/components/Nav";
 
-import { initMatomo } from "../matomo";
-
 Sentry.init({
   dsn: process.env.SENTRY_DSN,
 });
 
+const MATOMO_URL = process.env.NEXT_PUBLIC_MATOMO_URL;
+const MATOMO_SITE_ID = process.env.NEXT_PUBLIC_MATOMO_SITE_ID;
+
 class MyApp extends App {
   componentDidMount() {
-    initMatomo({
-      piwikUrl: process.env.MATOMO_URL,
-      siteId: process.env.MATOMO_SITE_ID,
-    });
+    init({ siteId: MATOMO_SITE_ID, url: MATOMO_URL });
   }
   render() {
     const { Component, pageProps } = this.props;

@@ -5,7 +5,7 @@ https://sample-next-app.fabrique.social.gouv.Fr
 A sample SSR Next.js app with :
 
 - ✅ sentry
-- ✅ matomo
+- ✅ [matomo](https://github.com/SocialGouv/next-matomo)
 - ✅ jest tests
 - ✅ [@SocialGouv linters](https://github.com/SocialGouv/linters/)
 - ✅ [@SocialGouv bootstrap](https://github.com/SocialGouv/bootstrap)
@@ -49,13 +49,13 @@ yarn dev
 
 In docker this is done with `--build-arg`.
 
-| Var            | desc                       | build time | run time |
-| -------------- | -------------------------- | :--------: | :------: |
-| PORT           | port to run the server on  |            |    ✅    |
-| SENTRY_DSN     | DSN of your sentry project |     ✅     |
-| SENTRY_TOKEN   | token to allow sourcemaps  |     ✅     |
-| MATOMO_URL     | URL to your piwik instance |     ✅     |
-| MATOMO_SITE_ID | site id on piwik instance  |     ✅     |
+| Var                        | desc                        | build time | run time |
+| -------------------------- | --------------------------- | :--------: | :------: |
+| PORT                       | port to run the server on   |            |    ✅    |
+| SENTRY_DSN                 | DSN of your sentry project  |     ✅     |
+| SENTRY_TOKEN               | token to allow sourcemaps   |     ✅     |
+| NEXT_PUBLIC_MATOMO_URL     | URL to your matomo instance |     ✅     |
+| NEXT_PUBLIC_MATOMO_SITE_ID | site id on matomo instance  |     ✅     |
 
 ### Docker build
 
