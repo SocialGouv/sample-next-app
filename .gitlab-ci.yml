@@ -8,6 +8,7 @@ variables:
   AUTO_DEVOPS_PRODUCTION_AUTO: "🚀"
   AUTO_DEVOPS_ENABLE_KAPP: "🚀"
   AUTO_DEVOPS_KANIKO: "🕹️"
+  PROJECT_PATH: "socialgouv/sample-next-app" # for notify
 
 Register Kaniko image:
   extends: .base_register_kaniko_stage
