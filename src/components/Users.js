@@ -1,6 +1,7 @@
 import React from "react";
-import { Alert } from "react-bootstrap";
 import { useQuery } from "urql";
+
+import { Callout } from "./dse";
 
 const query = `
 query getUser {
@@ -30,8 +31,8 @@ export function Users() {
       </div>
     );
   return data.users.map(({ id, name }) => (
-    <Alert key={id} variant="info">
+    <Callout key={id} variant="info">
       {name}
-    </Alert>
+    </Callout>
   ));
 }

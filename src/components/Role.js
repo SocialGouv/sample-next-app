@@ -1,6 +1,7 @@
 import React from "react";
-import { Alert, Badge } from "react-bootstrap";
 import { useQuery } from "urql";
+
+import { Callout, Tag } from "./dse";
 
 const query = `
 query getRoles{
@@ -16,16 +17,16 @@ export function Role() {
   if (fetching) return <p>loading</p>;
   if (error)
     return (
-      <Alert variant="warning">
+      <Callout variant="warning">
         <pre>{JSON.stringify(error, 0, 2)}</pre>
-      </Alert>
+      </Callout>
     );
   return (
     <p>
       {data.roles.map(({ role }) => (
-        <Badge variant="dark" key={role}>
+        <Tag variant="dark" key={role}>
           {role}
-        </Badge>
+        </Tag>
       ))}
     </p>
   );

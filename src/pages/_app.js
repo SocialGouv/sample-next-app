@@ -1,5 +1,3 @@
-//import "@socialgouv/bootstrap.core/dist/socialgouv-bootstrap.min.css";
-
 import "@gouvfr/all/dist/css/all.css";
 
 import * as Sentry from "@sentry/node";

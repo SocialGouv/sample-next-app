@@ -27,11 +27,6 @@ const Page = () => (
     <Head>
       <title>Home | sample next app</title>
     </Head>
-    <p>
-      <Link href="/page2">
-        <Button>Go to page 2</Button>
-      </Link>
-    </p>
 
     <p>
       <Link href="/page3">
@@ -39,24 +34,28 @@ const Page = () => (
       </Link>
     </p>
     <p>
-      <Button onClick={apiCall}>
+      <Button onClick={apiCall} variant="secondary">
         trigger api call to /api/answer/anything
       </Button>
     </p>
     <p>
-      <Button onClick={faultyApiCall}>trigger api call to /api/faulty</Button>
+      <Button onClick={faultyApiCall} variant="secondary">
+        trigger api call to /api/faulty
+      </Button>
     </p>
     <p>
-      <Button onClick={trackEvent}>trigger Matomo event</Button>
+      <Button onClick={trackEvent} variant="secondary">
+        trigger Matomo event
+      </Button>
     </p>
     <p>
-      <Button onClick={triggerClientError}>
+      <Button onClick={triggerClientError} variant="secondary">
         trigger Sentry client-side error
       </Button>
     </p>
     <p>
       <Link href="/page-error">
-        <Button>trigger Sentry server-side error</Button>
+        <Button variant="secondary">trigger Sentry server-side error</Button>
       </Link>
     </p>
   </React.Fragment>

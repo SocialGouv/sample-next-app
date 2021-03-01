@@ -11,7 +11,8 @@
     }
   },
   "rules": {
-    "jsx-a11y/anchor-is-valid": "warn",
-    "react/prop-types": "warn"
+    "jsx-a11y/anchor-is-valid": "off",
+    "react/prop-types": "warn",
+    "jsx-a11y/label-has-associated-control": "warn"
   }
 }

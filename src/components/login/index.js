@@ -1,6 +1,7 @@
 import PropTypes from "prop-types";
 import React, { useState } from "react";
-import { Alert, Button, Form } from "react-bootstrap";
+
+import { Button, Callout } from "../dse";
 
 const LoginForm = ({ authenticate, resetPassword, onSuccess }) => {
   const [status, setStatus] = useState("idle");
@@ -28,31 +29,43 @@ const LoginForm = ({ authenticate, resetPassword, onSuccess }) => {
   const isValid = status !== "loading" && isValidEmail && !!password;
 
   return (
-    <Form onSubmit={submit}>
-      <Form.Group>
-        <Form.Label>Adresse email</Form.Label>
-        <Form.Control
+    <form onSubmit={submit}>
+      <div className="rf-input-group">
+        <label className="rf-label" htmlFor="email">
+          Champ email :
+        </label>
+        <input
+          className="rf-input"
           type="email"
+          id="email"
+          name="email"
           onChange={(e) => setEmail(e.target.value)}
           value={email}
           placeholder="email"
+          required=""
         />
-      </Form.Group>
-      <Form.Group controlId="formBasicPassword">
-        <Form.Label>Mot de passe</Form.Label>
-        <Form.Control
+      </div>
+      <div className="rf-input-group">
+        <label className="rf-label" htmlFor="password">
+          Mot de passe :
+        </label>
+        <input
+          className="rf-input"
           type="password"
+          id="password"
+          name="password"
           onChange={(e) => setPassword(e.target.value)}
           value={password}
           placeholder="mot de passe"
+          required=""
         />
-      </Form.Group>
-      {error && <Alert variant="danger">{error}</Alert>}
+      </div>
+
+      {error && <Callout variant="danger">{error}</Callout>}
+
       <Button
         style={{ marginTop: 30 }}
         variant="primary"
-        size="lg"
-        block
         type="submit"
         onClick={submit}
         disabled={!isValid}
@@ -61,17 +74,16 @@ const LoginForm = ({ authenticate, resetPassword, onSuccess }) => {
       </Button>
 
       <Button
-        style={{ marginTop: 30 }}
-        variant="light"
+        style={{ float: "right", marginTop: 30 }}
+        variant="secondary"
         title="Saisissez votre email pour récupérer votre mot de passe"
-        size="sm"
-        block
         onClick={() => resetPassword(email)}
         type="button"
+        size="sm"
       >
         Mot de passe perdu
       </Button>
-    </Form>
+    </form>
   );
 };
 
