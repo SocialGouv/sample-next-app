@@ -1,3 +1,10 @@
+## [2.2.5](https://github.com/SocialGouv/sample-next-app/compare/v2.2.4...v2.2.5) (2021-04-20)
+
+
+### Reverts
+
+* Revert "chore(deps): update all non-major dependencies (minor)" (#465) ([c595b33](https://github.com/SocialGouv/sample-next-app/commit/c595b338e1ce0afc7f8fe9f6e6842564d81dbea4)), closes [#465](https://github.com/SocialGouv/sample-next-app/issues/465)
+
 ## [2.2.4](https://github.com/SocialGouv/sample-next-app/compare/v2.2.3...v2.2.4) (2021-02-20)
 
 
