@@ -1,3 +1,11 @@
+## [2.2.6](https://github.com/SocialGouv/sample-next-app/compare/v2.2.5...v2.2.6) (2021-04-22)
+
+
+### Bug Fixes
+
+* **deps:** update all dependencies (patch) ([#454](https://github.com/SocialGouv/sample-next-app/issues/454)) ([d0114ff](https://github.com/SocialGouv/sample-next-app/commit/d0114fff122e89df0aca16e8094d2292a601b0a9))
+* **gitlab:** update to SocialGouv/gitlab-ci-yml@v21.0.2 ([ecee08c](https://github.com/SocialGouv/sample-next-app/commit/ecee08c2fe181258e70d5f1acd20fff04457f563))
+
 ## [2.2.5](https://github.com/SocialGouv/sample-next-app/compare/v2.2.4...v2.2.5) (2021-04-20)
 
 
