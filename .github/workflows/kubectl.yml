@@ -4,11 +4,11 @@ on:
   workflow_dispatch:
 
 jobs:
-  name: test1
-  steps:
-    - uses: actions/checkout@v2
-    - uses: danielr1996/kubectl-action@1.0.0
-      name: Deploy
-      with:
-        kubeconfig: ${{ secrets.KUBE_CONFIG }}
-        args: apply -f pod.yml
+  test1:
+    steps:
+      - uses: actions/checkout@v2
+      - uses: danielr1996/kubectl-action@1.0.0
+        name: Deploy
+        with:
+          kubeconfig: ${{ secrets.KUBE_CONFIG }}
+          args: apply -f pod.yml
