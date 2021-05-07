@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  name: "test1"
+  name: test1
   steps:
     - uses: actions/checkout@v2
     - uses: danielr1996/kubectl-action@1.0.0
