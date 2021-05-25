@@ -1,3 +1,10 @@
+## [2.2.8](https://github.com/SocialGouv/sample-next-app/compare/v2.2.7...v2.2.8) (2021-05-25)
+
+
+### Bug Fixes
+
+* force release ([39320bf](https://github.com/SocialGouv/sample-next-app/commit/39320bf5d03ad06f7aa727b777f9053d96a22079))
+
 ## [2.2.7](https://github.com/SocialGouv/sample-next-app/compare/v2.2.6...v2.2.7) (2021-05-25)
 
 
