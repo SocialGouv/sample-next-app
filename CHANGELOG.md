@@ -1,3 +1,10 @@
+## [2.2.9](https://github.com/SocialGouv/sample-next-app/compare/v2.2.8...v2.2.9) (2021-05-25)
+
+
+### Bug Fixes
+
+* **k8s:** increase limits ([#475](https://github.com/SocialGouv/sample-next-app/issues/475)) ([84523d0](https://github.com/SocialGouv/sample-next-app/commit/84523d0f1b37da03979f884a6f144cd8ad5f9d14))
+
 ## [2.2.8](https://github.com/SocialGouv/sample-next-app/compare/v2.2.7...v2.2.8) (2021-05-25)
 
 
