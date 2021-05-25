@@ -1,3 +1,10 @@
+## [2.2.10](https://github.com/SocialGouv/sample-next-app/compare/v2.2.9...v2.2.10) (2021-05-25)
+
+
+### Bug Fixes
+
+* **ci:** upgrade gitlab-ci-yml ([e3e7ae8](https://github.com/SocialGouv/sample-next-app/commit/e3e7ae8300412fc7821032bb714685f573f2dc38))
+
 ## [2.2.9](https://github.com/SocialGouv/sample-next-app/compare/v2.2.8...v2.2.9) (2021-05-25)
 
 
