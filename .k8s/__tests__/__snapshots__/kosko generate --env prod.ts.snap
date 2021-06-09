@@ -284,8 +284,7 @@ spec:
           envFrom:
             - secretRef:
                 name: azure-pg-user
-          image: >-
-            registry.gitlab.factory.social.gouv.fr/socialgouv/docker/wait-for-postgres:4.3.1
+          image: ghcr.io/socialgouv/docker/wait-for-postgres:6.0.1
           imagePullPolicy: Always
           name: wait-for-postgres
           resources:
