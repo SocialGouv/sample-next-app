@@ -7,7 +7,7 @@ import gitlab from "@socialgouv/kosko-charts/environments/gitlab";
 
 import { create } from "@socialgouv/kosko-charts/components/azure-pg";
 
-export default () => {
+export default async () => {
   if (env.env === "dev") {
     return create({
       env,
@@ -15,7 +15,10 @@ export default () => {
   }
 
   // in prod/preprod, we try to add a fixed sealed-secret
-  const secret = loadYaml<SealedSecret>(env, `pg-user.sealed-secret.yaml`);
+  const secret = await loadYaml<SealedSecret>(
+    env,
+    `pg-user.sealed-secret.yaml`
+  );
   if (!secret) {
     return [];
   }
