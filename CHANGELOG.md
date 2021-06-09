@@ -1,3 +1,10 @@
+## [2.2.14](https://github.com/SocialGouv/sample-next-app/compare/v2.2.13...v2.2.14) (2021-06-09)
+
+
+### Bug Fixes
+
+* **deps:** update all dependencies ([#483](https://github.com/SocialGouv/sample-next-app/issues/483)) ([ce96de2](https://github.com/SocialGouv/sample-next-app/commit/ce96de2fe04dd64b21f64edf8f4685691672b18a))
+
 ## [2.2.13](https://github.com/SocialGouv/sample-next-app/compare/v2.2.12...v2.2.13) (2021-06-09)
 
 
