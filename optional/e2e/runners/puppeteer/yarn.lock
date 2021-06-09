@@ -285,10 +285,10 @@ cliui@^5.0.0:
     strip-ansi "^5.2.0"
     wrap-ansi "^5.1.0"
 
-codeceptjs@^3.0.6:
-  version "3.0.6"
-  resolved "https://registry.yarnpkg.com/codeceptjs/-/codeceptjs-3.0.6.tgz#e8701e80e303d187e35dc1fc27de503a5bc1b844"
-  integrity sha512-QBSnmY1wS3MYF1w8jcrZO9eRnnem5qgywSPJFYPAJpQk+HWGC9fquNoIO3M/yJh23SVyWogFyQ/zsPRehLMe0g==
+codeceptjs@^3.0.7:
+  version "3.0.7"
+  resolved "https://registry.yarnpkg.com/codeceptjs/-/codeceptjs-3.0.7.tgz#5d453630f8a4d3886993f423b3daad08c2491947"
+  integrity sha512-YtIhxfkgASI+mTvpxRYFiBUu2lXCNQXMKp8D9RWiYBT4sX3885yUU4FVIhFfpUaOeOUxDDkyUQRP9odW1boAiA==
   dependencies:
     "@codeceptjs/configure" "^0.6.2"
     "@codeceptjs/helper" "^1.0.2"
@@ -320,7 +320,6 @@ codeceptjs@^3.0.6:
     promise-retry "^1.1.1"
     requireg "^0.2.2"
     resq "^1.10.0"
-    semver "^6.2.0"
     sprintf-js "^1.1.1"
 
 color-convert@^1.9.0:
@@ -1504,11 +1503,6 @@ semver@^5.6.0:
   version "5.7.1"
   resolved "https://registry.yarnpkg.com/semver/-/semver-5.7.1.tgz#a954f931aeba508d307bbf069eff0c01c96116f7"
   integrity sha512-sauaDf/PZdVgrLTNYHRtpXa1iRiKcaebiKQ1BJdpQlWH2lCvexQdX55snPFyK7QzpudqbCI0qXFfOasHdyNDGQ==
-
-semver@^6.2.0:
-  version "6.3.0"
-  resolved "https://registry.yarnpkg.com/semver/-/semver-6.3.0.tgz#ee0a64c8af5e8ceea67687b133761e1becbd1d3d"
-  integrity sha512-b39TBaTSfV6yBrapU89p5fKekE2m/NwnDocOVruQFS1/veMgdzuPcnOM34M6CwxW8jH/lxEa5rBoDeUwu5HHTw==
 
 serialize-javascript@4.0.0:
   version "4.0.0"
