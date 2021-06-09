@@ -1,3 +1,10 @@
+## [2.2.13](https://github.com/SocialGouv/sample-next-app/compare/v2.2.12...v2.2.13) (2021-06-09)
+
+
+### Bug Fixes
+
+* **deps:** update kosko monorepo (major) ([#463](https://github.com/SocialGouv/sample-next-app/issues/463)) ([8d2cd43](https://github.com/SocialGouv/sample-next-app/commit/8d2cd436fe7fbfb6d436408aa38d7da92509d739))
+
 ## [2.2.12](https://github.com/SocialGouv/sample-next-app/compare/v2.2.11...v2.2.12) (2021-05-27)
 
 
