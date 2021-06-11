@@ -1,3 +1,10 @@
+## [2.2.16](https://github.com/SocialGouv/sample-next-app/compare/v2.2.15...v2.2.16) (2021-06-11)
+
+
+### Bug Fixes
+
+* **gitlab:** use AUTO_DEVOPS_DEV_ENVIRONMENT_NAME ([5534ff5](https://github.com/SocialGouv/sample-next-app/commit/5534ff5c2f12988c1546a74ee0c835d4df8d2aed))
+
 ## [2.2.15](https://github.com/SocialGouv/sample-next-app/compare/v2.2.14...v2.2.15) (2021-06-11)
 
 
