@@ -47,14 +47,10 @@
     "eslint": "^7.20.0",
     "eslint-plugin-import": "^2.22.1",
     "husky": "^6.0.0",
+    "is-ci": "^3.0.0",
     "jest": "^26.6.3",
+    "lint-staged": "^11.0.0",
     "prettier": "^2.2.1"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "eslint src/*",
-      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
-    }
   },
   "license": "MIT",
   "main": "index.js",
@@ -62,10 +58,18 @@
   "scripts": {
     "build": "next build",
     "dev": "node -r dotenv/config server.js dotenv_config_path=.env.development",
+    "e2e": "yarn --cwd=./optional/e2e/runners/puppeteer",
     "k8s": "yarn --silent --cwd .k8s",
     "lint": "eslint src/*",
+    "precommit": "lint-staged",
+    "prepare": "is-ci || husky install",
     "start": "NODE_ENV=production node server.js",
-    "test": "jest",
-    "e2e": "yarn --cwd=./optional/e2e/runners/puppeteer"
+    "test": "jest"
+  },
+  "lint-staged": {
+    "src/**": [
+      "yarn lint --cache --fix",
+      "yarn test --bail --findRelatedTests"
+    ]
   }
 }
