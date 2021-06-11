@@ -1,3 +1,10 @@
+## [2.2.15](https://github.com/SocialGouv/sample-next-app/compare/v2.2.14...v2.2.15) (2021-06-11)
+
+
+### Bug Fixes
+
+* **gitlab:** use new github registry images ([22e8143](https://github.com/SocialGouv/sample-next-app/commit/22e814383ec8add3200e0439ca7d126326cf3dc6))
+
 ## [2.2.14](https://github.com/SocialGouv/sample-next-app/compare/v2.2.13...v2.2.14) (2021-06-09)
 
 
