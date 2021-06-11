@@ -1,3 +1,10 @@
+## [3.0.2](https://github.com/SocialGouv/sample-next-app/compare/v3.0.1...v3.0.2) (2021-06-11)
+
+
+### Bug Fixes
+
+* **deps:** update dependency http-proxy-middleware to v2 ([#489](https://github.com/SocialGouv/sample-next-app/issues/489)) ([de90575](https://github.com/SocialGouv/sample-next-app/commit/de90575174c1072a7e7f8fc92ec8e4e857a28923))
+
 ## [3.0.1](https://github.com/SocialGouv/sample-next-app/compare/v3.0.0...v3.0.1) (2021-06-11)
 
 
