@@ -1,3 +1,15 @@
+## [3.0.1](https://github.com/SocialGouv/sample-next-app/compare/v3.0.0...v3.0.1) (2021-06-11)
+
+
+### Bug Fixes
+
+* **deps:** update dependency dotenv to v10 ([#488](https://github.com/SocialGouv/sample-next-app/issues/488)) ([ea2f717](https://github.com/SocialGouv/sample-next-app/commit/ea2f717a07adf8eb9444fa0012be2a8413eb78d3))
+
+
+### Reverts
+
+* **renovate:** force enable the 🤖 on this repo ([a7c19f8](https://github.com/SocialGouv/sample-next-app/commit/a7c19f86ae9ece23ae474a36620d42afd2289723))
+
 # [3.0.0](https://github.com/SocialGouv/sample-next-app/compare/v2.2.16...v3.0.0) (2021-06-11)
 
 
