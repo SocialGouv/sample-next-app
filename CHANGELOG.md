@@ -1,3 +1,17 @@
+# [3.0.0](https://github.com/SocialGouv/sample-next-app/compare/v2.2.16...v3.0.0) (2021-06-11)
+
+
+### chore
+
+* **deps:** update dependency socialgouv/gitlab-ci-yml to v23 ([#486](https://github.com/SocialGouv/sample-next-app/issues/486)) ([e546347](https://github.com/SocialGouv/sample-next-app/commit/e546347428a9e4eef0bc324e22250584fd1e2350))
+
+
+### BREAKING CHANGES
+
+* **deps:** The dev and production cluster will change
+
+Co-authored-by: Renovate Bot <bot@renovateapp.com>
+
 ## [2.2.16](https://github.com/SocialGouv/sample-next-app/compare/v2.2.15...v2.2.16) (2021-06-11)
 
 
