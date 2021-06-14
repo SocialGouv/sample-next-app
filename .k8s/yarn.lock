@@ -657,12 +657,13 @@
   dependencies:
     "@sinonjs/commons" "^1.7.0"
 
-"@socialgouv/kosko-charts@^6.0.2":
-  version "6.0.2"
-  resolved "https://registry.yarnpkg.com/@socialgouv/kosko-charts/-/kosko-charts-6.0.2.tgz#bc64d93b3ce57bdb90d456fb7d5fefebd42789d9"
-  integrity sha512-JH3tfmjqqBu8gbLx33ynWbBBEAq/j6NjV2l6oxmezkrPOTpeU4ltxsLYnF9/UsMxqWY91t+RdUG3QVk/KEjsTA==
+"@socialgouv/kosko-charts@^6.1.0":
+  version "6.1.0"
+  resolved "https://registry.yarnpkg.com/@socialgouv/kosko-charts/-/kosko-charts-6.1.0.tgz#a51e4cae9e8f9fb641d120607342150f87cc5792"
+  integrity sha512-+3Q0SRD2nhteEjuD+VmxwJ3FA2UpjRb117BOtWh8YUcJzvDsxiMsC99dcnXGn//A9Roa7vaMxAMvzOFG+CzrKw==
   dependencies:
     "@sindresorhus/is" "^4.0.0"
+    fs-extra "^10.0.0"
 
 "@tootallnate/once@1":
   version "1.1.2"
@@ -1476,6 +1477,15 @@ form-data@^3.0.0:
     asynckit "^0.4.0"
     combined-stream "^1.0.8"
     mime-types "^2.1.12"
+
+fs-extra@^10.0.0:
+  version "10.0.0"
+  resolved "https://registry.yarnpkg.com/fs-extra/-/fs-extra-10.0.0.tgz#9ff61b655dde53fb34a82df84bb214ce802e17c1"
+  integrity sha512-C5owb14u9eJwizKGdchcDUQeFtlSHHthBk8pbX9Vc1PFZrLombudjDnNns88aYslCyF6IY5SUw3Roz6xShcEIQ==
+  dependencies:
+    graceful-fs "^4.2.0"
+    jsonfile "^6.0.1"
+    universalify "^2.0.0"
 
 fs-extra@^9.1.0:
   version "9.1.0"
