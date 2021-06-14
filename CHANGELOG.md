@@ -1,3 +1,11 @@
+## [3.0.3](https://github.com/SocialGouv/sample-next-app/compare/v3.0.2...v3.0.3) (2021-06-14)
+
+
+### Bug Fixes
+
+* **build:** update @socialgouv/kosko-charts (minor) ([#492](https://github.com/SocialGouv/sample-next-app/issues/492)) ([a2d6ee2](https://github.com/SocialGouv/sample-next-app/commit/a2d6ee2dc803e4a30838857117089117203d3c9b))
+* **deps:** update dependency puppeteer to v10 ([#490](https://github.com/SocialGouv/sample-next-app/issues/490)) ([585bb82](https://github.com/SocialGouv/sample-next-app/commit/585bb82a547060dc89c6fd984705b465460381aa))
+
 ## [3.0.2](https://github.com/SocialGouv/sample-next-app/compare/v3.0.1...v3.0.2) (2021-06-11)
 
 
