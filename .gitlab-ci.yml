@@ -27,7 +27,7 @@ Register hasura image:
 
 E2E test on deployed branch:
   stage: Deploy
-  image: ghcr.io/socialgouv/docker/puppeteer:6.20.1
+  image: ghcr.io/socialgouv/docker/puppeteer:6.23.2
   allow_failure: true
   except:
     refs:
