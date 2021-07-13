@@ -35,16 +35,19 @@ const addTokenToOperation = (operation, token) => {
   };
 };
 
-export const tapExchange = (fn) => ({ forward }) => (ops$) => {
-  return pipe(
-    ops$,
-    map((operation) => {
-      fn({ ...operation });
-      return operation;
-    }),
-    forward
-  );
-};
+export const tapExchange =
+  (fn) =>
+  ({ forward }) =>
+  (ops$) => {
+    return pipe(
+      ops$,
+      map((operation) => {
+        fn({ ...operation });
+        return operation;
+      }),
+      forward
+    );
+  };
 
 /**
   This exchange performs authentication and is a recipe.
