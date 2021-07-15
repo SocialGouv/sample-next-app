@@ -13,9 +13,9 @@
   "dependencies": {
     "@hapi/boom": "^9.1.2",
     "@hapi/joi": "^17.1.1",
-    "@sentry/browser": "^5.30.0",
-    "@sentry/integrations": "^5.30.0",
-    "@sentry/node": "^5.30.0",
+    "@sentry/browser": "^6.9.0",
+    "@sentry/integrations": "^6.9.0",
+    "@sentry/node": "^6.9.0",
     "@socialgouv/bootstrap.core": "^0.2.1",
     "@socialgouv/matomo-next": "^1.2.2",
     "@zeit/next-source-maps": "^0.0.3",
