@@ -1,3 +1,10 @@
+## [3.0.4](https://github.com/SocialGouv/sample-next-app/compare/v3.0.3...v3.0.4) (2021-07-15)
+
+
+### Bug Fixes
+
+* **deps:** update sentry monorepo to v6 ([#500](https://github.com/SocialGouv/sample-next-app/issues/500)) ([8f22132](https://github.com/SocialGouv/sample-next-app/commit/8f22132a26b230d828ba8a44eb19a1261fb645b1))
+
 ## [3.0.3](https://github.com/SocialGouv/sample-next-app/compare/v3.0.2...v3.0.3) (2021-06-14)
 
 
