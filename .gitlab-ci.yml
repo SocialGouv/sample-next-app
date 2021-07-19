@@ -1,7 +1,7 @@
 include:
   - project: SocialGouv/gitlab-ci-yml
     file: /autodevops.yml
-    ref: v23.0.1
+    ref: v23.2.0
 
 variables:
   AUTO_DEVOPS_RELEASE_AUTO: "🔖"
@@ -27,7 +27,7 @@ Register hasura image:
 
 E2E test on deployed branch:
   stage: Deploy
-  image: ghcr.io/socialgouv/docker/puppeteer:6.23.2
+  image: ghcr.io/socialgouv/docker/puppeteer:6.32.2
   allow_failure: true
   except:
     refs:
