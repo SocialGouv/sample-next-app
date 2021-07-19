@@ -172,8 +172,8 @@ spec:
                 name: pgweb
                 port:
                   name: http
-                  number: 80
             path: /
+            pathType: Prefix
   tls:
     - hosts:
         - pgweb-master-dev42-sample-next-app.dev42.fabrique.social.gouv.fr
@@ -385,8 +385,8 @@ spec:
                 name: app
                 port:
                   name: http
-                  number: 80
             path: /
+            pathType: Prefix
   tls:
     - hosts:
         - master-dev42-sample-next-app.dev42.fabrique.social.gouv.fr
@@ -614,8 +614,8 @@ spec:
                 name: hasura
                 port:
                   name: http
-                  number: 80
             path: /
+            pathType: Prefix
   tls:
     - hosts:
         - hasura-master-dev42-sample-next-app.dev42.fabrique.social.gouv.fr

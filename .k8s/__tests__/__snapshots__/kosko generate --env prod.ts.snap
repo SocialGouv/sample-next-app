@@ -195,8 +195,8 @@ spec:
                 name: app
                 port:
                   name: http
-                  number: 80
             path: /
+            pathType: Prefix
   tls:
     - hosts:
         - sample-next-app.fabrique.social.gouv.fr
