@@ -107,7 +107,7 @@ spec:
           envFrom:
             - secretRef:
                 name: azure-pg-user-0123456
-          image: ghcr.io/socialgouv/docker/wait-for-postgres:6.0.1
+          image: ghcr.io/socialgouv/docker/wait-for-postgres:6.26.2
           imagePullPolicy: Always
           name: wait-for-postgres
           resources:
@@ -144,7 +144,7 @@ spec:
     app: pgweb
   type: ClusterIP
 ---
-apiVersion: extensions/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   annotations:
@@ -168,9 +168,12 @@ spec:
       http:
         paths:
           - backend:
-              serviceName: pgweb
-              servicePort: 80
+              service:
+                name: pgweb
+                port:
+                  name: http
             path: /
+            pathType: Prefix
   tls:
     - hosts:
         - pgweb-master-dev42-sample-next-app.dev42.fabrique.social.gouv.fr
@@ -354,7 +357,7 @@ spec:
     app: app
   type: ClusterIP
 ---
-apiVersion: extensions/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   annotations:
@@ -378,9 +381,12 @@ spec:
       http:
         paths:
           - backend:
-              serviceName: app
-              servicePort: 80
+              service:
+                name: app
+                port:
+                  name: http
             path: /
+            pathType: Prefix
   tls:
     - hosts:
         - master-dev42-sample-next-app.dev42.fabrique.social.gouv.fr
@@ -474,7 +480,7 @@ spec:
           envFrom:
             - secretRef:
                 name: azure-pg-user-0123456
-          image: ghcr.io/socialgouv/docker/wait-for-postgres:6.0.1
+          image: ghcr.io/socialgouv/docker/wait-for-postgres:6.26.2
           imagePullPolicy: Always
           name: wait-for-postgres
           resources:
@@ -580,7 +586,7 @@ spec:
     app: hasura
   type: ClusterIP
 ---
-apiVersion: extensions/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   annotations:
@@ -604,9 +610,12 @@ spec:
       http:
         paths:
           - backend:
-              serviceName: hasura
-              servicePort: 80
+              service:
+                name: hasura
+                port:
+                  name: http
             path: /
+            pathType: Prefix
   tls:
     - hosts:
         - hasura-master-dev42-sample-next-app.dev42.fabrique.social.gouv.fr
@@ -633,7 +642,7 @@ spec:
           envFrom:
             - secretRef:
                 name: azure-pg-admin-user
-          image: ghcr.io/socialgouv/docker/azure-db:6.0.1
+          image: ghcr.io/socialgouv/docker/azure-db:6.26.2
           imagePullPolicy: IfNotPresent
           name: create-db-user
           resources:
