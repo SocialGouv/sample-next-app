@@ -62,7 +62,7 @@ spec:
         component: pgweb
     spec:
       containers:
-        - image: sosedoff/pgweb:0.11.7
+        - image: sosedoff/pgweb:0.11.8
           livenessProbe:
             failureThreshold: 6
             httpGet:
@@ -107,7 +107,7 @@ spec:
           envFrom:
             - secretRef:
                 name: azure-pg-user
-          image: ghcr.io/socialgouv/docker/wait-for-postgres:6.26.2
+          image: ghcr.io/socialgouv/docker/wait-for-postgres:6.32.2
           imagePullPolicy: Always
           name: wait-for-postgres
           resources:
@@ -478,7 +478,7 @@ spec:
           envFrom:
             - secretRef:
                 name: azure-pg-user
-          image: ghcr.io/socialgouv/docker/wait-for-postgres:6.26.2
+          image: ghcr.io/socialgouv/docker/wait-for-postgres:6.32.2
           imagePullPolicy: Always
           name: wait-for-postgres
           resources:
