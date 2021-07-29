@@ -99,14 +99,14 @@ spec:
             periodSeconds: 5
           envFrom:
             - secretRef:
-                name: azure-pg-user-0123456
+                name: azure-pg-user-master-dev42
       initContainers:
         - env:
             - name: WAIT_FOR_RETRIES
               value: '24'
           envFrom:
             - secretRef:
-                name: azure-pg-user-0123456
+                name: azure-pg-user-master-dev42
           image: ghcr.io/socialgouv/docker/wait-for-postgres:6.32.2
           imagePullPolicy: Always
           name: wait-for-postgres
@@ -468,7 +468,7 @@ spec:
             periodSeconds: 5
           envFrom:
             - secretRef:
-                name: azure-pg-user-0123456
+                name: azure-pg-user-master-dev42
             - secretRef:
                 name: hasura-sealed-secret
             - configMapRef:
@@ -479,7 +479,7 @@ spec:
               value: '24'
           envFrom:
             - secretRef:
-                name: azure-pg-user-0123456
+                name: azure-pg-user-master-dev42
           image: ghcr.io/socialgouv/docker/wait-for-postgres:6.32.2
           imagePullPolicy: Always
           name: wait-for-postgres
@@ -632,11 +632,11 @@ spec:
             - create-db-user
           env:
             - name: NEW_DB_NAME
-              value: autodevops_0123456
+              value: autodevops_master-dev42
             - name: NEW_USER
-              value: user_0123456
+              value: user_master-dev42
             - name: NEW_PASSWORD
-              value: password_0123456
+              value: password_master-dev42
             - name: NEW_DB_EXTENSIONS
               value: hstore pgcrypto citext uuid-ossp
           envFrom:
@@ -681,18 +681,18 @@ apiVersion: v1
 kind: Secret
 stringData:
   DATABASE_URL: >-
-    postgresql://user_0123456%40samplenextappdevserver.postgres.database.azure.com:password_0123456@samplenextappdevserver.postgres.database.azure.com/autodevops_0123456?sslmode=require
+    postgresql://user_master-dev42%40samplenextappdevserver.postgres.database.azure.com:password_master-dev42@samplenextappdevserver.postgres.database.azure.com/autodevops_master-dev42?sslmode=require
   DB_URI: >-
-    postgresql://user_0123456%40samplenextappdevserver.postgres.database.azure.com:password_0123456@samplenextappdevserver.postgres.database.azure.com/autodevops_0123456?sslmode=require
+    postgresql://user_master-dev42%40samplenextappdevserver.postgres.database.azure.com:password_master-dev42@samplenextappdevserver.postgres.database.azure.com/autodevops_master-dev42?sslmode=require
   HASURA_GRAPHQL_DATABASE_URL: >-
-    postgresql://user_0123456%40samplenextappdevserver.postgres.database.azure.com:password_0123456@samplenextappdevserver.postgres.database.azure.com/autodevops_0123456?sslmode=require
-  PGDATABASE: autodevops_0123456
+    postgresql://user_master-dev42%40samplenextappdevserver.postgres.database.azure.com:password_master-dev42@samplenextappdevserver.postgres.database.azure.com/autodevops_master-dev42?sslmode=require
+  PGDATABASE: autodevops_master-dev42
   PGHOST: samplenextappdevserver.postgres.database.azure.com
-  PGPASSWORD: password_0123456
+  PGPASSWORD: password_master-dev42
   PGRST_DB_URI: >-
-    postgresql://user_0123456%40samplenextappdevserver.postgres.database.azure.com:password_0123456@samplenextappdevserver.postgres.database.azure.com/autodevops_0123456?sslmode=require
+    postgresql://user_master-dev42%40samplenextappdevserver.postgres.database.azure.com:password_master-dev42@samplenextappdevserver.postgres.database.azure.com/autodevops_master-dev42?sslmode=require
   PGSSLMODE: require
-  PGUSER: user_0123456@samplenextappdevserver.postgres.database.azure.com
+  PGUSER: user_master-dev42@samplenextappdevserver.postgres.database.azure.com
 metadata:
   annotations:
     app.gitlab.com/app: socialgouv-sample-next-app
@@ -703,7 +703,7 @@ metadata:
     owner: sample-next-app
     team: sample-next-app
     cert: wildcard
-  name: azure-pg-user-0123456
+  name: azure-pg-user-master-dev42
   namespace: sample-next-app-85-master-dev2
 ---
 apiVersion: bitnami.com/v1alpha1
