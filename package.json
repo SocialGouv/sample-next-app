@@ -40,8 +40,8 @@
     "wonka": "^4.0.15"
   },
   "devDependencies": {
-    "@commitlint/cli": "^12.1.4",
-    "@commitlint/config-conventional": "^12.1.4",
+    "@commitlint/cli": "^13.1.0",
+    "@commitlint/config-conventional": "^13.1.0",
     "@socialgouv/eslint-config-react": "^1.83.2",
     "@socialgouv/eslint-config-recommended": "^1.83.2",
     "eslint": "^7.32.0",
