@@ -1,0 +1,12 @@
+name: 🇫🇷
+
+on:
+  pull_request:
+    types: [ closed ]
+    
+jobs:
+  bury_review_env:
+    name: 🪦 Review
+    runs-on: ubuntu-latest
+    steps:
+    - uses: SocialGouv/actions/k8s-funeral@master
