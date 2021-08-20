@@ -6,6 +6,8 @@ apiVersion: v1
 kind: Namespace
 metadata:
   annotations:
+    socialgouv/creator: autodevops
+    janitor/ttl: 15d
     field.cattle.io/creatorId: gitlab
     field.cattle.io/projectId: c-bd7z2:p-7ms8p
     git/branch: master
@@ -107,7 +109,7 @@ spec:
           envFrom:
             - secretRef:
                 name: azure-pg-user-master-dev42
-          image: ghcr.io/socialgouv/docker/wait-for-postgres:6.32.2
+          image: ghcr.io/socialgouv/docker/wait-for-postgres:6.39.1
           imagePullPolicy: Always
           name: wait-for-postgres
           resources:
@@ -480,7 +482,7 @@ spec:
           envFrom:
             - secretRef:
                 name: azure-pg-user-master-dev42
-          image: ghcr.io/socialgouv/docker/wait-for-postgres:6.32.2
+          image: ghcr.io/socialgouv/docker/wait-for-postgres:6.39.1
           imagePullPolicy: Always
           name: wait-for-postgres
           resources:
@@ -642,7 +644,7 @@ spec:
           envFrom:
             - secretRef:
                 name: azure-pg-admin-user
-          image: ghcr.io/socialgouv/docker/azure-db:6.32.2
+          image: ghcr.io/socialgouv/docker/azure-db:6.39.1
           imagePullPolicy: IfNotPresent
           name: create-db-user
           resources:
