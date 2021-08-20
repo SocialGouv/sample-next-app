@@ -11,5 +11,5 @@ jobs:
     steps:
     - uses: SocialGouv/actions/mirror-gitlab@master
       with:
-        project: SocialGouv/sre/test-sync
+        project: SocialGouv/sample-next-app/sample-next-app
         token: ${{ secrets.SOCIALGROOVYBOT_GITLAB_TOKEN }}
