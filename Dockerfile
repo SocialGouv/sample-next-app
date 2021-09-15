@@ -7,9 +7,9 @@ COPY yarn.lock .
 
 RUN yarn --frozen-lockfile
 
-COPY public .
+COPY public public
 COPY next.config.js .
-COPY src .
+COPY src src
 
 RUN yarn --production
 
