@@ -7,6 +7,7 @@ export default create("app", {
   env,
   config: {
     containerPort: 3030,
+    withPostgres: true,
   },
   deployment: {
     image: getGithubRegistryImagePath({

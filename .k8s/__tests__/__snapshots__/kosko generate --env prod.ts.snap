@@ -77,9 +77,28 @@ spec:
             periodSeconds: 5
           envFrom:
             - secretRef:
+                name: azure-pg-user
+            - secretRef:
                 name: app-sealed-secret
             - configMapRef:
                 name: app-configmap
+      initContainers:
+        - env:
+            - name: WAIT_FOR_RETRIES
+              value: '24'
+          envFrom:
+            - secretRef:
+                name: azure-pg-user
+          image: ghcr.io/socialgouv/docker/wait-for-postgres:6.45.0
+          imagePullPolicy: Always
+          name: wait-for-postgres
+          resources:
+            limits:
+              cpu: 20m
+              memory: 32Mi
+            requests:
+              cpu: 5m
+              memory: 16Mi
 ---
 apiVersion: bitnami.com/v1alpha1
 kind: SealedSecret
