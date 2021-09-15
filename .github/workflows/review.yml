@@ -16,7 +16,7 @@ jobs:
   ## BUILD AND REGISTER DOCKER IMAGES
   ##############################################################################
   register:
-    name: Build & Register application
+    name: Build & Register
     runs-on: ubuntu-latest
     steps:
       - name: Get project name
@@ -37,6 +37,7 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           imageName: ${{ env.project }}/hasura
           dockercontext: ./hasura
+          dockerfile: ./hasura/Dockerfile
 
   ##############################################################################
   ## GENERATE KUBERNETES MANIFESTS
