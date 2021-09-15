@@ -43,8 +43,8 @@ jobs:
     name: Preproduction manifests
     runs-on: ubuntu-latest
     steps:
-      - name: Use autodevops manifests generation
-        uses: SocialGouv/actions/autodevops-manifests@master
+      - name: Use k8s manifests generation
+        uses: SocialGouv/actions/k8s-manifests@master
         with:
           environment: "preprod"
 
@@ -73,8 +73,8 @@ jobs:
     name: Production manifests
     runs-on: ubuntu-latest
     steps:
-      - name: Use autodevops manifests generation
-        uses: SocialGouv/actions/autodevops-manifests@master
+      - name: Use k8s manifests generation
+        uses: SocialGouv/actions/k8s-manifests@master
         with:
           environment: "prod"
 
