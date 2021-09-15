@@ -1,19 +1,19 @@
-FROM node:15.14.0-alpine3.12
+FROM node:14-alpine
 
 WORKDIR /app
 
-COPY package.json yarn.lock ./
+COPY package.json .
+COPY yarn.lock .
 
-RUN yarn install --production --frozen-lockfile
+RUN yarn --frozen-lockfile
 
-COPY next.config.js server.js  ./
-COPY src/sentry.js ./src/sentry.js
-COPY .next/ ./.next
-COPY public/ ./
+COPY public/ .
+COPY next.config.js .
+COPY knexfile.js .
+COPY src .
+
+RUN yarn --production
 
 USER node
-
-ENV NODE_ENV=production
-ENV NEXT_TELEMETRY_DISABLED=1
 
 CMD ["yarn", "start"]
