@@ -1,16 +1,14 @@
 import env from "@kosko/env";
 
 import { create } from "@socialgouv/kosko-charts/components/hasura";
-import { getHarborImagePath } from "@socialgouv/kosko-charts/utils/getHarborImagePath";
+import { getGithubRegistryImagePath } from "@socialgouv/kosko-charts/utils/getGithubRegistryImagePath";
 
-const manifests = create("hasura", {
+export default create("hasura", {
   env,
-  config: {
-    ingress: true,
-  },
   deployment: {
-    image: getHarborImagePath({ name: "hasura" }),
+    image: getGithubRegistryImagePath({
+      project: "sample-next-app",
+      name: "hasura",
+    }),
   },
 });
-
-export default manifests;

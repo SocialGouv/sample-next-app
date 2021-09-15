@@ -14,6 +14,7 @@ metadata:
   labels:
     app: app
     application: sample-next-app
+    component: sample-next-app
     owner: sample-next-app
     team: sample-next-app
   name: app
@@ -34,11 +35,12 @@ spec:
       labels:
         app: app
         application: sample-next-app
+        component: sample-next-app
         owner: sample-next-app
         team: sample-next-app
     spec:
       containers:
-        - image: harbor.fabrique.social.gouv.fr/fabrique/app:1.2.3
+        - image: ghcr.io/socialgouv/sample-next-app/app:v1.2.3
           livenessProbe:
             failureThreshold: 6
             httpGet:
@@ -93,6 +95,7 @@ metadata:
     app.gitlab.com/env.name: prod
   labels:
     application: sample-next-app
+    component: sample-next-app
     owner: sample-next-app
     team: sample-next-app
 spec:
@@ -115,6 +118,7 @@ spec:
         app.gitlab.com/env.name: prod
       labels:
         application: sample-next-app
+        component: sample-next-app
         owner: sample-next-app
         team: sample-next-app
     type: Opaque
@@ -131,6 +135,7 @@ metadata:
     app.gitlab.com/env.name: prod
   labels:
     application: sample-next-app
+    component: sample-next-app
     owner: sample-next-app
     team: sample-next-app
   namespace: sample-next-app
@@ -147,6 +152,7 @@ metadata:
   labels:
     app: app
     application: sample-next-app
+    component: sample-next-app
     owner: sample-next-app
     team: sample-next-app
   name: app
@@ -171,7 +177,7 @@ kind: Ingress
 metadata:
   annotations:
     kubernetes.io/ingress.class: nginx
-    certmanager.k8s.io/cluster-issuer: letsencrypt-prod
+    cert-manager.io/cluster-issuer: letsencrypt-prod
     kubernetes.io/tls-acme: 'true'
     kapp.k14s.io/disable-default-ownership-label-rules: ''
     kapp.k14s.io/disable-default-label-scoping-rules: ''
@@ -181,6 +187,7 @@ metadata:
   labels:
     app: app
     application: sample-next-app
+    component: sample-next-app
     owner: sample-next-app
     team: sample-next-app
   name: app
@@ -214,6 +221,7 @@ metadata:
   labels:
     app: hasura
     application: sample-next-app
+    component: hasura
     owner: sample-next-app
     team: sample-next-app
   name: hasura
@@ -234,11 +242,12 @@ spec:
       labels:
         app: hasura
         application: sample-next-app
+        component: hasura
         owner: sample-next-app
         team: sample-next-app
     spec:
       containers:
-        - image: harbor.fabrique.social.gouv.fr/fabrique/hasura:1.2.3
+        - image: ghcr.io/socialgouv/sample-next-app/hasura:v1.2.3
           livenessProbe:
             failureThreshold: 6
             httpGet:
@@ -287,7 +296,7 @@ spec:
           envFrom:
             - secretRef:
                 name: azure-pg-user
-          image: ghcr.io/socialgouv/docker/wait-for-postgres:6.39.1
+          image: ghcr.io/socialgouv/docker/wait-for-postgres:6.45.0
           imagePullPolicy: Always
           name: wait-for-postgres
           resources:
@@ -311,6 +320,7 @@ metadata:
     app.gitlab.com/env.name: prod
   labels:
     application: sample-next-app
+    component: hasura
     owner: sample-next-app
     team: sample-next-app
   namespace: sample-next-app
@@ -334,6 +344,7 @@ spec:
         app.gitlab.com/env.name: prod
       labels:
         application: sample-next-app
+        component: hasura
         owner: sample-next-app
         team: sample-next-app
     type: Opaque
@@ -350,6 +361,7 @@ metadata:
     app.gitlab.com/env.name: prod
   labels:
     application: sample-next-app
+    component: hasura
     owner: sample-next-app
     team: sample-next-app
   namespace: sample-next-app
@@ -367,6 +379,7 @@ metadata:
   labels:
     app: hasura
     application: sample-next-app
+    component: hasura
     owner: sample-next-app
     team: sample-next-app
   name: hasura
@@ -397,6 +410,7 @@ metadata:
     app.gitlab.com/env.name: prod
   labels:
     application: sample-next-app
+    component: sample-next-app
     owner: sample-next-app
     team: sample-next-app
   namespace: sample-next-app
@@ -426,6 +440,7 @@ spec:
         app.gitlab.com/env.name: prod
       labels:
         application: sample-next-app
+        component: sample-next-app
         owner: sample-next-app
         team: sample-next-app
     type: Opaque
