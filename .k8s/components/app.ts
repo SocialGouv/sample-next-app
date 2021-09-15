@@ -6,7 +6,7 @@ import { getGithubRegistryImagePath } from "@socialgouv/kosko-charts/utils/getGi
 export default create("app", {
   env,
   config: {
-    containerPort: 3030,
+    containerPort: 3000,
     withPostgres: true,
   },
   deployment: {
