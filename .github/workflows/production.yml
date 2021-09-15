@@ -35,6 +35,7 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           imageName: ${{ env.project }}/hasura
           dockercontext: ./hasura
+          dockerfile: ./hasura/Dockerfile
 
   ##############################################################################
   ## GENERATE PREPRODUCTION MANIFESTS

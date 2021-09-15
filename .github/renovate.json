@@ -1,4 +1,4 @@
 {
-  "extends": ["github>SocialGouv/renovate-config:light"],
-  "ignoreDeps": ["template.data.gouv.fr"]
+  "$schema": "http://json.schemastore.org/renovate",
+  "extends": ["github>SocialGouv/renovate-config:light"]
 }
