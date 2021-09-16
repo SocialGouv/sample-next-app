@@ -1,3 +1,10 @@
+## [3.1.2](https://github.com/SocialGouv/sample-next-app/compare/v3.1.1...v3.1.2) (2021-09-16)
+
+
+### Bug Fixes
+
+* **deps:** update all dependencies ([#516](https://github.com/SocialGouv/sample-next-app/issues/516)) ([f32721c](https://github.com/SocialGouv/sample-next-app/commit/f32721c83ecc55886df468c148645c82df81a1c0))
+
 ## [3.1.1](https://github.com/SocialGouv/sample-next-app/compare/v3.1.0...v3.1.1) (2021-09-16)
 
 
