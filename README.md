@@ -74,7 +74,7 @@ docker build \
 ```sh
 docker run -it --init --rm -p 3000:3000 sample-next-app
 ```
-
+ 
 ## Tips
 
 - 3rd party libs (ex: some of @sindresorhus modules) may not be ES3 compatible (breaks IE11) and wont be babelified by Next.js. You can locally import the code, make a PR to the upstream project to [publish babelified version](https://github.com/elijahmanor/cross-var/pull/7/files) or use [next-transpile-modules](https://github.com/martpie/next-transpile-modules)
