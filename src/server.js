@@ -62,7 +62,10 @@ app.prepare().then(() => {
         throw err;
       }
 
-      console.log("process.env.SENTRY_DSN", process.env.SENTRY_DSN);
+      console.log(
+        "process.env.NEXT_PUBLIC_SENTRY_DSN",
+        process.env.NEXT_PUBLIC_SENTRY_DSN
+      );
       console.log("process.env.SENTRY_TOKEN", process.env.SENTRY_TOKEN);
       console.log(
         "process.env.NEXT_PUBLIC_MATOMO_URL",
