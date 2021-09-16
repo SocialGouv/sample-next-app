@@ -58,13 +58,13 @@
   "private": true,
   "scripts": {
     "build": "next build",
-    "dev": "node -r dotenv/config server.js dotenv_config_path=.env.development",
+    "dev": "next dev",
     "e2e": "yarn --cwd=./optional/e2e/runners/puppeteer",
     "k8s": "yarn --silent --cwd .k8s",
     "lint": "eslint src/*",
     "precommit": "lint-staged",
     "prepare": "is-ci || husky install",
-    "start": "NODE_ENV=production node server.js",
+    "start": "next start",
     "test": "jest"
   },
   "lint-staged": {

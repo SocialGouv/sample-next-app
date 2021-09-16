@@ -1,4 +1,4 @@
 {
   "$schema": "http://json.schemastore.org/renovate",
-  "extends": ["github>SocialGouv/renovate-config:light", ":automergeAll"]
+  "extends": ["github>SocialGouv/renovate-config:light"]
 }

@@ -1,0 +1,98 @@
+name: Production
+
+on:
+  push:
+    tags:
+      - v*
+
+concurrency:
+  group: preproduction
+  cancel-in-progress: true
+
+jobs:
+  ##############################################################################
+  ## BUILD AND REGISTER DOCKER IMAGE
+  ##############################################################################
+  register:
+    name: Build & Register docker images
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get project name
+        run: |
+          echo "project=${GITHUB_REPOSITORY#*/}" >> $GITHUB_ENV
+
+      - name: Application
+        uses: SocialGouv/actions/autodevops-build-register@master
+        with:
+          project: ${{ env.project }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+          imageName: ${{ env.project }}/app
+
+      - name: Hasura
+        uses: SocialGouv/actions/autodevops-build-register@master
+        with:
+          project: ${{ env.project }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+          imageName: ${{ env.project }}/hasura
+          dockercontext: ./hasura
+          dockerfile: ./hasura/Dockerfile
+
+  ##############################################################################
+  ## GENERATE PREPRODUCTION MANIFESTS
+  ##############################################################################
+  manifests:
+    name: Preproduction manifests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Use k8s manifests generation
+        uses: SocialGouv/actions/k8s-manifests@master
+        with:
+          environment: "preprod"
+
+  ##############################################################################
+  ## DEPLOY PREPRODUCTION APPLICATION
+  ##############################################################################
+  deploy-preprod:
+    name: Deploy preproduction
+    runs-on: ubuntu-latest
+    needs: [register, manifests]
+    environment:
+      name: preproduction
+      url: https://sample-next-app-preprod.${{ env.SOCIALGOUV_BASE_DOMAIN }}
+    steps:
+      - name: Use autodevops deployment
+        uses: SocialGouv/actions/autodevops-deploy@master
+        with:
+          environment: "preprod"
+          token: ${{ secrets.GITHUB_TOKEN }}
+          kubeconfig: ${{ secrets.KUBECONFIG }}
+
+  ##############################################################################
+  ## GENERATE PRODUCTION MANIFESTS
+  ##############################################################################
+  manifests-prod:
+    name: Production manifests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Use k8s manifests generation
+        uses: SocialGouv/actions/k8s-manifests@master
+        with:
+          environment: "prod"
+
+  ##############################################################################
+  ## DEPLOY PRODUCTION APPLICATION
+  ##############################################################################
+  deploy-prod:
+    name: Deploy production
+    runs-on: ubuntu-latest
+    needs: [deploy-preprod, manifests-prod]
+    environment:
+      name: production
+      url: https://sample-next-app.${{ env.SOCIALGOUV_BASE_DOMAIN }}
+    steps:
+      - name: Use autodevops deployment
+        uses: SocialGouv/actions/autodevops-deploy@master
+        with:
+          environment: "prod"
+          token: ${{ secrets.GITHUB_TOKEN }}
+          kubeconfig: ${{ secrets.KUBECONFIG }}

@@ -18,6 +18,7 @@ metadata:
   labels:
     azure-pg-admin-user: sample-next-app
     application: v1-2-3-sample-next-app
+    component: v1-2-3-sample-next-app
     owner: sample-next-app
     team: sample-next-app
     cert: wildcard
@@ -35,10 +36,10 @@ metadata:
   labels:
     app: pgweb
     application: v1-2-3-sample-next-app
+    component: pgweb
     owner: sample-next-app
     team: sample-next-app
     cert: wildcard
-    component: pgweb
   name: pgweb
   namespace: sample-next-app-85-preprod-dev2
 spec:
@@ -57,10 +58,10 @@ spec:
       labels:
         app: pgweb
         application: v1-2-3-sample-next-app
+        component: pgweb
         owner: sample-next-app
         team: sample-next-app
         cert: wildcard
-        component: pgweb
     spec:
       containers:
         - image: sosedoff/pgweb:0.11.8
@@ -108,7 +109,7 @@ spec:
           envFrom:
             - secretRef:
                 name: azure-pg-user
-          image: ghcr.io/socialgouv/docker/wait-for-postgres:6.39.1
+          image: ghcr.io/socialgouv/docker/wait-for-postgres:6.45.0
           imagePullPolicy: Always
           name: wait-for-postgres
           resources:
@@ -125,6 +126,7 @@ metadata:
   labels:
     app: pgweb
     application: v1-2-3-sample-next-app
+    component: pgweb
     owner: sample-next-app
     team: sample-next-app
     cert: wildcard
@@ -158,6 +160,7 @@ metadata:
   labels:
     app: pgweb
     application: v1-2-3-sample-next-app
+    component: pgweb
     owner: sample-next-app
     team: sample-next-app
     cert: wildcard
@@ -192,6 +195,7 @@ metadata:
   labels:
     app: app
     application: v1-2-3-sample-next-app
+    component: v1-2-3-sample-next-app
     owner: sample-next-app
     team: sample-next-app
     cert: wildcard
@@ -213,12 +217,13 @@ spec:
       labels:
         app: app
         application: v1-2-3-sample-next-app
+        component: v1-2-3-sample-next-app
         owner: sample-next-app
         team: sample-next-app
         cert: wildcard
     spec:
       containers:
-        - image: harbor.fabrique.social.gouv.fr/fabrique/app:1.2.3
+        - image: ghcr.io/socialgouv/sample-next-app/app:v1.2.3
           livenessProbe:
             failureThreshold: 6
             httpGet:
@@ -255,9 +260,28 @@ spec:
             periodSeconds: 5
           envFrom:
             - secretRef:
+                name: azure-pg-user
+            - secretRef:
                 name: app-sealed-secret
             - configMapRef:
                 name: app-configmap
+      initContainers:
+        - env:
+            - name: WAIT_FOR_RETRIES
+              value: '24'
+          envFrom:
+            - secretRef:
+                name: azure-pg-user
+          image: ghcr.io/socialgouv/docker/wait-for-postgres:6.45.0
+          imagePullPolicy: Always
+          name: wait-for-postgres
+          resources:
+            limits:
+              cpu: 20m
+              memory: 32Mi
+            requests:
+              cpu: 5m
+              memory: 16Mi
 ---
 apiVersion: bitnami.com/v1alpha1
 kind: SealedSecret
@@ -273,6 +297,7 @@ metadata:
   name: app-sealed-secret
   labels:
     application: v1-2-3-sample-next-app
+    component: v1-2-3-sample-next-app
     owner: sample-next-app
     team: sample-next-app
     cert: wildcard
@@ -304,6 +329,7 @@ spec:
       name: app-sealed-secret
       labels:
         application: v1-2-3-sample-next-app
+        component: v1-2-3-sample-next-app
         owner: sample-next-app
         team: sample-next-app
         cert: wildcard
@@ -320,6 +346,7 @@ metadata:
     app.gitlab.com/env.name: preprod-dev42
   labels:
     application: v1-2-3-sample-next-app
+    component: v1-2-3-sample-next-app
     owner: sample-next-app
     team: sample-next-app
     cert: wildcard
@@ -337,6 +364,7 @@ metadata:
   labels:
     app: app
     application: v1-2-3-sample-next-app
+    component: v1-2-3-sample-next-app
     owner: sample-next-app
     team: sample-next-app
     cert: wildcard
@@ -370,6 +398,7 @@ metadata:
   labels:
     app: app
     application: v1-2-3-sample-next-app
+    component: v1-2-3-sample-next-app
     owner: sample-next-app
     team: sample-next-app
     cert: wildcard
@@ -404,6 +433,7 @@ metadata:
   labels:
     app: hasura
     application: v1-2-3-sample-next-app
+    component: hasura
     owner: sample-next-app
     team: sample-next-app
     cert: wildcard
@@ -425,12 +455,13 @@ spec:
       labels:
         app: hasura
         application: v1-2-3-sample-next-app
+        component: hasura
         owner: sample-next-app
         team: sample-next-app
         cert: wildcard
     spec:
       containers:
-        - image: harbor.fabrique.social.gouv.fr/fabrique/hasura:1.2.3
+        - image: ghcr.io/socialgouv/sample-next-app/hasura:v1.2.3
           livenessProbe:
             failureThreshold: 6
             httpGet:
@@ -479,7 +510,7 @@ spec:
           envFrom:
             - secretRef:
                 name: azure-pg-user
-          image: ghcr.io/socialgouv/docker/wait-for-postgres:6.39.1
+          image: ghcr.io/socialgouv/docker/wait-for-postgres:6.45.0
           imagePullPolicy: Always
           name: wait-for-postgres
           resources:
@@ -504,6 +535,7 @@ metadata:
   name: hasura-sealed-secret
   labels:
     application: v1-2-3-sample-next-app
+    component: hasura
     owner: sample-next-app
     team: sample-next-app
     cert: wildcard
@@ -529,6 +561,7 @@ spec:
       name: hasura-sealed-secret
       labels:
         application: v1-2-3-sample-next-app
+        component: hasura
         owner: sample-next-app
         team: sample-next-app
         cert: wildcard
@@ -546,6 +579,7 @@ metadata:
     app.gitlab.com/env.name: preprod-dev42
   labels:
     application: v1-2-3-sample-next-app
+    component: hasura
     owner: sample-next-app
     team: sample-next-app
     cert: wildcard
@@ -565,6 +599,7 @@ metadata:
   labels:
     app: hasura
     application: v1-2-3-sample-next-app
+    component: hasura
     owner: sample-next-app
     team: sample-next-app
     cert: wildcard
@@ -585,41 +620,6 @@ spec:
     app: hasura
   type: ClusterIP
 ---
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  annotations:
-    kubernetes.io/ingress.class: nginx
-    kapp.k14s.io/disable-default-ownership-label-rules: ''
-    kapp.k14s.io/disable-default-label-scoping-rules: ''
-    app.gitlab.com/app: socialgouv-sample-next-app
-    app.gitlab.com/env: preprod-dev42
-    app.gitlab.com/env.name: preprod-dev42
-  labels:
-    app: hasura
-    application: v1-2-3-sample-next-app
-    owner: sample-next-app
-    team: sample-next-app
-    cert: wildcard
-  name: hasura
-  namespace: sample-next-app-85-preprod-dev2
-spec:
-  rules:
-    - host: hasura-preprod-sample-next-app.dev42.fabrique.social.gouv.fr
-      http:
-        paths:
-          - backend:
-              service:
-                name: hasura
-                port:
-                  name: http
-            path: /
-            pathType: Prefix
-  tls:
-    - hosts:
-        - hasura-preprod-sample-next-app.dev42.fabrique.social.gouv.fr
-      secretName: wildcard-crt
----
 apiVersion: bitnami.com/v1alpha1
 kind: SealedSecret
 metadata:
@@ -632,6 +632,7 @@ metadata:
   name: azure-pg-user
   labels:
     application: v1-2-3-sample-next-app
+    component: v1-2-3-sample-next-app
     owner: sample-next-app
     team: sample-next-app
     cert: wildcard
@@ -663,6 +664,7 @@ spec:
       name: azure-pg-user
       labels:
         application: v1-2-3-sample-next-app
+        component: v1-2-3-sample-next-app
         owner: sample-next-app
         team: sample-next-app
         cert: wildcard

@@ -1,15 +1,19 @@
 import env from "@kosko/env";
 
 import { create } from "@socialgouv/kosko-charts/components/app";
-import { getHarborImagePath } from "@socialgouv/kosko-charts/utils/getHarborImagePath";
+import { getGithubRegistryImagePath } from "@socialgouv/kosko-charts/utils/getGithubRegistryImagePath";
 
-const manifests = create("app", {
+export default create("app", {
   env,
   config: {
-    containerPort: 3030,
+    containerPort: 3000,
+    withPostgres: true,
   },
   deployment: {
-    image: getHarborImagePath({ name: "app" }),
+    image: getGithubRegistryImagePath({
+      project: "sample-next-app",
+      name: "app",
+    }),
     container: {
       resources: {
         requests: {
@@ -24,5 +28,3 @@ const manifests = create("app", {
     },
   },
 });
-
-export default manifests;

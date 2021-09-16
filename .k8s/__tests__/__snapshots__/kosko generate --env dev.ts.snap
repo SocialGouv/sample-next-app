@@ -19,6 +19,7 @@ metadata:
   labels:
     azure-pg-admin-user: sample-next-app
     application: master-dev42-sample-next-app
+    component: master-dev42-sample-next-app
     owner: sample-next-app
     team: sample-next-app
     cert: wildcard
@@ -36,10 +37,10 @@ metadata:
   labels:
     app: pgweb
     application: master-dev42-sample-next-app
+    component: pgweb
     owner: sample-next-app
     team: sample-next-app
     cert: wildcard
-    component: pgweb
   name: pgweb
   namespace: sample-next-app-85-master-dev2
 spec:
@@ -58,10 +59,10 @@ spec:
       labels:
         app: pgweb
         application: master-dev42-sample-next-app
+        component: pgweb
         owner: sample-next-app
         team: sample-next-app
         cert: wildcard
-        component: pgweb
     spec:
       containers:
         - image: sosedoff/pgweb:0.11.8
@@ -101,15 +102,15 @@ spec:
             periodSeconds: 5
           envFrom:
             - secretRef:
-                name: azure-pg-user-master-dev42
+                name: azure-pg-user-master
       initContainers:
         - env:
             - name: WAIT_FOR_RETRIES
               value: '24'
           envFrom:
             - secretRef:
-                name: azure-pg-user-master-dev42
-          image: ghcr.io/socialgouv/docker/wait-for-postgres:6.39.1
+                name: azure-pg-user-master
+          image: ghcr.io/socialgouv/docker/wait-for-postgres:6.45.0
           imagePullPolicy: Always
           name: wait-for-postgres
           resources:
@@ -126,6 +127,7 @@ metadata:
   labels:
     app: pgweb
     application: master-dev42-sample-next-app
+    component: pgweb
     owner: sample-next-app
     team: sample-next-app
     cert: wildcard
@@ -159,6 +161,7 @@ metadata:
   labels:
     app: pgweb
     application: master-dev42-sample-next-app
+    component: pgweb
     owner: sample-next-app
     team: sample-next-app
     cert: wildcard
@@ -193,6 +196,7 @@ metadata:
   labels:
     app: app
     application: master-dev42-sample-next-app
+    component: master-dev42-sample-next-app
     owner: sample-next-app
     team: sample-next-app
     cert: wildcard
@@ -214,13 +218,13 @@ spec:
       labels:
         app: app
         application: master-dev42-sample-next-app
+        component: master-dev42-sample-next-app
         owner: sample-next-app
         team: sample-next-app
         cert: wildcard
     spec:
       containers:
-        - image: >-
-            harbor.fabrique.social.gouv.fr/fabrique/app:0123456789abcdefghijklmnopqrstuvwxyz0123
+        - image: 'ghcr.io/socialgouv/sample-next-app/app:'
           livenessProbe:
             failureThreshold: 6
             httpGet:
@@ -257,9 +261,28 @@ spec:
             periodSeconds: 5
           envFrom:
             - secretRef:
+                name: azure-pg-user-master
+            - secretRef:
                 name: app-sealed-secret
             - configMapRef:
                 name: app-configmap
+      initContainers:
+        - env:
+            - name: WAIT_FOR_RETRIES
+              value: '24'
+          envFrom:
+            - secretRef:
+                name: azure-pg-user-master
+          image: ghcr.io/socialgouv/docker/wait-for-postgres:6.45.0
+          imagePullPolicy: Always
+          name: wait-for-postgres
+          resources:
+            limits:
+              cpu: 20m
+              memory: 32Mi
+            requests:
+              cpu: 5m
+              memory: 16Mi
 ---
 apiVersion: bitnami.com/v1alpha1
 kind: SealedSecret
@@ -275,6 +298,7 @@ metadata:
   name: app-sealed-secret
   labels:
     application: master-dev42-sample-next-app
+    component: master-dev42-sample-next-app
     owner: sample-next-app
     team: sample-next-app
     cert: wildcard
@@ -306,6 +330,7 @@ spec:
       name: app-sealed-secret
       labels:
         application: master-dev42-sample-next-app
+        component: master-dev42-sample-next-app
         owner: sample-next-app
         team: sample-next-app
         cert: wildcard
@@ -322,6 +347,7 @@ metadata:
     app.gitlab.com/env.name: master-dev42
   labels:
     application: master-dev42-sample-next-app
+    component: master-dev42-sample-next-app
     owner: sample-next-app
     team: sample-next-app
     cert: wildcard
@@ -339,6 +365,7 @@ metadata:
   labels:
     app: app
     application: master-dev42-sample-next-app
+    component: master-dev42-sample-next-app
     owner: sample-next-app
     team: sample-next-app
     cert: wildcard
@@ -372,6 +399,7 @@ metadata:
   labels:
     app: app
     application: master-dev42-sample-next-app
+    component: master-dev42-sample-next-app
     owner: sample-next-app
     team: sample-next-app
     cert: wildcard
@@ -406,6 +434,7 @@ metadata:
   labels:
     app: hasura
     application: master-dev42-sample-next-app
+    component: hasura
     owner: sample-next-app
     team: sample-next-app
     cert: wildcard
@@ -427,13 +456,13 @@ spec:
       labels:
         app: hasura
         application: master-dev42-sample-next-app
+        component: hasura
         owner: sample-next-app
         team: sample-next-app
         cert: wildcard
     spec:
       containers:
-        - image: >-
-            harbor.fabrique.social.gouv.fr/fabrique/hasura:0123456789abcdefghijklmnopqrstuvwxyz0123
+        - image: 'ghcr.io/socialgouv/sample-next-app/hasura:'
           livenessProbe:
             failureThreshold: 6
             httpGet:
@@ -470,7 +499,7 @@ spec:
             periodSeconds: 5
           envFrom:
             - secretRef:
-                name: azure-pg-user-master-dev42
+                name: azure-pg-user-master
             - secretRef:
                 name: hasura-sealed-secret
             - configMapRef:
@@ -481,8 +510,8 @@ spec:
               value: '24'
           envFrom:
             - secretRef:
-                name: azure-pg-user-master-dev42
-          image: ghcr.io/socialgouv/docker/wait-for-postgres:6.39.1
+                name: azure-pg-user-master
+          image: ghcr.io/socialgouv/docker/wait-for-postgres:6.45.0
           imagePullPolicy: Always
           name: wait-for-postgres
           resources:
@@ -507,6 +536,7 @@ metadata:
   name: hasura-sealed-secret
   labels:
     application: master-dev42-sample-next-app
+    component: hasura
     owner: sample-next-app
     team: sample-next-app
     cert: wildcard
@@ -532,6 +562,7 @@ spec:
       name: hasura-sealed-secret
       labels:
         application: master-dev42-sample-next-app
+        component: hasura
         owner: sample-next-app
         team: sample-next-app
         cert: wildcard
@@ -549,6 +580,7 @@ metadata:
     app.gitlab.com/env.name: master-dev42
   labels:
     application: master-dev42-sample-next-app
+    component: hasura
     owner: sample-next-app
     team: sample-next-app
     cert: wildcard
@@ -568,6 +600,7 @@ metadata:
   labels:
     app: hasura
     application: master-dev42-sample-next-app
+    component: hasura
     owner: sample-next-app
     team: sample-next-app
     cert: wildcard
@@ -588,41 +621,6 @@ spec:
     app: hasura
   type: ClusterIP
 ---
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  annotations:
-    kubernetes.io/ingress.class: nginx
-    kapp.k14s.io/disable-default-ownership-label-rules: ''
-    kapp.k14s.io/disable-default-label-scoping-rules: ''
-    app.gitlab.com/app: socialgouv-sample-next-app
-    app.gitlab.com/env: master-dev42
-    app.gitlab.com/env.name: master-dev42
-  labels:
-    app: hasura
-    application: master-dev42-sample-next-app
-    owner: sample-next-app
-    team: sample-next-app
-    cert: wildcard
-  name: hasura
-  namespace: sample-next-app-85-master-dev2
-spec:
-  rules:
-    - host: hasura-master-dev42-sample-next-app.dev42.fabrique.social.gouv.fr
-      http:
-        paths:
-          - backend:
-              service:
-                name: hasura
-                port:
-                  name: http
-            path: /
-            pathType: Prefix
-  tls:
-    - hosts:
-        - hasura-master-dev42-sample-next-app.dev42.fabrique.social.gouv.fr
-      secretName: wildcard-crt
----
 apiVersion: batch/v1
 kind: Job
 spec:
@@ -634,17 +632,17 @@ spec:
             - create-db-user
           env:
             - name: NEW_DB_NAME
-              value: autodevops_master-dev42
+              value: autodevops_master
             - name: NEW_USER
-              value: user_master-dev42
+              value: user_master
             - name: NEW_PASSWORD
-              value: password_master-dev42
+              value: password_master
             - name: NEW_DB_EXTENSIONS
               value: hstore pgcrypto citext uuid-ossp
           envFrom:
             - secretRef:
                 name: azure-pg-admin-user
-          image: ghcr.io/socialgouv/docker/azure-db:6.39.1
+          image: ghcr.io/socialgouv/docker/azure-db:6.45.0
           imagePullPolicy: IfNotPresent
           name: create-db-user
           resources:
@@ -655,57 +653,51 @@ spec:
               cpu: 100m
               memory: 64Mi
       restartPolicy: Never
-    metadata:
-      annotations:
-        app.gitlab.com/app: socialgouv-sample-next-app
-        app.gitlab.com/env: master-dev42
-        app.gitlab.com/env.name: master-dev42
-      labels:
-        application: master-dev42-sample-next-app
-        owner: sample-next-app
-        team: sample-next-app
-        cert: wildcard
   ttlSecondsAfterFinished: 86400
 metadata:
   annotations:
+    kapp.k14s.io/update-strategy: skip
     app.gitlab.com/app: socialgouv-sample-next-app
     app.gitlab.com/env: master-dev42
     app.gitlab.com/env.name: master-dev42
   labels:
     application: master-dev42-sample-next-app
+    component: master-dev42-sample-next-app
     owner: sample-next-app
     team: sample-next-app
     cert: wildcard
-  name: create-db-job-0123456
+  name: create-db-job-master
   namespace: sample-next-app-85-master-dev2
 ---
 apiVersion: v1
 kind: Secret
 stringData:
   DATABASE_URL: >-
-    postgresql://user_master-dev42%40samplenextappdevserver.postgres.database.azure.com:password_master-dev42@samplenextappdevserver.postgres.database.azure.com/autodevops_master-dev42?sslmode=require
+    postgresql://user_master%40samplenextappdevserver.postgres.database.azure.com:password_master@samplenextappdevserver.postgres.database.azure.com/autodevops_master?sslmode=require
   DB_URI: >-
-    postgresql://user_master-dev42%40samplenextappdevserver.postgres.database.azure.com:password_master-dev42@samplenextappdevserver.postgres.database.azure.com/autodevops_master-dev42?sslmode=require
+    postgresql://user_master%40samplenextappdevserver.postgres.database.azure.com:password_master@samplenextappdevserver.postgres.database.azure.com/autodevops_master?sslmode=require
   HASURA_GRAPHQL_DATABASE_URL: >-
-    postgresql://user_master-dev42%40samplenextappdevserver.postgres.database.azure.com:password_master-dev42@samplenextappdevserver.postgres.database.azure.com/autodevops_master-dev42?sslmode=require
-  PGDATABASE: autodevops_master-dev42
+    postgresql://user_master%40samplenextappdevserver.postgres.database.azure.com:password_master@samplenextappdevserver.postgres.database.azure.com/autodevops_master?sslmode=require
+  PGDATABASE: autodevops_master
   PGHOST: samplenextappdevserver.postgres.database.azure.com
-  PGPASSWORD: password_master-dev42
+  PGPASSWORD: password_master
   PGRST_DB_URI: >-
-    postgresql://user_master-dev42%40samplenextappdevserver.postgres.database.azure.com:password_master-dev42@samplenextappdevserver.postgres.database.azure.com/autodevops_master-dev42?sslmode=require
+    postgresql://user_master%40samplenextappdevserver.postgres.database.azure.com:password_master@samplenextappdevserver.postgres.database.azure.com/autodevops_master?sslmode=require
   PGSSLMODE: require
-  PGUSER: user_master-dev42@samplenextappdevserver.postgres.database.azure.com
+  PGUSER: user_master@samplenextappdevserver.postgres.database.azure.com
 metadata:
   annotations:
+    kapp.k14s.io/update-strategy: skip
     app.gitlab.com/app: socialgouv-sample-next-app
     app.gitlab.com/env: master-dev42
     app.gitlab.com/env.name: master-dev42
   labels:
     application: master-dev42-sample-next-app
+    component: master-dev42-sample-next-app
     owner: sample-next-app
     team: sample-next-app
     cert: wildcard
-  name: azure-pg-user-master-dev42
+  name: azure-pg-user-master
   namespace: sample-next-app-85-master-dev2
 ---
 apiVersion: bitnami.com/v1alpha1
