@@ -24,7 +24,7 @@ const faultyApiCall = () =>
 const Page = () => (
   <React.Fragment>
     <Head>
-      <title>Home | sample next app</title>
+      <title>Home | sample-next-app</title>
     </Head>
     <p>
       <Link href="/page2">
