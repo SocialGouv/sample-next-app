@@ -64,17 +64,18 @@ spec:
             timeoutSeconds: 1
           resources:
             limits:
-              cpu: 100m
+              cpu: 500m
               memory: 256Mi
             requests:
-              cpu: 1m
-              memory: 64Mi
+              cpu: 100m
+              memory: 128Mi
           startupProbe:
             failureThreshold: 12
             httpGet:
               path: /healthz
               port: http
             periodSeconds: 5
+            initialDelaySeconds: 15
           envFrom:
             - secretRef:
                 name: azure-pg-user
