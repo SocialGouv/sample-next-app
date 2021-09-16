@@ -16,13 +16,16 @@ export default create("app", {
     container: {
       resources: {
         requests: {
-          cpu: "1m",
-          memory: "64Mi",
+          cpu: "100m",
+          memory: "128Mi",
         },
         limits: {
-          cpu: "100m",
+          cpu: "500m",
           memory: "256Mi",
         },
+      },
+      startupProbe: {
+        initialDelaySeconds: 15,
       },
     },
   },
