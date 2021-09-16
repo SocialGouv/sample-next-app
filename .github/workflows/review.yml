@@ -60,8 +60,9 @@ jobs:
     needs: [register, manifests]
     steps:
       - name: Use autodevops deployment
-        uses: SocialGouv/actions/autodevops-deploy@master
+        uses: SocialGouv/actions/autodevops-deploy@inputs.envUrl
         with:
           environment: "dev"
           token: ${{ secrets.GITHUB_TOKEN }}
           kubeconfig: ${{ secrets.KUBECONFIG }}
+          envUrl: https://some.crazy.url
