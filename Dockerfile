@@ -13,7 +13,9 @@ RUN yarn install --frozen-lockfile
 # Rebuild the source code only when needed
 FROM node:14-alpine AS builder
 WORKDIR /app
-COPY . .
+COPY src ./src
+COPY public ./public
+COPY .env.production package.json yarn.lock next.config.js ./
 COPY --from=deps /app/node_modules ./node_modules
 
 ARG SENTRY_DSN
@@ -33,6 +35,7 @@ ENV NODE_ENV production
 # You only need to copy next.config.js if you are NOT using the default configuration
 COPY --from=builder /app/next.config.js .
 COPY --from=builder /app/.env.production .
+COPY --from=builder /app/src ./src
 COPY --from=builder /app/public ./public
 COPY --from=builder --chown=node:node /app/.next ./.next
 COPY --from=builder /app/node_modules ./node_modules

@@ -1,11 +1,11 @@
 const nextSourceMaps = require("@zeit/next-source-maps");
 
 module.exports = nextSourceMaps({
-  env: {
-    NEXT_PUBLIC_SENTRY_DSN: process.env.NEXT_PUBLIC_SENTRY_DSN,
-    NEXT_PUBLIC_MATOMO_SITE_ID: process.env.NEXT_PUBLIC_MATOMO_SITE_ID,
-    NEXT_PUBLIC_MATOMO_URL: process.env.NEXT_PUBLIC_MATOMO_URL,
-  },
+  // env: {
+  //   NEXT_PUBLIC_SENTRY_DSN: process.env.NEXT_PUBLIC_SENTRY_DSN,
+  //   NEXT_PUBLIC_MATOMO_SITE_ID: process.env.NEXT_PUBLIC_MATOMO_SITE_ID,
+  //   NEXT_PUBLIC_MATOMO_URL: process.env.NEXT_PUBLIC_MATOMO_URL,
+  // },
   webpack: (config, { isServer /*, buildId */ }) => {
     // config.plugins.push(
     //   new webpack.DefinePlugin({
