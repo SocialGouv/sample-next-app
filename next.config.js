@@ -14,9 +14,9 @@ module.exports = nextSourceMaps({
     //   })
     // );
 
-    // if (!isServer) {
-    //   config.resolve.alias["@sentry/node"] = "@sentry/browser";
-    // }
+    if (!isServer) {
+      config.resolve.alias["@sentry/node"] = "@sentry/browser";
+    }
 
     return config;
   },
