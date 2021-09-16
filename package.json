@@ -64,7 +64,7 @@
     "lint": "eslint src/*",
     "precommit": "lint-staged",
     "prepare": "is-ci || husky install",
-    "start": "NODE_ENV=production node server.js",
+    "start": "NODE_ENV=production node src/server.js",
     "test": "jest"
   },
   "lint-staged": {
