@@ -8,7 +8,7 @@ import React from "react";
 import Nav from "src/components/Nav";
 
 Sentry.init({
-  dsn: process.env.SENTRY_DSN,
+  dsn: process.env.NEXT_PUBLIC_SENTRY_DSN,
 });
 
 const MATOMO_URL = process.env.NEXT_PUBLIC_MATOMO_URL;
