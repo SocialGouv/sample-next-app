@@ -14,7 +14,7 @@
     "kosko": "^1.1.5",
     "kubernetes-models": "^2.0.2",
     "ts-node": "^10.2.1",
-    "typescript": "^4.4.2"
+    "typescript": "^4.4.3"
   },
   "devDependencies": {
     "@babel/core": "^7.15.5",
