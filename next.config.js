@@ -19,6 +19,10 @@ module.exports = withSentryConfig(
     //   NEXT_PUBLIC_MATOMO_SITE_ID: process.env.NEXT_PUBLIC_MATOMO_SITE_ID,
     //   NEXT_PUBLIC_MATOMO_URL: process.env.NEXT_PUBLIC_MATOMO_URL,
     // },
+    sentry: {
+      disableServerWebpackPlugin: true,
+      disableClientWebpackPlugin: true,
+    },
     webpack: (config, { isServer /*, buildId */ }) => {
       // config.plugins.push(
       //   new webpack.DefinePlugin({
