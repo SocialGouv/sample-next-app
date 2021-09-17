@@ -35,7 +35,6 @@ const Page = () => (
         <a>Go to page 2</a>
       </Link>
     </p>
-
     <p>
       <Link href="/page3">
         <a>Go to unknown page</a>
@@ -61,13 +60,7 @@ const Page = () => (
         trigger client-side error
       </button>
     </p>
-    <p>
-      <Link href="/page-error">
-        <button className="btn btn-warning">
-          trigger Sentry server-side error
-        </button>
-      </Link>
-    </p>
+    Version: {require("../../package.json").version}
   </React.Fragment>
 );
 
