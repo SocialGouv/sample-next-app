@@ -7,6 +7,7 @@ on:
     tags-ignore:
       - v*
 
+
 concurrency:
   cancel-in-progress: true
   group: ${{ github.ref }}
