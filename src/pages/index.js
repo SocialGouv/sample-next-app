@@ -4,6 +4,10 @@ import Link from "next/link";
 import React from "react";
 
 const triggerClientError = () => {
+  triggertError();
+};
+
+const triggertError = () => {
   throw new Error("Client-side error");
 };
 
@@ -54,7 +58,7 @@ const Page = () => (
     </p>
     <p>
       <button className="btn btn-warning" onClick={triggerClientError}>
-        trigger Sentry client-side error
+        trigger client-side error
       </button>
     </p>
     <p>

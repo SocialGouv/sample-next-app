@@ -1,15 +1,15 @@
 import "@socialgouv/bootstrap.core/dist/socialgouv-bootstrap.min.css";
 
-import * as Sentry from "@sentry/node";
+//import * as Sentry from "@sentry/node";
 import { init } from "@socialgouv/matomo-next";
 import App from "next/app";
 import Head from "next/head";
 import React from "react";
 import Nav from "src/components/Nav";
 
-Sentry.init({
-  dsn: process.env.NEXT_PUBLIC_SENTRY_DSN,
-});
+// Sentry.init({
+//   dsn: process.env.NEXT_PUBLIC_SENTRY_DSN,
+// });
 
 const MATOMO_URL = process.env.NEXT_PUBLIC_MATOMO_URL;
 const MATOMO_SITE_ID = process.env.NEXT_PUBLIC_MATOMO_SITE_ID;
@@ -17,9 +17,9 @@ const MATOMO_SITE_ID = process.env.NEXT_PUBLIC_MATOMO_SITE_ID;
 class MyApp extends App {
   componentDidMount() {
     console.log({
-      NEXT_PUBLIC_SENTRY_DSN: process.env.NEXT_PUBLIC_SENTRY_DSN,
-      NEXT_PUBLIC_MATOMO_URL: process.env.NEXT_PUBLIC_MATOMO_URL,
       NEXT_PUBLIC_MATOMO_SITE_ID: process.env.NEXT_PUBLIC_MATOMO_SITE_ID,
+      NEXT_PUBLIC_MATOMO_URL: process.env.NEXT_PUBLIC_MATOMO_URL,
+      NEXT_PUBLIC_SENTRY_DSN: process.env.NEXT_PUBLIC_SENTRY_DSN,
     });
     init({ siteId: MATOMO_SITE_ID, url: MATOMO_URL });
   }

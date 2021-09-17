@@ -3,7 +3,7 @@
 const Sentry = require("@sentry/node");
 const SentryIntegrations = require("@sentry/integrations");
 
-module.exports = (release = process.env.SENTRY_RELEASE) => {
+module.exports = (release = process.env.NEXT_PUBLIC_SENTRY_DSNRE) => {
   const sentryOptions = {
     attachStacktrace: true,
     dsn: process.env.NEXT_PUBLIC_SENTRY_DSN,

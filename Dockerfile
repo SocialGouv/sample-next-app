@@ -28,6 +28,8 @@ ENV NODE_ENV production
 
 # You only need to copy next.config.js if you are NOT using the default configuration
 COPY --from=builder /app/next.config.js .
+COPY --from=builder /app/sentry.client.config.js .
+COPY --from=builder /app/sentry.server.config.js .
 COPY --from=builder /app/.env.production .
 COPY --from=builder /app/package.json .
 COPY --from=builder /app/src ./src
