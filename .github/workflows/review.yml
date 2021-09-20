@@ -40,7 +40,6 @@ jobs:
           dockercontext: ./hasura
           dockerfile: ./hasura/Dockerfile
           
-
       - name: Application Harbor
         uses: SocialGouv/actions/harbor-build-register@harbor
         with:
@@ -51,7 +50,6 @@ jobs:
           harborPassword: ${{ secrets.HARBOR_PASSWORD }}
           harborProject: ${{ secrets.HARBOR_PROJECT }}
           
-
       - name: Hasura Harbor
         uses: SocialGouv/actions/harbor-build-register@harbor
         with:
