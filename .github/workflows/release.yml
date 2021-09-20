@@ -30,7 +30,7 @@ jobs:
       - name: Push updates to branch for major version
         if: steps.semantic.outputs.new_release_published == 'true'
         run: |
-          git push -f https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git HEAD:refs/heads/v${{steps.semantic.outputs.new_release_major_version}}
+          # git push -f https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git HEAD:refs/heads/v${{steps.semantic.outputs.new_release_major_version}}
           git push -f https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git :refs/tags/v${{steps.semantic.outputs.new_release_major_version}}
           git tag -f v${{steps.semantic.outputs.new_release_major_version}}
           git push -f https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git v${{steps.semantic.outputs.new_release_major_version}}
