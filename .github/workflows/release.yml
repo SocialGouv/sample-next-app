@@ -17,6 +17,7 @@ jobs:
           persist-credentials: false
 
       - name: Semantic Release
+        id: semantic
         uses: cycjimmy/semantic-release-action@v2
         with:
           semantic_version: 17
@@ -25,3 +26,9 @@ jobs:
             @semantic-release/git@9.0.0
         env:
           GITHUB_TOKEN: ${{ secrets.SOCIALGROOVYBOT_BOTO_PAT }}
+
+      - name: Push updates to branch for major version
+        if: steps.semantic.outputs.new_release_published == 'true'
+        run: "git push https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git HEAD:refs/heads/v${{steps.semantic.outputs.new_release_major_version}}"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
