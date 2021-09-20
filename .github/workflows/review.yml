@@ -39,7 +39,31 @@ jobs:
           imageName: ${{ env.project }}/hasura
           dockercontext: ./hasura
           dockerfile: ./hasura/Dockerfile
+          
 
+      - name: Application Harbor
+        uses: SocialGouv/actions/harbor-build-register@harbor
+        with:
+          project: ${{ env.project }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+          imageName: ${{ env.project }}/app
+          harborUsername: ${{ secrets.HARBOR_USERNAME }}
+          harborPassword: ${{ secrets.HARBOR_PASSWORD }}
+          harborProject: ${{ secrets.HARBOR_PROJECT }}
+          
+
+      - name: Hasura Harbor
+        uses: SocialGouv/actions/harbor-build-register@harbor
+        with:
+          project: ${{ env.project }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+          imageName: ${{ env.project }}/hasura
+          dockercontext: ./hasura
+          dockerfile: ./hasura/Dockerfile
+          harborUsername: ${{ secrets.HARBOR_USERNAME }}
+          harborPassword: ${{ secrets.HARBOR_PASSWORD }}
+          harborProject: ${{ secrets.HARBOR_PROJECT }}
+          
   ##############################################################################
   ## GENERATE KUBERNETES MANIFESTS
   ##############################################################################
