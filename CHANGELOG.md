@@ -1,3 +1,10 @@
+## [3.1.12](https://github.com/SocialGouv/sample-next-app/compare/v3.1.11...v3.1.12) (2021-09-20)
+
+
+### Bug Fixes
+
+* **deps:** update dependency @socialgouv/kosko-charts to ^9.5.11 ([#529](https://github.com/SocialGouv/sample-next-app/issues/529)) ([0a9f17d](https://github.com/SocialGouv/sample-next-app/commit/0a9f17d8846b3c6090569310574159dbfbad3659))
+
 ## [3.1.11](https://github.com/SocialGouv/sample-next-app/compare/v3.1.10...v3.1.11) (2021-09-20)
 
 
