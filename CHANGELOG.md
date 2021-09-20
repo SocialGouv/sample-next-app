@@ -1,3 +1,10 @@
+## [3.1.5](https://github.com/SocialGouv/sample-next-app/compare/v3.1.4...v3.1.5) (2021-09-20)
+
+
+### Bug Fixes
+
+* tag test ([be02fb8](https://github.com/SocialGouv/sample-next-app/commit/be02fb8aa37cc1b461c430e07e870897d506327f))
+
 ## [3.1.4](https://github.com/SocialGouv/sample-next-app/compare/v3.1.3...v3.1.4) (2021-09-20)
 
 
