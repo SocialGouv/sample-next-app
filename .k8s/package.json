@@ -19,7 +19,7 @@
   "devDependencies": {
     "@babel/core": "^7.15.5",
     "@babel/plugin-transform-modules-commonjs": "^7.15.4",
-    "@types/jest": "^26.0.24",
+    "@types/jest": "^27.0.2",
     "dotenv": "^10.0.0",
     "jest": "^27.1.1"
   },
