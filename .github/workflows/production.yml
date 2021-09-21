@@ -22,20 +22,20 @@ jobs:
           echo "project=${GITHUB_REPOSITORY#*/}" >> $GITHUB_ENV
 
       - name: Application
-        uses: SocialGouv/actions/autodevops-build-register@master
+        uses: SocialGouv/actions/harbor-build-register@master
         with:
-          project: ${{ env.project }}
-          token: ${{ secrets.GITHUB_TOKEN }}
           imageName: ${{ env.project }}/app
-
+          harborUsername: ${{ secrets.HARBOR_USERNAME }}
+          harborPassword: ${{ secrets.HARBOR_PASSWORD }}
+          
       - name: Hasura
-        uses: SocialGouv/actions/autodevops-build-register@master
+        uses: SocialGouv/actions/harbor-build-register@master
         with:
-          project: ${{ env.project }}
-          token: ${{ secrets.GITHUB_TOKEN }}
           imageName: ${{ env.project }}/hasura
           dockercontext: ./hasura
           dockerfile: ./hasura/Dockerfile
+          harborUsername: ${{ secrets.HARBOR_USERNAME }}
+          harborPassword: ${{ secrets.HARBOR_PASSWORD }}
 
   ##############################################################################
   ## GENERATE PREPRODUCTION MANIFESTS
