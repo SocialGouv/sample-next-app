@@ -24,37 +24,37 @@ jobs:
         run: |
           echo "project=${GITHUB_REPOSITORY#*/}" >> $GITHUB_ENV
 
-      - name: Application
-        uses: SocialGouv/actions/autodevops-build-register@master
-        with:
-          project: ${{ env.project }}
-          token: ${{ secrets.GITHUB_TOKEN }}
-          imageName: ${{ env.project }}/app
+    #  - name: Application
+    #    uses: SocialGouv/actions/autodevops-build-register@master
+    #    with:
+    #      project: ${{ env.project }}
+    #      token: ${{ secrets.GITHUB_TOKEN }}
+    #      imageName: ${{ env.project }}/app
 
-      - name: Hasura
-        uses: SocialGouv/actions/autodevops-build-register@master
-        with:
-          project: ${{ env.project }}
-          token: ${{ secrets.GITHUB_TOKEN }}
-          imageName: ${{ env.project }}/hasura
-          dockercontext: ./hasura
-          dockerfile: ./hasura/Dockerfile
+    #  - name: Hasura
+    #    uses: SocialGouv/actions/autodevops-build-register@master
+    #    with:
+    #      project: ${{ env.project }}
+    #      token: ${{ secrets.GITHUB_TOKEN }}
+    #      imageName: ${{ env.project }}/hasura
+    #      dockercontext: ./hasura
+    #      dockerfile: ./hasura/Dockerfile
           
       - name: Application Harbor
         uses: SocialGouv/actions/harbor-build-register@harbor
         with:
           imageName: ${{ env.project }}/app
-          harborUsername: ${{ secrets.HARBOR_USERNAME }}
+          harborUsername: "robot$sample-next-app+github"
           harborPassword: ${{ secrets.HARBOR_PASSWORD }}
           
-      - name: Hasura Harbor
-        uses: SocialGouv/actions/harbor-build-register@harbor
-        with:
-          imageName: ${{ env.project }}/hasura
-          dockercontext: ./hasura
-          dockerfile: ./hasura/Dockerfile
-          harborUsername: ${{ secrets.HARBOR_USERNAME }}
-          harborPassword: ${{ secrets.HARBOR_PASSWORD }}
+     # - name: Hasura Harbor
+     #   uses: SocialGouv/actions/harbor-build-register@harbor
+     #   with:
+     #     imageName: ${{ env.project }}/hasura
+     #     dockercontext: ./hasura
+     #     dockerfile: ./hasura/Dockerfile
+     #     harborUsername: ${{ secrets.HARBOR_USERNAME }}
+     #     harborPassword: ${{ secrets.HARBOR_PASSWORD }}
           
   ##############################################################################
   ## GENERATE KUBERNETES MANIFESTS
@@ -77,7 +77,7 @@ jobs:
     needs: [register, manifests]
     steps:
       - name: Use autodevops deployment
-        uses: SocialGouv/actions/autodevops-deploy@inputs.envUrl
+        uses: SocialGouv/actions/autodevops-deploy
         with:
           environment: "dev"
           token: ${{ secrets.GITHUB_TOKEN }}
