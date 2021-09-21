@@ -1,3 +1,10 @@
+## [3.1.13](https://github.com/SocialGouv/sample-next-app/compare/v3.1.12...v3.1.13) (2021-09-21)
+
+
+### Bug Fixes
+
+* use harbor registry ([#532](https://github.com/SocialGouv/sample-next-app/issues/532)) ([e68d791](https://github.com/SocialGouv/sample-next-app/commit/e68d791d4b8e6498d7961a2f934d5aec0e2d6f3f))
+
 ## [3.1.12](https://github.com/SocialGouv/sample-next-app/compare/v3.1.11...v3.1.12) (2021-09-20)
 
 
