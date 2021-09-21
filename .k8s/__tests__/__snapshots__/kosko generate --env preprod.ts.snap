@@ -223,7 +223,7 @@ spec:
         cert: wildcard
     spec:
       containers:
-        - image: ghcr.io/socialgouv/sample-next-app/app:v1.2.3
+        - image: harbor.fabrique.social.gouv.fr/sample-next-app/app:1.2.3
           livenessProbe:
             failureThreshold: 6
             httpGet:
@@ -234,7 +234,7 @@ spec:
             timeoutSeconds: 5
           name: app
           ports:
-            - containerPort: 3030
+            - containerPort: 3000
               name: http
           readinessProbe:
             failureThreshold: 15
@@ -380,7 +380,7 @@ spec:
   ports:
     - name: http
       port: 80
-      targetPort: 3030
+      targetPort: 3000
   selector:
     app: app
   type: ClusterIP
@@ -461,7 +461,7 @@ spec:
         cert: wildcard
     spec:
       containers:
-        - image: ghcr.io/socialgouv/sample-next-app/hasura:v1.2.3
+        - image: harbor.fabrique.social.gouv.fr/sample-next-app/hasura:1.2.3
           livenessProbe:
             failureThreshold: 6
             httpGet:
