@@ -47,6 +47,12 @@ jobs:
           harborUsername: "robot$sample-next-app+github"
           harborPassword: ${{ secrets.HARBOR_PASSWORD }}
           
+      - name: Application Harbor 2
+        uses: SocialGouv/actions/harbor-build-register@harbor
+        with:
+          imageName: ${{ env.project }}/app
+          harborUsername:  ${{ secrets.HARBOR_USERNAME }}
+          harborPassword: ${{ secrets.HARBOR_PASSWORD }}
      # - name: Hasura Harbor
      #   uses: SocialGouv/actions/harbor-build-register@harbor
      #   with:
