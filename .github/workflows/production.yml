@@ -60,7 +60,7 @@ jobs:
     needs: [register, manifests]
     environment:
       name: preproduction
-      url: https://sample-next-app-preprod.${{ env.SOCIALGOUV_BASE_DOMAIN }}
+      url: https://sample-next-app-preprod.${{ secrets.SOCIALGOUV_BASE_DOMAIN }}
     steps:
       - name: Use autodevops deployment
         uses: SocialGouv/actions/autodevops-deploy@RANCHER_PROJECT_ID
@@ -82,7 +82,7 @@ jobs:
         with:
           environment: "prod"
           rancherId: ${{ secrets.RANCHER_PROJECT_ID }}
-          socialgouvbaseDomain: ${{ secrets.SOCIALGOUV_BASE_DOMAIN }}
+          socialgouvBaseDomain: ${{ secrets.SOCIALGOUV_BASE_DOMAIN }}
           
   ##############################################################################
   ## DEPLOY PRODUCTION APPLICATION
@@ -93,7 +93,7 @@ jobs:
     needs: [deploy-preprod, manifests-prod]
     environment:
       name: production
-      url: https://sample-next-app.${{ env.SOCIALGOUV_BASE_DOMAIN }}
+      url: https://sample-next-app.${{ secrets.SOCIALGOUV_BASE_DOMAIN }}
     steps:
       - name: Use autodevops deployment
         uses: SocialGouv/actions/autodevops-deploy@RANCHER_PROJECT_ID

@@ -1,2 +1,2 @@
-components = ["*"]
+components = ["*", "!_*", "!jobs"]
 require = ["ts-node/register"]
