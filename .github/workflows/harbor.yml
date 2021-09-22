@@ -17,5 +17,5 @@ jobs:
         uses: docker/login-action@v1
         with:
           registry: harbor.fabrique.social.gouv.fr
-          username: ${{ secrets.HARBOR_USERNAME }}
+          username: "robot$sample-next-app+github"
           password: ${{ secrets.HARBOR_PASSWORD }}
