@@ -76,6 +76,8 @@ jobs:
   manifests-prod:
     name: Production manifests
     runs-on: ubuntu-latest
+    environment:
+      name: production
     steps:
       - name: Use k8s manifests generation
         uses: SocialGouv/actions/k8s-manifests@RANCHER_PROJECT_ID
