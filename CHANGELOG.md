@@ -1,3 +1,10 @@
+## [3.1.20](https://github.com/SocialGouv/sample-next-app/compare/v3.1.19...v3.1.20) (2021-09-22)
+
+
+### Bug Fixes
+
+* harcode urls ([8ee00eb](https://github.com/SocialGouv/sample-next-app/commit/8ee00eb1f7fcdcf2098d4b1a1f78cee669c7fa8f))
+
 ## [3.1.19](https://github.com/SocialGouv/sample-next-app/compare/v3.1.18...v3.1.19) (2021-09-22)
 
 
