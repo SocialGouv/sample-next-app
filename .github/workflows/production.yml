@@ -48,7 +48,9 @@ jobs:
         uses: SocialGouv/actions/k8s-manifests@master
         with:
           environment: "preprod"
-
+          rancherId: ${{ secrets.RANCHER_PROJECT_ID }}
+          socialgouvbaseDomain: ${{ secrets.SOCIALGOUV_BASE_DOMAIN }}
+          
   ##############################################################################
   ## DEPLOY PREPRODUCTION APPLICATION
   ##############################################################################
@@ -66,7 +68,8 @@ jobs:
           environment: "preprod"
           token: ${{ secrets.GITHUB_TOKEN }}
           kubeconfig: ${{ secrets.KUBECONFIG }}
-
+          rancherId: ${{ secrets.RANCHER_PROJECT_ID }}
+          
   ##############################################################################
   ## GENERATE PRODUCTION MANIFESTS
   ##############################################################################
@@ -78,7 +81,9 @@ jobs:
         uses: SocialGouv/actions/k8s-manifests@master
         with:
           environment: "prod"
-
+          rancherId: ${{ secrets.RANCHER_PROJECT_ID }}
+          socialgouvbaseDomain: ${{ secrets.SOCIALGOUV_BASE_DOMAIN }}
+          
   ##############################################################################
   ## DEPLOY PRODUCTION APPLICATION
   ##############################################################################
@@ -96,3 +101,4 @@ jobs:
           environment: "prod"
           token: ${{ secrets.GITHUB_TOKEN }}
           kubeconfig: ${{ secrets.KUBECONFIG }}
+          rancherId: ${{ secrets.RANCHER_PROJECT_ID }}
