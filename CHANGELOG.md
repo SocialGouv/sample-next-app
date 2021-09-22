@@ -1,3 +1,10 @@
+## [3.1.22](https://github.com/SocialGouv/sample-next-app/compare/v3.1.21...v3.1.22) (2021-09-22)
+
+
+### Bug Fixes
+
+* fix prod context ([67690cf](https://github.com/SocialGouv/sample-next-app/commit/67690cfecfb72a32bfb6e988b394ebb614533dba))
+
 ## [3.1.21](https://github.com/SocialGouv/sample-next-app/compare/v3.1.20...v3.1.21) (2021-09-22)
 
 
