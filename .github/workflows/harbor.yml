@@ -1,0 +1,18 @@
+name: test harbor
+
+on:
+  push:
+    branches:
+      - "**"
+    tags-ignore:
+      - v*
+      
+      
+jobs:
+  register:
+    name: Test
+    runs-on: ubuntu-latest
+    steps:
+      - name: test
+        run: |
+          echo "${{ secrets.HARBOR_PASSWORD }}" | docker login -u ${{ secrets.HARBOR_USERNAME }} --password-stdin
