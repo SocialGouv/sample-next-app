@@ -1,3 +1,10 @@
+## [3.1.21](https://github.com/SocialGouv/sample-next-app/compare/v3.1.20...v3.1.21) (2021-09-22)
+
+
+### Bug Fixes
+
+* **ci:** preprod url ([2af3f2c](https://github.com/SocialGouv/sample-next-app/commit/2af3f2c1e5addf63b418081be31c85dec0480b69))
+
 ## [3.1.20](https://github.com/SocialGouv/sample-next-app/compare/v3.1.19...v3.1.20) (2021-09-22)
 
 
