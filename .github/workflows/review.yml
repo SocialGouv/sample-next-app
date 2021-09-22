@@ -51,8 +51,8 @@ jobs:
         uses: SocialGouv/actions/k8s-manifests@RANCHER_PROJECT_ID
         with:
           environment: "dev"
-          rancherId: ${{ secrets.RANCHER_PROJECT_ID }}
-          socialgouvbaseDomain: ${{ secrets.SOCIALGOUV_BASE_DOMAIN }}
+         # rancherId: ${{ secrets.RANCHER_PROJECT_ID }}
+         # socialgouvbaseDomain: ${{ secrets.SOCIALGOUV_BASE_DOMAIN }}
 
   ##############################################################################
   ## DEPLOY APPLICATION OVER KUBERNETES
