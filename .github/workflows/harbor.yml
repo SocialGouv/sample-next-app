@@ -13,6 +13,9 @@ jobs:
     name: Test
     runs-on: ubuntu-latest
     steps:
-      - name: test
-        run: |
-          echo "${{ secrets.HARBOR_PASSWORD }}" | docker login -u ${{ secrets.HARBOR_USERNAME }} --password-stdin
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v1
+        with:
+          registry: harbor.fabrique.social.gouv.fr
+          username: ${{ secrets.HARBOR_USERNAME }}
+          password: ${{ secrets.HARBOR_PASSWORD }}
