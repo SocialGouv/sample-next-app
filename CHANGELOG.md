@@ -1,3 +1,10 @@
+## [3.1.23](https://github.com/SocialGouv/sample-next-app/compare/v3.1.22...v3.1.23) (2021-09-23)
+
+
+### Bug Fixes
+
+* group manifests+deploy for production ([b817212](https://github.com/SocialGouv/sample-next-app/commit/b8172126b41c76571cc08c36e6a04e3696aaf56f))
+
 ## [3.1.22](https://github.com/SocialGouv/sample-next-app/compare/v3.1.21...v3.1.22) (2021-09-22)
 
 
