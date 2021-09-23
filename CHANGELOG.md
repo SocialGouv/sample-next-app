@@ -1,3 +1,10 @@
+## [3.1.24](https://github.com/SocialGouv/sample-next-app/compare/v3.1.23...v3.1.24) (2021-09-23)
+
+
+### Bug Fixes
+
+* use actions@v1 ([#537](https://github.com/SocialGouv/sample-next-app/issues/537)) ([fac0fda](https://github.com/SocialGouv/sample-next-app/commit/fac0fda048e51255c74e7927d9532cbeda6f8826))
+
 ## [3.1.23](https://github.com/SocialGouv/sample-next-app/compare/v3.1.22...v3.1.23) (2021-09-23)
 
 
