@@ -1,3 +1,10 @@
+## [3.1.26](https://github.com/SocialGouv/sample-next-app/compare/v3.1.25...v3.1.26) (2021-10-04)
+
+
+### Bug Fixes
+
+* **deps:** update dependency codeceptjs to ^3.1.3 ([#542](https://github.com/SocialGouv/sample-next-app/issues/542)) ([0a12c13](https://github.com/SocialGouv/sample-next-app/commit/0a12c1313bed11c0ccc596d52c6f4b966a1fbfc5))
+
 ## [3.1.25](https://github.com/SocialGouv/sample-next-app/compare/v3.1.24...v3.1.25) (2021-09-27)
 
 
