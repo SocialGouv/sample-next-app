@@ -18,7 +18,6 @@ A sample SSR Next.js app with :
   - ✅ a PGweb for debug in dev
   - ✅ prod env
 
-
 ## Development
 
 Start hasura and local postgres using
