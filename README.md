@@ -27,6 +27,7 @@ Start hasura and local postgres using
 docker-compose up
 ```
 
+
 Hasura migrations and metadata will be automatically applied.
 
 to launch the Hasura console, you can run the command
