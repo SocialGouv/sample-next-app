@@ -7,7 +7,6 @@ on:
     tags-ignore:
       - v*
 
-
 concurrency:
   cancel-in-progress: true
   group: ${{ github.ref }}
@@ -23,14 +22,14 @@ jobs:
       - name: Get project name
         run: |
           echo "project=${GITHUB_REPOSITORY#*/}" >> $GITHUB_ENV
-    
+
       - name: Application
         uses: SocialGouv/actions/harbor-build-register@master
         with:
           imageName: ${{ env.project }}/app
           harborUsername: ${{ secrets.HARBOR_USERNAME }}
           harborPassword: ${{ secrets.HARBOR_PASSWORD }}
-          
+
       - name: Hasura
         uses: SocialGouv/actions/harbor-build-register@master
         with:
@@ -39,7 +38,7 @@ jobs:
           dockerfile: ./hasura/Dockerfile
           harborUsername: ${{ secrets.HARBOR_USERNAME }}
           harborPassword: ${{ secrets.HARBOR_PASSWORD }}
-          
+
   ##############################################################################
   ## GENERATE KUBERNETES MANIFESTS
   ##############################################################################
@@ -48,7 +47,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Use k8s manifests generation
-        uses: SocialGouv/actions/k8s-manifests@v1
+        uses: SocialGouv/actions/autodevops-manifests@generate
         with:
           environment: "dev"
           rancherId: ${{ secrets.RANCHER_PROJECT_ID }}
