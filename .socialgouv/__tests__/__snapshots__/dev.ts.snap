@@ -2,206 +2,26 @@
 
 exports[`kosko generate --dev 1`] = `
 "---
-apiVersion: v1
-kind: Namespace
-metadata:
-  annotations:
-    socialgouv/creator: autodevops
-    janitor/ttl: 15d
-    field.cattle.io/creatorId: gitlab
-    field.cattle.io/projectId: c-bd7z2:p-7ms8p
-    git/branch: master
-    git/remote: >-
-      https://gitlab-ci-token:[MASKED]@gitlab.factory.social.gouv.fr/SocialGouv/sample-next-app.git
-    app.gitlab.com/app: socialgouv-sample-next-app
-    app.gitlab.com/env: master-dev42
-    app.gitlab.com/env.name: master-dev42
-  labels:
-    azure-pg-admin-user: sample-next-app
-    application: master-dev42-sample-next-app
-    component: master-dev42-sample-next-app
-    owner: sample-next-app
-    team: sample-next-app
-    cert: wildcard
-  name: sample-next-app-85-master-dev2
----
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   annotations:
     kapp.k14s.io/disable-default-ownership-label-rules: ''
     kapp.k14s.io/disable-default-label-scoping-rules: ''
-    app.gitlab.com/app: socialgouv-sample-next-app
-    app.gitlab.com/env: master-dev42
-    app.gitlab.com/env.name: master-dev42
-  labels:
-    app: pgweb
-    application: master-dev42-sample-next-app
-    component: pgweb
-    owner: sample-next-app
-    team: sample-next-app
-    cert: wildcard
-  name: pgweb
-  namespace: sample-next-app-85-master-dev2
-spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: pgweb
-  template:
-    metadata:
-      annotations:
-        kapp.k14s.io/disable-default-ownership-label-rules: ''
-        kapp.k14s.io/disable-default-label-scoping-rules: ''
-        app.gitlab.com/app: socialgouv-sample-next-app
-        app.gitlab.com/env: master-dev42
-        app.gitlab.com/env.name: master-dev42
-      labels:
-        app: pgweb
-        application: master-dev42-sample-next-app
-        component: pgweb
-        owner: sample-next-app
-        team: sample-next-app
-        cert: wildcard
-    spec:
-      containers:
-        - image: sosedoff/pgweb:0.11.8
-          livenessProbe:
-            failureThreshold: 6
-            httpGet:
-              path: /
-              port: http
-            initialDelaySeconds: 30
-            periodSeconds: 5
-            timeoutSeconds: 5
-          name: pgweb
-          ports:
-            - containerPort: 8081
-              name: http
-          readinessProbe:
-            failureThreshold: 15
-            httpGet:
-              path: /
-              port: http
-            initialDelaySeconds: 0
-            periodSeconds: 5
-            successThreshold: 1
-            timeoutSeconds: 1
-          resources:
-            limits:
-              cpu: 500m
-              memory: 256Mi
-            requests:
-              cpu: 100m
-              memory: 64Mi
-          startupProbe:
-            failureThreshold: 12
-            httpGet:
-              path: /
-              port: http
-            periodSeconds: 5
-          envFrom:
-            - secretRef:
-                name: azure-pg-user-master
-      initContainers:
-        - env:
-            - name: WAIT_FOR_RETRIES
-              value: '24'
-          envFrom:
-            - secretRef:
-                name: azure-pg-user-master
-          image: ghcr.io/socialgouv/docker/wait-for-postgres:6.45.0
-          imagePullPolicy: Always
-          name: wait-for-postgres
-          resources:
-            limits:
-              cpu: 20m
-              memory: 32Mi
-            requests:
-              cpu: 5m
-              memory: 16Mi
----
-apiVersion: v1
-kind: Service
-metadata:
-  labels:
-    app: pgweb
-    application: master-dev42-sample-next-app
-    component: pgweb
-    owner: sample-next-app
-    team: sample-next-app
-    cert: wildcard
-  name: pgweb
-  annotations:
-    kapp.k14s.io/disable-default-ownership-label-rules: ''
-    kapp.k14s.io/disable-default-label-scoping-rules: ''
-    app.gitlab.com/app: socialgouv-sample-next-app
-    app.gitlab.com/env: master-dev42
-    app.gitlab.com/env.name: master-dev42
-  namespace: sample-next-app-85-master-dev2
-spec:
-  ports:
-    - name: http
-      port: 80
-      targetPort: 8081
-  selector:
-    app: pgweb
-  type: ClusterIP
----
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  annotations:
-    kubernetes.io/ingress.class: nginx
-    kapp.k14s.io/disable-default-ownership-label-rules: ''
-    kapp.k14s.io/disable-default-label-scoping-rules: ''
-    app.gitlab.com/app: socialgouv-sample-next-app
-    app.gitlab.com/env: master-dev42
-    app.gitlab.com/env.name: master-dev42
-  labels:
-    app: pgweb
-    application: master-dev42-sample-next-app
-    component: pgweb
-    owner: sample-next-app
-    team: sample-next-app
-    cert: wildcard
-  name: pgweb
-  namespace: sample-next-app-85-master-dev2
-spec:
-  rules:
-    - host: pgweb-master-dev42-sample-next-app.dev42.fabrique.social.gouv.fr
-      http:
-        paths:
-          - backend:
-              service:
-                name: pgweb
-                port:
-                  name: http
-            path: /
-            pathType: Prefix
-  tls:
-    - hosts:
-        - pgweb-master-dev42-sample-next-app.dev42.fabrique.social.gouv.fr
-      secretName: wildcard-crt
----
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  annotations:
-    kapp.k14s.io/disable-default-ownership-label-rules: ''
-    kapp.k14s.io/disable-default-label-scoping-rules: ''
-    app.gitlab.com/app: socialgouv-sample-next-app
-    app.gitlab.com/env: master-dev42
-    app.gitlab.com/env.name: master-dev42
+    app.github.com/job: '5678'
+    app.github.com/ref: refs/heads/mybranch
+    app.github.com/repo: socialgouv/sample-next-app
+    app.github.com/run: '1234'
+    app.github.com/sha: '0123456'
   labels:
     app: app
-    application: master-dev42-sample-next-app
-    component: master-dev42-sample-next-app
+    application: sample-next-app
+    component: sample-next-app
     owner: sample-next-app
     team: sample-next-app
     cert: wildcard
   name: app
-  namespace: sample-next-app-85-master-dev2
+  namespace: sample-next-app-mybranch
 spec:
   replicas: 1
   selector:
@@ -212,20 +32,22 @@ spec:
       annotations:
         kapp.k14s.io/disable-default-ownership-label-rules: ''
         kapp.k14s.io/disable-default-label-scoping-rules: ''
-        app.gitlab.com/app: socialgouv-sample-next-app
-        app.gitlab.com/env: master-dev42
-        app.gitlab.com/env.name: master-dev42
+        app.github.com/job: '5678'
+        app.github.com/ref: refs/heads/mybranch
+        app.github.com/repo: socialgouv/sample-next-app
+        app.github.com/run: '1234'
+        app.github.com/sha: '0123456'
       labels:
         app: app
-        application: master-dev42-sample-next-app
-        component: master-dev42-sample-next-app
+        application: sample-next-app
+        component: sample-next-app
         owner: sample-next-app
         team: sample-next-app
         cert: wildcard
     spec:
       containers:
         - image: >-
-            harbor.fabrique.social.gouv.fr/sample-next-app/app:0123456789abcdefghijklmnopqrstuvwxyz0123
+            harbor.fabrique.social.gouv.fr/sample-next-app/app:sha-0123456789abcdefghijklmnopqrstuvwxyz0123
           livenessProbe:
             failureThreshold: 6
             httpGet:
@@ -262,7 +84,7 @@ spec:
             periodSeconds: 5
           envFrom:
             - secretRef:
-                name: azure-pg-user-master
+                name: azure-pg-user-mybranch
             - secretRef:
                 name: app-sealed-secret
             - configMapRef:
@@ -273,8 +95,8 @@ spec:
               value: '24'
           envFrom:
             - secretRef:
-                name: azure-pg-user-master
-          image: ghcr.io/socialgouv/docker/wait-for-postgres:6.45.0
+                name: azure-pg-user-mybranch
+          image: ghcr.io/socialgouv/docker/wait-for-postgres:6.56.1
           imagePullPolicy: Always
           name: wait-for-postgres
           resources:
@@ -292,18 +114,20 @@ metadata:
     sealedsecrets.bitnami.com/cluster-wide: 'true'
     kapp.k14s.io/disable-default-ownership-label-rules: ''
     kapp.k14s.io/disable-default-label-scoping-rules: ''
-    app.gitlab.com/app: socialgouv-sample-next-app
-    app.gitlab.com/env: master-dev42
-    app.gitlab.com/env.name: master-dev42
+    app.github.com/job: '5678'
+    app.github.com/ref: refs/heads/mybranch
+    app.github.com/repo: socialgouv/sample-next-app
+    app.github.com/run: '1234'
+    app.github.com/sha: '0123456'
   creationTimestamp: null
   name: app-sealed-secret
   labels:
-    application: master-dev42-sample-next-app
-    component: master-dev42-sample-next-app
+    application: sample-next-app
+    component: sample-next-app
     owner: sample-next-app
     team: sample-next-app
     cert: wildcard
-  namespace: sample-next-app-85-master-dev2
+  namespace: sample-next-app-mybranch
 spec:
   encryptedData:
     ACCOUNT_EMAIL_SECRET: >-
@@ -324,14 +148,16 @@ spec:
         sealedsecrets.bitnami.com/cluster-wide: 'true'
         kapp.k14s.io/disable-default-ownership-label-rules: ''
         kapp.k14s.io/disable-default-label-scoping-rules: ''
-        app.gitlab.com/app: socialgouv-sample-next-app
-        app.gitlab.com/env: master-dev42
-        app.gitlab.com/env.name: master-dev42
+        app.github.com/job: '5678'
+        app.github.com/ref: refs/heads/mybranch
+        app.github.com/repo: socialgouv/sample-next-app
+        app.github.com/run: '1234'
+        app.github.com/sha: '0123456'
       creationTimestamp: null
       name: app-sealed-secret
       labels:
-        application: master-dev42-sample-next-app
-        component: master-dev42-sample-next-app
+        application: sample-next-app
+        component: sample-next-app
         owner: sample-next-app
         team: sample-next-app
         cert: wildcard
@@ -343,16 +169,18 @@ metadata:
   annotations:
     kapp.k14s.io/disable-default-ownership-label-rules: ''
     kapp.k14s.io/disable-default-label-scoping-rules: ''
-    app.gitlab.com/app: socialgouv-sample-next-app
-    app.gitlab.com/env: master-dev42
-    app.gitlab.com/env.name: master-dev42
+    app.github.com/job: '5678'
+    app.github.com/ref: refs/heads/mybranch
+    app.github.com/repo: socialgouv/sample-next-app
+    app.github.com/run: '1234'
+    app.github.com/sha: '0123456'
   labels:
-    application: master-dev42-sample-next-app
-    component: master-dev42-sample-next-app
+    application: sample-next-app
+    component: sample-next-app
     owner: sample-next-app
     team: sample-next-app
     cert: wildcard
-  namespace: sample-next-app-85-master-dev2
+  namespace: sample-next-app-mybranch
 data:
   NODE_ENV: production
   GRAPHQL_ENDPOINT: http://hasura/v1/graphql
@@ -365,8 +193,8 @@ kind: Service
 metadata:
   labels:
     app: app
-    application: master-dev42-sample-next-app
-    component: master-dev42-sample-next-app
+    application: sample-next-app
+    component: sample-next-app
     owner: sample-next-app
     team: sample-next-app
     cert: wildcard
@@ -374,10 +202,12 @@ metadata:
   annotations:
     kapp.k14s.io/disable-default-ownership-label-rules: ''
     kapp.k14s.io/disable-default-label-scoping-rules: ''
-    app.gitlab.com/app: socialgouv-sample-next-app
-    app.gitlab.com/env: master-dev42
-    app.gitlab.com/env.name: master-dev42
-  namespace: sample-next-app-85-master-dev2
+    app.github.com/job: '5678'
+    app.github.com/ref: refs/heads/mybranch
+    app.github.com/repo: socialgouv/sample-next-app
+    app.github.com/run: '1234'
+    app.github.com/sha: '0123456'
+  namespace: sample-next-app-mybranch
 spec:
   ports:
     - name: http
@@ -394,21 +224,23 @@ metadata:
     kubernetes.io/ingress.class: nginx
     kapp.k14s.io/disable-default-ownership-label-rules: ''
     kapp.k14s.io/disable-default-label-scoping-rules: ''
-    app.gitlab.com/app: socialgouv-sample-next-app
-    app.gitlab.com/env: master-dev42
-    app.gitlab.com/env.name: master-dev42
+    app.github.com/job: '5678'
+    app.github.com/ref: refs/heads/mybranch
+    app.github.com/repo: socialgouv/sample-next-app
+    app.github.com/run: '1234'
+    app.github.com/sha: '0123456'
   labels:
     app: app
-    application: master-dev42-sample-next-app
-    component: master-dev42-sample-next-app
+    application: sample-next-app
+    component: sample-next-app
     owner: sample-next-app
     team: sample-next-app
     cert: wildcard
   name: app
-  namespace: sample-next-app-85-master-dev2
+  namespace: sample-next-app-mybranch
 spec:
   rules:
-    - host: master-dev42-sample-next-app.dev42.fabrique.social.gouv.fr
+    - host: sample-next-app-mybranch.dev2.fabrique.social.gouv.fr
       http:
         paths:
           - backend:
@@ -420,7 +252,7 @@ spec:
             pathType: Prefix
   tls:
     - hosts:
-        - master-dev42-sample-next-app.dev42.fabrique.social.gouv.fr
+        - sample-next-app-mybranch.dev2.fabrique.social.gouv.fr
       secretName: wildcard-crt
 ---
 apiVersion: apps/v1
@@ -429,18 +261,20 @@ metadata:
   annotations:
     kapp.k14s.io/disable-default-ownership-label-rules: ''
     kapp.k14s.io/disable-default-label-scoping-rules: ''
-    app.gitlab.com/app: socialgouv-sample-next-app
-    app.gitlab.com/env: master-dev42
-    app.gitlab.com/env.name: master-dev42
+    app.github.com/job: '5678'
+    app.github.com/ref: refs/heads/mybranch
+    app.github.com/repo: socialgouv/sample-next-app
+    app.github.com/run: '1234'
+    app.github.com/sha: '0123456'
   labels:
     app: hasura
-    application: master-dev42-sample-next-app
+    application: sample-next-app
     component: hasura
     owner: sample-next-app
     team: sample-next-app
     cert: wildcard
   name: hasura
-  namespace: sample-next-app-85-master-dev2
+  namespace: sample-next-app-mybranch
 spec:
   replicas: 1
   selector:
@@ -451,12 +285,14 @@ spec:
       annotations:
         kapp.k14s.io/disable-default-ownership-label-rules: ''
         kapp.k14s.io/disable-default-label-scoping-rules: ''
-        app.gitlab.com/app: socialgouv-sample-next-app
-        app.gitlab.com/env: master-dev42
-        app.gitlab.com/env.name: master-dev42
+        app.github.com/job: '5678'
+        app.github.com/ref: refs/heads/mybranch
+        app.github.com/repo: socialgouv/sample-next-app
+        app.github.com/run: '1234'
+        app.github.com/sha: '0123456'
       labels:
         app: hasura
-        application: master-dev42-sample-next-app
+        application: sample-next-app
         component: hasura
         owner: sample-next-app
         team: sample-next-app
@@ -464,7 +300,7 @@ spec:
     spec:
       containers:
         - image: >-
-            harbor.fabrique.social.gouv.fr/sample-next-app/hasura:0123456789abcdefghijklmnopqrstuvwxyz0123
+            harbor.fabrique.social.gouv.fr/sample-next-app/hasura:sha-0123456789abcdefghijklmnopqrstuvwxyz0123
           livenessProbe:
             failureThreshold: 6
             httpGet:
@@ -501,7 +337,7 @@ spec:
             periodSeconds: 5
           envFrom:
             - secretRef:
-                name: azure-pg-user-master
+                name: azure-pg-user-mybranch
             - secretRef:
                 name: hasura-sealed-secret
             - configMapRef:
@@ -512,8 +348,8 @@ spec:
               value: '24'
           envFrom:
             - secretRef:
-                name: azure-pg-user-master
-          image: ghcr.io/socialgouv/docker/wait-for-postgres:6.45.0
+                name: azure-pg-user-mybranch
+          image: ghcr.io/socialgouv/docker/wait-for-postgres:6.56.1
           imagePullPolicy: Always
           name: wait-for-postgres
           resources:
@@ -531,18 +367,20 @@ metadata:
     sealedsecrets.bitnami.com/cluster-wide: 'true'
     kapp.k14s.io/disable-default-ownership-label-rules: ''
     kapp.k14s.io/disable-default-label-scoping-rules: ''
-    app.gitlab.com/app: socialgouv-sample-next-app
-    app.gitlab.com/env: master-dev42
-    app.gitlab.com/env.name: master-dev42
+    app.github.com/job: '5678'
+    app.github.com/ref: refs/heads/mybranch
+    app.github.com/repo: socialgouv/sample-next-app
+    app.github.com/run: '1234'
+    app.github.com/sha: '0123456'
   creationTimestamp: null
   name: hasura-sealed-secret
   labels:
-    application: master-dev42-sample-next-app
+    application: sample-next-app
     component: hasura
     owner: sample-next-app
     team: sample-next-app
     cert: wildcard
-  namespace: sample-next-app-85-master-dev2
+  namespace: sample-next-app-mybranch
 spec:
   encryptedData:
     ACCOUNT_EMAIL_SECRET: >-
@@ -557,13 +395,15 @@ spec:
         sealedsecrets.bitnami.com/cluster-wide: 'true'
         kapp.k14s.io/disable-default-ownership-label-rules: ''
         kapp.k14s.io/disable-default-label-scoping-rules: ''
-        app.gitlab.com/app: socialgouv-sample-next-app
-        app.gitlab.com/env: master-dev42
-        app.gitlab.com/env.name: master-dev42
+        app.github.com/job: '5678'
+        app.github.com/ref: refs/heads/mybranch
+        app.github.com/repo: socialgouv/sample-next-app
+        app.github.com/run: '1234'
+        app.github.com/sha: '0123456'
       creationTimestamp: null
       name: hasura-sealed-secret
       labels:
-        application: master-dev42-sample-next-app
+        application: sample-next-app
         component: hasura
         owner: sample-next-app
         team: sample-next-app
@@ -577,16 +417,18 @@ metadata:
   annotations:
     kapp.k14s.io/disable-default-ownership-label-rules: ''
     kapp.k14s.io/disable-default-label-scoping-rules: ''
-    app.gitlab.com/app: socialgouv-sample-next-app
-    app.gitlab.com/env: master-dev42
-    app.gitlab.com/env.name: master-dev42
+    app.github.com/job: '5678'
+    app.github.com/ref: refs/heads/mybranch
+    app.github.com/repo: socialgouv/sample-next-app
+    app.github.com/run: '1234'
+    app.github.com/sha: '0123456'
   labels:
-    application: master-dev42-sample-next-app
+    application: sample-next-app
     component: hasura
     owner: sample-next-app
     team: sample-next-app
     cert: wildcard
-  namespace: sample-next-app-85-master-dev2
+  namespace: sample-next-app-mybranch
 data:
   ACCOUNT_EMAIL_WEBHOOK_URL: http://app:80/api/webhooks/account
   HASURA_GRAPHQL_ENABLE_CONSOLE: 'true'
@@ -601,7 +443,7 @@ kind: Service
 metadata:
   labels:
     app: hasura
-    application: master-dev42-sample-next-app
+    application: sample-next-app
     component: hasura
     owner: sample-next-app
     team: sample-next-app
@@ -610,10 +452,12 @@ metadata:
   annotations:
     kapp.k14s.io/disable-default-ownership-label-rules: ''
     kapp.k14s.io/disable-default-label-scoping-rules: ''
-    app.gitlab.com/app: socialgouv-sample-next-app
-    app.gitlab.com/env: master-dev42
-    app.gitlab.com/env.name: master-dev42
-  namespace: sample-next-app-85-master-dev2
+    app.github.com/job: '5678'
+    app.github.com/ref: refs/heads/mybranch
+    app.github.com/repo: socialgouv/sample-next-app
+    app.github.com/run: '1234'
+    app.github.com/sha: '0123456'
+  namespace: sample-next-app-mybranch
 spec:
   ports:
     - name: http
@@ -634,17 +478,17 @@ spec:
             - create-db-user
           env:
             - name: NEW_DB_NAME
-              value: autodevops_master
+              value: autodevops_mybranch
             - name: NEW_USER
-              value: user_master
+              value: user_mybranch
             - name: NEW_PASSWORD
-              value: password_master
+              value: password_mybranch
             - name: NEW_DB_EXTENSIONS
               value: hstore pgcrypto citext uuid-ossp
           envFrom:
             - secretRef:
                 name: azure-pg-admin-user
-          image: ghcr.io/socialgouv/docker/azure-db:6.45.0
+          image: ghcr.io/socialgouv/docker/azure-db:6.56.1
           imagePullPolicy: IfNotPresent
           name: create-db-user
           resources:
@@ -659,48 +503,52 @@ spec:
 metadata:
   annotations:
     kapp.k14s.io/update-strategy: skip
-    app.gitlab.com/app: socialgouv-sample-next-app
-    app.gitlab.com/env: master-dev42
-    app.gitlab.com/env.name: master-dev42
+    app.github.com/job: '5678'
+    app.github.com/ref: refs/heads/mybranch
+    app.github.com/repo: socialgouv/sample-next-app
+    app.github.com/run: '1234'
+    app.github.com/sha: '0123456'
   labels:
-    application: master-dev42-sample-next-app
-    component: master-dev42-sample-next-app
+    application: sample-next-app
+    component: sample-next-app
     owner: sample-next-app
     team: sample-next-app
     cert: wildcard
-  name: create-db-job-master
-  namespace: sample-next-app-85-master-dev2
+  name: create-db-job-mybranch
+  namespace: sample-next-app-mybranch
 ---
 apiVersion: v1
 kind: Secret
 stringData:
   DATABASE_URL: >-
-    postgresql://user_master%40samplenextappdevserver.postgres.database.azure.com:password_master@samplenextappdevserver.postgres.database.azure.com/autodevops_master?sslmode=require
+    postgresql://user_mybranch%40samplenextappdevserver.postgres.database.azure.com:password_mybranch@samplenextappdevserver.postgres.database.azure.com/autodevops_mybranch?sslmode=require
   DB_URI: >-
-    postgresql://user_master%40samplenextappdevserver.postgres.database.azure.com:password_master@samplenextappdevserver.postgres.database.azure.com/autodevops_master?sslmode=require
+    postgresql://user_mybranch%40samplenextappdevserver.postgres.database.azure.com:password_mybranch@samplenextappdevserver.postgres.database.azure.com/autodevops_mybranch?sslmode=require
   HASURA_GRAPHQL_DATABASE_URL: >-
-    postgresql://user_master%40samplenextappdevserver.postgres.database.azure.com:password_master@samplenextappdevserver.postgres.database.azure.com/autodevops_master?sslmode=require
-  PGDATABASE: autodevops_master
+    postgresql://user_mybranch%40samplenextappdevserver.postgres.database.azure.com:password_mybranch@samplenextappdevserver.postgres.database.azure.com/autodevops_mybranch?sslmode=require
+  PGDATABASE: autodevops_mybranch
   PGHOST: samplenextappdevserver.postgres.database.azure.com
-  PGPASSWORD: password_master
+  PGPASSWORD: password_mybranch
   PGRST_DB_URI: >-
-    postgresql://user_master%40samplenextappdevserver.postgres.database.azure.com:password_master@samplenextappdevserver.postgres.database.azure.com/autodevops_master?sslmode=require
+    postgresql://user_mybranch%40samplenextappdevserver.postgres.database.azure.com:password_mybranch@samplenextappdevserver.postgres.database.azure.com/autodevops_mybranch?sslmode=require
   PGSSLMODE: require
-  PGUSER: user_master@samplenextappdevserver.postgres.database.azure.com
+  PGUSER: user_mybranch@samplenextappdevserver.postgres.database.azure.com
 metadata:
   annotations:
     kapp.k14s.io/update-strategy: skip
-    app.gitlab.com/app: socialgouv-sample-next-app
-    app.gitlab.com/env: master-dev42
-    app.gitlab.com/env.name: master-dev42
+    app.github.com/job: '5678'
+    app.github.com/ref: refs/heads/mybranch
+    app.github.com/repo: socialgouv/sample-next-app
+    app.github.com/run: '1234'
+    app.github.com/sha: '0123456'
   labels:
-    application: master-dev42-sample-next-app
-    component: master-dev42-sample-next-app
+    application: sample-next-app
+    component: sample-next-app
     owner: sample-next-app
     team: sample-next-app
     cert: wildcard
-  name: azure-pg-user-master
-  namespace: sample-next-app-85-master-dev2
+  name: azure-pg-user-mybranch
+  namespace: sample-next-app-mybranch
 ---
 apiVersion: bitnami.com/v1alpha1
 kind: SealedSecret

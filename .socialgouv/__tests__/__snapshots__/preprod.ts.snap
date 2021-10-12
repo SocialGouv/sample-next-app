@@ -2,205 +2,26 @@
 
 exports[`kosko generate --preprod 1`] = `
 "---
-apiVersion: v1
-kind: Namespace
-metadata:
-  annotations:
-    socialgouv/creator: autodevops
-    field.cattle.io/creatorId: gitlab
-    field.cattle.io/projectId: c-bd7z2:p-7ms8p
-    git/branch: v1.2.3
-    git/remote: >-
-      https://gitlab-ci-token:[MASKED]@gitlab.factory.social.gouv.fr/SocialGouv/sample-next-app.git
-    app.gitlab.com/app: socialgouv-sample-next-app
-    app.gitlab.com/env: preprod-dev42
-    app.gitlab.com/env.name: preprod-dev42
-  labels:
-    azure-pg-admin-user: sample-next-app
-    application: v1-2-3-sample-next-app
-    component: v1-2-3-sample-next-app
-    owner: sample-next-app
-    team: sample-next-app
-    cert: wildcard
-  name: sample-next-app-85-preprod-dev2
----
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   annotations:
     kapp.k14s.io/disable-default-ownership-label-rules: ''
     kapp.k14s.io/disable-default-label-scoping-rules: ''
-    app.gitlab.com/app: socialgouv-sample-next-app
-    app.gitlab.com/env: preprod-dev42
-    app.gitlab.com/env.name: preprod-dev42
-  labels:
-    app: pgweb
-    application: v1-2-3-sample-next-app
-    component: pgweb
-    owner: sample-next-app
-    team: sample-next-app
-    cert: wildcard
-  name: pgweb
-  namespace: sample-next-app-85-preprod-dev2
-spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: pgweb
-  template:
-    metadata:
-      annotations:
-        kapp.k14s.io/disable-default-ownership-label-rules: ''
-        kapp.k14s.io/disable-default-label-scoping-rules: ''
-        app.gitlab.com/app: socialgouv-sample-next-app
-        app.gitlab.com/env: preprod-dev42
-        app.gitlab.com/env.name: preprod-dev42
-      labels:
-        app: pgweb
-        application: v1-2-3-sample-next-app
-        component: pgweb
-        owner: sample-next-app
-        team: sample-next-app
-        cert: wildcard
-    spec:
-      containers:
-        - image: sosedoff/pgweb:0.11.8
-          livenessProbe:
-            failureThreshold: 6
-            httpGet:
-              path: /
-              port: http
-            initialDelaySeconds: 30
-            periodSeconds: 5
-            timeoutSeconds: 5
-          name: pgweb
-          ports:
-            - containerPort: 8081
-              name: http
-          readinessProbe:
-            failureThreshold: 15
-            httpGet:
-              path: /
-              port: http
-            initialDelaySeconds: 0
-            periodSeconds: 5
-            successThreshold: 1
-            timeoutSeconds: 1
-          resources:
-            limits:
-              cpu: 500m
-              memory: 256Mi
-            requests:
-              cpu: 100m
-              memory: 64Mi
-          startupProbe:
-            failureThreshold: 12
-            httpGet:
-              path: /
-              port: http
-            periodSeconds: 5
-          envFrom:
-            - secretRef:
-                name: azure-pg-user
-      initContainers:
-        - env:
-            - name: WAIT_FOR_RETRIES
-              value: '24'
-          envFrom:
-            - secretRef:
-                name: azure-pg-user
-          image: ghcr.io/socialgouv/docker/wait-for-postgres:6.45.0
-          imagePullPolicy: Always
-          name: wait-for-postgres
-          resources:
-            limits:
-              cpu: 20m
-              memory: 32Mi
-            requests:
-              cpu: 5m
-              memory: 16Mi
----
-apiVersion: v1
-kind: Service
-metadata:
-  labels:
-    app: pgweb
-    application: v1-2-3-sample-next-app
-    component: pgweb
-    owner: sample-next-app
-    team: sample-next-app
-    cert: wildcard
-  name: pgweb
-  annotations:
-    kapp.k14s.io/disable-default-ownership-label-rules: ''
-    kapp.k14s.io/disable-default-label-scoping-rules: ''
-    app.gitlab.com/app: socialgouv-sample-next-app
-    app.gitlab.com/env: preprod-dev42
-    app.gitlab.com/env.name: preprod-dev42
-  namespace: sample-next-app-85-preprod-dev2
-spec:
-  ports:
-    - name: http
-      port: 80
-      targetPort: 8081
-  selector:
-    app: pgweb
-  type: ClusterIP
----
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  annotations:
-    kubernetes.io/ingress.class: nginx
-    kapp.k14s.io/disable-default-ownership-label-rules: ''
-    kapp.k14s.io/disable-default-label-scoping-rules: ''
-    app.gitlab.com/app: socialgouv-sample-next-app
-    app.gitlab.com/env: preprod-dev42
-    app.gitlab.com/env.name: preprod-dev42
-  labels:
-    app: pgweb
-    application: v1-2-3-sample-next-app
-    component: pgweb
-    owner: sample-next-app
-    team: sample-next-app
-    cert: wildcard
-  name: pgweb
-  namespace: sample-next-app-85-preprod-dev2
-spec:
-  rules:
-    - host: pgweb-preprod-sample-next-app.dev42.fabrique.social.gouv.fr
-      http:
-        paths:
-          - backend:
-              service:
-                name: pgweb
-                port:
-                  name: http
-            path: /
-            pathType: Prefix
-  tls:
-    - hosts:
-        - pgweb-preprod-sample-next-app.dev42.fabrique.social.gouv.fr
-      secretName: wildcard-crt
----
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  annotations:
-    kapp.k14s.io/disable-default-ownership-label-rules: ''
-    kapp.k14s.io/disable-default-label-scoping-rules: ''
-    app.gitlab.com/app: socialgouv-sample-next-app
-    app.gitlab.com/env: preprod-dev42
-    app.gitlab.com/env.name: preprod-dev42
+    app.github.com/job: '5678'
+    app.github.com/ref: refs/tags/v1.2.3
+    app.github.com/repo: socialgouv/sample-next-app
+    app.github.com/run: '1234'
+    app.github.com/sha: '0123456'
   labels:
     app: app
-    application: v1-2-3-sample-next-app
-    component: v1-2-3-sample-next-app
+    application: sample-next-app
+    component: sample-next-app
     owner: sample-next-app
     team: sample-next-app
     cert: wildcard
   name: app
-  namespace: sample-next-app-85-preprod-dev2
+  namespace: sample-next-app-preprod
 spec:
   replicas: 1
   selector:
@@ -211,13 +32,15 @@ spec:
       annotations:
         kapp.k14s.io/disable-default-ownership-label-rules: ''
         kapp.k14s.io/disable-default-label-scoping-rules: ''
-        app.gitlab.com/app: socialgouv-sample-next-app
-        app.gitlab.com/env: preprod-dev42
-        app.gitlab.com/env.name: preprod-dev42
+        app.github.com/job: '5678'
+        app.github.com/ref: refs/tags/v1.2.3
+        app.github.com/repo: socialgouv/sample-next-app
+        app.github.com/run: '1234'
+        app.github.com/sha: '0123456'
       labels:
         app: app
-        application: v1-2-3-sample-next-app
-        component: v1-2-3-sample-next-app
+        application: sample-next-app
+        component: sample-next-app
         owner: sample-next-app
         team: sample-next-app
         cert: wildcard
@@ -272,7 +95,7 @@ spec:
           envFrom:
             - secretRef:
                 name: azure-pg-user
-          image: ghcr.io/socialgouv/docker/wait-for-postgres:6.45.0
+          image: ghcr.io/socialgouv/docker/wait-for-postgres:6.56.1
           imagePullPolicy: Always
           name: wait-for-postgres
           resources:
@@ -290,18 +113,20 @@ metadata:
     sealedsecrets.bitnami.com/cluster-wide: 'true'
     kapp.k14s.io/disable-default-ownership-label-rules: ''
     kapp.k14s.io/disable-default-label-scoping-rules: ''
-    app.gitlab.com/app: socialgouv-sample-next-app
-    app.gitlab.com/env: preprod-dev42
-    app.gitlab.com/env.name: preprod-dev42
+    app.github.com/job: '5678'
+    app.github.com/ref: refs/tags/v1.2.3
+    app.github.com/repo: socialgouv/sample-next-app
+    app.github.com/run: '1234'
+    app.github.com/sha: '0123456'
   creationTimestamp: null
   name: app-sealed-secret
   labels:
-    application: v1-2-3-sample-next-app
-    component: v1-2-3-sample-next-app
+    application: sample-next-app
+    component: sample-next-app
     owner: sample-next-app
     team: sample-next-app
     cert: wildcard
-  namespace: sample-next-app-85-preprod-dev2
+  namespace: sample-next-app-preprod
 spec:
   encryptedData:
     ACCOUNT_EMAIL_SECRET: >-
@@ -322,14 +147,16 @@ spec:
         sealedsecrets.bitnami.com/cluster-wide: 'true'
         kapp.k14s.io/disable-default-ownership-label-rules: ''
         kapp.k14s.io/disable-default-label-scoping-rules: ''
-        app.gitlab.com/app: socialgouv-sample-next-app
-        app.gitlab.com/env: preprod-dev42
-        app.gitlab.com/env.name: preprod-dev42
+        app.github.com/job: '5678'
+        app.github.com/ref: refs/tags/v1.2.3
+        app.github.com/repo: socialgouv/sample-next-app
+        app.github.com/run: '1234'
+        app.github.com/sha: '0123456'
       creationTimestamp: null
       name: app-sealed-secret
       labels:
-        application: v1-2-3-sample-next-app
-        component: v1-2-3-sample-next-app
+        application: sample-next-app
+        component: sample-next-app
         owner: sample-next-app
         team: sample-next-app
         cert: wildcard
@@ -341,16 +168,18 @@ metadata:
   annotations:
     kapp.k14s.io/disable-default-ownership-label-rules: ''
     kapp.k14s.io/disable-default-label-scoping-rules: ''
-    app.gitlab.com/app: socialgouv-sample-next-app
-    app.gitlab.com/env: preprod-dev42
-    app.gitlab.com/env.name: preprod-dev42
+    app.github.com/job: '5678'
+    app.github.com/ref: refs/tags/v1.2.3
+    app.github.com/repo: socialgouv/sample-next-app
+    app.github.com/run: '1234'
+    app.github.com/sha: '0123456'
   labels:
-    application: v1-2-3-sample-next-app
-    component: v1-2-3-sample-next-app
+    application: sample-next-app
+    component: sample-next-app
     owner: sample-next-app
     team: sample-next-app
     cert: wildcard
-  namespace: sample-next-app-85-preprod-dev2
+  namespace: sample-next-app-preprod
 data:
   NODE_ENV: production
   GRAPHQL_ENDPOINT: http://hasura/v1/graphql
@@ -363,8 +192,8 @@ kind: Service
 metadata:
   labels:
     app: app
-    application: v1-2-3-sample-next-app
-    component: v1-2-3-sample-next-app
+    application: sample-next-app
+    component: sample-next-app
     owner: sample-next-app
     team: sample-next-app
     cert: wildcard
@@ -372,10 +201,12 @@ metadata:
   annotations:
     kapp.k14s.io/disable-default-ownership-label-rules: ''
     kapp.k14s.io/disable-default-label-scoping-rules: ''
-    app.gitlab.com/app: socialgouv-sample-next-app
-    app.gitlab.com/env: preprod-dev42
-    app.gitlab.com/env.name: preprod-dev42
-  namespace: sample-next-app-85-preprod-dev2
+    app.github.com/job: '5678'
+    app.github.com/ref: refs/tags/v1.2.3
+    app.github.com/repo: socialgouv/sample-next-app
+    app.github.com/run: '1234'
+    app.github.com/sha: '0123456'
+  namespace: sample-next-app-preprod
 spec:
   ports:
     - name: http
@@ -392,21 +223,23 @@ metadata:
     kubernetes.io/ingress.class: nginx
     kapp.k14s.io/disable-default-ownership-label-rules: ''
     kapp.k14s.io/disable-default-label-scoping-rules: ''
-    app.gitlab.com/app: socialgouv-sample-next-app
-    app.gitlab.com/env: preprod-dev42
-    app.gitlab.com/env.name: preprod-dev42
+    app.github.com/job: '5678'
+    app.github.com/ref: refs/tags/v1.2.3
+    app.github.com/repo: socialgouv/sample-next-app
+    app.github.com/run: '1234'
+    app.github.com/sha: '0123456'
   labels:
     app: app
-    application: v1-2-3-sample-next-app
-    component: v1-2-3-sample-next-app
+    application: sample-next-app
+    component: sample-next-app
     owner: sample-next-app
     team: sample-next-app
     cert: wildcard
   name: app
-  namespace: sample-next-app-85-preprod-dev2
+  namespace: sample-next-app-preprod
 spec:
   rules:
-    - host: preprod-sample-next-app.dev42.fabrique.social.gouv.fr
+    - host: sample-next-app-preprod.dev2.fabrique.social.gouv.fr
       http:
         paths:
           - backend:
@@ -418,7 +251,7 @@ spec:
             pathType: Prefix
   tls:
     - hosts:
-        - preprod-sample-next-app.dev42.fabrique.social.gouv.fr
+        - sample-next-app-preprod.dev2.fabrique.social.gouv.fr
       secretName: wildcard-crt
 ---
 apiVersion: apps/v1
@@ -427,18 +260,20 @@ metadata:
   annotations:
     kapp.k14s.io/disable-default-ownership-label-rules: ''
     kapp.k14s.io/disable-default-label-scoping-rules: ''
-    app.gitlab.com/app: socialgouv-sample-next-app
-    app.gitlab.com/env: preprod-dev42
-    app.gitlab.com/env.name: preprod-dev42
+    app.github.com/job: '5678'
+    app.github.com/ref: refs/tags/v1.2.3
+    app.github.com/repo: socialgouv/sample-next-app
+    app.github.com/run: '1234'
+    app.github.com/sha: '0123456'
   labels:
     app: hasura
-    application: v1-2-3-sample-next-app
+    application: sample-next-app
     component: hasura
     owner: sample-next-app
     team: sample-next-app
     cert: wildcard
   name: hasura
-  namespace: sample-next-app-85-preprod-dev2
+  namespace: sample-next-app-preprod
 spec:
   replicas: 1
   selector:
@@ -449,12 +284,14 @@ spec:
       annotations:
         kapp.k14s.io/disable-default-ownership-label-rules: ''
         kapp.k14s.io/disable-default-label-scoping-rules: ''
-        app.gitlab.com/app: socialgouv-sample-next-app
-        app.gitlab.com/env: preprod-dev42
-        app.gitlab.com/env.name: preprod-dev42
+        app.github.com/job: '5678'
+        app.github.com/ref: refs/tags/v1.2.3
+        app.github.com/repo: socialgouv/sample-next-app
+        app.github.com/run: '1234'
+        app.github.com/sha: '0123456'
       labels:
         app: hasura
-        application: v1-2-3-sample-next-app
+        application: sample-next-app
         component: hasura
         owner: sample-next-app
         team: sample-next-app
@@ -510,7 +347,7 @@ spec:
           envFrom:
             - secretRef:
                 name: azure-pg-user
-          image: ghcr.io/socialgouv/docker/wait-for-postgres:6.45.0
+          image: ghcr.io/socialgouv/docker/wait-for-postgres:6.56.1
           imagePullPolicy: Always
           name: wait-for-postgres
           resources:
@@ -528,18 +365,20 @@ metadata:
     sealedsecrets.bitnami.com/cluster-wide: 'true'
     kapp.k14s.io/disable-default-ownership-label-rules: ''
     kapp.k14s.io/disable-default-label-scoping-rules: ''
-    app.gitlab.com/app: socialgouv-sample-next-app
-    app.gitlab.com/env: preprod-dev42
-    app.gitlab.com/env.name: preprod-dev42
+    app.github.com/job: '5678'
+    app.github.com/ref: refs/tags/v1.2.3
+    app.github.com/repo: socialgouv/sample-next-app
+    app.github.com/run: '1234'
+    app.github.com/sha: '0123456'
   creationTimestamp: null
   name: hasura-sealed-secret
   labels:
-    application: v1-2-3-sample-next-app
+    application: sample-next-app
     component: hasura
     owner: sample-next-app
     team: sample-next-app
     cert: wildcard
-  namespace: sample-next-app-85-preprod-dev2
+  namespace: sample-next-app-preprod
 spec:
   encryptedData:
     ACCOUNT_EMAIL_SECRET: >-
@@ -554,13 +393,15 @@ spec:
         sealedsecrets.bitnami.com/cluster-wide: 'true'
         kapp.k14s.io/disable-default-ownership-label-rules: ''
         kapp.k14s.io/disable-default-label-scoping-rules: ''
-        app.gitlab.com/app: socialgouv-sample-next-app
-        app.gitlab.com/env: preprod-dev42
-        app.gitlab.com/env.name: preprod-dev42
+        app.github.com/job: '5678'
+        app.github.com/ref: refs/tags/v1.2.3
+        app.github.com/repo: socialgouv/sample-next-app
+        app.github.com/run: '1234'
+        app.github.com/sha: '0123456'
       creationTimestamp: null
       name: hasura-sealed-secret
       labels:
-        application: v1-2-3-sample-next-app
+        application: sample-next-app
         component: hasura
         owner: sample-next-app
         team: sample-next-app
@@ -574,16 +415,18 @@ metadata:
   annotations:
     kapp.k14s.io/disable-default-ownership-label-rules: ''
     kapp.k14s.io/disable-default-label-scoping-rules: ''
-    app.gitlab.com/app: socialgouv-sample-next-app
-    app.gitlab.com/env: preprod-dev42
-    app.gitlab.com/env.name: preprod-dev42
+    app.github.com/job: '5678'
+    app.github.com/ref: refs/tags/v1.2.3
+    app.github.com/repo: socialgouv/sample-next-app
+    app.github.com/run: '1234'
+    app.github.com/sha: '0123456'
   labels:
-    application: v1-2-3-sample-next-app
+    application: sample-next-app
     component: hasura
     owner: sample-next-app
     team: sample-next-app
     cert: wildcard
-  namespace: sample-next-app-85-preprod-dev2
+  namespace: sample-next-app-preprod
 data:
   ACCOUNT_EMAIL_WEBHOOK_URL: http://app:80/api/webhooks/account
   HASURA_GRAPHQL_ENABLE_CONSOLE: 'true'
@@ -598,7 +441,7 @@ kind: Service
 metadata:
   labels:
     app: hasura
-    application: v1-2-3-sample-next-app
+    application: sample-next-app
     component: hasura
     owner: sample-next-app
     team: sample-next-app
@@ -607,10 +450,12 @@ metadata:
   annotations:
     kapp.k14s.io/disable-default-ownership-label-rules: ''
     kapp.k14s.io/disable-default-label-scoping-rules: ''
-    app.gitlab.com/app: socialgouv-sample-next-app
-    app.gitlab.com/env: preprod-dev42
-    app.gitlab.com/env.name: preprod-dev42
-  namespace: sample-next-app-85-preprod-dev2
+    app.github.com/job: '5678'
+    app.github.com/ref: refs/tags/v1.2.3
+    app.github.com/repo: socialgouv/sample-next-app
+    app.github.com/run: '1234'
+    app.github.com/sha: '0123456'
+  namespace: sample-next-app-preprod
 spec:
   ports:
     - name: http
@@ -625,18 +470,20 @@ kind: SealedSecret
 metadata:
   annotations:
     sealedsecrets.bitnami.com/cluster-wide: 'true'
-    app.gitlab.com/app: socialgouv-sample-next-app
-    app.gitlab.com/env: preprod-dev42
-    app.gitlab.com/env.name: preprod-dev42
+    app.github.com/job: '5678'
+    app.github.com/ref: refs/tags/v1.2.3
+    app.github.com/repo: socialgouv/sample-next-app
+    app.github.com/run: '1234'
+    app.github.com/sha: '0123456'
   creationTimestamp: null
   name: azure-pg-user
   labels:
-    application: v1-2-3-sample-next-app
-    component: v1-2-3-sample-next-app
+    application: sample-next-app
+    component: sample-next-app
     owner: sample-next-app
     team: sample-next-app
     cert: wildcard
-  namespace: sample-next-app-85-preprod-dev2
+  namespace: sample-next-app-preprod
 spec:
   encryptedData:
     DATABASE_URL: >-
@@ -657,14 +504,16 @@ spec:
     metadata:
       annotations:
         sealedsecrets.bitnami.com/cluster-wide: 'true'
-        app.gitlab.com/app: socialgouv-sample-next-app
-        app.gitlab.com/env: preprod-dev42
-        app.gitlab.com/env.name: preprod-dev42
+        app.github.com/job: '5678'
+        app.github.com/ref: refs/tags/v1.2.3
+        app.github.com/repo: socialgouv/sample-next-app
+        app.github.com/run: '1234'
+        app.github.com/sha: '0123456'
       creationTimestamp: null
       name: azure-pg-user
       labels:
-        application: v1-2-3-sample-next-app
-        component: v1-2-3-sample-next-app
+        application: sample-next-app
+        component: sample-next-app
         owner: sample-next-app
         team: sample-next-app
         cert: wildcard

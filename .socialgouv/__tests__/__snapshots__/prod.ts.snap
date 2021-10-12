@@ -8,9 +8,11 @@ metadata:
   annotations:
     kapp.k14s.io/disable-default-ownership-label-rules: ''
     kapp.k14s.io/disable-default-label-scoping-rules: ''
-    app.gitlab.com/app: socialgouv-sample-next-app
-    app.gitlab.com/env: prod
-    app.gitlab.com/env.name: prod
+    app.github.com/job: '5678'
+    app.github.com/ref: refs/tags/v1.2.3
+    app.github.com/repo: socialgouv/sample-next-app
+    app.github.com/run: '1234'
+    app.github.com/sha: '0123456'
   labels:
     app: app
     application: sample-next-app
@@ -29,9 +31,11 @@ spec:
       annotations:
         kapp.k14s.io/disable-default-ownership-label-rules: ''
         kapp.k14s.io/disable-default-label-scoping-rules: ''
-        app.gitlab.com/app: socialgouv-sample-next-app
-        app.gitlab.com/env: prod
-        app.gitlab.com/env.name: prod
+        app.github.com/job: '5678'
+        app.github.com/ref: refs/tags/v1.2.3
+        app.github.com/repo: socialgouv/sample-next-app
+        app.github.com/run: '1234'
+        app.github.com/sha: '0123456'
       labels:
         app: app
         application: sample-next-app
@@ -89,7 +93,7 @@ spec:
           envFrom:
             - secretRef:
                 name: azure-pg-user
-          image: ghcr.io/socialgouv/docker/wait-for-postgres:6.45.0
+          image: ghcr.io/socialgouv/docker/wait-for-postgres:6.56.1
           imagePullPolicy: Always
           name: wait-for-postgres
           resources:
@@ -109,9 +113,11 @@ metadata:
   annotations:
     kapp.k14s.io/disable-default-ownership-label-rules: ''
     kapp.k14s.io/disable-default-label-scoping-rules: ''
-    app.gitlab.com/app: socialgouv-sample-next-app
-    app.gitlab.com/env: prod
-    app.gitlab.com/env.name: prod
+    app.github.com/job: '5678'
+    app.github.com/ref: refs/tags/v1.2.3
+    app.github.com/repo: socialgouv/sample-next-app
+    app.github.com/run: '1234'
+    app.github.com/sha: '0123456'
   labels:
     application: sample-next-app
     component: sample-next-app
@@ -132,9 +138,11 @@ spec:
       annotations:
         kapp.k14s.io/disable-default-ownership-label-rules: ''
         kapp.k14s.io/disable-default-label-scoping-rules: ''
-        app.gitlab.com/app: socialgouv-sample-next-app
-        app.gitlab.com/env: prod
-        app.gitlab.com/env.name: prod
+        app.github.com/job: '5678'
+        app.github.com/ref: refs/tags/v1.2.3
+        app.github.com/repo: socialgouv/sample-next-app
+        app.github.com/run: '1234'
+        app.github.com/sha: '0123456'
       labels:
         application: sample-next-app
         component: sample-next-app
@@ -149,9 +157,11 @@ metadata:
   annotations:
     kapp.k14s.io/disable-default-ownership-label-rules: ''
     kapp.k14s.io/disable-default-label-scoping-rules: ''
-    app.gitlab.com/app: socialgouv-sample-next-app
-    app.gitlab.com/env: prod
-    app.gitlab.com/env.name: prod
+    app.github.com/job: '5678'
+    app.github.com/ref: refs/tags/v1.2.3
+    app.github.com/repo: socialgouv/sample-next-app
+    app.github.com/run: '1234'
+    app.github.com/sha: '0123456'
   labels:
     application: sample-next-app
     component: sample-next-app
@@ -178,9 +188,11 @@ metadata:
   annotations:
     kapp.k14s.io/disable-default-ownership-label-rules: ''
     kapp.k14s.io/disable-default-label-scoping-rules: ''
-    app.gitlab.com/app: socialgouv-sample-next-app
-    app.gitlab.com/env: prod
-    app.gitlab.com/env.name: prod
+    app.github.com/job: '5678'
+    app.github.com/ref: refs/tags/v1.2.3
+    app.github.com/repo: socialgouv/sample-next-app
+    app.github.com/run: '1234'
+    app.github.com/sha: '0123456'
   namespace: sample-next-app
 spec:
   ports:
@@ -200,9 +212,11 @@ metadata:
     kubernetes.io/tls-acme: 'true'
     kapp.k14s.io/disable-default-ownership-label-rules: ''
     kapp.k14s.io/disable-default-label-scoping-rules: ''
-    app.gitlab.com/app: socialgouv-sample-next-app
-    app.gitlab.com/env: prod
-    app.gitlab.com/env.name: prod
+    app.github.com/job: '5678'
+    app.github.com/ref: refs/tags/v1.2.3
+    app.github.com/repo: socialgouv/sample-next-app
+    app.github.com/run: '1234'
+    app.github.com/sha: '0123456'
   labels:
     app: app
     application: sample-next-app
@@ -234,9 +248,11 @@ metadata:
   annotations:
     kapp.k14s.io/disable-default-ownership-label-rules: ''
     kapp.k14s.io/disable-default-label-scoping-rules: ''
-    app.gitlab.com/app: socialgouv-sample-next-app
-    app.gitlab.com/env: prod
-    app.gitlab.com/env.name: prod
+    app.github.com/job: '5678'
+    app.github.com/ref: refs/tags/v1.2.3
+    app.github.com/repo: socialgouv/sample-next-app
+    app.github.com/run: '1234'
+    app.github.com/sha: '0123456'
   labels:
     app: hasura
     application: sample-next-app
@@ -255,9 +271,11 @@ spec:
       annotations:
         kapp.k14s.io/disable-default-ownership-label-rules: ''
         kapp.k14s.io/disable-default-label-scoping-rules: ''
-        app.gitlab.com/app: socialgouv-sample-next-app
-        app.gitlab.com/env: prod
-        app.gitlab.com/env.name: prod
+        app.github.com/job: '5678'
+        app.github.com/ref: refs/tags/v1.2.3
+        app.github.com/repo: socialgouv/sample-next-app
+        app.github.com/run: '1234'
+        app.github.com/sha: '0123456'
       labels:
         app: hasura
         application: sample-next-app
@@ -315,7 +333,7 @@ spec:
           envFrom:
             - secretRef:
                 name: azure-pg-user
-          image: ghcr.io/socialgouv/docker/wait-for-postgres:6.45.0
+          image: ghcr.io/socialgouv/docker/wait-for-postgres:6.56.1
           imagePullPolicy: Always
           name: wait-for-postgres
           resources:
@@ -334,9 +352,11 @@ metadata:
   annotations:
     kapp.k14s.io/disable-default-ownership-label-rules: ''
     kapp.k14s.io/disable-default-label-scoping-rules: ''
-    app.gitlab.com/app: socialgouv-sample-next-app
-    app.gitlab.com/env: prod
-    app.gitlab.com/env.name: prod
+    app.github.com/job: '5678'
+    app.github.com/ref: refs/tags/v1.2.3
+    app.github.com/repo: socialgouv/sample-next-app
+    app.github.com/run: '1234'
+    app.github.com/sha: '0123456'
   labels:
     application: sample-next-app
     component: hasura
@@ -358,9 +378,11 @@ spec:
       annotations:
         kapp.k14s.io/disable-default-ownership-label-rules: ''
         kapp.k14s.io/disable-default-label-scoping-rules: ''
-        app.gitlab.com/app: socialgouv-sample-next-app
-        app.gitlab.com/env: prod
-        app.gitlab.com/env.name: prod
+        app.github.com/job: '5678'
+        app.github.com/ref: refs/tags/v1.2.3
+        app.github.com/repo: socialgouv/sample-next-app
+        app.github.com/run: '1234'
+        app.github.com/sha: '0123456'
       labels:
         application: sample-next-app
         component: hasura
@@ -375,9 +397,11 @@ metadata:
   annotations:
     kapp.k14s.io/disable-default-ownership-label-rules: ''
     kapp.k14s.io/disable-default-label-scoping-rules: ''
-    app.gitlab.com/app: socialgouv-sample-next-app
-    app.gitlab.com/env: prod
-    app.gitlab.com/env.name: prod
+    app.github.com/job: '5678'
+    app.github.com/ref: refs/tags/v1.2.3
+    app.github.com/repo: socialgouv/sample-next-app
+    app.github.com/run: '1234'
+    app.github.com/sha: '0123456'
   labels:
     application: sample-next-app
     component: hasura
@@ -405,9 +429,11 @@ metadata:
   annotations:
     kapp.k14s.io/disable-default-ownership-label-rules: ''
     kapp.k14s.io/disable-default-label-scoping-rules: ''
-    app.gitlab.com/app: socialgouv-sample-next-app
-    app.gitlab.com/env: prod
-    app.gitlab.com/env.name: prod
+    app.github.com/job: '5678'
+    app.github.com/ref: refs/tags/v1.2.3
+    app.github.com/repo: socialgouv/sample-next-app
+    app.github.com/run: '1234'
+    app.github.com/sha: '0123456'
   namespace: sample-next-app
 spec:
   ports:
@@ -424,9 +450,11 @@ metadata:
   creationTimestamp: null
   name: azure-pg-user
   annotations:
-    app.gitlab.com/app: socialgouv-sample-next-app
-    app.gitlab.com/env: prod
-    app.gitlab.com/env.name: prod
+    app.github.com/job: '5678'
+    app.github.com/ref: refs/tags/v1.2.3
+    app.github.com/repo: socialgouv/sample-next-app
+    app.github.com/run: '1234'
+    app.github.com/sha: '0123456'
   labels:
     application: sample-next-app
     component: sample-next-app
@@ -454,9 +482,11 @@ spec:
       creationTimestamp: null
       name: azure-pg-user
       annotations:
-        app.gitlab.com/app: socialgouv-sample-next-app
-        app.gitlab.com/env: prod
-        app.gitlab.com/env.name: prod
+        app.github.com/job: '5678'
+        app.github.com/ref: refs/tags/v1.2.3
+        app.github.com/repo: socialgouv/sample-next-app
+        app.github.com/run: '1234'
+        app.github.com/sha: '0123456'
       labels:
         application: sample-next-app
         component: sample-next-app
