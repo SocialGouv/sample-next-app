@@ -1,3 +1,10 @@
+## [3.1.31](https://github.com/SocialGouv/sample-next-app/compare/v3.1.30...v3.1.31) (2021-10-13)
+
+
+### Bug Fixes
+
+* Replace Harbor images urls by ghcr ones ([4b0c62b](https://github.com/SocialGouv/sample-next-app/commit/4b0c62ba3386c563c80cca714369b7b6553145ae))
+
 ## [3.1.30](https://github.com/SocialGouv/sample-next-app/compare/v3.1.29...v3.1.30) (2021-10-13)
 
 
