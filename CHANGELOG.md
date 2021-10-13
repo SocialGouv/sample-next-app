@@ -1,3 +1,10 @@
+## [3.1.28](https://github.com/SocialGouv/sample-next-app/compare/v3.1.27...v3.1.28) (2021-10-13)
+
+
+### Bug Fixes
+
+* Update pipeline ([e9b37f8](https://github.com/SocialGouv/sample-next-app/commit/e9b37f87a32dbe60dae965cf5364556383fcb718))
+
 ## [3.1.27](https://github.com/SocialGouv/sample-next-app/compare/v3.1.26...v3.1.27) (2021-10-13)
 
 
