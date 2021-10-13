@@ -1,3 +1,10 @@
+## [3.1.27](https://github.com/SocialGouv/sample-next-app/compare/v3.1.26...v3.1.27) (2021-10-13)
+
+
+### Bug Fixes
+
+* Add SENTRY_DSN env var to docker file ([60d321a](https://github.com/SocialGouv/sample-next-app/commit/60d321afb93f4c5b969e2430de25035edd89e611))
+
 ## [3.1.26](https://github.com/SocialGouv/sample-next-app/compare/v3.1.25...v3.1.26) (2021-10-04)
 
 
