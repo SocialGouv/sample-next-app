@@ -13,6 +13,9 @@ FROM node:14-alpine AS builder
 WORKDIR /app
 COPY . .
 COPY --from=deps /app/node_modules ./node_modules
+
+ENV SENTRY_DSN=https://24f5b07f17a544b1b76ac0766ee68020@lafabriquenumerique-sentry.cloud-ed.fr/27
+
 RUN yarn build && yarn install --production --ignore-scripts --prefer-offline
 
 # Production image, copy all the files and run next
