@@ -1,7 +1,9 @@
 import env from "@kosko/env";
 
 import { create } from "@socialgouv/kosko-charts/components/app";
-import { getHarborImagePath } from "@socialgouv/kosko-charts/utils/getHarborImagePath";
+import environments from '@socialgouv/kosko-charts/environments';
+
+const ciEnv = environments(process.env);
 
 export default create("app", {
   env,
@@ -10,10 +12,7 @@ export default create("app", {
     withPostgres: true,
   },
   deployment: {
-    image: getHarborImagePath({
-      project: "sample-next-app",
-      name: "app",
-    }),
+    image: `ghcr.io/socialgouv/sample-next-app/app:sha-${ciEnv.tag || ciEnv.sha}`,
     container: {
       resources: {
         requests: {
