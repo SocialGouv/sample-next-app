@@ -25,14 +25,14 @@ jobs:
           echo "project=${GITHUB_REPOSITORY#*/}" >> $GITHUB_ENV
     
       - name: Application
-        uses: SocialGouv/actions/harbor-build-register@master
+        uses: SocialGouv/actions/autodevops-build-register@v1
         with:
           imageName: ${{ env.project }}/app
           harborUsername: ${{ secrets.HARBOR_USERNAME }}
           harborPassword: ${{ secrets.HARBOR_PASSWORD }}
           
       - name: Hasura
-        uses: SocialGouv/actions/harbor-build-register@master
+        uses: SocialGouv/actions/autodevops-build-register@v1
         with:
           imageName: ${{ env.project }}/hasura
           dockercontext: ./hasura
