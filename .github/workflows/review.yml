@@ -27,18 +27,18 @@ jobs:
       - name: Application
         uses: SocialGouv/actions/autodevops-build-register@v1
         with:
+          project: ${{ env.project }}
           imageName: ${{ env.project }}/app
-          harborUsername: ${{ secrets.HARBOR_USERNAME }}
-          harborPassword: ${{ secrets.HARBOR_PASSWORD }}
+          token: ${{ secrets.GITHUB_TOKEN }}
           
       - name: Hasura
         uses: SocialGouv/actions/autodevops-build-register@v1
         with:
-          imageName: ${{ env.project }}/hasura
           dockercontext: ./hasura
+          project: ${{ env.project }}
           dockerfile: ./hasura/Dockerfile
-          harborUsername: ${{ secrets.HARBOR_USERNAME }}
-          harborPassword: ${{ secrets.HARBOR_PASSWORD }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+          imageName: ${{ env.project }}/hasura
           
   ##############################################################################
   ## GENERATE KUBERNETES MANIFESTS
