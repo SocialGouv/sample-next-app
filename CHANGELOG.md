@@ -1,3 +1,10 @@
+## [3.1.29](https://github.com/SocialGouv/sample-next-app/compare/v3.1.28...v3.1.29) (2021-10-13)
+
+
+### Bug Fixes
+
+* Replace Harbor creds by GHCR ones ([58b1617](https://github.com/SocialGouv/sample-next-app/commit/58b16175640aae4c93b9ae0887a080ff78fded8e))
+
 ## [3.1.28](https://github.com/SocialGouv/sample-next-app/compare/v3.1.27...v3.1.28) (2021-10-13)
 
 
