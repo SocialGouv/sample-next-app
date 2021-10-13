@@ -1,3 +1,10 @@
+## [3.1.30](https://github.com/SocialGouv/sample-next-app/compare/v3.1.29...v3.1.30) (2021-10-13)
+
+
+### Bug Fixes
+
+* log SENTRY_DSN ([d49dc86](https://github.com/SocialGouv/sample-next-app/commit/d49dc864964fd41434c0ed53e28e18393ec6efc6))
+
 ## [3.1.29](https://github.com/SocialGouv/sample-next-app/compare/v3.1.28...v3.1.29) (2021-10-13)
 
 
