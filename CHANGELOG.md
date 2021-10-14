@@ -1,3 +1,10 @@
+# [3.2.0](https://github.com/SocialGouv/sample-next-app/compare/v3.1.31...v3.2.0) (2021-10-14)
+
+
+### Features
+
+* sentry + envs + TS ([#528](https://github.com/SocialGouv/sample-next-app/issues/528)) ([29ef768](https://github.com/SocialGouv/sample-next-app/commit/29ef768327321eaf560e1b7a93e9ca67d6041ec9))
+
 ## [3.1.31](https://github.com/SocialGouv/sample-next-app/compare/v3.1.30...v3.1.31) (2021-10-13)
 
 
