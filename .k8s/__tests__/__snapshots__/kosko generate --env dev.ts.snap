@@ -225,7 +225,7 @@ spec:
     spec:
       containers:
         - image: >-
-            harbor.fabrique.social.gouv.fr/sample-next-app/app:0123456789abcdefghijklmnopqrstuvwxyz0123
+            ghcr.io/socialgouv/sample-next-app/app:0123456789abcdefghijklmnopqrstuvwxyz0123
           livenessProbe:
             failureThreshold: 6
             httpGet:
@@ -464,7 +464,7 @@ spec:
     spec:
       containers:
         - image: >-
-            harbor.fabrique.social.gouv.fr/sample-next-app/hasura:0123456789abcdefghijklmnopqrstuvwxyz0123
+            ghcr.io/socialgouv/sample-next-app/hasura:0123456789abcdefghijklmnopqrstuvwxyz0123
           livenessProbe:
             failureThreshold: 6
             httpGet:

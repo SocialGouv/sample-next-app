@@ -40,7 +40,7 @@ spec:
         team: sample-next-app
     spec:
       containers:
-        - image: harbor.fabrique.social.gouv.fr/sample-next-app/app:1.2.3
+        - image: ghcr.io/socialgouv/sample-next-app/app:v1.2.3
           livenessProbe:
             failureThreshold: 6
             httpGet:
@@ -266,7 +266,7 @@ spec:
         team: sample-next-app
     spec:
       containers:
-        - image: harbor.fabrique.social.gouv.fr/sample-next-app/hasura:1.2.3
+        - image: ghcr.io/socialgouv/sample-next-app/hasura:v1.2.3
           livenessProbe:
             failureThreshold: 6
             httpGet:
