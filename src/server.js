@@ -1,7 +1,9 @@
 const next = require("next");
 const express = require("express");
+
 const port = parseInt(process.env.FRONTEND_PORT, 10) || 3000;
 const { createProxyMiddleware } = require("http-proxy-middleware");
+
 const dev = process.env.NODE_ENV !== "production";
 
 const app = next({ dev });
@@ -26,19 +28,15 @@ const faultyRoute = () => {
 
 app.prepare().then(() => {
   // app.buildId is only available after app.prepare(), hence why we setup here
-  const { Sentry } = require("./src/sentry")(app.buildId);
+  const { Sentry } = require("./sentry")(app.buildId);
 
   express()
     // This attaches request information to Sentry errors
     .use(Sentry.Handlers.requestHandler())
     .use(
       createProxyMiddleware("/graphql", {
-        target: process.env.GRAPHQL_ENDPOINT,
         changeOrigin: true,
-        xfwd: true,
-        prependPath: false,
         followRedirects: true,
-        pathRewrite: { "^/graphql": "/v1/graphql" },
         logLevel: "debug",
         onError: (err, req, res) => {
           res.writeHead(500, {
@@ -47,7 +45,11 @@ app.prepare().then(() => {
           // todo: sentry
           res.end("Something went wrong. We've been notified.");
         },
-        ws: true, // proxy websockets
+        pathRewrite: { "^/graphql": "/v1/graphql" },
+        prependPath: false,
+        target: process.env.GRAPHQL_ENDPOINT,
+        ws: true,
+        xfwd: true, // proxy websockets
       })
     )
     .get(/\.map$/, sourcemapsForSentryOnly(process.env.SENTRY_TOKEN))
