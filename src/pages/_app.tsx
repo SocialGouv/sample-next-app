@@ -5,7 +5,8 @@ import { init } from "@socialgouv/matomo-next";
 import App from "next/app";
 import Head from "next/head";
 import React from "react";
-import Nav from "src/components/Nav";
+
+import Nav from "../components/Nav";
 
 // Sentry.init({
 //   dsn: process.env.NEXT_PUBLIC_SENTRY_DSN,
@@ -26,10 +27,6 @@ class MyApp extends App {
   render() {
     const { Component, pageProps } = this.props;
 
-    // Workaround for https://github.com/zeit/next.js/issues/8592
-    const { err } = this.props;
-    const modifiedPageProps = { ...pageProps, err };
-
     return (
       <React.Fragment>
         <Head>
@@ -43,7 +40,7 @@ class MyApp extends App {
           </div>
           <div className="row">
             <div className="col">
-              <Component {...modifiedPageProps} />
+              <Component {...pageProps} />
             </div>
           </div>
         </div>
