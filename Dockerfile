@@ -1,11 +1,12 @@
 # from https://nextjs.org/docs/deployment
 
-# Install dependencies only when needed
+# Builder
 FROM node:14-alpine AS builder
 RUN apk add --no-cache libc6-compat
 WORKDIR /app
 COPY package.json yarn.lock ./
 RUN yarn install --frozen-lockfile
+COPY . .
 RUN yarn build && yarn install --production --ignore-scripts --prefer-offline
 
 # Production image, copy all the files and run next
