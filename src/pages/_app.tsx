@@ -1,29 +1,31 @@
 import "@socialgouv/bootstrap.core/dist/socialgouv-bootstrap.min.css";
 
-import * as Sentry from "@sentry/node";
+//import * as Sentry from "@sentry/node";
 import { init } from "@socialgouv/matomo-next";
 import App from "next/app";
 import Head from "next/head";
 import React from "react";
-import Nav from "src/components/Nav";
 
-Sentry.init({
-  dsn: process.env.SENTRY_DSN,
-});
+import Nav from "../components/Nav";
+
+// Sentry.init({
+//   dsn: process.env.NEXT_PUBLIC_SENTRY_DSN,
+// });
 
 const MATOMO_URL = process.env.NEXT_PUBLIC_MATOMO_URL;
 const MATOMO_SITE_ID = process.env.NEXT_PUBLIC_MATOMO_SITE_ID;
 
 class MyApp extends App {
   componentDidMount() {
+    console.log({
+      NEXT_PUBLIC_MATOMO_SITE_ID: process.env.NEXT_PUBLIC_MATOMO_SITE_ID,
+      NEXT_PUBLIC_MATOMO_URL: process.env.NEXT_PUBLIC_MATOMO_URL,
+      NEXT_PUBLIC_SENTRY_DSN: process.env.NEXT_PUBLIC_SENTRY_DSN,
+    });
     init({ siteId: MATOMO_SITE_ID, url: MATOMO_URL });
   }
   render() {
     const { Component, pageProps } = this.props;
-
-    // Workaround for https://github.com/zeit/next.js/issues/8592
-    const { err } = this.props;
-    const modifiedPageProps = { ...pageProps, err };
 
     return (
       <React.Fragment>
@@ -38,7 +40,7 @@ class MyApp extends App {
           </div>
           <div className="row">
             <div className="col">
-              <Component {...modifiedPageProps} />
+              <Component {...pageProps} />
             </div>
           </div>
         </div>

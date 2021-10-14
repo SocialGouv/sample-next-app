@@ -1,4 +1,5 @@
-# sample next.js app 
+# sample next.js app
+
 https://sample-next-app.fabrique.social.gouv.Fr
 
 A sample SSR Next.js app with :
@@ -10,14 +11,7 @@ A sample SSR Next.js app with :
 - ✅ [@SocialGouv bootstrap](https://github.com/SocialGouv/bootstrap)
 - ✅ precommit hooks
 - ✅ docker-compose for local dev
-- ✅ gitlab-ci
-  - ✅ quality
-  - ✅ docker build+push
-  - ✅ [semantic-release](https://github.com/semantic-release/semantic-release)
-  - ✅ features-branches environments
-  - ✅ a PGweb for debug in dev
-  - ✅ prod env
-
+- ✅ socialgouv github actions
 
 ## Development
 
@@ -49,23 +43,18 @@ yarn dev
 
 In docker this is done with `--build-arg`.
 
-| Var                        | desc                        | build time | run time |
-| -------------------------- | --------------------------- | :--------: | :------: |
-| PORT                       | port to run the server on   |            |    ✅    |
-| SENTRY_DSN                 | DSN of your sentry project  |     ✅     |
-| SENTRY_TOKEN               | token to allow sourcemaps   |     ✅     |
-| NEXT_PUBLIC_MATOMO_URL     | URL to your matomo instance |     ✅     |
-| NEXT_PUBLIC_MATOMO_SITE_ID | site id on matomo instance  |     ✅     |
+| Var                        | desc                        |
+| -------------------------- | --------------------------- |
+| PORT                       | port to run the server on   |
+| NEXT_PUBLIC_SENTRY_DSN     | DSN of your sentry project  |
+| SENTRY_TOKEN               | token to allow sourcemaps   |
+| NEXT_PUBLIC_MATOMO_URL     | URL to your matomo instance |
+| NEXT_PUBLIC_MATOMO_SITE_ID | site id on matomo instance  |
 
 ### Docker build
 
 ```sh
-docker build \
-  --build-arg SENTRY_DSN="https://[hash]@url.sentry.com/42" \
-  --build-arg SENTRY_TOKEN="1234" \
-  --build-arg MATOMO_URL="https://url.matomo.com" \
-  --build-arg MATOMO_SITE_ID=42 \
-  . -t sample-next-app
+docker build . -t sample-next-app
 ```
 
 ### Docker run

@@ -13,9 +13,7 @@
   "dependencies": {
     "@hapi/boom": "^9.1.4",
     "@hapi/joi": "^17.1.1",
-    "@sentry/browser": "^6.12.0",
-    "@sentry/integrations": "^6.12.0",
-    "@sentry/node": "^6.12.0",
+    "@sentry/nextjs": "^6.12.0",
     "@socialgouv/bootstrap.core": "^0.2.1",
     "@socialgouv/matomo-next": "^1.2.2",
     "@zeit/next-source-maps": "^0.0.3",
@@ -34,7 +32,6 @@
     "react-bootstrap": "^1.6.4",
     "react-dom": "^17.0.2",
     "react-is": "^17.0.2",
-    "sentry-testkit": "^3.3.4",
     "urql": "^2.0.5",
     "uuid": "^8.3.2",
     "wonka": "^4.0.15"
@@ -51,7 +48,8 @@
     "is-ci": "^3.0.0",
     "jest": "^27.1.1",
     "lint-staged": "^11.2.3",
-    "prettier": "^2.3.2"
+    "prettier": "^2.3.2",
+    "typescript": "^4.4.4"
   },
   "license": "MIT",
   "main": "index.js",
@@ -64,7 +62,7 @@
     "lint": "eslint src/*",
     "precommit": "lint-staged",
     "prepare": "is-ci || husky install",
-    "start": "next start",
+    "start": "NODE_ENV=production next start",
     "test": "jest"
   },
   "lint-staged": {

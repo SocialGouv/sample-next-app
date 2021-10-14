@@ -223,7 +223,7 @@ spec:
         cert: wildcard
     spec:
       containers:
-        - image: harbor.fabrique.social.gouv.fr/sample-next-app/app:1.2.3
+        - image: ghcr.io/socialgouv/sample-next-app/app:v1.2.3
           livenessProbe:
             failureThreshold: 6
             httpGet:
@@ -247,17 +247,18 @@ spec:
             timeoutSeconds: 1
           resources:
             limits:
-              cpu: 100m
+              cpu: 500m
               memory: 256Mi
             requests:
-              cpu: 1m
-              memory: 64Mi
+              cpu: 100m
+              memory: 128Mi
           startupProbe:
             failureThreshold: 12
             httpGet:
               path: /healthz
               port: http
             periodSeconds: 5
+            initialDelaySeconds: 15
           envFrom:
             - secretRef:
                 name: azure-pg-user
@@ -355,7 +356,6 @@ data:
   NODE_ENV: production
   GRAPHQL_ENDPOINT: http://hasura/v1/graphql
   ACCOUNT_MAIL_SENDER: contact@fabrique.social.gouv.fr
-  FRONTEND_PORT: '3030'
   PRODUCTION: 'false'
 ---
 apiVersion: v1
@@ -461,7 +461,7 @@ spec:
         cert: wildcard
     spec:
       containers:
-        - image: harbor.fabrique.social.gouv.fr/sample-next-app/hasura:1.2.3
+        - image: ghcr.io/socialgouv/sample-next-app/hasura:v1.2.3
           livenessProbe:
             failureThreshold: 6
             httpGet:

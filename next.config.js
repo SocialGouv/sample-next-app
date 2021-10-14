@@ -1,23 +1,20 @@
 const nextSourceMaps = require("@zeit/next-source-maps");
+const { withSentryConfig } = require("@sentry/nextjs");
 
-module.exports = nextSourceMaps({
-  env: {
-    SENTRY_DSN: process.env.SENTRY_DSN,
-    MATOMO_SITE_ID: process.env.MATOMO_SITE_ID,
-    MATOMO_URL: process.env.MATOMO_URL,
-  },
-  webpack: (config, { isServer /*, buildId */ }) => {
-    // config.plugins.push(
-    //   new webpack.DefinePlugin({
-    //     // looks like it doesnt work for some reason
-    //     "process.env.SENTRY_RELEASE": JSON.stringify(buildId),
-    //   })
-    // );
+module.exports = withSentryConfig(
+  nextSourceMaps({
+    // by default, sentry tries to upload sourcemaps at build time
+    // https://docs.sentry.io/platforms/javascript/guides/nextjs/manual-setup/#configure-source-maps
+    sentry: {
+      disableServerWebpackPlugin: true,
+      disableClientWebpackPlugin: true,
+    },
+    webpack: (config, { isServer /*, buildId */ }) => {
+      if (!isServer) {
+        config.resolve.alias["@sentry/node"] = "@sentry/browser";
+      }
 
-    if (!isServer) {
-      config.resolve.alias["@sentry/node"] = "@sentry/browser";
-    }
-
-    return config;
-  },
-});
+      return config;
+    },
+  })
+);

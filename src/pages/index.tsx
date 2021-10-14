@@ -4,6 +4,10 @@ import Link from "next/link";
 import React from "react";
 
 const triggerClientError = () => {
+  triggertError();
+};
+
+const triggertError = () => {
   throw new Error("Client-side error");
 };
 
@@ -31,7 +35,6 @@ const Page = () => (
         <a>Go to page 2</a>
       </Link>
     </p>
-
     <p>
       <Link href="/page3">
         <a>Go to unknown page</a>
@@ -54,16 +57,10 @@ const Page = () => (
     </p>
     <p>
       <button className="btn btn-warning" onClick={triggerClientError}>
-        trigger Sentry client-side error
+        trigger client-side error
       </button>
     </p>
-    <p>
-      <Link href="/page-error">
-        <button className="btn btn-warning">
-          trigger Sentry server-side error
-        </button>
-      </Link>
-    </p>
+    Version: {require("../../package.json").version}
   </React.Fragment>
 );
 
