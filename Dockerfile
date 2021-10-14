@@ -13,11 +13,6 @@ WORKDIR /app
 COPY . .
 COPY --from=deps /app/node_modules ./node_modules
 
-<<<<<<< HEAD
-=======
-ENV NEXT_TELEMETRY_DISABLED 1
-
->>>>>>> 3b7559c (fix)
 RUN yarn build && yarn install --production --ignore-scripts --prefer-offline
 
 # Production image, copy all the files and run next
@@ -38,7 +33,5 @@ COPY --from=builder /app/node_modules ./node_modules
 COPY --from=builder --chown=node:node /app/.next ./.next
 
 USER node
-
-ENV NEXT_TELEMETRY_DISABLED 1
 
 CMD ["yarn", "start"]
