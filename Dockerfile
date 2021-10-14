@@ -1,7 +1,7 @@
 # from https://nextjs.org/docs/deployment
 
 # Install dependencies only when needed
-FROM node:14-alpine AS deps
+FROM node:14-alpine AS builder
 RUN apk add --no-cache libc6-compat
 WORKDIR /app
 COPY package.json yarn.lock ./
