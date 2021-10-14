@@ -30,9 +30,9 @@ export default function LoginPage() {
   const authenticate = ({ email, password }) => {
     return request("/api/login", {
       body: { password, username: email },
-      headers: {
-        "Cache-Control": "no-cache",
-      },
+      // headers: {
+      //   "Cache-Control": "no-cache",
+      // },
     }).then((tokenData) => {
       setToken(tokenData);
     });
