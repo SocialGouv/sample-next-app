@@ -6,5 +6,4 @@ data:
   NODE_ENV: "production"
   GRAPHQL_ENDPOINT: "http://hasura/v1/graphql"
   ACCOUNT_MAIL_SENDER: "contact@fabrique.social.gouv.fr"
-  FRONTEND_PORT: "3030"
   PRODUCTION: "false"
