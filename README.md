@@ -12,6 +12,7 @@ A sample SSR Next.js app with :
 - ✅ precommit hooks
 - ✅ docker-compose for local dev
 - ✅ socialgouv github actions
+- 
 
 ## Development
 
