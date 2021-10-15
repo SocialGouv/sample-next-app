@@ -1,6 +1,6 @@
 {
   "name": "sample-next-app",
-  "version": "3.2.0",
+  "version": "3.2.1",
   "commitlint": {
     "extends": [
       "@commitlint/config-conventional"
