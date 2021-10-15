@@ -13,6 +13,7 @@ A sample SSR Next.js app with :
 - ✅ docker-compose for local dev
 - ✅ socialgouv github actions
 
+
 ## Development
 
 Start hasura and local postgres using
