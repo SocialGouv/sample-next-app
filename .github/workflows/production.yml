@@ -49,7 +49,7 @@ jobs:
         with:
           environment: "preprod"
           rancherId: ${{ secrets.RANCHER_PROJECT_ID }}
-          socialgouvbaseDomain: ${{ secrets.SOCIALGOUV_BASE_DOMAIN }}
+          socialgouvBaseDomain: ${{ secrets.SOCIALGOUV_BASE_DOMAIN }}
           
   ##############################################################################
   ## DEPLOY PREPRODUCTION APPLICATION
