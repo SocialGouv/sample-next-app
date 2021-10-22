@@ -1,3 +1,10 @@
+## [3.2.2](https://github.com/SocialGouv/sample-next-app/compare/v3.2.1...v3.2.2) (2021-10-22)
+
+
+### Bug Fixes
+
+* **ci:** fix preprod variable ([14c2640](https://github.com/SocialGouv/sample-next-app/commit/14c2640a416c1618136ae034c93e4083f24448e1))
+
 ## [3.2.1](https://github.com/SocialGouv/sample-next-app/compare/v3.2.0...v3.2.1) (2021-10-15)
 
 
