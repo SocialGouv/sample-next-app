@@ -24,7 +24,7 @@
     "jest": "^27.1.1"
   },
   "resolutions": {
-    "@kosko/cli": "1.1.0"
+    "@kosko/cli": "1.2.5"
   },
   "license": "Apache-2.0",
   "scripts": {
