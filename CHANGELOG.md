@@ -1,3 +1,10 @@
+# [3.3.0](https://github.com/SocialGouv/sample-next-app/compare/v3.2.2...v3.3.0) (2021-11-17)
+
+
+### Features
+
+* **secu:** add CODEOWNERS ([#556](https://github.com/SocialGouv/sample-next-app/issues/556)) ([1bca9bf](https://github.com/SocialGouv/sample-next-app/commit/1bca9bfe15a6f2dd4febfc759338d7446207a03c))
+
 ## [3.2.2](https://github.com/SocialGouv/sample-next-app/compare/v3.2.1...v3.2.2) (2021-10-22)
 
 
