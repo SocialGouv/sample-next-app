@@ -2,11 +2,10 @@ name: Review
 
 on:
   push:
-    branches:
-      - "**"
+    branches-ignore:
+      - master
     tags-ignore:
       - v*
-
 
 concurrency:
   cancel-in-progress: true
@@ -23,14 +22,14 @@ jobs:
       - name: Get project name
         run: |
           echo "project=${GITHUB_REPOSITORY#*/}" >> $GITHUB_ENV
-    
+
       - name: Application
         uses: SocialGouv/actions/autodevops-build-register@v1
         with:
           project: ${{ env.project }}
           imageName: ${{ env.project }}/app
           token: ${{ secrets.GITHUB_TOKEN }}
-          
+
       - name: Hasura
         uses: SocialGouv/actions/autodevops-build-register@v1
         with:
@@ -39,7 +38,7 @@ jobs:
           dockerfile: ./hasura/Dockerfile
           token: ${{ secrets.GITHUB_TOKEN }}
           imageName: ${{ env.project }}/hasura
-          
+
   ##############################################################################
   ## GENERATE KUBERNETES MANIFESTS
   ##############################################################################
@@ -48,7 +47,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Use k8s manifests generation
-        uses: SocialGouv/actions/k8s-manifests@v1
+        uses: SocialGouv/actions/autodevops-manifests@v1
         with:
           environment: "dev"
           rancherId: ${{ secrets.RANCHER_PROJECT_ID }}

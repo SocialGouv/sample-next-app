@@ -8,5 +8,5 @@ module.exports = {
   coverageDirectory: "coverage",
   coverageProvider: "v8",
   testEnvironment: "node",
-  testPathIgnorePatterns: ["/.k8s/", "/node_modules/"],
+  testPathIgnorePatterns: ["/.socialgouv/", "/node_modules/"],
 };

@@ -1,20 +1,22 @@
-name: Production
+name: Review
 
 on:
   push:
-    tags:
+    branches:
+      - master
+    tags-ignore:
       - v*
 
 concurrency:
-  group: production
   cancel-in-progress: true
+  group: preproduction
 
 jobs:
   ##############################################################################
-  ## BUILD AND REGISTER DOCKER IMAGE
+  ## BUILD AND REGISTER DOCKER IMAGES
   ##############################################################################
   register:
-    name: Build & Register docker images
+    name: Build & Register
     runs-on: ubuntu-latest
     steps:
       - name: Get project name
@@ -27,6 +29,7 @@ jobs:
           project: ${{ env.project }}
           imageName: ${{ env.project }}/app
           token: ${{ secrets.GITHUB_TOKEN }}
+          environment: preprod
 
       - name: Hasura
         uses: SocialGouv/actions/autodevops-build-register@v1
@@ -36,29 +39,30 @@ jobs:
           dockerfile: ./hasura/Dockerfile
           token: ${{ secrets.GITHUB_TOKEN }}
           imageName: ${{ env.project }}/hasura
+          environment: preprod
 
   ##############################################################################
-  ## DEPLOY PRODUCTION APPLICATION
+  ## DEPLOY APPLICATION OVER KUBERNETES
   ##############################################################################
-  deploy-prod:
-    name: Deploy production
+  deploy:
+    name: Deploy application
     runs-on: ubuntu-latest
     needs: [register]
     environment:
-      name: production
-      url: https://sample-next-app.fabrique.social.gouv.fr
+      name: preproduction
+      url: https://sample-next-app-preprod.dev.fabrique.social.gouv.fr
     steps:
       - name: Use k8s manifests generation
         uses: SocialGouv/actions/autodevops-manifests@v1
         with:
-          environment: "prod"
+          environment: "preprod"
           rancherId: ${{ secrets.RANCHER_PROJECT_ID }}
           socialgouvBaseDomain: ${{ secrets.SOCIALGOUV_BASE_DOMAIN }}
 
       - name: Use autodevops deployment
         uses: SocialGouv/actions/autodevops-deploy@v1
         with:
-          environment: "prod"
+          environment: "preprod"
           token: ${{ secrets.GITHUB_TOKEN }}
           kubeconfig: ${{ secrets.KUBECONFIG }}
           rancherId: ${{ secrets.RANCHER_PROJECT_ID }}
