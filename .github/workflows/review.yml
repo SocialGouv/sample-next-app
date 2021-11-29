@@ -24,9 +24,8 @@ jobs:
           echo "project=${GITHUB_REPOSITORY#*/}" >> $GITHUB_ENV
 
       - name: Create DB
-        uses: SocialGouv/actions/autodevops-create-db@master
+        uses: SocialGouv/actions/autodevops-create-db@1.14
         with:
-          branch: master
           environment: dev
           socialgouvBaseDomain: ${{ secrets.SOCIALGOUV_BASE_DOMAIN }}
           kubeconfig: ${{ secrets.KUBECONFIG }}
