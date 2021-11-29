@@ -760,10 +760,10 @@
     "@oclif/plugin-help" "^3"
     slugify "^1.6.3"
 
-"@socialgouv/kosko-charts@^9.8.1":
-  version "9.8.1"
-  resolved "https://registry.yarnpkg.com/@socialgouv/kosko-charts/-/kosko-charts-9.8.1.tgz#3aa2d5322067fa67586dec5296c4dd0c6cda729d"
-  integrity sha512-Wv63N630ydTNzy74ZrAfoNVMfMIuxNqcqByaOlgVSpE6RQG1KvLTp+zjQwytaGikxGMsrIumDiT33YG3wyZSMQ==
+"@socialgouv/kosko-charts@^9.8.2":
+  version "9.8.2"
+  resolved "https://registry.yarnpkg.com/@socialgouv/kosko-charts/-/kosko-charts-9.8.2.tgz#45f359d94e324c92ce7aa5d279f396c2be6ac864"
+  integrity sha512-1hlwvfYwV/7DRfr6L+PGqQd0AHLVfKFGjztikVvRRz/Y66fwBgQvy0s6UHQF1G0va9K53mlMpyQtoD8dIlcf1g==
   dependencies:
     "@kubernetes-models/sealed-secrets" "^2.0.2"
     "@sindresorhus/is" "^4.2.0"
