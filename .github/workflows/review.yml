@@ -26,6 +26,7 @@ jobs:
       - name: Create DB
         uses: SocialGouv/actions/autodevops-create-db@master
         with:
+          branch: master
           environment: dev
           socialgouvBaseDomain: ${{ secrets.SOCIALGOUV_BASE_DOMAIN }}
           kubeconfig: ${{ secrets.KUBECONFIG }}
