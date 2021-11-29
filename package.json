@@ -37,19 +37,19 @@
     "wonka": "^4.0.15"
   },
   "devDependencies": {
-    "@commitlint/cli": "^13.1.0",
-    "@commitlint/config-conventional": "^13.1.0",
-    "@socialgouv/eslint-config-react": "^1.88.0",
-    "@socialgouv/eslint-config-recommended": "^1.88.0",
+    "@commitlint/cli": "^13.2.1",
+    "@commitlint/config-conventional": "^13.2.0",
+    "@socialgouv/eslint-config-react": "^1.100.0",
+    "@socialgouv/eslint-config-recommended": "^1.100.0",
     "eslint": "^7.32.0",
     "eslint-config-next": "^11.1.2",
-    "eslint-plugin-import": "^2.24.2",
+    "eslint-plugin-import": "^2.25.3",
     "husky": "^7.0.2",
     "is-ci": "^3.0.0",
-    "jest": "^27.1.1",
+    "jest": "^27.3.1",
     "lint-staged": "^11.2.3",
-    "prettier": "^2.3.2",
-    "typescript": "^4.4.4"
+    "prettier": "^2.5.0",
+    "typescript": "^4.5.2"
   },
   "license": "MIT",
   "main": "index.js",
