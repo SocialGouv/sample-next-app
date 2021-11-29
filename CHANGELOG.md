@@ -1,3 +1,10 @@
+## [3.3.1](https://github.com/SocialGouv/sample-next-app/compare/v3.3.0...v3.3.1) (2021-11-29)
+
+
+### Bug Fixes
+
+* use autodevops-manifests@v1 ([#557](https://github.com/SocialGouv/sample-next-app/issues/557)) ([23e3548](https://github.com/SocialGouv/sample-next-app/commit/23e3548b75f9755eb967e3cab524a76986c5bbf3))
+
 # [3.3.0](https://github.com/SocialGouv/sample-next-app/compare/v3.2.2...v3.3.0) (2021-11-17)
 
 
