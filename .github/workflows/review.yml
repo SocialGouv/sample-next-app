@@ -27,7 +27,7 @@ jobs:
         uses: SocialGouv/actions/autodevops-create-db@v1
         with:
           environment: dev
-          token: ${{ secrets.GITHUB_TOKEN }}
+          socialgouvBaseDomain: ${{ secrets.SOCIALGOUV_BASE_DOMAIN }}
           kubeconfig: ${{ secrets.KUBECONFIG }}
           rancherId: ${{ secrets.RANCHER_PROJECT_ID }}
 
