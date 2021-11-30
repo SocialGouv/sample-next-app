@@ -1,3 +1,10 @@
+# [3.4.0](https://github.com/SocialGouv/sample-next-app/compare/v3.3.1...v3.4.0) (2021-11-30)
+
+
+### Features
+
+* **create-db:** autodevops gh action ([#562](https://github.com/SocialGouv/sample-next-app/issues/562)) ([a29dfab](https://github.com/SocialGouv/sample-next-app/commit/a29dfab1042ae281187f37e8363f318204c95d66))
+
 ## [3.3.1](https://github.com/SocialGouv/sample-next-app/compare/v3.3.0...v3.3.1) (2021-11-29)
 
 
