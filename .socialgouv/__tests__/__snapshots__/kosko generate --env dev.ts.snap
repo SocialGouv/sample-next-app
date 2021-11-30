@@ -7,7 +7,7 @@ kind: Namespace
 metadata:
   annotations:
     socialgouv/creator: autodevops
-    janitor/ttl: 15d
+    janitor/ttl: 7d
     field.cattle.io/creatorId: gitlab
     field.cattle.io/projectId: c-bd7z2:p-7ms8p
     git/branch: master
@@ -110,7 +110,7 @@ spec:
           envFrom:
             - secretRef:
                 name: azure-pg-user-master
-          image: ghcr.io/socialgouv/docker/wait-for-postgres:6.45.0
+          image: ghcr.io/socialgouv/docker/wait-for-postgres:6.56.1
           imagePullPolicy: Always
           name: wait-for-postgres
           resources:
@@ -275,7 +275,7 @@ spec:
           envFrom:
             - secretRef:
                 name: azure-pg-user-master
-          image: ghcr.io/socialgouv/docker/wait-for-postgres:6.45.0
+          image: ghcr.io/socialgouv/docker/wait-for-postgres:6.56.1
           imagePullPolicy: Always
           name: wait-for-postgres
           resources:
@@ -513,7 +513,7 @@ spec:
           envFrom:
             - secretRef:
                 name: azure-pg-user-master
-          image: ghcr.io/socialgouv/docker/wait-for-postgres:6.45.0
+          image: ghcr.io/socialgouv/docker/wait-for-postgres:6.56.1
           imagePullPolicy: Always
           name: wait-for-postgres
           resources:
@@ -622,85 +622,6 @@ spec:
   selector:
     app: hasura
   type: ClusterIP
----
-apiVersion: batch/v1
-kind: Job
-spec:
-  backoffLimit: 5
-  template:
-    spec:
-      containers:
-        - command:
-            - create-db-user
-          env:
-            - name: NEW_DB_NAME
-              value: autodevops_master
-            - name: NEW_USER
-              value: user_master
-            - name: NEW_PASSWORD
-              value: password_master
-            - name: NEW_DB_EXTENSIONS
-              value: hstore pgcrypto citext uuid-ossp
-          envFrom:
-            - secretRef:
-                name: azure-pg-admin-user
-          image: ghcr.io/socialgouv/docker/azure-db:6.45.0
-          imagePullPolicy: IfNotPresent
-          name: create-db-user
-          resources:
-            limits:
-              cpu: 300m
-              memory: 256Mi
-            requests:
-              cpu: 100m
-              memory: 64Mi
-      restartPolicy: Never
-  ttlSecondsAfterFinished: 86400
-metadata:
-  annotations:
-    kapp.k14s.io/update-strategy: skip
-    app.gitlab.com/app: socialgouv-sample-next-app
-    app.gitlab.com/env: master-dev42
-    app.gitlab.com/env.name: master-dev42
-  labels:
-    application: master-dev42-sample-next-app
-    component: master-dev42-sample-next-app
-    owner: sample-next-app
-    team: sample-next-app
-    cert: wildcard
-  name: create-db-job-master
-  namespace: sample-next-app-85-master-dev2
----
-apiVersion: v1
-kind: Secret
-stringData:
-  DATABASE_URL: >-
-    postgresql://user_master%40samplenextappdevserver.postgres.database.azure.com:password_master@samplenextappdevserver.postgres.database.azure.com/autodevops_master?sslmode=require
-  DB_URI: >-
-    postgresql://user_master%40samplenextappdevserver.postgres.database.azure.com:password_master@samplenextappdevserver.postgres.database.azure.com/autodevops_master?sslmode=require
-  HASURA_GRAPHQL_DATABASE_URL: >-
-    postgresql://user_master%40samplenextappdevserver.postgres.database.azure.com:password_master@samplenextappdevserver.postgres.database.azure.com/autodevops_master?sslmode=require
-  PGDATABASE: autodevops_master
-  PGHOST: samplenextappdevserver.postgres.database.azure.com
-  PGPASSWORD: password_master
-  PGRST_DB_URI: >-
-    postgresql://user_master%40samplenextappdevserver.postgres.database.azure.com:password_master@samplenextappdevserver.postgres.database.azure.com/autodevops_master?sslmode=require
-  PGSSLMODE: require
-  PGUSER: user_master@samplenextappdevserver.postgres.database.azure.com
-metadata:
-  annotations:
-    kapp.k14s.io/update-strategy: skip
-    app.gitlab.com/app: socialgouv-sample-next-app
-    app.gitlab.com/env: master-dev42
-    app.gitlab.com/env.name: master-dev42
-  labels:
-    application: master-dev42-sample-next-app
-    component: master-dev42-sample-next-app
-    owner: sample-next-app
-    team: sample-next-app
-    cert: wildcard
-  name: azure-pg-user-master
-  namespace: sample-next-app-85-master-dev2
 ---
 apiVersion: bitnami.com/v1alpha1
 kind: SealedSecret
