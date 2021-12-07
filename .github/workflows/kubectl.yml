@@ -1,0 +1,25 @@
+name: simple kubectl
+
+on:
+  workflow_dispatch:
+  push:
+    branches-ignore:
+      - master
+    tags-ignore:
+      - v*
+jobs:
+  test1:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+#      - uses: danielr1996/kubectl-action@1.0.0
+#        continue-on-error: true
+#        name: Create namespace
+#        with:
+#          kubeconfig: ${{ secrets.KUBECONFIG }}
+#          args: create -f namespace.yml
+      - uses: danielr1996/kubectl-action@1.0.0
+        name: Deploy Pod
+        with:
+          kubeconfig: ${{ secrets.KUBECONFIG }}
+          args: apply -f secret.yml 
