@@ -9,12 +9,12 @@
   "dependencies": {
     "@kosko/env": "^2.0.1",
     "@kubernetes-models/sealed-secrets": "^2.0.2",
-    "@socialgouv/kosko-charts": "^9.8.8",
+    "@socialgouv/kosko-charts": "^9.8.15",
     "@types/node": "^16.3.3",
     "kosko": "^1.1.5",
     "kubernetes-models": "^2.0.2",
     "ts-node": "^10.2.1",
-    "typescript": "^4.4.3"
+    "typescript": "^4.4.4"
   },
   "devDependencies": {
     "@babel/core": "^7.16.0",
@@ -24,7 +24,7 @@
     "jest": "^27.3.1"
   },
   "resolutions": {
-    "@kosko/cli": "1.1.0"
+    "@kosko/cli": "1.1.2"
   },
   "license": "Apache-2.0",
   "scripts": {
