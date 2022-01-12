@@ -31,6 +31,9 @@ jobs:
           kubeconfig: ${{ secrets.KUBECONFIG }}
           rancherId: ${{ secrets.RANCHER_PROJECT_ID }}
           adminPgSecret: pg-scaleway
+          pgUserAddHostSuffix: "false"
+          jobNamespace: sample-next-app-ci
+          koskoChartsVersion: pg-rm-azure-prefix
 
   ##############################################################################
   ## BUILD AND REGISTER DOCKER IMAGES
