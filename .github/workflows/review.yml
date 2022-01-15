@@ -24,7 +24,7 @@ jobs:
 
       - name: Create DB
         # uses: SocialGouv/actions/autodevops-create-db@v1
-        uses: ./.gh-action/autodevops-create-db
+        uses: ./.gh-actions/autodevops-create-db
         with:
           environment: dev
           socialgouvBaseDomain: ${{ secrets.SOCIALGOUV_BASE_DOMAIN }}
