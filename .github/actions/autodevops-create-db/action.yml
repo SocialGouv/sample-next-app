@@ -49,13 +49,13 @@ runs:
 
     - uses: c-hive/gha-yarn-cache@v2
 
-    - name: Install JS dependencies
+    - name: Install global JS dependencies
+      shell: bash
+      run: yarn global add ts-node
+
+    - name: Install action JS dependencies
       shell: bash
       run: yarn --prefer-offline --cwd ${{ github.action_path }} install
-
-    - name: Add node_modules bin to PATH
-      shell: bash
-      run: echo "./node_modules/.bin" >> $GITHUB_PATH
 
     - name: Generate k8s namespace
       shell: bash
