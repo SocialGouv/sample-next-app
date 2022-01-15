@@ -61,7 +61,7 @@ runs:
       shell: bash
       run: |
         cd ${{ github.action_path }}
-        npx ts-node --skip-project values.ts > values.json
+        yarn run values > values.json
         cat templates/namespace.gtpl | \
           npx gomplate -d values.json > namespace.yml
 
