@@ -1,0 +1,33 @@
+#!/usr/bin/env bash
+
+set +e
+JOB=${1:-"$JOB"}
+JOB_NAMESPACE=${2:-"$JOB_NAMESPACE"}
+
+if [ -z "$JOB" ]; then
+  echo "Missing required argument or env variable JOB"
+  exit 1
+fi
+
+if [ -z "$JOB_NAMESPACE" ]; then
+  echo "Missing required argument or env variable JOB_NAMESPACE"
+  exit 1
+fi
+
+
+retval_complete=1
+retval_failed=1
+while( [ $retval_complete -ne 0 ] && [ $retval_failed -ne 0 ] ); do
+  sleep 2
+  output=$(timeout 2s kubectl -n $JOB_NAMESPACE wait --for=condition=complete $JOB --timeout=0 2>&1)
+  retval_complete=$?
+  output=$(timeout 2s kubectl -n $JOB_NAMESPACE wait --for=condition=failed $JOB --timeout=0 2>&1)
+  retval_failed=$?
+  wait
+done
+if [ $retval_failed -eq 0 ]; then
+  echo "$JOB failed"
+  exit 1
+else
+  echo "$JOB complete"
+fi

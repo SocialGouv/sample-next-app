@@ -34,11 +34,21 @@ runs:
         BRANCH_NAME=${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}}
         BRANCH_SLUG=$(npx @socialgouv/env-slug ${BRANCH_NAME})
         NAMESPACE=${PROJECT_NAME}-${BRANCH_SLUG}
+        JOB_NAMESPACE=${PROJECT_NAME}-ci
+        if [ "$SOCIALGOUV_PRODUCTION" ]; then
+          DB_SECRET_NAME=pg-user
+        elif [ "$SOCIALGOUV_PREPRODUCTION" ]; then
+          DB_SECRET_NAME=pg-user-preprod
+        else
+          DB_SECRET_NAME="pg-user-${BRANCH_SLUG}"
+        fi
 
         echo "PROJECT_NAME=$PROJECT_NAME" >> $GITHUB_ENV
         echo "BRANCH_NAME=$BRANCH_NAME" >> $GITHUB_ENV
         echo "BRANCH_SLUG=$BRANCH_SLUG" >> $GITHUB_ENV
         echo "NAMESPACE=$NAMESPACE" >> $GITHUB_ENV
+        echo "JOB_NAMESPACE=$JOB_NAMESPACE" >> $GITHUB_ENV
+        echo "DB_SECRET_NAME=$DB_SECRET_NAME" >> $GITHUB_ENV
 
     - name: Create kubernetes config
       shell: bash
@@ -64,72 +74,26 @@ runs:
 
         yarn run -s values > values.json
 
-        if [ "$SOCIALGOUV_PRODUCTION" ]; then
-          export DB_SECRET_NAME=pg-user
-        elif [ "$SOCIALGOUV_PREPRODUCTION" ]; then
-          export DB_SECRET_NAME=pg-user-preprod
-        else
-          export DB_SECRET_NAME="pg-user-${BRANCH_SLUG}"
-        fi
-
         cat templates/namespace.gtpl | npx gomplate -d values.json > namespace.yml
         cat templates/job.create-db.gtpl | npx gomplate -d values.json > job.create-db.yml
 
-        cat namespace.yml
-        cat job.create-db.yml
-
-        # if [ -n "$(kubectl -n $K8S_NS get secret $DB_SECRET_NAME 2>/dev/null)" ]; then
-        #   echo "secret named '$DB_SECRET_NAME' already exists in namespace '$K8S_NS'"
-        #   exit 0
-        # fi
-
-        # PGPASSWORD=$(openssl rand -base64 32 | sed "s/[^[:alnum:]-]//g")
-
-        # K8S_SECRET_NS="${{ github.event.repository.name }}-secret"
-        # PGHOST=$(kubectl -n $K8S_SECRET_NS get secrets $ADMIN_PG_SECRET -o jsonpath="{.data.PGHOST}" | base64 --decode)
-        # PGPORT=$(kubectl -n $K8S_SECRET_NS get secrets $ADMIN_PG_SECRET -o jsonpath="{.data.PGPORT}" | base64 --decode)
-
-        # PG_USER_ADD_HOST_SUFFIX=${{ inputs.pgUserAddHostSuffix || env.PG_USER_ADD_HOST_SUFFIX || '' }}
-
-        # # autodetect azure add suffix
-        # if [ "$PG_USER_ADD_HOST_SUFFIX" != "false" ] && [[ $PGHOST == *"azure.com"* ]]; then
-        #   PG_USER_ADD_HOST_SUFFIX="true"
-        # fi
-
-        # if [ "$PG_USER_ADD_HOST_SUFFIX" ] && [ "$PG_USER_ADD_HOST_SUFFIX" != "false" ]; then
-        #   PGUSER_SUFFIX="@${PGHOST}"
+        # if [ -n "$(kubectl -n $NAMESPACE get secret $DB_SECRET_NAME 2>/dev/null)" ]; then
+        #   echo "secret named '$DB_SECRET_NAME' already exists in namespace '$NAMESPACE'"
         # else
-        #   PGUSER_SUFFIX=""
+        #   scripts/create-secret
         # fi
 
-        # if [ "$SOCIALGOUV_PRODUCTION" ]; then
-        #   PGDATABASE=$SOCIALGOUV_PRODUCTION_NAMESPACE
-        #   PGUSER=$SOCIALGOUV_PRODUCTION_NAMESPACE
-        # elif [ "$SOCIALGOUV_PREPRODUCTION" ]; then
-        #   PGDATABASE="preprod"
-        #   PGUSER="preprod${PGUSER_SUFFIX}"
-        # else
-        #   PGDATABASE="autodevops_${BRANCH}"
-        #   PGUSER="user_${BRANCH}${PGUSER_SUFFIX}"
-        # fi
+        # scripts/copy-secret
 
-        # PGSSLMODE=require
-        # DATABASE_URL=postgresql://${PGUSER/@/%40}:${PGPASSWORD/@/%40}@${PGHOST}/${PGDATABASE}?sslmode=${PGSSLMODE}
+        # kubectl delete --namespace=$JOB_NAMESPACE job/create-db-user || true
+        # kubectl apply --namespace=$JOB_NAMESPACE -f create-db.yml
 
-        # kubectl -n $K8S_NS create secret generic $DB_SECRET_NAME \
-        #   --from-literal="PGPASSWORD=$PGPASSWORD" \
-        #   --from-literal="PGSSLMODE=$PGSSLMODE" \
-        #   --from-literal="HASURA_GRAPHQL_DATABASE_URL=$DATABASE_URL" \
-        #   --from-literal="DATABASE_URL=$DATABASE_URL" \
-        #   --from-literal="PGDATABASE=$PGDATABASE" \
-        #   --from-literal="PGHOST=$PGHOST" \
-        #   --from-literal="PGUSER=$PGUSER"
-
-        # echo "secret named '$DB_SECRET_NAME' created in namespace '$K8S_NS'"
+        # scripts/wait-job job/create-db-user
 
       env:
+        PG_USER_ADD_HOST_SUFFIX: ${{ inputs.pgUserAddHostSuffix || env.PG_USER_ADD_HOST_SUFFIX || '' }}
         JOB_IMAGE: ghcr.io/socialgouv/docker/azure-db
-        JOB_IMAGE_TAG: 6.64.0
+        JOB_IMAGE_TAG: 6.68.0
         ENVIRONMENT: ${{ inputs.environment }}
         SOCIALGOUV_CONFIG_PATH: /tmp/autodevops/config.json
         RANCHER_PROJECT_ID: ${{ inputs.rancherId || env.RANCHER_PROJECT_ID }}
