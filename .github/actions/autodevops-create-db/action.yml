@@ -61,9 +61,9 @@ runs:
       shell: bash
       run: |
         cd ${{ github.action_path }}
-        $(yarn bin ts-node) --skip-project values.ts > values.json
+        npx ts-node --skip-project values.ts > values.json
         cat templates/namespace.gtpl | \
-          $(yarn bin gomplate) -d values.json > namespace.yml
+          npx gomplate -d values.json > namespace.yml
 
         cat namespace.yml
       env:
