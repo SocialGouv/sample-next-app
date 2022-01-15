@@ -98,3 +98,15 @@ runs:
         SOCIALGOUV_CONFIG_PATH: /tmp/autodevops/config.json
         RANCHER_PROJECT_ID: ${{ inputs.rancherId || env.RANCHER_PROJECT_ID }}
         SOCIALGOUV_BASE_DOMAIN: ${{ inputs.socialgouvBaseDomain || env.SOCIALGOUV_BASE_DOMAIN }}
+
+    - name: Archive create-db manifests
+      uses: actions/upload-artifact@v2
+      with:
+        name: create-db.yml
+        path: ${{ github.action_path }}/create-db.yml
+
+    - name: Archive namespace manifests
+      uses: actions/upload-artifact@v2
+      with:
+        name: namespace.yml
+        path: ${{ github.action_path }}/namespace.yml
