@@ -12,7 +12,7 @@ const isPreProduction = Boolean(SOCIALGOUV_PREPRODUCTION);
 const keepAlive = Boolean(KEEP_ALIVE);
 
 const isDev = !isPreProduction && !isProduction;
-const isRenovate = BRANCH_NAME.startsWith("renovate")
+const isRenovate = BRANCH_NAME?.startsWith("renovate")
 const isDestroyable = isDev && !keepAlive;
 
 let ttl = "";
