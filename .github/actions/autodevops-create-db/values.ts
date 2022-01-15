@@ -2,7 +2,9 @@ const {
   SOCIALGOUV_PRODUCTION,
   SOCIALGOUV_PREPRODUCTION,
   KEEP_ALIVE,
-  BRANCH_NAME = "",
+  BRANCH_NAME,
+  COMPONENT,
+  PROJECT_NAME,
 } = process.env;
 
 const isProduction = Boolean(SOCIALGOUV_PRODUCTION);
@@ -18,8 +20,11 @@ if(isDestroyable){
   ttl = isRenovate ? "1d" : "7d";
 }
 
+const component = COMPONENT || PROJECT_NAME
+
 const values = {
   ttl,
+  component,
 }
 
 console.log(JSON.stringify(values, null, 2))

@@ -18,12 +18,8 @@ metadata:
     app.github.com/run: {{ .Env.GITHUB_RUN_ID }}
     app.github.com/sha: {{ .Env.GITHUB_SHA | strings.Trunc 7 }}
   labels:
+    component: {{ $values.component }}
     application: {{ .Env.PROJECT_NAME }}
-    {{ if .Env.COMPONENT }}
-    component: {{ .Env.COMPONENT }}
-    {{ else }}
-    component: {{ .Env.PROJECT_NAME }}
-    {{ end }}
     owner: {{ .Env.PROJECT_NAME }}
     team: {{ .Env.PROJECT_NAME }}
     cert: wildcard
