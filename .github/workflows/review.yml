@@ -19,13 +19,12 @@ jobs:
     name: Create DB
     runs-on: ubuntu-latest
     steps:
-      - name: Get project name
-        run: |
-          echo "project=${GITHUB_REPOSITORY#*/}" >> $GITHUB_ENV
+      - name: Check out repository
+        uses: actions/checkout@v2
 
       - name: Create DB
         # uses: SocialGouv/actions/autodevops-create-db@v1
-        uses: SocialGouv/sample-next-app/.gh-action/autodevops-create-db@pg-scaleway-dev2
+        uses: ./.gh-action/autodevops-create-db
         with:
           environment: dev
           socialgouvBaseDomain: ${{ secrets.SOCIALGOUV_BASE_DOMAIN }}
