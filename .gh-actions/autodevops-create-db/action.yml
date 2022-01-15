@@ -1,0 +1,66 @@
+name: "Create database"
+description: "Create database and user using random secure"
+inputs:
+  kubeconfig:
+    description: "The Kubernetes authentication configuration"
+  rancherId:
+    description: "The Rancher project ID, usually secrets.RANCHER_PROJECT_ID"
+  socialgouvBaseDomain:
+    description: "The base domain name, usually secrets.SOCIALGOUV_BASE_DOMAIN"
+  environment:
+    description: "The deployment environment (dev | preprod | prod)"
+  adminPgSecret:
+    description: "PG Secret admin secretRefName"
+  pgUserAddHostSuffix:
+    description: "Add user suffix `@hostname`, muste be true for Azure, false for Scaleway, if not provided it autodetect azure using PGHOST"
+  jobNamespace:
+    description: "Namespace for job to mount secrets, in future, this will be ${project}-ci, for now it's ${project}-${branch-slug}"
+
+runs:
+  using: "composite"
+  steps:
+
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Get project and namespace names
+      shell: bash
+      run: |
+        if test -f ".github/dev.env"; then
+          cat ".github/dev.env" >> $GITHUB_ENV
+        fi
+
+        PROJECT_NAME=${GITHUB_REPOSITORY##*/}
+        BRANCH_NAME=${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}}
+        BRANCH_SLUG=$(npx @socialgouv/env-slug ${BRANCH_NAME})
+        NAMESPACE=${PROJECT_NAME}-${BRANCH_SLUG}
+
+        echo "PROJECT_NAME=$PROJECT_NAME" >> $GITHUB_ENV
+        echo "BRANCH_NAME=$BRANCH_NAME" >> $GITHUB_ENV
+        echo "BRANCH_SLUG=$BRANCH_SLUG" >> $GITHUB_ENV
+        echo "NAMESPACE=$NAMESPACE" >> $GITHUB_ENV
+
+    - name: Create kubernetes config
+      shell: bash
+      run: |
+        mkdir -p ~/.kube
+        touch ~/.kube/config
+        echo ${{ inputs.kubeconfig }} | base64 -d > ~/.kube/config
+
+    - uses: denoland/setup-deno@v1
+      with:
+        deno-version: vx.x.x
+
+    - name: Generate k8s namespace
+      shell: bash
+      run: |
+        npx ts-node --skip-project ${{ github.action_path }}/values.ts > values.json
+        cat ${{ github.action_path }}/templates/namespace.gtpl | \
+          npx gomplate -d values.json > namespace.yml
+
+        cat namespace.yml
+      env:
+        ENVIRONMENT: ${{ inputs.environment }}
+        SOCIALGOUV_CONFIG_PATH: /tmp/autodevops/config.json
+        RANCHER_PROJECT_ID: ${{ inputs.rancherId || env.RANCHER_PROJECT_ID }}
+        SOCIALGOUV_BASE_DOMAIN: ${{ inputs.socialgouvBaseDomain || env.SOCIALGOUV_BASE_DOMAIN }}
