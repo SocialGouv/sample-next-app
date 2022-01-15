@@ -57,16 +57,29 @@ runs:
       shell: bash
       run: yarn --prefer-offline --cwd ${{ github.action_path }} install
 
-    - name: Generate k8s namespace
+    - name: Generate k8s job's manifests
       shell: bash
       run: |
         cd ${{ github.action_path }}
+
         yarn run -s values > values.json
-        cat templates/namespace.gtpl | \
-          npx gomplate -d values.json > namespace.yml
+
+        if [ "$SOCIALGOUV_PRODUCTION" ]; then
+          DB_SECRET_NAME=pg-user
+        elif [ "$SOCIALGOUV_PREPRODUCTION" ]; then
+          DB_SECRET_NAME=pg-user-preprod
+        else
+          DB_SECRET_NAME="pg-user-${BRANCH_SLUG}"
+        fi
+
+        cat templates/namespace.gtpl | npx gomplate -d values.json > namespace.yml
+        cat templates/job.create-db.gtpl | npx gomplate -d values.json > job.create-db.yml
 
         cat namespace.yml
+        cat job.create-db.yml
       env:
+        JOB_IMAGE: ghcr.io/socialgouv/docker/azure-db
+        JOB_IMAGE_TAG: 6.64.0
         ENVIRONMENT: ${{ inputs.environment }}
         SOCIALGOUV_CONFIG_PATH: /tmp/autodevops/config.json
         RANCHER_PROJECT_ID: ${{ inputs.rancherId || env.RANCHER_PROJECT_ID }}
