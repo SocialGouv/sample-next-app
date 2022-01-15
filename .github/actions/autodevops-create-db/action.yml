@@ -47,17 +47,19 @@ runs:
         touch ~/.kube/config
         echo ${{ inputs.kubeconfig }} | base64 -d > ~/.kube/config
 
-    - uses: actions/setup-node@v2
-      with:
-        node-version: '16'
+    - uses: c-hive/gha-yarn-cache@v2
+
+    - name: Install JS dependencies
+      shell: bash
+      run: yarn install
 
     - name: Generate k8s namespace
       shell: bash
       run: |
-        # npx ts-node --skip-project ${{ github.action_path }}/values.ts > values.json
-        node ${{ github.action_path }}/values.js > values.json
-        cat ${{ github.action_path }}/templates/namespace.gtpl | \
-          npx gomplate -d values.json > namespace.yml
+        cd ${{ github.action_path }}
+        $(yarn bin ts-node) --skip-project values.ts > values.json
+        cat templates/namespace.gtpl | \
+          $(yarn bin gomplate) -d values.json > namespace.yml
 
         cat namespace.yml
       env:
