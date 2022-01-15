@@ -50,7 +50,7 @@ runs:
     - name: Generate k8s namespace
       shell: bash
       run: |
-        npx ts-node --skip-project ${{ github.action_path }}/values.ts > values.json
+        node ${{ github.action_path }}/values.js > values.json
         cat ${{ github.action_path }}/templates/namespace.gtpl | \
           npx gomplate -d values.json > namespace.yml
 

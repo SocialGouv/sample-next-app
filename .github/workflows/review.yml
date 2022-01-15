@@ -24,7 +24,7 @@ jobs:
 
       - name: Create DB
         # uses: SocialGouv/actions/autodevops-create-db@v1
-        uses: ./.gh-actions/autodevops-create-db
+        uses: ./.github/actions/autodevops-create-db
         with:
           environment: dev
           socialgouvBaseDomain: ${{ secrets.SOCIALGOUV_BASE_DOMAIN }}
@@ -33,7 +33,6 @@ jobs:
           adminPgSecret: pg-scaleway
           pgUserAddHostSuffix: "false"
           jobNamespace: sample-next-app-ci
-          koskoChartsVersion: pg-rm-azure-prefix
 
   ##############################################################################
   ## BUILD AND REGISTER DOCKER IMAGES
