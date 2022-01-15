@@ -51,7 +51,7 @@ runs:
 
     - name: Install global JS dependencies
       shell: bash
-      run: yarn global add ts-node
+      run: yarn global add ts-node typescript @types/node
 
     - name: Install action JS dependencies
       shell: bash
