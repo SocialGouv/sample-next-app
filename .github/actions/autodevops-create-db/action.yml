@@ -53,6 +53,10 @@ runs:
       shell: bash
       run: yarn install
 
+    - name: Add node_modules bin to PATH
+      shell: bash
+      run: echo "./node_modules/.bin" >> $GITHUB_PATH
+
     - name: Generate k8s namespace
       shell: bash
       run: |
