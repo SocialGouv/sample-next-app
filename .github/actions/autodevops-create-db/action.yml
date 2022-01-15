@@ -61,7 +61,7 @@ runs:
       shell: bash
       run: |
         cd ${{ github.action_path }}
-        yarn run values > values.json
+        yarn run -s values > values.json
         cat templates/namespace.gtpl | \
           npx gomplate -d values.json > namespace.yml
 
