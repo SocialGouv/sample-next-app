@@ -6,7 +6,7 @@
   },
   "scripts": {
     "postinstall": "ln -s ../gomplate/node_modules/.bin/gomplate node_modules/.bin/gomplate",
-    "values": "deno run values.ts"
+    "values": "ts-node --skip-project values.ts"
   },
   "devDependencies": {
     "@types/node": "^17.0.8"

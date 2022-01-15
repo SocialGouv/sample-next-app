@@ -49,10 +49,6 @@ runs:
 
     - uses: c-hive/gha-yarn-cache@v2
 
-    - uses: denoland/setup-deno@v1
-      with:
-        deno-version: v1.x
-
     - name: Install global JS dependencies
       shell: bash
       run: yarn global add ts-node typescript
