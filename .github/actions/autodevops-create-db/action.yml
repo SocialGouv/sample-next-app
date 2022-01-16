@@ -35,6 +35,7 @@ runs:
         BRANCH_SLUG=$(npx @socialgouv/env-slug ${BRANCH_NAME})
         NAMESPACE=${PROJECT_NAME}-${BRANCH_SLUG}
         JOB_NAMESPACE=${PROJECT_NAME}-ci
+        SECRETS_NAMESPACE="${{ github.event.repository.name }}-secret"
         if [ "$SOCIALGOUV_PRODUCTION" ]; then
           DB_SECRET_NAME=pg-user
         elif [ "$SOCIALGOUV_PREPRODUCTION" ]; then
@@ -48,6 +49,7 @@ runs:
         echo "BRANCH_SLUG=$BRANCH_SLUG" >> $GITHUB_ENV
         echo "NAMESPACE=$NAMESPACE" >> $GITHUB_ENV
         echo "JOB_NAMESPACE=$JOB_NAMESPACE" >> $GITHUB_ENV
+        echo "SECRETS_NAMESPACE=$SECRETS_NAMESPACE" >> $GITHUB_ENV
         echo "DB_SECRET_NAME=$DB_SECRET_NAME" >> $GITHUB_ENV
 
     - name: Create kubernetes config
@@ -83,7 +85,7 @@ runs:
         #   scripts/create-secret
         # fi
 
-        # scripts/copy-secret
+        # scripts/copy-secret $DB_SECRET_NAME $NAMESPACE $JOB_NAMESPACE
 
         # kubectl delete --namespace=$JOB_NAMESPACE job/create-db-user || true
         # kubectl apply --namespace=$JOB_NAMESPACE -f create-db.yml
