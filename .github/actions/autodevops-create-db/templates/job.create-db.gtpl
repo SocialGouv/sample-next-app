@@ -47,7 +47,7 @@ spec:
           envFrom:
             - secretRef:
                 name: pg-scaleway
-          image: {{ .Env.JOB_IMAGE }}:{{ .Env.JOB_IMAGE_TAG }}
+          image: {{ .Env.JOB_IMAGE }}
           imagePullPolicy: IfNotPresent
           name: create-db-user
           resources:
