@@ -106,7 +106,7 @@ runs:
       env:
         PG_USER_ADD_HOST_SUFFIX: ${{ inputs.pgUserAddHostSuffix || env.PG_USER_ADD_HOST_SUFFIX || '' }}
         JOB_IMAGE: ghcr.io/socialgouv/docker/azure-db
-        JOB_IMAGE_TAG: 6.68.0
+        JOB_IMAGE_TAG: "6.68.0"
         ENVIRONMENT: ${{ inputs.environment }}
         SOCIALGOUV_CONFIG_PATH: /tmp/autodevops/config.json
         RANCHER_PROJECT_ID: ${{ inputs.rancherId || env.RANCHER_PROJECT_ID }}
