@@ -69,12 +69,12 @@ runs:
 
     - name: Install action JS dependencies
       shell: bash
-      run: yarn --prefer-offline --cwd ${{ github.action_path }} install
+      run: yarn --cwd ${{ github.action_path }} install --prefer-offline
 
     - name: Generate k8s job's manifests
       shell: bash
       run: |
-        yarn run -s values > values.json
+        yarn --cwd ${{ github.action_path }} run -s values > values.json
 
         cat $ACTION_PATH/templates/namespace.gtpl | npx gomplate -d values.json > namespace.yml
         cat $ACTION_PATH/templates/job.create-db.gtpl | npx gomplate -d values.json > job.create-db.yml
