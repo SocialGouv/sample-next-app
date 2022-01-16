@@ -43,6 +43,7 @@ runs:
         else
           DB_SECRET_NAME="pg-user-${BRANCH_SLUG}"
         fi
+        ACTION_PATH="${{ github.action_path }}"
 
         echo "PROJECT_NAME=$PROJECT_NAME" >> $GITHUB_ENV
         echo "BRANCH_NAME=$BRANCH_NAME" >> $GITHUB_ENV
@@ -51,6 +52,7 @@ runs:
         echo "JOB_NAMESPACE=$JOB_NAMESPACE" >> $GITHUB_ENV
         echo "SECRETS_NAMESPACE=$SECRETS_NAMESPACE" >> $GITHUB_ENV
         echo "DB_SECRET_NAME=$DB_SECRET_NAME" >> $GITHUB_ENV
+        echo "ACTION_PATH=$ACTION_PATH" >> $GITHUB_ENV
 
     - name: Create kubernetes config
       shell: bash
@@ -72,25 +74,23 @@ runs:
     - name: Generate k8s job's manifests
       shell: bash
       run: |
-        cd ${{ github.action_path }}
-
         yarn run -s values > values.json
 
-        cat templates/namespace.gtpl | npx gomplate -d values.json > namespace.yml
-        cat templates/job.create-db.gtpl | npx gomplate -d values.json > job.create-db.yml
+        cat $ACTION_PATH/templates/namespace.gtpl | npx gomplate -d values.json > namespace.yml
+        cat $ACTION_PATH/templates/job.create-db.gtpl | npx gomplate -d values.json > job.create-db.yml
 
         # if [ -n "$(kubectl -n $NAMESPACE get secret $DB_SECRET_NAME 2>/dev/null)" ]; then
         #   echo "secret named '$DB_SECRET_NAME' already exists in namespace '$NAMESPACE'"
         # else
-        #   scripts/create-secret
+        #   $ACTION_PATH/bin/create-secret
         # fi
 
-        # scripts/copy-secret $DB_SECRET_NAME $NAMESPACE $JOB_NAMESPACE
+        # $ACTION_PATH/bin/copy-secret $DB_SECRET_NAME $NAMESPACE $JOB_NAMESPACE
 
         # kubectl delete --namespace=$JOB_NAMESPACE job/create-db-user || true
         # kubectl apply --namespace=$JOB_NAMESPACE -f create-db.yml
 
-        # scripts/wait-job job/create-db-user
+        # $ACTION_PATH/bin/wait-job job/create-db-user
 
       env:
         PG_USER_ADD_HOST_SUFFIX: ${{ inputs.pgUserAddHostSuffix || env.PG_USER_ADD_HOST_SUFFIX || '' }}
@@ -101,14 +101,20 @@ runs:
         RANCHER_PROJECT_ID: ${{ inputs.rancherId || env.RANCHER_PROJECT_ID }}
         SOCIALGOUV_BASE_DOMAIN: ${{ inputs.socialgouvBaseDomain || env.SOCIALGOUV_BASE_DOMAIN }}
 
+    - name: Archive values.json
+      uses: actions/upload-artifact@v2
+      with:
+        name: values.json
+        path: values.json
+
     - name: Archive create-db manifests
       uses: actions/upload-artifact@v2
       with:
         name: create-db.yml
-        path: ${{ github.action_path }}/create-db.yml
+        path: create-db.yml
 
     - name: Archive namespace manifests
       uses: actions/upload-artifact@v2
       with:
         name: namespace.yml
-        path: ${{ github.action_path }}/namespace.yml
+        path: namespace.yml
