@@ -69,8 +69,12 @@ runs:
 
     - name: Install action JS dependencies
       shell: bash
+      run: yarn --cwd ${{ github.action_path }} install --prefer-offline
+
+    - name: Setup PATH
+      shell: bash
       run: |
-        yarn --cwd ${{ github.action_path }} install --prefer-offline
+        echo "${{ github.action_path }}/bin" >> $GITHUB_PATH
         echo "${{ github.action_path }}/node_modules/.bin" >> $GITHUB_PATH
 
     - name: Generate k8s job's manifests
@@ -81,18 +85,18 @@ runs:
         cat $ACTION_PATH/templates/namespace.gtpl | gomplate -d values.json > namespace.yml
         cat $ACTION_PATH/templates/job.create-db.gtpl | gomplate -d values.json > job.create-db.yml
 
-        # if [ -n "$(kubectl -n $NAMESPACE get secret $DB_SECRET_NAME 2>/dev/null)" ]; then
-        #   echo "secret named '$DB_SECRET_NAME' already exists in namespace '$NAMESPACE'"
-        # else
-        #   $ACTION_PATH/bin/create-secret
-        # fi
+        if [ -n "$(kubectl -n $NAMESPACE get secret $DB_SECRET_NAME 2>/dev/null)" ]; then
+          echo "secret named '$DB_SECRET_NAME' already exists in namespace '$NAMESPACE'"
+        else
+          create-secret
+        fi
 
-        # $ACTION_PATH/bin/copy-secret $DB_SECRET_NAME $NAMESPACE $JOB_NAMESPACE
+        copy-secret $DB_SECRET_NAME $NAMESPACE $JOB_NAMESPACE
 
-        # kubectl delete --namespace=$JOB_NAMESPACE job/create-db-user || true
-        # kubectl apply --namespace=$JOB_NAMESPACE -f create-db.yml
+        kubectl delete --namespace=$JOB_NAMESPACE job/create-db-user || true
+        kubectl apply --namespace=$JOB_NAMESPACE -f job.create-db.yml
 
-        # $ACTION_PATH/bin/wait-job job/create-db-user
+        wait-job job/create-db-user
 
       env:
         PG_USER_ADD_HOST_SUFFIX: ${{ inputs.pgUserAddHostSuffix || env.PG_USER_ADD_HOST_SUFFIX || '' }}
@@ -112,8 +116,8 @@ runs:
     - name: Archive create-db manifests
       uses: actions/upload-artifact@v2
       with:
-        name: create-db.yml
-        path: create-db.yml
+        name: job.create-db.yml
+        path: job.create-db.yml
 
     - name: Archive namespace manifests
       uses: actions/upload-artifact@v2
