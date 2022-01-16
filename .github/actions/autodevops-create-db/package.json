@@ -5,7 +5,7 @@
     "gomplate": "^3.10.0"
   },
   "scripts": {
-    "postinstall": "ln -s ../gomplate/node_modules/.bin/gomplate node_modules/.bin/gomplate",
+    "postinstall": "ln -s ../gomplate/node_modules/.bin/gomplate node_modules/.bin/gomplate"
   },
   "devDependencies": {
     "@types/node": "^17.0.8"
