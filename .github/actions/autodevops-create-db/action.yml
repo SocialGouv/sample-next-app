@@ -76,7 +76,7 @@ runs:
     - name: Generate k8s job's manifests
       shell: bash
       run: |
-        ts-node --skip-project ${{ github.action_path }}/values.ts > values.json
+        yarn --cwd ${{ github.action_path }} run -s values > values.json
 
         cat $ACTION_PATH/templates/namespace.gtpl | gomplate -d values.json > namespace.yml
         cat $ACTION_PATH/templates/job.create-db.gtpl | gomplate -d values.json > job.create-db.yml
