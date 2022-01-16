@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
-
 set +e
+
 JOB=${1:-"$JOB"}
 JOB_NAMESPACE=${2:-"$JOB_NAMESPACE"}
 

@@ -85,6 +85,8 @@ runs:
         cat $ACTION_PATH/templates/namespace.gtpl | gomplate -d values.json > namespace.yml
         cat $ACTION_PATH/templates/job.create-db.gtpl | gomplate -d values.json > job.create-db.yml
 
+        kubectl create -f namespace.yml || true
+
         if [ -n "$(kubectl -n $NAMESPACE get secret $DB_SECRET_NAME 2>/dev/null)" ]; then
           echo "secret named '$DB_SECRET_NAME' already exists in namespace '$NAMESPACE'"
         else
