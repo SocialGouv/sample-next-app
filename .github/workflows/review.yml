@@ -27,7 +27,6 @@ jobs:
         uses: ./.github/actions/autodevops-create-db
         with:
           environment: dev
-          socialgouvBaseDomain: ${{ secrets.SOCIALGOUV_BASE_DOMAIN }}
           kubeconfig: ${{ secrets.KUBECONFIG }}
           rancherId: ${{ secrets.RANCHER_PROJECT_ID }}
           adminPgSecret: pg-scaleway

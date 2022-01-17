@@ -23,9 +23,10 @@ spec:
             - /bin/sh
             - -c
             - |
-              echo -n ${JOB_COMMAND}>/tmp/job-command
+              cat > /tmp/job-command <<EOL
+              $JOB_COMMAND
+              EOL
               chmod +x /tmp/job-command
-              cat /tmp/job-command
               exec /tmp/job-command
           env:
             - name: JOB_COMMAND

@@ -5,8 +5,6 @@ inputs:
     description: "The Kubernetes authentication configuration"
   rancherId:
     description: "The Rancher project ID, usually secrets.RANCHER_PROJECT_ID"
-  socialgouvBaseDomain:
-    description: "The base domain name, usually secrets.SOCIALGOUV_BASE_DOMAIN"
   environment:
     description: "The deployment environment (dev | preprod | prod)"
   adminPgSecret:
@@ -34,8 +32,6 @@ runs:
         BRANCH_SLUG=$(npx @socialgouv/env-slug ${BRANCH_NAME})
         ENVIRONMENT=${{ inputs.environment }}
         RANCHER_PROJECT_ID=${{ inputs.rancherId || env.RANCHER_PROJECT_ID }}
-        SOCIALGOUV_BASE_DOMAIN=${{ inputs.socialgouvBaseDomain || env.SOCIALGOUV_BASE_DOMAIN }}
-        SOCIALGOUV_CONFIG_PATH=/tmp/autodevops/config.json
         JOB_NAMESPACE=${PROJECT_NAME}-ci
         SECRETS_NAMESPACE="${PROJECT_NAME}-secret"
         ADMIN_PG_SECRET="${{ inputs.adminPgSecret || env.ADMIN_PG_SECRET || 'azure-pg-admin-user' }}"
@@ -51,14 +47,15 @@ runs:
         fi
         ACTION_PATH="${{ github.action_path }}"
 
+        # general purpose env vars
         echo "PROJECT_NAME=$PROJECT_NAME" >> $GITHUB_ENV
         echo "BRANCH_NAME=$BRANCH_NAME" >> $GITHUB_ENV
         echo "BRANCH_SLUG=$BRANCH_SLUG" >> $GITHUB_ENV
         echo "NAMESPACE=$NAMESPACE" >> $GITHUB_ENV
         echo "ENVIRONMENT=$ENVIRONMENT" >> $GITHUB_ENV
         echo "RANCHER_PROJECT_ID=$RANCHER_PROJECT_ID" >> $GITHUB_ENV
-        echo "SOCIALGOUV_BASE_DOMAIN=$SOCIALGOUV_BASE_DOMAIN" >> $GITHUB_ENV
-        echo "SOCIALGOUV_CONFIG_PATH=$SOCIALGOUV_CONFIG_PATH" >> $GITHUB_ENV
+
+        # action specific env vars
         echo "JOB_NAMESPACE=$JOB_NAMESPACE" >> $GITHUB_ENV
         echo "SECRETS_NAMESPACE=$SECRETS_NAMESPACE" >> $GITHUB_ENV
         echo "DB_SECRET_NAME=$DB_SECRET_NAME" >> $GITHUB_ENV
