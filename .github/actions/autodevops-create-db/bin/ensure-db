@@ -1,5 +1,4 @@
 #!/bin/bash
-set -x
 set -e
 
 # check mandatory environment variables
@@ -39,8 +38,6 @@ if psql -abe "$PG_URL_ADMIN" -c "\c ${NEW_DB_NAME}"; then
 else
   echo "Creating database ${NEW_DB_NAME} on ${PGHOST}"
   psql -abe "$PG_URL_ADMIN" -c "CREATE DATABASE \"$NEW_DB_NAME\";"
-
-
 fi
 
 echo "Creating database extensions ${NEW_DB_NAME}"
