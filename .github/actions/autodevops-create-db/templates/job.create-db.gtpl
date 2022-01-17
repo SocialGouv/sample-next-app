@@ -26,7 +26,7 @@ spec:
           env:
             - name: JOB_COMMAND
               value: |
-{{ file.Read "bin/ensure-db" | strings.Indent "                " }}
+{{ file.Read (print .Env.ACTION_PATH "/bin/ensure-db") | strings.Indent "                " }}
             - name: NEW_DB_NAME
               valueFrom:
                 secretKeyRef:
