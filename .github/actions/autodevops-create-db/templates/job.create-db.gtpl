@@ -20,7 +20,7 @@ spec:
     spec:
       containers:
         - command:
-            - create-db-user
+            - ensure-db
           env:
             - name: NEW_DB_NAME
               valueFrom:
@@ -47,7 +47,7 @@ spec:
           envFrom:
             - secretRef:
                 name: pg-scaleway
-          image: {{ .Env.JOB_IMAGE }}
+          image: ghcr.io/socialgouv/docker/azure-db:6.68.0
           imagePullPolicy: IfNotPresent
           name: create-db-user
           resources:

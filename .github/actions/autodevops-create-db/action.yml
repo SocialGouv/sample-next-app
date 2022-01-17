@@ -100,9 +100,6 @@ runs:
 
     - name: Generate k8s manifests
       shell: bash
-      env:
-        PG_USER_ADD_HOST_SUFFIX: ${{ inputs.pgUserAddHostSuffix || env.PG_USER_ADD_HOST_SUFFIX || '' }}
-        JOB_IMAGE: ghcr.io/socialgouv/docker/azure-db:6.68.0
       run: |
         cat $ACTION_PATH/templates/namespace.gtpl | gomplate -d values.json > namespace.yml
         cat $ACTION_PATH/templates/job.create-db.gtpl | gomplate -d values.json > job.create-db.yml
@@ -125,6 +122,8 @@ runs:
 
     - name: Create secret
       shell: bash
+      env:
+        PG_USER_ADD_HOST_SUFFIX: ${{ inputs.pgUserAddHostSuffix || env.PG_USER_ADD_HOST_SUFFIX || '' }}
       run: |
         if [ -n "$(kubectl -n $NAMESPACE get secret $DB_SECRET_NAME 2>/dev/null)" ]; then
           echo "secret named '$DB_SECRET_NAME' already exists in namespace '$NAMESPACE'"
@@ -141,4 +140,4 @@ runs:
 
     - name: Wait for create-db job completion
       shell: bash
-      run: wait-job job/create-db-user
+      run: wait-job "job/create-db-user-${BRANCH_SLUG}"
