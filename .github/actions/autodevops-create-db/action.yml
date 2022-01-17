@@ -36,7 +36,7 @@ runs:
         BRANCH_SLUG=$(npx @socialgouv/env-slug ${BRANCH_NAME})
         ENVIRONMENT=${{ inputs.environment }}
         RANCHER_PROJECT_ID=${{ inputs.rancherId || env.RANCHER_PROJECT_ID }}
-        SOCIALGOUV_BASE_DOMAIN:=${{ inputs.socialgouvBaseDomain || env.SOCIALGOUV_BASE_DOMAIN }}
+        SOCIALGOUV_BASE_DOMAIN=${{ inputs.socialgouvBaseDomain || env.SOCIALGOUV_BASE_DOMAIN }}
         SOCIALGOUV_CONFIG_PATH=/tmp/autodevops/config.json
         JOB_NAMESPACE=${PROJECT_NAME}-ci
         SECRETS_NAMESPACE="${{ github.event.repository.name }}-secret"
