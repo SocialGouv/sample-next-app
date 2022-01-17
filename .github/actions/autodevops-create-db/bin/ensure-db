@@ -11,19 +11,6 @@ for VAR in $MANDATORY_VARS; do
   fi
 done
 
-urlencode() {
-  STDIN=`cat /dev/stdin`
-  local length="${#STDIN}"
-  for (( i = 0; i < length; i++ )); do
-      local c="${STDIN:i:1}"
-      case $c in
-          [a-zA-Z0-9.~_-]) printf "$c" ;;
-          *) printf '%s' "$c" | xxd -p -c1 |
-                 while read c; do printf '%%%s' "$c"; done ;;
-      esac
-  done
-}
-
 # set defaults
 PGUSER=${PGUSER:-postgres}
 PGPORT=${PGPORT:-5432}
@@ -31,8 +18,8 @@ PGHOST=${PGHOST:--127.0.0.1}
 
 # urlencode the original pg user
 # ORIGINAL_PGUSER_URLENCODED=${PGUSER/@/%40}
-ORIGINAL_PGUSER_URLENCODED=$(echo $PGUSER | urlencode)
-PGPASSWORD_URLENCODED=$(echo $PGPASSWORD | urlencode)
+ORIGINAL_PGUSER_URLENCODED=$(printf %s "$PGUSER" |jq -sRr @uri)
+PGPASSWORD_URLENCODED=$(printf %s "$PGPASSWORD" |jq -sRr @uri)
 
 PG_URL_ADMIN="postgresql://${ORIGINAL_PGUSER_URLENCODED}:${PGPASSWORD_URLENCODED}@${PGHOST}:${PGPORT}/postgres"
 PG_URL_NEWDB="postgresql://${ORIGINAL_PGUSER_URLENCODED}:${PGPASSWORD_URLENCODED}@${PGHOST}:${PGPORT}/${NEW_DB_NAME}"
