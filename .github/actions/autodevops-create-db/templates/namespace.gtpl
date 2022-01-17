@@ -15,7 +15,7 @@ metadata:
     app.github.com/job: {{ .Env.GITHUB_JOB }}
     app.github.com/ref: {{ .Env.GITHUB_REF }}
     app.github.com/repo: {{ .Env.GITHUB_REPOSITORY }}
-    app.github.com/run: {{ .Env.GITHUB_RUN_ID }}
+    app.github.com/run: "{{ .Env.GITHUB_RUN_ID }}"
     app.github.com/sha: {{ .Env.GITHUB_SHA | strings.Trunc 7 }}
   labels:
     component: {{ $values.component }}
