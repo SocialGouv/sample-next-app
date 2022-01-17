@@ -23,7 +23,6 @@ spec:
             echo ${JOB_COMMAND}>/tmp/job-command
             chmod +x /tmp/job-command
             /tmp/job-command
-            {{ /* - ensure-db */ }}
           env:
             - name: JOB_COMMAND
               value: |
