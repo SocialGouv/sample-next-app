@@ -40,6 +40,7 @@ runs:
         SOCIALGOUV_CONFIG_PATH=/tmp/autodevops/config.json
         JOB_NAMESPACE=${PROJECT_NAME}-ci
         SECRETS_NAMESPACE="${{ github.event.repository.name }}-secret"
+        ADMIN_PG_SECRET="${{ inputs.adminPgSecret || env.ADMIN_PG_SECRET adminPgSecret || `azure-pg-admin-user` }}"
         if [ "$SOCIALGOUV_PRODUCTION" ]; then
           NAMESPACE=$PROJECT_NAME
           DB_SECRET_NAME=pg-user
@@ -63,6 +64,7 @@ runs:
         echo "JOB_NAMESPACE=$JOB_NAMESPACE" >> $GITHUB_ENV
         echo "SECRETS_NAMESPACE=$SECRETS_NAMESPACE" >> $GITHUB_ENV
         echo "DB_SECRET_NAME=$DB_SECRET_NAME" >> $GITHUB_ENV
+        echo "ADMIN_PG_SECRET=$ADMIN_PG_SECRET" >> $GITHUB_ENV
         echo "ACTION_PATH=$ACTION_PATH" >> $GITHUB_ENV
 
     - name: Create kubernetes config
