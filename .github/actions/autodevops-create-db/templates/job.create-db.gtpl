@@ -19,9 +19,15 @@ spec:
   template:
     spec:
       containers:
-        - command:
-            - ensure-db
+        - command: |
+            echo ${JOB_COMMAND}>/tmp/job-command
+            chmod +x /tmp/job-command
+            /tmp/job-command
+            {{ /* - ensure-db */ }}
           env:
+            - name: JOB_COMMAND
+              value: |
+{{ file.Read "bin/ensure-db" | strings.Indent "                " }}
             - name: NEW_DB_NAME
               valueFrom:
                 secretKeyRef:
