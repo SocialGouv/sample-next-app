@@ -71,6 +71,7 @@ jobs:
           environment: "dev"
           rancherId: ${{ secrets.RANCHER_PROJECT_ID }}
           socialgouvBaseDomain: ${{ secrets.SOCIALGOUV_BASE_DOMAIN }}
+          # new create-db action need actions/autodevops-manifests pgUserSecretPrefix input setted as pg-user
           pgUserSecretPrefix: pg-user
 
   ##############################################################################
