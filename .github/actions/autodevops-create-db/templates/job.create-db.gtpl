@@ -25,6 +25,7 @@ spec:
             - |
               echo -n ${JOB_COMMAND}>/tmp/job-command
               chmod +x /tmp/job-command
+              cat /tmp/job-command
               exec /tmp/job-command
           env:
             - name: JOB_COMMAND
