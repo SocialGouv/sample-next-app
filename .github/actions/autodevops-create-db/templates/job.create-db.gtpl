@@ -12,8 +12,8 @@ metadata:
     application: {{ .Env.PROJECT_NAME }}
     owner: {{ .Env.PROJECT_NAME }}
     team: {{ .Env.PROJECT_NAME }}
-  name: create-db-user
-  namespace: {{ .Env.NAMESPACE }}
+  name: create-db-user-{{ .Env.BRANCH_SLUG }}
+  namespace: {{ .Env.JOB_NAMESPACE }}
 spec:
   backoffLimit: 5
   template:

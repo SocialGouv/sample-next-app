@@ -136,8 +136,8 @@ runs:
     - name: Run create-db job
       shell: bash
       run: |
-        kubectl delete --namespace=$JOB_NAMESPACE job/create-db-user || true
-        kubectl apply --namespace=$JOB_NAMESPACE -f job.create-db.yml
+        kubectl delete --namespace=$JOB_NAMESPACE "job/create-db-user-${BRANCH_SLUG}" || true
+        kubectl apply -f job.create-db.yml
 
     - name: Wait for create-db job completion
       shell: bash
