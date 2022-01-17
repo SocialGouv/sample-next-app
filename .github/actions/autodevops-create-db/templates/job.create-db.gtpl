@@ -6,7 +6,7 @@ metadata:
     app.github.com/ref: {{ .Env.GITHUB_REF }}
     app.github.com/repo: {{ .Env.GITHUB_REPOSITORY }}
     app.github.com/run: "{{ .Env.GITHUB_RUN_ID }}"
-    app.github.com/sha: {{ .Env.GITHUB_SHA | strings.Trunc 7 }}
+    app.github.com/sha: "{{ .Env.GITHUB_SHA | strings.Trunc 7 }}"
   labels:
     component: ci-create-db-job
     application: {{ .Env.PROJECT_NAME }}
