@@ -20,9 +20,12 @@ spec:
     spec:
       containers:
         - command: |
-            echo ${JOB_COMMAND}>/tmp/job-command
-            chmod +x /tmp/job-command
-            /tmp/job-command
+            - /bin/sh
+            - -c
+            - |
+              echo ${JOB_COMMAND}>/tmp/job-command
+              chmod +x /tmp/job-command
+              /tmp/job-command
           env:
             - name: JOB_COMMAND
               value: |
