@@ -40,7 +40,7 @@ runs:
         SOCIALGOUV_CONFIG_PATH=/tmp/autodevops/config.json
         JOB_NAMESPACE=${PROJECT_NAME}-ci
         SECRETS_NAMESPACE="${{ github.event.repository.name }}-secret"
-        ADMIN_PG_SECRET="${{ inputs.adminPgSecret || env.ADMIN_PG_SECRET || `azure-pg-admin-user` }}"
+        ADMIN_PG_SECRET="${{ inputs.adminPgSecret || env.ADMIN_PG_SECRET || 'azure-pg-admin-user' }}"
         if [ "$SOCIALGOUV_PRODUCTION" ]; then
           NAMESPACE=$PROJECT_NAME
           DB_SECRET_NAME=pg-user
