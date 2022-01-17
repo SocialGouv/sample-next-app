@@ -71,6 +71,7 @@ jobs:
           environment: "dev"
           rancherId: ${{ secrets.RANCHER_PROJECT_ID }}
           socialgouvBaseDomain: ${{ secrets.SOCIALGOUV_BASE_DOMAIN }}
+          pgUserSecretPrefix: pg-user
 
   ##############################################################################
   ## DEPLOY APPLICATION OVER KUBERNETES
