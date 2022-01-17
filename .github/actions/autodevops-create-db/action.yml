@@ -34,6 +34,10 @@ runs:
         BRANCH_NAME=${GITHUB_REF#refs/heads/}
         BRANCH_NAME=${BRANCH_NAME#refs/tags/}
         BRANCH_SLUG=$(npx @socialgouv/env-slug ${BRANCH_NAME})
+        ENVIRONMENT=${{ inputs.environment }}
+        RANCHER_PROJECT_ID=${{ inputs.rancherId || env.RANCHER_PROJECT_ID }}
+        SOCIALGOUV_BASE_DOMAIN:=${{ inputs.socialgouvBaseDomain || env.SOCIALGOUV_BASE_DOMAIN }}
+        SOCIALGOUV_CONFIG_PATH=/tmp/autodevops/config.json
         JOB_NAMESPACE=${PROJECT_NAME}-ci
         SECRETS_NAMESPACE="${{ github.event.repository.name }}-secret"
         if [ "$SOCIALGOUV_PRODUCTION" ]; then
@@ -52,6 +56,10 @@ runs:
         echo "BRANCH_NAME=$BRANCH_NAME" >> $GITHUB_ENV
         echo "BRANCH_SLUG=$BRANCH_SLUG" >> $GITHUB_ENV
         echo "NAMESPACE=$NAMESPACE" >> $GITHUB_ENV
+        echo "ENVIRONMENT=$ENVIRONMENT" >> $GITHUB_ENV
+        echo "RANCHER_PROJECT_ID=$RANCHER_PROJECT_ID" >> $GITHUB_ENV
+        echo "SOCIALGOUV_BASE_DOMAIN=$SOCIALGOUV_BASE_DOMAIN" >> $GITHUB_ENV
+        echo "SOCIALGOUV_CONFIG_PATH=$SOCIALGOUV_CONFIG_PATH" >> $GITHUB_ENV
         echo "JOB_NAMESPACE=$JOB_NAMESPACE" >> $GITHUB_ENV
         echo "SECRETS_NAMESPACE=$SECRETS_NAMESPACE" >> $GITHUB_ENV
         echo "DB_SECRET_NAME=$DB_SECRET_NAME" >> $GITHUB_ENV
@@ -80,42 +88,24 @@ runs:
         echo "${{ github.action_path }}/bin" >> $GITHUB_PATH
         echo "${{ github.action_path }}/node_modules/.bin" >> $GITHUB_PATH
 
-    - name: Generate k8s job's manifests
+    - name: Generate values file
       shell: bash
-      run: |
-        yarn --cwd ${{ github.action_path }} run -s values > values.json
-
-        cat $ACTION_PATH/templates/namespace.gtpl | gomplate -d values.json > namespace.yml
-        cat $ACTION_PATH/templates/job.create-db.gtpl | gomplate -d values.json > job.create-db.yml
-
-        kubectl create -f namespace.yml || true
-
-        if [ -n "$(kubectl -n $NAMESPACE get secret $DB_SECRET_NAME 2>/dev/null)" ]; then
-          echo "secret named '$DB_SECRET_NAME' already exists in namespace '$NAMESPACE'"
-        else
-          create-secret
-        fi
-
-        copy-secret $DB_SECRET_NAME $NAMESPACE $JOB_NAMESPACE
-
-        kubectl delete --namespace=$JOB_NAMESPACE job/create-db-user || true
-        kubectl apply --namespace=$JOB_NAMESPACE -f job.create-db.yml
-
-        wait-job job/create-db-user
-
-      env:
-        PG_USER_ADD_HOST_SUFFIX: ${{ inputs.pgUserAddHostSuffix || env.PG_USER_ADD_HOST_SUFFIX || '' }}
-        JOB_IMAGE: ghcr.io/socialgouv/docker/azure-db:6.68.0
-        ENVIRONMENT: ${{ inputs.environment }}
-        SOCIALGOUV_CONFIG_PATH: /tmp/autodevops/config.json
-        RANCHER_PROJECT_ID: ${{ inputs.rancherId || env.RANCHER_PROJECT_ID }}
-        SOCIALGOUV_BASE_DOMAIN: ${{ inputs.socialgouvBaseDomain || env.SOCIALGOUV_BASE_DOMAIN }}
+      run: yarn --cwd ${{ github.action_path }} run -s values > values.json
 
     - name: Archive values.json
       uses: actions/upload-artifact@v2
       with:
         name: values.json
         path: values.json
+
+    - name: Generate k8s manifests
+      shell: bash
+      env:
+        PG_USER_ADD_HOST_SUFFIX: ${{ inputs.pgUserAddHostSuffix || env.PG_USER_ADD_HOST_SUFFIX || '' }}
+        JOB_IMAGE: ghcr.io/socialgouv/docker/azure-db:6.68.0
+      run: |
+        cat $ACTION_PATH/templates/namespace.gtpl | gomplate -d values.json > namespace.yml
+        cat $ACTION_PATH/templates/job.create-db.gtpl | gomplate -d values.json > job.create-db.yml
 
     - name: Archive create-db manifests
       uses: actions/upload-artifact@v2
@@ -128,3 +118,27 @@ runs:
       with:
         name: namespace.yml
         path: namespace.yml
+
+    - name: Ensure namespace exists
+      shell: bash
+      run: kubectl create -f namespace.yml || true
+
+    - name: Create secret
+      shell: bash
+      run: |
+        if [ -n "$(kubectl -n $NAMESPACE get secret $DB_SECRET_NAME 2>/dev/null)" ]; then
+          echo "secret named '$DB_SECRET_NAME' already exists in namespace '$NAMESPACE'"
+        else
+          create-secret
+        fi
+        copy-secret $DB_SECRET_NAME $NAMESPACE $JOB_NAMESPACE
+
+    - name: Run create-db job
+      shell: bash
+      run: |
+        kubectl delete --namespace=$JOB_NAMESPACE job/create-db-user || true
+        kubectl apply --namespace=$JOB_NAMESPACE -f job.create-db.yml
+
+    - name: Wait for create-db job completion
+      shell: bash
+      run: wait-job job/create-db-user
