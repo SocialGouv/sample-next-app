@@ -2,16 +2,6 @@
 set -x
 set -e
 
-#
-# create a new user and DB on a remote Azure Postgres server
-#
-# Some weirdness due to "@" characters in Azure connection strings and SSL config and extensions security
-#
-
-PGUSER=${PGUSER:-postgres}
-PGPORT=${PGPORT:-5432}
-PGHOST=${PGHOST:--127.0.0.1}
-
 # check mandatory environment variables
 MANDATORY_VARS="PGPASSWORD NEW_DB_NAME NEW_USER NEW_PASSWORD"
 for VAR in $MANDATORY_VARS; do
@@ -21,14 +11,40 @@ for VAR in $MANDATORY_VARS; do
   fi
 done
 
-# full urls with arobase replacement
-PG_URL_ADMIN="postgresql://${PGUSER/@/%40}:${PGPASSWORD/@/%40}@${PGHOST}:${PGPORT}/postgres"
-PG_URL_NEWDB="postgresql://${PGUSER/@/%40}:${PGPASSWORD/@/%40}@${PGHOST}:${PGPORT}/${NEW_DB_NAME}"
+urlencode() {
+  STDIN=`cat /dev/stdin`
+  local length="${#STDIN}"
+  for (( i = 0; i < length; i++ )); do
+      local c="${STDIN:i:1}"
+      case $c in
+          [a-zA-Z0-9.~_-]) printf "$c" ;;
+          *) printf '%s' "$c" | xxd -p -c1 |
+                 while read c; do printf '%%%s' "$c"; done ;;
+      esac
+  done
+}
+
+# set defaults
+PGUSER=${PGUSER:-postgres}
+PGPORT=${PGPORT:-5432}
+PGHOST=${PGHOST:--127.0.0.1}
+
+# urlencode the original pg user
+# ORIGINAL_PGUSER_URLENCODED=${PGUSER/@/%40}
+ORIGINAL_PGUSER_URLENCODED=$(echo $PGUSER | urlencode)
+PGPASSWORD_URLENCODED=$(echo $PGPASSWORD | urlencode)
+
+PG_URL_ADMIN="postgresql://${ORIGINAL_PGUSER_URLENCODED}:${PGPASSWORD_URLENCODED}@${PGHOST}:${PGPORT}/postgres"
+PG_URL_NEWDB="postgresql://${ORIGINAL_PGUSER_URLENCODED}:${PGPASSWORD_URLENCODED}@${PGHOST}:${PGPORT}/${NEW_DB_NAME}"
+
+# strip after @ part to handle azure pg users
+PGUSER=${PGUSER%%@*}
 
 PGSSLMODE=require
 
 # /o\ get base user name (without server) for SQL commands
-NEW_USER_BASE=${NEW_USER%%@*} || $NEW_USER
+# strip after @ part to handle azure pg users
+NEW_USER_BASE=${NEW_USER%%@*}
 
 
 if psql -abe "$PG_URL_ADMIN" -c "\c ${NEW_DB_NAME}"; then
@@ -49,7 +65,7 @@ if [[ -n "${NEW_DB_EXTENSIONS}" ]]; then
   psql -abe "$PG_URL_NEWDB" -c "${CREATE_CMD}";
 fi
 
-if [[ -n $(psql -qtA -c "\du ${NEW_USER_BASE}" | cut -d "|" -f 1) ]]; then
+if [[ -n $(psql -qtA "$PG_URL_ADMIN" -c "\du ${NEW_USER_BASE}" | cut -d "|" -f 1) ]]; then
   echo "User already exist, skip creation"
 else
   echo "Creating user ${NEW_USER_BASE} on ${PGHOST}"
@@ -59,9 +75,9 @@ fi
 echo "Set password for user ${NEW_USER_BASE}"
 psql -abe "ALTER USER \"$NEW_USER_BASE\" WITH PASSWORD '$NEW_PASSWORD';"
 
-echo "Grant user \"${NEW_USER_BASE}\" to \"${PGUSER%%@*}\""
+echo "Grant user \"${NEW_USER_BASE}\" to \"${PGUSER}\""
 psql -abe "$PG_URL_ADMIN" -c "
-  GRANT \"$NEW_USER_BASE\" to \"${PGUSER%%@*}\";
+  GRANT \"$NEW_USER_BASE\" to \"${PGUSER}\";
   GRANT ALL PRIVILEGES ON DATABASE \"$NEW_DB_NAME\" TO \"$NEW_USER_BASE\";
 
   GRANT USAGE ON SCHEMA public TO \"$NEW_USER_BASE\";
