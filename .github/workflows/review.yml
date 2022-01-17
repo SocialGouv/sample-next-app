@@ -23,8 +23,7 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Create DB
-        # uses: SocialGouv/actions/autodevops-create-db@v1
-        uses: ./.github/actions/autodevops-create-db
+        uses: SocialGouv/actions/autodevops-create-db@v1
         with:
           environment: dev
           kubeconfig: ${{ secrets.KUBECONFIG }}
