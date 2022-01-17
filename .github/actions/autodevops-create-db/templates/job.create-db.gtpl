@@ -23,9 +23,9 @@ spec:
             - /bin/sh
             - -c
             - |
-              echo ${JOB_COMMAND}>/tmp/job-command
+              echo -n ${JOB_COMMAND}>/tmp/job-command
               chmod +x /tmp/job-command
-              /tmp/job-command
+              exec /tmp/job-command
           env:
             - name: JOB_COMMAND
               value: |
