@@ -19,7 +19,7 @@ spec:
   template:
     spec:
       containers:
-        - command: |
+        - command:
             - /bin/sh
             - -c
             - |
