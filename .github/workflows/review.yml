@@ -32,7 +32,6 @@ jobs:
           rancherId: ${{ secrets.RANCHER_PROJECT_ID }}
           adminPgSecret: pg-scaleway
           pgUserAddHostSuffix: "false"
-          jobNamespace: sample-next-app-ci
 
   # ##############################################################################
   # ## BUILD AND REGISTER DOCKER IMAGES
