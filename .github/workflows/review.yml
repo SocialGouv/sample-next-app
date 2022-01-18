@@ -19,9 +19,6 @@ jobs:
     name: Create DB
     runs-on: ubuntu-latest
     steps:
-      - name: Check out repository
-        uses: actions/checkout@v2
-
       - name: Create DB
         uses: SocialGouv/actions/autodevops-create-db@v1
         with:
@@ -29,7 +26,6 @@ jobs:
           kubeconfig: ${{ secrets.KUBECONFIG }}
           rancherId: ${{ secrets.RANCHER_PROJECT_ID }}
           adminPgSecret: pg-scaleway
-          pgUserAddHostSuffix: "false"
 
   ##############################################################################
   ## BUILD AND REGISTER DOCKER IMAGES
