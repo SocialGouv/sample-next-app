@@ -1,3 +1,10 @@
+# [3.5.0](https://github.com/SocialGouv/sample-next-app/compare/v3.4.1...v3.5.0) (2022-01-19)
+
+
+### Features
+
+* **create-db:** new create-db + pg-scaleway ([#579](https://github.com/SocialGouv/sample-next-app/issues/579)) ([b6b7ea7](https://github.com/SocialGouv/sample-next-app/commit/b6b7ea7091d3c4893255cadc44e16f2607af5131))
+
 ## [3.4.1](https://github.com/SocialGouv/sample-next-app/compare/v3.4.0...v3.4.1) (2021-12-15)
 
 
