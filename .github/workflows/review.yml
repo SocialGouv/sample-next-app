@@ -19,17 +19,12 @@ jobs:
     name: Create DB
     runs-on: ubuntu-latest
     steps:
-      - name: Get project name
-        run: |
-          echo "project=${GITHUB_REPOSITORY#*/}" >> $GITHUB_ENV
-
       - name: Create DB
         uses: SocialGouv/actions/autodevops-create-db@v1
         with:
-          environment: dev
-          socialgouvBaseDomain: ${{ secrets.SOCIALGOUV_BASE_DOMAIN }}
           kubeconfig: ${{ secrets.KUBECONFIG }}
           rancherId: ${{ secrets.RANCHER_PROJECT_ID }}
+          adminPgSecret: pg-scaleway
 
   ##############################################################################
   ## BUILD AND REGISTER DOCKER IMAGES
@@ -71,6 +66,8 @@ jobs:
           environment: "dev"
           rancherId: ${{ secrets.RANCHER_PROJECT_ID }}
           socialgouvBaseDomain: ${{ secrets.SOCIALGOUV_BASE_DOMAIN }}
+          # new create-db action need actions/autodevops-manifests pgUserSecretPrefix input setted as pg-user
+          pgUserSecretPrefix: pg-user
 
   ##############################################################################
   ## DEPLOY APPLICATION OVER KUBERNETES
