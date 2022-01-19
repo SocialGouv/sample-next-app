@@ -22,7 +22,6 @@ jobs:
       - name: Create DB
         uses: SocialGouv/actions/autodevops-create-db@v1
         with:
-          environment: dev
           kubeconfig: ${{ secrets.KUBECONFIG }}
           rancherId: ${{ secrets.RANCHER_PROJECT_ID }}
           adminPgSecret: pg-scaleway
@@ -64,6 +63,7 @@ jobs:
       - name: Use k8s manifests generation
         uses: SocialGouv/actions/autodevops-manifests@v1
         with:
+          environment: "dev"
           rancherId: ${{ secrets.RANCHER_PROJECT_ID }}
           socialgouvBaseDomain: ${{ secrets.SOCIALGOUV_BASE_DOMAIN }}
           # new create-db action need actions/autodevops-manifests pgUserSecretPrefix input setted as pg-user
