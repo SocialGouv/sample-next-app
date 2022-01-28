@@ -20,7 +20,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Create DB
-        uses: SocialGouv/actions/autodevops-create-db@comments
+        uses: SocialGouv/actions/autodevops-create-db@v1
         with:
           kubeconfig: ${{ secrets.KUBECONFIG }}
           rancherId: ${{ secrets.RANCHER_PROJECT_ID }}
@@ -68,6 +68,7 @@ jobs:
           socialgouvBaseDomain: ${{ secrets.SOCIALGOUV_BASE_DOMAIN }}
           # new create-db action need actions/autodevops-manifests pgUserSecretPrefix input setted as pg-user
           pgUserSecretPrefix: pg-user
+          koskoChartsVersion: remove-azure-prefix
 
   ##############################################################################
   ## DEPLOY APPLICATION OVER KUBERNETES

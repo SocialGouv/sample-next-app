@@ -8,6 +8,7 @@ metadata:
   annotations:
     kapp.k14s.io/disable-default-ownership-label-rules: ''
     kapp.k14s.io/disable-default-label-scoping-rules: ''
+    kapp.k14s.io/delete-strategy: orphan
     app.gitlab.com/app: socialgouv-sample-next-app
     app.gitlab.com/env: prod
     app.gitlab.com/env.name: prod
@@ -29,6 +30,7 @@ spec:
       annotations:
         kapp.k14s.io/disable-default-ownership-label-rules: ''
         kapp.k14s.io/disable-default-label-scoping-rules: ''
+        kapp.k14s.io/delete-strategy: orphan
         app.gitlab.com/app: socialgouv-sample-next-app
         app.gitlab.com/env: prod
         app.gitlab.com/env.name: prod
@@ -78,7 +80,7 @@ spec:
             initialDelaySeconds: 15
           envFrom:
             - secretRef:
-                name: azure-pg-user
+                name: pg-user
             - secretRef:
                 name: app-sealed-secret
             - configMapRef:
@@ -89,7 +91,7 @@ spec:
               value: '24'
           envFrom:
             - secretRef:
-                name: azure-pg-user
+                name: pg-user
           image: ghcr.io/socialgouv/docker/wait-for-postgres:6.56.1
           imagePullPolicy: Always
           name: wait-for-postgres
@@ -110,6 +112,7 @@ metadata:
   annotations:
     kapp.k14s.io/disable-default-ownership-label-rules: ''
     kapp.k14s.io/disable-default-label-scoping-rules: ''
+    kapp.k14s.io/delete-strategy: orphan
     app.gitlab.com/app: socialgouv-sample-next-app
     app.gitlab.com/env: prod
     app.gitlab.com/env.name: prod
@@ -133,6 +136,7 @@ spec:
       annotations:
         kapp.k14s.io/disable-default-ownership-label-rules: ''
         kapp.k14s.io/disable-default-label-scoping-rules: ''
+        kapp.k14s.io/delete-strategy: orphan
         app.gitlab.com/app: socialgouv-sample-next-app
         app.gitlab.com/env: prod
         app.gitlab.com/env.name: prod
@@ -150,6 +154,7 @@ metadata:
   annotations:
     kapp.k14s.io/disable-default-ownership-label-rules: ''
     kapp.k14s.io/disable-default-label-scoping-rules: ''
+    kapp.k14s.io/delete-strategy: orphan
     app.gitlab.com/app: socialgouv-sample-next-app
     app.gitlab.com/env: prod
     app.gitlab.com/env.name: prod
@@ -178,6 +183,7 @@ metadata:
   annotations:
     kapp.k14s.io/disable-default-ownership-label-rules: ''
     kapp.k14s.io/disable-default-label-scoping-rules: ''
+    kapp.k14s.io/delete-strategy: orphan
     app.gitlab.com/app: socialgouv-sample-next-app
     app.gitlab.com/env: prod
     app.gitlab.com/env.name: prod
@@ -200,6 +206,7 @@ metadata:
     kubernetes.io/tls-acme: 'true'
     kapp.k14s.io/disable-default-ownership-label-rules: ''
     kapp.k14s.io/disable-default-label-scoping-rules: ''
+    kapp.k14s.io/delete-strategy: orphan
     app.gitlab.com/app: socialgouv-sample-next-app
     app.gitlab.com/env: prod
     app.gitlab.com/env.name: prod
@@ -234,6 +241,7 @@ metadata:
   annotations:
     kapp.k14s.io/disable-default-ownership-label-rules: ''
     kapp.k14s.io/disable-default-label-scoping-rules: ''
+    kapp.k14s.io/delete-strategy: orphan
     app.gitlab.com/app: socialgouv-sample-next-app
     app.gitlab.com/env: prod
     app.gitlab.com/env.name: prod
@@ -255,6 +263,7 @@ spec:
       annotations:
         kapp.k14s.io/disable-default-ownership-label-rules: ''
         kapp.k14s.io/disable-default-label-scoping-rules: ''
+        kapp.k14s.io/delete-strategy: orphan
         app.gitlab.com/app: socialgouv-sample-next-app
         app.gitlab.com/env: prod
         app.gitlab.com/env.name: prod
@@ -301,9 +310,10 @@ spec:
               path: /healthz
               port: http
             periodSeconds: 5
+            initialDelaySeconds: 120
           envFrom:
             - secretRef:
-                name: azure-pg-user
+                name: pg-user
             - secretRef:
                 name: hasura-sealed-secret
             - configMapRef:
@@ -314,7 +324,7 @@ spec:
               value: '24'
           envFrom:
             - secretRef:
-                name: azure-pg-user
+                name: pg-user
           image: ghcr.io/socialgouv/docker/wait-for-postgres:6.56.1
           imagePullPolicy: Always
           name: wait-for-postgres
@@ -334,6 +344,7 @@ metadata:
   annotations:
     kapp.k14s.io/disable-default-ownership-label-rules: ''
     kapp.k14s.io/disable-default-label-scoping-rules: ''
+    kapp.k14s.io/delete-strategy: orphan
     app.gitlab.com/app: socialgouv-sample-next-app
     app.gitlab.com/env: prod
     app.gitlab.com/env.name: prod
@@ -358,6 +369,7 @@ spec:
       annotations:
         kapp.k14s.io/disable-default-ownership-label-rules: ''
         kapp.k14s.io/disable-default-label-scoping-rules: ''
+        kapp.k14s.io/delete-strategy: orphan
         app.gitlab.com/app: socialgouv-sample-next-app
         app.gitlab.com/env: prod
         app.gitlab.com/env.name: prod
@@ -375,6 +387,7 @@ metadata:
   annotations:
     kapp.k14s.io/disable-default-ownership-label-rules: ''
     kapp.k14s.io/disable-default-label-scoping-rules: ''
+    kapp.k14s.io/delete-strategy: orphan
     app.gitlab.com/app: socialgouv-sample-next-app
     app.gitlab.com/env: prod
     app.gitlab.com/env.name: prod
@@ -405,6 +418,7 @@ metadata:
   annotations:
     kapp.k14s.io/disable-default-ownership-label-rules: ''
     kapp.k14s.io/disable-default-label-scoping-rules: ''
+    kapp.k14s.io/delete-strategy: orphan
     app.gitlab.com/app: socialgouv-sample-next-app
     app.gitlab.com/env: prod
     app.gitlab.com/env.name: prod
@@ -417,5 +431,31 @@ spec:
   selector:
     app: hasura
   type: ClusterIP
+---
+apiVersion: bitnami.com/v1alpha1
+kind: SealedSecret
+metadata:
+  annotations: {}
+  name: pg-user
+  namespace: sample-next-app
+spec:
+  encryptedData:
+    DATABASE_URL: >-
+      AgBx1ZU2zb7EhR2qnW/baaS+MNfBs7gMAjbpWGlEZ61H20FKoI7b5ExLtxCZhzw8sPPqIwYl3aGhatY4rA4Ghu2a/Zx8Tecr7SmElf3DWyso2b/F8Mn0tfr0AcJC0utNIuuaACKsIUdVrH8hpQR7ROQ4MZGqvjocI6g0bG5PdEQBSjCtKfHCeP1jwRnx74mfD+ztQ0gJksQ6qhjMK8ymiq/wqQ+vxnOYWKoEJxmY7fp6zsWJGyxrwrZO0UzBEb5/koXObnlDUbKOC9cGARHvdqc2iGmNhWc7wH2ThR1903UlBVbFRG4ODCj0yOhrMlaKexYfKnM+eI7E9B5IYH+oVwyLADxJ8SDNf+/qMVzhTEvJ72tdu+ajNnNOZBuBfdmsDfG7+NNqfiS1Ur0Xh6XUQDGVusnkAlrK/t47QGgBLVoY7zWGt4fJYZ5d4ZSN2LdmftgW146fx/JMFg242RSwJHRE1IdNBsWYk2eR4DLzyoi8UYjEeNWpkKPyseqIForeP+fTWTBmcGECUiiCEb0r1MP/mEhUPeRssepRi2gU/ErwFWyjHm1AI8DjH+7F9DMob/7rTvQFR8vlcumMQhOgsktTVgWsYyOpnLtgAXItqe3bXCH6t18yMMiYDqutSvHio2u4iOnpl+oBAEnf/vO0sWzEjfFvjZnGEYRBZk4v7lRl0qFEL/rSFiJGovlvTkLRWppE91iaCHVny5gh+6lK1v6WSzgzkI8/1VvWq+NdfdqpbcrmBP+An/Qp58YLiRC3D02lknt7rYHSvzSqmPqcTfMUUQcGIuLxGtyrpedZ0ysyT46/U8xERlck3uvyZq2bI+amrk1JC2T6+km3zui9kOrisY2LpQxc/6MABJxrEYc/N0kFsnV6Nb70go66vFCtlMCAbNI4+CD5LsiGyhDrsdLG7qGjgJIkDdpoFNjX9ZvY
+    HASURA_GRAPHQL_DATABASE_URL: >-
+      AgBwhyhyyHb7VOwLYdOMMLTGLpnXfQeiy9gVyGwtZ2XRP18Vmn9sfD4PkY9vkn1jRjrjYTOE/xmEBJ2qxc3g1Icu0Z8W2gQqHTK7WvsjkCC3HAjj1FToP9PMdk1dzv4yS0en5XxmI4dSK7KJHGN2P8eZnI69AjU2xdgFBKIuLBqM8CCkBcF6r6LJAAuq6SeKWiPjciDT+2x4iCyQsRRuwvwJ68ZIn0z0pjdGEmFd7284E2/n4TDyIyb85Y596iv+Sg3P+UH1KY/eGkewM3Gf+mPW/Gp94FApq4E7EvMlt+VYQx75x/oqsYArSMgnFnPxjmxgeNx0J557dYseo95x4kTZrPITOmGfrwtU++d/ywSEIFby2+kRJ/YsZPn4V2GEhxVw/MBA7rqTC+8fqJVidDwT6tbO/bo7p1vBO3fVqcLO7qZyqZAyKMadPFMkq3Qz87031LmkNC69SwONanh1/eXw+Bo4vKWCJ1NIJ4It86WM9iFet/J+WmxgdwYLgmXob3gwT83l57iyjVValIukAhC/kCX0YX2Xbw06wpCTE5r3CQmzAMzz6aISSrKyGDttsPWqhrsHXDIjK4vsG2eyPW3Q7sLoTsrv8sOGlMiuLJ6iMxPa8JJ2iPUfnRPgI8PZ/IAZ3auCkuvadKASr4UWZFj1UjhZugphS5WBOEmRSz3d6w9X4/cieo+175uMK3AB2miOECqbI83KYMgqNZncrverFRG+5n5WqI3lbkoW4lV2+lRXGTuQr/WrZLU30dDovyXIGABgIO1TDHNSqEQN7SfS5viPaNl5v9LO0rpVahvDf4wsKYoO8s+1G8TB4QrKzjm3lEx2Nup57QYp7VBvxgHyXLFzclEGYLErXOpylU3i4jmO1SEb4jskICq3LputIxbN9ehnu1QzojWvtoPjvRqDqpAu1TL5iBHLl8tGNZCz
+    PGDATABASE: >-
+      AgCDVEBoyS9PLpEzCAEAqkWR4imPgj3Tb/BHl7mOSo5dtv79R9zkBHG1p5F2fhGINRE00pgu5wdBF8KElJLofuzN/yF1Uwx3dfcs8yM3yJOtQgn2mk4o/wx4lRO0k4YF7nr4nTqntT65Ayq1u7tb1+LUJqiz15D08RLMhJgsQ2jmWGVhS8Cffdle24W5qTOVl9JxY2eocNEEpf4nZars9BLr504nO1r8Fwfx8Ses0PNRg9LKrSvRbSvqrHdaZklRuWflpPKH23Y4dpjz0Ez3/5BX6bbCs2yYDfwogpa5/O/IsQhXsK0DO4sZEXIDZzlspUSyA/msk3rxUgMt97KjnP4LrF6y5nqgsAemAYSnNZbToSTSYPz2u4DIt2n0mZTOcv3vnwYYS70B2Vem7Y7Gad8kvDdpJZbdrDh/JB3xofvtEfh+PUwkx90mVMeuO5pxwr9S55sIeSBydH5LV7MhBC2OjOLzYAF7ucV4d6cLfrN4J0y2Zq4pTIZL1c8h1LQC+OjXTnxsEehJ5IzL3lLMjIpRGzGvFsa6MEKvnQtJPhVSL1hY30iFZYyo1txGpzglXQUASCj7W1qW3PcbSwOJGc2mEST9qXCpmS4E9Err5DRp8kZaCHa0eIWcRoOvvRSKU1iXMR515Mx40yUwJa5e1yxCvnxnP1/tpgLQ+WHD6j6HpZ4JOy+z4RVOamW6cb69MmFVbaknuMvZCiKxrLe2
+    PGPASSWORD: >-
+      AgAaa7M1/kIR7zfeSxSLiVc7wSe61q4qkzB9SIVviiUDWhQ2UKBZAvKH1DO6Ml3aF1yIFaB16vQQlVmTI/ct3TIPG/w56/p2EBgbw6VBqlA0KN7y0He/+xLeoKmcpAzxYM5Acsp4SaNLggz46zY9xbsH29eOakTa4UcfeSWyMb2E/yTFKcrEmbr6vXJUUr5m30LZ61o0EAWE3ScR31q2L/+kNPBFgWW/0zjXN71ZscC97KO4KLjrb9bXF/NF0TT6enqPlNvewt4wfXP1pxyI+UlU/OLL0NoOOimNXAAhjj7dFdHe/TLA9ziTBfIa3JvQsXw4Wyw2BpFOKks6F0yYE97N7NOTmRBbrsluH7s9YjQF6d0SJZg2WtjKEWlRPWr9h9px+e69a9deu5Ea8p2kVQfXKJDS8NcbfMU7EP8UWel5b+01ZVUQxmBigP+JugCYHy9QoLBFT9ZJ/hkyiGFA8fUeshr4/ZEiIE+6zj7FU0xz86wJN58LGXBvLtu3nys5D5t4ha+3nyD5mKBteG9pbq7CgSBgPUZL11G9M/gFJ2ThAuDEbzNy3uSlA4/4cfan1RNrdONM8SrVzR1p0Y5r5J3X9B4MOpTIZZZTt+exmBGHQiyPiMBoQpiS0d+ALZgNeQPdCvVoLVZp/vovY6j0fDjONi2BkTP5Z6SqnfmcikqJXcnBWstM/UCYH7sUTC5H1fh0Nf4mM1kZfVWNinOQkGbJPMpUiRjak0WsZ6+6cs1SblRw4BbuXVwn
+    PGSSLMODE: >-
+      AgAFooj4RS7X/fZBbrE4x9U68gjtB+6eWr+6QufEtNGpFu0OumqBGRuGhFiLqd337bU90WYXAYLx9f4RqxLs0ch7RNiVx1NQnTh10E6Z68fEgChjg8Ofj/Cw2VPchYz8mhDQpnuA/GffEKjQjBiF4TxRK+2ky11CBruEc3DG7caI7qHskV/GabmIANW3srg0NH8W+X9hw81VH++Z4F5+9wMLvrUfqAqGMxfI+Psr8OXFG2xOKZNxArHBxJFnfo1rYQP0ik2zdw/kAiD+C54I3s1jBTbWg0BE/CqyXEc+KoGAbgGOHO6+svaPGSa20ajVjFEb7nAZAmu/Wro+HuoZ7mLpMfpqMtEPjlVwLSOVwOJhX2+d4PYMdDVTQyOskIMI7lJxUaAbJh5I1Q4n53hVc33tSM6Q1rcSO6kF8PVoke3xc9fnsxnT6HupQ4Hw+O7EHxDipCv6FZOtMe/V0bgcTIJusRvJfON0R0ChgWyGlVFtaSOJ3TXjg/8CAjVHYvtK4wrZESq9U+sg/7d2w71XKihUOvlsJpnoF9dgWd5IKSKu6cYdaeS8NQy9L47KsQOnylHEYUu3TMCPEcEou8ycLNZu/dQe4UqBD/6CzyWygWfmAK06OoC7D+iv0xke7/ZU5XXpauQtt6PejMNSaiUPdtI/wCJzdVeM/xgxJlAR0U3JITvkboXkeX0cd3JXaDRerJiUt+2CG/MT
+    PGUSER: >-
+      AgBvJXtRvtzYvllyuIumk2ttWUQgGaHi4UOh8nFkstKlj46IA1+BVv7Rm65I7ZeyvjM2/4ZMlU+5BBwJBe33arDEn9GMlo7q7xSpHHibcVNBKTAuecsNB3RQTsztpmYRPdiTyzwZCiUXXjOCJNDkMxKCqU1rScNvbd6/mDjQY3IHgtHPvXjMyGF5PLBssS0E2nEvY4mdzDteOJVDCP3E++K7qIgzmfABpcK/ayokhg8enqw+bAIqozPO487WSagChyWnjt0lBlnP9nyH5wfAgQ6ev6cJT5YQ/cxr7zTxEv4660AMuFhp9ReIltAuofA5ZS7f2EuDUboQsL9C//boWiGAyV6VbCcosQFQtGT3ononIPlmemLl5CrC1b7MW3LHgryNohUaLdFTupb8RAY+IfsvoUR37YOvORG0FDdV+mdTIaNKqhB1M0ychL+xaPBmtQERb1n/y2CSxiLRW523StGeZ3iwic0kPK/ZISE4NnpWu2LOZkE9Z0tC91bcNrKv45dKQSgbL8ZwIH5ACU51PAf1m9623xYOEzoIc4/29wVryLf4J7F6qwv30Y/0ENv4hDX1G/qpbXxafZ9rVMNPfrBHQ1nhBmXPhcXrrRwUN58ld9mzX3WYLIg8srbZ+4T//3lPBDIMnpjwSEUNPQF9pzqT96cA0uoFCg7oL4lH31G6Lo3Z7hPtbSEE+U+uUuomw36NXSC9MSA9+y5SswrvA+zYA6kaGsz4NHhMo+S+ODHdPaIdYg0o
+  template:
+    metadata:
+      annotations: {}
+      name: pg-user
+    type: Opaque
 "
 `;
