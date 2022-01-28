@@ -20,7 +20,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Create DB
-        uses: SocialGouv/actions/autodevops-create-db@v1
+        uses: SocialGouv/actions/autodevops-create-db@comments
         with:
           kubeconfig: ${{ secrets.KUBECONFIG }}
           rancherId: ${{ secrets.RANCHER_PROJECT_ID }}
