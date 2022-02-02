@@ -26,6 +26,13 @@ jobs:
           rancherId: ${{ secrets.RANCHER_PROJECT_ID }}
           adminPgSecret: pg-scaleway
 
+      - name: Drop database
+        uses: SocialGouv/actions/autodevops-drop-db@action-drop-db
+        with:
+          kubeconfig: ${{ inputs.kube-config }}
+          rancherId: ${{ secrets.RANCHER_PROJECT_ID }}
+          adminPgSecret: pg-scaleway
+
   ##############################################################################
   ## BUILD AND REGISTER DOCKER IMAGES
   ##############################################################################
