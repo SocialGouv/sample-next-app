@@ -10,7 +10,7 @@ jobs:
     name: Deactivate review branch
     runs-on: ubuntu-latest
     steps:
-      - uses: SocialGouv/actions/autodevops-deactivate@v1
+      - uses: SocialGouv/actions/autodevops-deactivate@action-drop-db
         with:
           kube-config: ${{ secrets.KUBECONFIG }}
           github-token: ${{ secrets.GITHUB_TOKEN }}
