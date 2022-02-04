@@ -12,15 +12,7 @@ concurrency:
   group: ${{ github.ref }}
 
 jobs:
-  test:
-    name: Test Gh Actions
-    runs-on: ubuntu-latest
-    steps:
-      - name: Test Gh Actions
-        shell: bash
-        run: |
-          stat ${{ github.action_path }}/..
-          ls ${{ github.action_path }}/..
+
   ##############################################################################
   ## CREATE DATABASE, SECRET AND USER
   ##############################################################################
@@ -29,7 +21,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Create DB
-        uses: SocialGouv/actions/autodevops-create-db@v1
+        uses: SocialGouv/actions/autodevops-create-db@test-actions-repo
         with:
           kubeconfig: ${{ secrets.KUBECONFIG }}
           rancherId: ${{ secrets.RANCHER_PROJECT_ID }}
