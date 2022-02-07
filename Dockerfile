@@ -26,6 +26,6 @@ COPY --from=builder /app/public ./public
 COPY --from=builder /app/node_modules ./node_modules
 COPY --from=builder --chown=node:node /app/.next ./.next
 
-USER node
+USER 1000
 
 CMD ["yarn", "start"]
