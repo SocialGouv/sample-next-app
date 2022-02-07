@@ -1,3 +1,10 @@
+## [3.5.1](https://github.com/SocialGouv/sample-next-app/compare/v3.5.0...v3.5.1) (2022-02-07)
+
+
+### Bug Fixes
+
+* **secu:** use numeric docker user ([5bd8e54](https://github.com/SocialGouv/sample-next-app/commit/5bd8e5465338994e77809a9453162348b6efa801))
+
 # [3.5.0](https://github.com/SocialGouv/sample-next-app/compare/v3.4.1...v3.5.0) (2022-01-19)
 
 
