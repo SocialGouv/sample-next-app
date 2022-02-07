@@ -20,7 +20,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Create DB
-        uses: SocialGouv/actions/autodevops-create-db@v1
+        uses: SocialGouv/actions/autodevops-create-db@devthejo/debug-relatives-actions-branch-name-withSpécialCharacteres&123421@ohsodhfoqisfjcpxw,c
         with:
           kubeconfig: ${{ secrets.KUBECONFIG }}
           rancherId: ${{ secrets.RANCHER_PROJECT_ID }}
@@ -38,14 +38,14 @@ jobs:
           echo "project=${GITHUB_REPOSITORY#*/}" >> $GITHUB_ENV
 
       - name: Application
-        uses: SocialGouv/actions/autodevops-build-register@v1
+        uses: SocialGouv/actions/autodevops-build-register@devthejo/debug-relatives-actions-branch-name-withSpécialCharacteres&123421@ohsodhfoqisfjcpxw,c
         with:
           project: ${{ env.project }}
           imageName: ${{ env.project }}/app
           token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Hasura
-        uses: SocialGouv/actions/autodevops-build-register@v1
+        uses: SocialGouv/actions/autodevops-build-register@devthejo/debug-relatives-actions-branch-name-withSpécialCharacteres&123421@ohsodhfoqisfjcpxw,c
         with:
           dockercontext: ./hasura
           project: ${{ env.project }}
@@ -61,7 +61,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Use k8s manifests generation
-        uses: SocialGouv/actions/autodevops-manifests@v1
+        uses: SocialGouv/actions/autodevops-manifests@devthejo/debug-relatives-actions-branch-name-withSpécialCharacteres&123421@ohsodhfoqisfjcpxw,c
         with:
           environment: "dev"
           rancherId: ${{ secrets.RANCHER_PROJECT_ID }}
@@ -78,7 +78,7 @@ jobs:
     needs: [register, manifests]
     steps:
       - name: Use autodevops deployment
-        uses: SocialGouv/actions/autodevops-deploy@v1
+        uses: SocialGouv/actions/autodevops-deploy@devthejo/debug-relatives-actions-branch-name-withSpécialCharacteres&123421@ohsodhfoqisfjcpxw,c
         with:
           environment: "dev"
           token: ${{ secrets.GITHUB_TOKEN }}
