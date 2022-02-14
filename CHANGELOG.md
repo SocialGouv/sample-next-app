@@ -1,3 +1,10 @@
+## [3.5.3](https://github.com/SocialGouv/sample-next-app/compare/v3.5.2...v3.5.3) (2022-02-14)
+
+
+### Bug Fixes
+
+* pgUserSecretPrefix ([75ac00d](https://github.com/SocialGouv/sample-next-app/commit/75ac00d9e6e7904d791a859ca172882794684993))
+
 ## [3.5.2](https://github.com/SocialGouv/sample-next-app/compare/v3.5.1...v3.5.2) (2022-02-14)
 
 
