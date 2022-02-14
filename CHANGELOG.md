@@ -1,3 +1,10 @@
+## [3.5.2](https://github.com/SocialGouv/sample-next-app/compare/v3.5.1...v3.5.2) (2022-02-14)
+
+
+### Bug Fixes
+
+* rm prod secret ([d680872](https://github.com/SocialGouv/sample-next-app/commit/d680872707a02498d59dba53e272e291f5bc14af))
+
 ## [3.5.1](https://github.com/SocialGouv/sample-next-app/compare/v3.5.0...v3.5.1) (2022-02-07)
 
 
