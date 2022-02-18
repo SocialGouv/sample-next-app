@@ -35,7 +35,7 @@ class MyApp extends App {
         <Nav />
         <div className="container">
           <div className="jumbotron" style={{ marginTop: 40 }}>
-            <h1 className="display-4">Hello, SocialGouv!</h1>
+            <h1 className="display-4">Hello, DNUM!</h1>
             <p className="lead">Welcome to this Next.js sample project</p>
           </div>
           <div className="row">
