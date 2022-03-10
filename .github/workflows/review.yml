@@ -14,7 +14,7 @@ concurrency:
 jobs:
 
   build-app:
-    name: Build & Register app
+    name: Build & Register App
     runs-on: ubuntu-latest
     steps:
       - name: Application
@@ -25,6 +25,7 @@ jobs:
 
   build-hasura:
     runs-on: ubuntu-latest
+    name: Build & Register Hasura
     steps:
       - name: Hasura
         uses: SocialGouv/actions/autodevops-build-register@v1

@@ -13,11 +13,10 @@ concurrency:
 
 jobs:
 
-  register:
-    name: Build & Register
+  build-app:
+    name: Build & Register App
     runs-on: ubuntu-latest
     steps:
-
       - name: Application
         uses: SocialGouv/actions/autodevops-build-register@v1
         with:
@@ -25,6 +24,10 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           environment: preprod
 
+  build-hasura:
+    runs-on: ubuntu-latest
+    name: Build & Register Hasura
+    steps:
       - name: Hasura
         uses: SocialGouv/actions/autodevops-build-register@v1
         with:
@@ -37,7 +40,7 @@ jobs:
   deploy:
     name: Deploy application
     runs-on: ubuntu-latest
-    needs: [register]
+    needs: [build-app,build-hasura]
     environment:
       name: preproduction
       url: https://sample-next-app-preprod.dev.fabrique.social.gouv.fr
