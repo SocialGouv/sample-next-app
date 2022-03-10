@@ -16,6 +16,8 @@ jobs:
       envFrom:
         - secretRef:
             name: pg-scaleway
+        - secretRef:
+            name: kubeconfig
       run: |
         DB_SECRET_NAME="{{ .Values.global.pgSecretName }}"
         NAMESPACE="{{ .Values.global.namespace }}"

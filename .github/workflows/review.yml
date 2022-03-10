@@ -12,16 +12,6 @@ concurrency:
   group: ${{ github.ref }}
 
 jobs:
-  create-db:
-    name: Create DB
-    runs-on: ubuntu-latest
-    steps:
-      - name: Create DB
-        uses: SocialGouv/actions/autodevops-create-db@v1
-        with:
-          kubeconfig: ${{ secrets.KUBECONFIG }}
-          rancherId: ${{ secrets.RANCHER_PROJECT_ID }}
-          adminPgSecret: pg-scaleway
 
   register:
     name: Build & Register
