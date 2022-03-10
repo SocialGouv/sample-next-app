@@ -15,6 +15,7 @@ app:
         name: app-configmap
 
 hasura:
+  waitForPostgres: true
   envFrom:
     - secretRef:
         name: "{{ .Values.global.pgSecretName }}"
