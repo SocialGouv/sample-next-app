@@ -22,3 +22,6 @@ hasura:
         name: hasura-sealed-secret
     - configMapRef:
         name: hasura-configmap
+
+pgweb:
+  pgSecretName: "{{ .Values.global.pgSecretName }}"
