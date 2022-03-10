@@ -2,16 +2,17 @@ components:
   jobs: true
 
 hasura:
-  needs: [create-db]
+  needs: [db]
 
 pgweb:
-  needs: [create-db]
+  needs: [db]
 
 jobs:
   repositoryUrl: https://github.com/SocialGouv/sample-next-app.git
   runs:
 
-    - use: create-db
+    - name: db
+      use: create-db
       with:
         pgAdminSecretRefName: pg-scaleway
 
