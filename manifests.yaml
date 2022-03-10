@@ -1,0 +1,585 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  annotations:
+    field.cattle.io/projectId: "1234"
+    git/branch: refs/heads/feature-branch-1
+    janitor/ttl: 7d
+  labels:
+    cert: wildcard
+  name: sample-next-app-feature-branch-1
+---
+apiVersion: v1
+data:
+  ACCOUNT_MAIL_SENDER: contact@fabrique.social.gouv.fr
+  GRAPHQL_ENDPOINT: http://hasura/v1/graphql
+  NODE_ENV: production
+  PRODUCTION: "false"
+kind: ConfigMap
+metadata:
+  name: app-configmap
+  namespace: sample-next-app-feature-branch-1
+---
+apiVersion: v1
+data:
+  ACCOUNT_EMAIL_WEBHOOK_URL: http://app:80/api/webhooks/account
+  HASURA_GRAPHQL_ENABLE_CONSOLE: "true"
+  HASURA_GRAPHQL_ENABLED_LOG_TYPES: startup, http-log, webhook-log, websocket-log,
+    query-log
+  HASURA_GRAPHQL_LOG_LEVEL: debug
+  HASURA_GRAPHQL_NO_OF_RETRIES: "5"
+  HASURA_GRAPHQL_UNAUTHORIZED_ROLE: anonymous
+kind: ConfigMap
+metadata:
+  name: hasura-configmap
+  namespace: sample-next-app-feature-branch-1
+---
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    kapp.k14s.io/disable-default-label-scoping-rules: ""
+    kapp.k14s.io/disable-default-ownership-label-rules: ""
+  labels:
+    application: sample-next-app
+    component: app
+  name: app
+  namespace: sample-next-app-feature-branch-1
+spec:
+  ports:
+  - name: http
+    port: 80
+    targetPort: 3000
+  selector:
+    component: app
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    kapp.k14s.io/disable-default-label-scoping-rules: ""
+    kapp.k14s.io/disable-default-ownership-label-rules: ""
+  labels:
+    application: sample-next-app
+    component: hasura
+  name: hasura
+  namespace: sample-next-app-feature-branch-1
+spec:
+  ports:
+  - name: http
+    port: 80
+    targetPort: 8080
+  selector:
+    component: hasura
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    kapp.k14s.io/disable-default-label-scoping-rules: ""
+    kapp.k14s.io/disable-default-ownership-label-rules: ""
+  labels:
+    application: sample-next-app
+    component: pgweb
+  name: pgweb
+  namespace: sample-next-app-feature-branch-1
+spec:
+  ports:
+  - name: http
+    port: 8081
+    targetPort: 8081
+  selector:
+    component: pgweb
+  type: ClusterIP
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kapp.k14s.io/disable-default-label-scoping-rules: ""
+    kapp.k14s.io/disable-default-ownership-label-rules: ""
+  labels:
+    application: sample-next-app
+    component: app
+  name: app
+  namespace: sample-next-app-feature-branch-1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      component: app
+  template:
+    metadata:
+      labels:
+        application: sample-next-app
+        component: app
+    spec:
+      containers:
+      - env: []
+        envFrom:
+        - secretRef:
+            name: pg-user-feature-branch-1
+        - secretRef:
+            name: app-sealed-secret
+        - configMapRef:
+            name: app-configmap
+        image: ghcr.io/socialgouv/sample-next-app/app:sha-ffac537e6cbbf934b08745a378932722df287a53
+        livenessProbe:
+          failureThreshold: 15
+          httpGet:
+            path: /healthz
+            port: http
+          initialDelaySeconds: 30
+          periodSeconds: 5
+          timeoutSeconds: 5
+        name: app
+        ports:
+        - containerPort: 3000
+          name: http
+        readinessProbe:
+          failureThreshold: 15
+          httpGet:
+            path: /healthz
+            port: http
+          initialDelaySeconds: 0
+          periodSeconds: 5
+          successThreshold: 1
+          timeoutSeconds: 1
+        resources:
+          limits:
+            cpu: 200m
+            memory: 256Mi
+          requests:
+            cpu: 50m
+            memory: 128Mi
+        startupProbe:
+          failureThreshold: 12
+          httpGet:
+            path: /healthz
+            port: http
+          periodSeconds: 5
+      initContainers: null
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kapp.k14s.io/disable-default-label-scoping-rules: ""
+    kapp.k14s.io/disable-default-ownership-label-rules: ""
+  labels:
+    application: sample-next-app
+    component: hasura
+  name: hasura
+  namespace: sample-next-app-feature-branch-1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      component: hasura
+  template:
+    metadata:
+      labels:
+        application: sample-next-app
+        component: hasura
+    spec:
+      containers:
+      - env: []
+        envFrom:
+        - secretRef:
+            name: pg-user-feature-branch-1
+        - secretRef:
+            name: hasura-sealed-secret
+        - configMapRef:
+            name: hasura-configmap
+        image: ghcr.io/socialgouv/sample-next-app/hasura:sha-ffac537e6cbbf934b08745a378932722df287a53
+        livenessProbe:
+          failureThreshold: 15
+          httpGet:
+            path: /healthz
+            port: http
+          initialDelaySeconds: 30
+          periodSeconds: 5
+          timeoutSeconds: 5
+        name: hasura
+        ports:
+        - containerPort: 8080
+          name: http
+        readinessProbe:
+          failureThreshold: 15
+          httpGet:
+            path: /healthz
+            port: http
+          initialDelaySeconds: 30
+          periodSeconds: 5
+          successThreshold: 1
+          timeoutSeconds: 1
+        resources:
+          limits:
+            cpu: 500m
+            memory: 1280Mi
+          requests:
+            cpu: 50m
+            memory: 128Mi
+        startupProbe:
+          failureThreshold: 30
+          httpGet:
+            path: /healthz
+            port: http
+          periodSeconds: 5
+      initContainers: null
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kapp.k14s.io/disable-default-label-scoping-rules: ""
+    kapp.k14s.io/disable-default-ownership-label-rules: ""
+  labels:
+    application: sample-next-app
+    component: pgweb
+  name: pgweb
+  namespace: sample-next-app-feature-branch-1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      component: pgweb
+  template:
+    metadata:
+      labels:
+        application: sample-next-app
+        component: pgweb
+    spec:
+      containers:
+      - image: sosedoff/pgweb:0.11.8
+        livenessProbe:
+          failureThreshold: 6
+          httpGet:
+            path: /
+            port: http
+          initialDelaySeconds: 30
+          periodSeconds: 5
+          timeoutSeconds: 5
+        name: pgweb
+        ports:
+        - containerPort: 8081
+          name: http
+        readinessProbe:
+          failureThreshold: 15
+          httpGet:
+            path: /
+            port: http
+          initialDelaySeconds: 0
+          periodSeconds: 5
+          successThreshold: 1
+          timeoutSeconds: 1
+        resources:
+          limits:
+            cpu: 500m
+            memory: 256Mi
+          requests:
+            cpu: 100m
+            memory: 64Mi
+        startupProbe:
+          failureThreshold: 12
+          httpGet:
+            path: /
+            port: http
+          periodSeconds: 5
+      envFrom:
+      - secretRef:
+          name: pg-user-feature-branch-1
+      initContainers:
+      - env:
+        - name: WAIT_FOR_RETRIES
+          value: "24"
+        envFrom:
+        - secretRef:
+            name: pg-user-feature-branch-1
+        image: ghcr.io/socialgouv/docker/wait-for-postgres:6.56.1
+        imagePullPolicy: Always
+        name: wait-for-postgres
+        resources:
+          limits:
+            cpu: 20m
+            memory: 32Mi
+          requests:
+            cpu: 5m
+            memory: 16Mi
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  annotations:
+    kapp.k14s.io/change-group: autodevops/create-db-sample-next-app-feature-branch-1
+  name: job-create-db
+  namespace: awesome-ci
+spec:
+  activeDeadlineSeconds: 3600
+  backoffLimit: 3
+  template:
+    metadata:
+      annotations: {}
+      labels: {}
+    spec:
+      containers:
+      - command:
+        - /bin/bash
+        - -c
+        - |
+          /action/bin/ensure-db
+        env:
+        - name: NEW_DB_NAME
+          valueFrom:
+            secretKeyRef:
+              key: PGDATABASE
+              name: pg-user-feature-branch-1
+        - name: NEW_USER
+          valueFrom:
+            secretKeyRef:
+              key: PGUSER
+              name: pg-user-feature-branch-1
+        - name: NEW_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              key: PGPASSWORD
+              name: pg-user-feature-branch-1
+        - name: PGHOST
+          valueFrom:
+            secretKeyRef:
+              key: PGHOST
+              name: pg-user-feature-branch-1
+        - name: NEW_DB_EXTENSIONS
+          value: hstore pgcrypto citext uuid-ossp postgis pg_trgm unaccent
+        - name: FOO
+          value: BAR
+        image: ghcr.io/socialgouv/docker/psql:6.70.0
+        imagePullPolicy: IfNotPresent
+        name: job
+        volumeMounts:
+        - mountPath: /workspace
+          name: workspace
+        - mountPath: /action
+          name: action
+      initContainers:
+      - command:
+        - sh
+        - -c
+        - |
+          mkdir -p /action
+          cd /action
+          npx degit SocialGouv/actions/autodevops-create-db#jobs-workflow
+        image: node-17:alpine
+        name: degit-action
+        securityContext:
+          runAsGroup: 1000
+          runAsUser: 1000
+        volumeMounts:
+        - mountPath: /action
+          name: /action
+      restartPolicy: Never
+      volumes:
+      - emptyDir: {}
+        name: workspace
+      - emptyDir: {}
+        name: action
+  ttlSecondsAfterFinished: 1800
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  annotations:
+    kapp.k14s.io/change-group: autodevops/create-secret-sample-next-app-feature-branch-1
+  name: job-create-secret
+  namespace: awesome-ci
+spec:
+  activeDeadlineSeconds: 3600
+  backoffLimit: 3
+  template:
+    metadata:
+      annotations: {}
+      labels: {}
+    spec:
+      containers:
+      - command:
+        - /bin/bash
+        - -c
+        - |
+          DB_SECRET_NAME="pg-user-feature-branch-1"
+          NAMESPACE="sample-next-app-feature-branch-1"
+          JOB_NAMESPACE="awesome-ci"
+          PGDATABASE=""
+          PGUSER=""
+
+          if [ -n "$(kubectl -n $NAMESPACE get secret $DB_SECRET_NAME 2>/dev/null)" ]; then
+            echo "secret named '$DB_SECRET_NAME' already exists in namespace '$NAMESPACE'"
+            exit 0
+          fi
+          PGPASSWORD=$(openssl rand -base64 32 | sed "s/[^[:alnum:]-]//g")
+          if [[ $PG_HOST == *"azure.com"* ]]; then
+            PGUSER="${PGUSER}@${PGHOST}""
+          fi
+          PGSSLMODE=require
+          PGUSER_URLENCODED=$(printf %s "$PGUSER" |jq -sRr @uri)
+          PGPASSWORD_URLENCODED=$(printf %s "$PGPASSWORD" |jq -sRr @uri)
+          DATABASE_URL=postgresql://${PGUSER_URLENCODED}:${PGPASSWORD_URLENCODED}@${PGHOST}/${PGDATABASE}?sslmode=${PGSSLMODE}
+
+          kubectl -n $NAMESPACE create secret generic $DB_SECRET_NAME \
+            --from-literal="PGPASSWORD=$PGPASSWORD" \
+            --from-literal="PGSSLMODE=$PGSSLMODE" \
+            --from-literal="HASURA_GRAPHQL_DATABASE_URL=$DATABASE_URL" \
+            --from-literal="DATABASE_URL=$DATABASE_URL" \
+            --from-literal="PGDATABASE=$PGDATABASE" \
+            --from-literal="PGHOST=$PGHOST" \
+            --from-literal="PGPORT=$PGPORT" \
+            --from-literal="PGUSER=$PGUSER"
+
+          echo "copy secret '$DB_SECRET_NAME' to '$JOB_NAMESPACE'"
+          kubectl get secret "$DB_SECRET_NAME" --namespace="$NAMESPACE" -ojson \
+            | jq 'del(.metadata.namespace,.metadata.resourceVersion,.metadata.uid) | .metadata.creationTimestamp=null' \
+            | jq '.metadata.annotations["janitor/ttl"] = "24h"' \
+            | kubectl -n "$JOB_NAMESPACE" apply -f -
+        env: null
+        image: bitnami/kubectl:latest
+        imagePullPolicy: IfNotPresent
+        name: job
+        volumeMounts:
+        - mountPath: /workspace
+          name: workspace
+        - mountPath: /action
+          name: action
+      initContainers: null
+      restartPolicy: Never
+      volumes:
+      - emptyDir: {}
+        name: workspace
+      - emptyDir: {}
+        name: action
+  ttlSecondsAfterFinished: 1800
+---
+apiVersion: bitnami.com/v1alpha1
+kind: SealedSecret
+metadata:
+  annotations:
+    sealedsecrets.bitnami.com/cluster-wide: "true"
+  creationTimestamp: null
+  name: app-sealed-secret
+  namespace: sample-next-app-feature-branch-1
+spec:
+  encryptedData:
+    ACCOUNT_EMAIL_SECRET: AgCYU5zQRAGub/7BY2VzhhQ/Y5EtYeWcgdBrHMfOdhK6DLDbkiYTVBvdIVbvUp/AtHP8V3UwT0zoQfKRiECwdH6oJ92GJ2DQ6svTNJH+x4EyQRJTeRMOrx6y+iVAcFx6I5RbT6SdKkpzGztpY4t4pGt3IOUoKNrJRqshj170LQqsw57NyxzSgZ0HONNsHE+HUK6AijgZXBthAfWqlFyrg6WIBY1f/jyuZ7jvzlotTI9JXXSBz8LryNYG7kth2weHcmlQKiqERPbWGFuGwM77hzgFwixjqnrGJEjWXDfsAmBLk+B9nVht2H54pPYCD+cyRea5NeisxnNCAOw10BJHEX1gxgNzSwQDVfOSINWT1a8R81tm7Dz7j3LyKKT+UH8BREHMlu4qv7+D6PjrRXJXtAMGN6Vsz0Hqvf6vlZou7O4ygcAtirRaSPvsuU1FOg2JvwfheUVZ7StBGhsTBWyQ0jw9UqAXcjtcbqfzeOc8sEEe/5xyRJctT+A4s4XNGxiF/Mnaa9XB5OHtz55FUDzy2o0S21JXFjnNs2kmDji3gjPwYJzg+qat7ZcGBNMR4KNvu2SiUoDdQMKzmh7mi4nwqlOv08eJVP8ZzXGS3F8QcsMFXPfrH/53hunKq6gQ61D3+CsCN6Hz89X7FgWnMroMv52gNwtUc0yeQ+klIB2RsY6+NefWx0p+ikxHY9MG64qMPtFNG+RW2TwRgcdbD6CC31GUVmGVLpEF95RF7v1i66H9EvNwiRZCagnZ4qYcrQ==
+    HASURA_GRAPHQL_ADMIN_SECRET: AgCAqhKgc3PtqkQnkPeR0pAyh5bkICHiNpYkHBwRAhRCSo4kktC4p1/OJapMewk2glYBZHdUIad4JEn1V7/EvfMkWs7Eh7CXLYQB8xdJxbl7tyopNSppQxLA2YkMTPmnja5kGJrf2nvZNR1u7aQ7z5ZuP9KFzPsWTj/pFQiczsoyhNrKJmSeAUMRKophVfgKDdvNuM6ZEuSiR9iGhhrGJVD1gHlQaOW0JKCjweuC0opYdP/rlZOD6BvqzlaYc+dHVYbot7ktDzYT98YCIJdS0sKe0/6+L/CQgWeqAUxZxyPrtOk5BsBOXKNuXIrG9sQQ8SXSykubqYRGdClVv6TlazMXvBtuoind14bkJ1G4Are0FsokIPoJxrYAM1Nd4hKvRJvT3BiiEY2JdqRbmeHyZc+yCYUeUkvbtVIHFHGnSjVzAfriR6mLj4psmUGAtjq7qqaa6fJQb1fRr6pnb6//i6B6NjspyMHNi5uwLCn3Rvrqbq0abgtZCh1PUPZeqA/kAENyg3FunPzxiCdlHJnKch7lQDSkoQDukEGWipUnr9/ICfMuAMlu1uTHqjjGrsZoewqY00MHkPNyFiHVwYmEqY9INfmEH9G5UBLaWTorLyvleJUK60d8ZteFArZlskOs82gtcVhYGtE1TZ3VSn/sGKHdC53BlWJ5b65GKP8bn1xKmuu+ah3+NNWkgTydoKzTjHxOiX3FVeDHyVM9v3Xyv/6/Z8KCvRw9cgbmcX+PkTifzsT/10iGvP+aa/8+3tOmikLHHGpTyALG9YOZ4MPOHR5owd1xI0TUm++0+JgxYfeNny+Ybk0O0x/ikVx+gSDR7MKDD9sI2V6wX8cJKpl6hLFIxFV0EUCwHiWW0N5ZnXJarMMhMWzV+4YaD0c6ZxhDgizvIX6nOs0aEihvFBVBgZuiIiO3RW0fUDel0kcqzg==
+    HASURA_GRAPHQL_JWT_SECRET: AgAnThMc6uuayn1BR4rLy65IoFDsv8pzBpphbYxf36e4OJooSi9s2upWe8g3HpVfdb5SthH77uw+64Ks+Tvku1gHrUOOXh89F+RS1mLwBfNhe4Nlf55AosasYsUOjE5mWOd0Czdp723ujL9T1SoZNyGeGyG2ZPxR+clgBJIgX5fRMvfi76SSq5trUasItHflHp+io2leMD8QBB0jukLf8vmHHCZ36S1hwtISj7NMHtiv4bl2AQPj6KjyO2U0AB+Uf+Un21RwCRsXv4mDkKNZAGSMn67IkqLRK02TFJQRz4qn+WrX4DPkgNG+fELYHBK0CSi8orSN07Z0qY4y86IYbXRiqJDDKIXq6jNQ2V3Ffox8uNNPk8BJ4lrxz4Bn9r9/rTWRLS70Uzv+OXViJ2xcb4HxBZFSKucOVK4Gx8kFf5xoKd6LV6g6kbjtYQUR4FGQihvZYsDrr5qGv1rxHO7EkY4o9Hre2iHVQJ08imfDoXscfzeJC9lxo/e5M7LusDtIkzwkMkmsv8WXMlGjfg4JoYiQzVA8oMsmeWQLHNdJUdSkZF8tFc3skvgYEeMuDi89KRiuCOwnShrVLzPzYbWO+7dwnyay5NVvtvNE9kXYn5U4EwGExeLGWoRRrDCOUM9sgwAJF7AcDcQUQ+MWupWacW7YE+VjBMuDmJR+1Gx9qDXGUspG1DkDfKqLCxT1L2RoMlbIfubACEYYbZ5IiooqjwbHCMUzbr4aRNSM2C3KqN8wSlB18xVfrgVpWYqZFtXWjJAgvLbn5Pi6ryaBPy/adnlBpGf1S2EakV9uR6gdpsKR1yTmzNT7MCIiInzvq/KijQCiJwAyqIkpU+tQv+HInHxWZQ==
+    SMTP_EMAIL_PASSWORD: AgAGdvTnBpg52nSwcqvGIoTRkxweutFd7x1hbU/HHAH9gxPa4ICT5AOZyb+Ec9OeaSBQjf9T+4qYGC5FngtbhqfSiloVvir2NvXZOUy+O3ME33QCzfw4+nANvHmsngFDVsJdjvSz2ykT9dyNbiyFrqRBhV5RnIAqgTfvXozVOFdFeUVRelL+tZQC0miGdHUOmjjOSh4T8LntBwJOj9lv/oW1g+Vai2zOwfSGFRTeWHv/Y5WYXCiuprOzgrYUEEzxDb/ELD45S5fcwYM4KVezHe1NAWqjPhcVwLq1q4iqSaHBwGBH528pxcFcPUn3u1uK/ip3lsPiA32vi5bFantUoBiL8HfB5NedJMls/3AeyIQl53Ymu55kr/NZ5YugXExs+uCgm3aRE8EyMWnVjvYZ2npSXS9hiTsBm0jyEHOSfdLiuWvGK5r+1zz6mHuBYemQQnLjEpmRhrG5XJyJmHAsRNR1P7H1+3pqSDD8iw0yXinth3URP/4L9JrTaI4Mx2LmDmVj34oGrbMx1Ekqe7t8MjrHy/fIXRqct7X+F+GFjklALzYNuBqNUg+HxbdVKxuo9STbUVhxTXkSvlgOaT9sUiyYFybiqj8vX9VPKhKBxrUmEPue4d63v/ud3YhyHcFENUQ7PKteBUKjzPOaMNi4xvmUi6Wk/sSCBi5BZiin0obLdUGplnmO0rzX9wxllUBS+o14T5m6kWk0b1oUesVOORk9mBR1rUPKHJWCmkFYcoqTjQ==
+    SMTP_EMAIL_USER: AgCVO/tUEz52Bt2Az91fIjWN6MYoV+eHqyufJ1N1RzkzgF/sw5DRdpKR5+s9ZOJvPlsEBUoUtd+iH16ZJz/vx4oSR5+KeTg4fXyOIi+jL/AB4hBYP8cQvvC9kXvK4KiS1FXiYvXKATcusvTkHdJZf/CfYB7jyXpyvMdmefiOexjwyieIP//YqPygqgOvi7RGnqohrk2S28YW17/oJA1QatbUh84wNG/6sSAfyy7coYaSU+6gTjHdommuypMRN7QKts/Hj0ZdM8xzXjQ630NzIPjZha6gG++ZDhR2hyo+vGuUESKuE37ifeEJlBhnWr/T9Qm2xE29UDChUpmtGtFz5xoxLabk8eU32qWy3WzclX26D2Ctcl1zy8atbaHq7A5JeWrV9wowhrUMVg/uiDXbt4NTcegHwCfSXl1kqNMVtJl7HijmUBMy+Yf7ntKyhdA6AoLZFQxrypzY3lgIS+2p46Ig1CP/DXakOn7yyoRW+k1KkzKv9E18QlvaRn6coyq705brLLM3/RuISw+FwGbD/VLgiHMIpCarY+Uy+K/c28320DXvoMLopAJekUnbdiPzL7vPLs2ao7BPZ+a0GDvpp+f+/T/EoVIHgiZoHiXEYmc/n2fmYd7Gb0UCa1og2ovhiegLnaFewD2OKMuP/gDuIwvnX9jU093dVupOw1muX0wgB+NH4xl7rTB42nvxLZK6N/ymfqg+LzQnqU+3drEWunSgepvKYem+86aKq2BkoJF+Ng==
+    SMTP_URL: AgDVilgKuupA5C2U/aA69wX3hl3Rbv58xFS7WGeUjq7ubq5meZhRyT3QG3Ly1rXzoPCfB3LDC0JDjRMJ1G2jmn9o0znEXYks/49m6hDaKhcwnnlIE/ThBJ/BBqnZtoAjxzoeBSvaEhV/dd/a7GrIQYiswfT8P3LVza4gKdj1li5vs7htCLnZfOrAgAqfXSxILDfHlEk9lmbL5J4JdYlVKesp6XNjcnUWaP2ycc0vW3qWlwrFU2DJw45wZCoE/76hG2s+Tk3VF5Q6kiNJCKTCf88jpeiggxIpntjLJk8nmrr9/aZ8fl8gDWUYV+15UFgh5jSP0nlWlCTmxAMmEL2lwBb9289rt0o3ZM7L+yfzLGD9QTy/Ns0hm2M4Cynwh0SD1ti/lMv/GO73XFShUO2glHM96isPFqvbBdBGua8ksp59W0TYQRMFFHbygZEj4k5K516w3gV4XonZN6INOqKt4s27R9oiOoFup2mQo0ns1sH7XB8q/wXVmro3km/dqToSOFRa/0v+fZNfzlh1X0JlqI+940CQz7I3rusrFDR5kfryVt0A6AP9tjyG9jQAjiM0lwcJgHrDARpNXuo9qzLf0yDK68NrR49XGWNugRuKHEA8Ka7vLmbeIvZOElsfn/ZCpnWrUNcRO/5dvxIQgNRIKiHVcqM1QV6V31YZMa6ZfJI/zhLaWEoOV0svcYrO9jy9H0rRtrMEqXZO0IQ8pYVfHhNxbA==
+  template:
+    metadata:
+      annotations:
+        sealedsecrets.bitnami.com/cluster-wide: "true"
+      creationTimestamp: null
+      name: app-sealed-secret
+---
+apiVersion: bitnami.com/v1alpha1
+kind: SealedSecret
+metadata:
+  annotations:
+    sealedsecrets.bitnami.com/cluster-wide: "true"
+  creationTimestamp: null
+  name: hasura-sealed-secret
+  namespace: sample-next-app-feature-branch-1
+spec:
+  encryptedData:
+    ACCOUNT_EMAIL_SECRET: AgCYU5zQRAGub/7BY2VzhhQ/Y5EtYeWcgdBrHMfOdhK6DLDbkiYTVBvdIVbvUp/AtHP8V3UwT0zoQfKRiECwdH6oJ92GJ2DQ6svTNJH+x4EyQRJTeRMOrx6y+iVAcFx6I5RbT6SdKkpzGztpY4t4pGt3IOUoKNrJRqshj170LQqsw57NyxzSgZ0HONNsHE+HUK6AijgZXBthAfWqlFyrg6WIBY1f/jyuZ7jvzlotTI9JXXSBz8LryNYG7kth2weHcmlQKiqERPbWGFuGwM77hzgFwixjqnrGJEjWXDfsAmBLk+B9nVht2H54pPYCD+cyRea5NeisxnNCAOw10BJHEX1gxgNzSwQDVfOSINWT1a8R81tm7Dz7j3LyKKT+UH8BREHMlu4qv7+D6PjrRXJXtAMGN6Vsz0Hqvf6vlZou7O4ygcAtirRaSPvsuU1FOg2JvwfheUVZ7StBGhsTBWyQ0jw9UqAXcjtcbqfzeOc8sEEe/5xyRJctT+A4s4XNGxiF/Mnaa9XB5OHtz55FUDzy2o0S21JXFjnNs2kmDji3gjPwYJzg+qat7ZcGBNMR4KNvu2SiUoDdQMKzmh7mi4nwqlOv08eJVP8ZzXGS3F8QcsMFXPfrH/53hunKq6gQ61D3+CsCN6Hz89X7FgWnMroMv52gNwtUc0yeQ+klIB2RsY6+NefWx0p+ikxHY9MG64qMPtFNG+RW2TwRgcdbD6CC31GUVmGVLpEF95RF7v1i66H9EvNwiRZCagnZ4qYcrQ==
+    HASURA_GRAPHQL_ADMIN_SECRET: AgDZX0nGJWSkGYaaTpArKf3L1jsBEzKzsE1qkDIziGJHgVuqdPUhvZwmd6/9yPtkw7ohLh4/yqpQFELURajvHPJy4ZBok5bRhX4eC2tbsEQ+20YmL86KGNUhGSdJ9Ua3m/jV5qEyFnLPBG4cPJL4OjEDNvm/WwJvQfTlXaV4YoZMzlZmPMLFKAQ/8jKoefaIjtTXPq3YSeULlEx94Pv08C5b6o0US4fQwhtBAUOlUmhPEDXo0u4r4yM5w7HGWSCD4Dsb+rHlcRi7ulCCafeaBLITq3BMhzS1eO5XNrLGzh4iDh4rTtv83Y8kFFvb/zXlq/uiPZMoTxaH5eTqYQkCRA3L/2T7hWWiINDB9kbNTIyIZ2uF0W1RLnwgq2VASruNEhxXHYKeQfnhxcqTxGAsTgJgAGhMm17vALEAHt+72L4O822WJw39TB9ozqbnZ0I++ZAmd+kIrZ3Uxp7WfzmM7bKzdqn8L2k0jxHCOKWxChXayONqTFUq9YfJdqSHtNnfi5Bt610SjmD62Vil1hmxIhQv6xmzRwo2pfbhrUj6gNsNdDTrV5fxfZzEOtvwl6C+bPuHmD+qbke78eiJp8A4WIgn1CayHsSoaokH36Q1IW+ETuyQHhz8RMd8ZmrGAeSWUm71SR0nKCWgCwtRX4NhBR5fGR8M7CLTJm3ofrv1fyZ8WKPC7OcnhHmKYBeaw6qku9K+0qRCuvIp/6/dd28SC1obdir77d924ZTkFxUVIAu9J0u0AOEu6UZS
+    HASURA_GRAPHQL_JWT_SECRET: AgB0yHuBM57mDtyon+1dEC9PTgejHVGA5uOHbdu5P4tH6CuOgpH2cnbXnBaeD+7d52aCNto7a0qD5TN4MtwMQZbJuyXdH8QIsZSvvVmKK0Tf5dgYBnTqDKfJnaH/frlIyrFrZs9aj84uHpZPMw1jP6Rrn/gHLn6oNdvkJS668c5ALSvjJoNoqT2l+2TC0p4fNq9H/q0HaLkL+s5Jfkb9ZqPevo3sBQKJvGEEZmgld0U6S95hiGRVhEGqLR90ZbnYpKpHXk09fxva/UgRGGniK4yAJ7noeUsB2HZU8+X88I0TeX7vx0+WHAqV65eA14e2BegKI55JPeX8rXte/Iy0KRkyBQ8KtD5jkfTsmdeLMchdnmys7pu4CGiRXyAANT8uWzP0QifqfZhG6fHqZiMPhOa8XM2Z8KhFgtWH0m8IG/OUZCllWeRyAFTcupa5Jsq3jn+Y/0N2sgeALvBEmhGSN8jTAWa4cetoF//1kk67BaLFpLrc9P2nSGqd5HII7HGL1C8kCbV9Fmz/etX705sB9g9Sg0xFVhNqUvwYUOs9h51MQJLn64zO1Bd0q/U8LN3k71tqidJbsEc9P1JX90U6QbGu2FpQrPFAIz3Y0UnAiCfxyfVxwGvciwAQw5yIo8S2/XbB1wyGY/hWCYy0s4qOl11Dj1YpNwe7Xjbq7cnGfxp2BFC5Ps4O42jeSj7mhpUSyacLG6MavSdSPdrnOAMGKD7Gdz7jBd5/EBFhGmN8roCR+8H/Q5kbUlKfS5kEQR3Xkx8uNHqW8mr8ka7Fbn06vlmCDc09L9sXC6rJOXwIsZ6peqD7e1gPnotGfARHh5D07R3x6v491eS/FVCWao19XUHsaA==
+  template:
+    metadata:
+      annotations:
+        sealedsecrets.bitnami.com/cluster-wide: "true"
+      creationTimestamp: null
+      name: hasura-sealed-secret
+    type: Opaque
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: nginx
+  labels:
+    application: sample-next-app
+    component: app
+  name: app
+  namespace: sample-next-app-feature-branch-1
+spec:
+  rules:
+  - host: sample-next-app-feature-branch-1.fabrique.social.gouv.fr
+    http:
+      paths:
+      - backend:
+          service:
+            name: app
+            port:
+              name: http
+        path: /
+        pathType: Prefix
+  tls:
+  - hosts:
+    - sample-next-app-feature-branch-1.fabrique.social.gouv.fr
+    secretName: wildcard-crt
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: nginx
+  labels:
+    application: sample-next-app
+    component: hasura
+  name: hasura
+  namespace: sample-next-app-feature-branch-1
+spec:
+  rules:
+  - host: hasura-sample-next-app-feature-branch-1.fabrique.social.gouv.fr
+    http:
+      paths:
+      - backend:
+          service:
+            name: hasura
+            port:
+              name: http
+        path: /
+        pathType: Prefix
+  tls:
+  - hosts:
+    - hasura-sample-next-app-feature-branch-1.fabrique.social.gouv.fr
+    secretName: wildcard-crt
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: nginx
+  labels:
+    application: sample-next-app
+    component: pgweb
+  name: pgweb
+  namespace: sample-next-app-feature-branch-1
+spec:
+  rules:
+  - host: pgweb-sample-next-app-feature-branch-1.fabrique.social.gouv.fr
+    http:
+      paths:
+      - backend:
+          service:
+            name: pgweb
+            port:
+              name: http
+        path: /
+        pathType: Prefix
+  tls:
+  - hosts:
+    - pgweb-sample-next-app-feature-branch-1.fabrique.social.gouv.fr
+    secretName: wildcard-crt
