@@ -5,6 +5,7 @@ components:
 
 app:
   imagePackage: app
+  probesPath: /healthz
   envFrom:
     - secretRef:
         name: "{{ .Values.global.pgSecretName }}"
