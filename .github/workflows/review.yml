@@ -34,7 +34,7 @@ jobs:
   deploy:
     name: Deploy application
     runs-on: ubuntu-latest
-    needs: [register]
+    # needs: [register]
     steps:
       - name: Use autodevops deployment
         uses: SocialGouv/actions/autodevops-helm-deploy@jobs-workflow
