@@ -13,28 +13,28 @@ concurrency:
 
 jobs:
 
-  # register:
-  #   name: Build & Register
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - name: Application
-  #       uses: SocialGouv/actions/autodevops-build-register@v1
-  #       with:
-  #         imageName: sample-next-app/app
-  #         token: ${{ secrets.GITHUB_TOKEN }}
+  register:
+    name: Build & Register
+    runs-on: ubuntu-latest
+    steps:
+      - name: Application
+        uses: SocialGouv/actions/autodevops-build-register@v1
+        with:
+          imageName: sample-next-app/app
+          token: ${{ secrets.GITHUB_TOKEN }}
 
-  #     - name: Hasura
-  #       uses: SocialGouv/actions/autodevops-build-register@v1
-  #       with:
-  #         dockercontext: ./hasura
-  #         dockerfile: ./hasura/Dockerfile
-  #         token: ${{ secrets.GITHUB_TOKEN }}
-  #         imageName: sample-next-app/hasura
+      - name: Hasura
+        uses: SocialGouv/actions/autodevops-build-register@v1
+        with:
+          dockercontext: ./hasura
+          dockerfile: ./hasura/Dockerfile
+          token: ${{ secrets.GITHUB_TOKEN }}
+          imageName: sample-next-app/hasura
 
   deploy:
     name: Deploy application
     runs-on: ubuntu-latest
-    # needs: [register]
+    needs: [register]
     steps:
       - name: Use autodevops deployment
         uses: SocialGouv/actions/autodevops-helm-deploy@jobs-workflow
