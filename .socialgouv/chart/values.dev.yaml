@@ -70,7 +70,6 @@ jobs:
       envFrom:
         - secretRef:
             name: pg-scaleway
-        - secretRef:
       env:
         - name: NEW_DB_NAME
           valueFrom:
