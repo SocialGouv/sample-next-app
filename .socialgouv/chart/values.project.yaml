@@ -7,7 +7,7 @@ app:
   imagePackage: app
   envFrom:
     - secretRef:
-        name: {{ .Values.global.pgSecretName }}
+        name: "{{ .Values.global.pgSecretName }}"
     - secretRef:
         name: app-sealed-secret
     - configMapRef:
@@ -16,7 +16,7 @@ app:
 hasura:
   envFrom:
     - secretRef:
-        name: {{ .Values.global.pgSecretName }}
+        name: "{{ .Values.global.pgSecretName }}"
     - secretRef:
         name: hasura-sealed-secret
     - configMapRef:
