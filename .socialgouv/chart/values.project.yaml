@@ -2,6 +2,7 @@ components:
   app: true
   hasura: true
   pgweb: true
+  jobs: true
 
 app:
   imagePackage: app
@@ -15,7 +16,8 @@ app:
         name: app-configmap
 
 hasura:
-  waitForPostgres: true
+  needs: [create-db]
+  # waitForPostgres: true
   envFrom:
     - secretRef:
         name: "{{ .Values.global.pgSecretName }}"
@@ -24,3 +26,12 @@ hasura:
     - configMapRef:
         name: hasura-configmap
 
+pgweb:
+  needs: [create-db]
+
+jobs:
+  repositoryUrl: https://github.com/SocialGouv/sample-next-app.git
+  runs:
+    - name: create-db
+      image: socialgouv/psql
+      run: /bin/create-db
