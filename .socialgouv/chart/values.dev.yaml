@@ -19,8 +19,6 @@ jobs:
         - secretRef:
             name: kubeconfig
       run: |
-        set -x
-
         DB_SECRET_NAME="{{ .Values.global.pgSecretName }}"
         NAMESPACE="{{ .Values.global.namespace }}"
         JOB_NAMESPACE="{{ .Values.namespace }}"
@@ -33,7 +31,7 @@ jobs:
           echo "create secret"
           PGPASSWORD=$(openssl rand -base64 32 | sed "s/[^[:alnum:]-]//g")
           if [[ $PG_HOST == *"azure.com"* ]]; then
-            PGUSER="${PGUSER}@${PGHOST}""
+            PGUSER="${PGUSER}@${PGHOST}"
           fi
           PGSSLMODE=require
           PGUSER_URLENCODED=$(printf %s "$PGUSER" |jq -sRr @uri)
@@ -91,5 +89,4 @@ jobs:
               name: "{{ .Values.global.pgSecretName }}"
         - name: NEW_DB_EXTENSIONS
           value: "hstore pgcrypto citext uuid-ossp postgis pg_trgm unaccent"
-      run: |
-        /action/bin/ensure-db
+      run: /action/bin/ensure-db
