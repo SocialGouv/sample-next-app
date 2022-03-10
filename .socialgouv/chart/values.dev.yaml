@@ -19,6 +19,8 @@ jobs:
         - secretRef:
             name: kubeconfig
       run: |
+        set -x
+
         DB_SECRET_NAME="{{ .Values.global.pgSecretName }}"
         NAMESPACE="{{ .Values.global.namespace }}"
         JOB_NAMESPACE="{{ .Values.namespace }}"
