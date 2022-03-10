@@ -4,6 +4,7 @@ components:
   pgweb: true
 
 app:
+  imagePackage: app
   envFrom:
     - secretRef:
         name: {{ .Values.global.pgSecretName }}
