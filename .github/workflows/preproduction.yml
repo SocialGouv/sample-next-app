@@ -12,22 +12,16 @@ concurrency:
   group: preproduction
 
 jobs:
-  ##############################################################################
-  ## BUILD AND REGISTER DOCKER IMAGES
-  ##############################################################################
+
   register:
     name: Build & Register
     runs-on: ubuntu-latest
     steps:
-      - name: Get project name
-        run: |
-          echo "project=${GITHUB_REPOSITORY#*/}" >> $GITHUB_ENV
 
       - name: Application
         uses: SocialGouv/actions/autodevops-build-register@v1
         with:
-          project: ${{ env.project }}
-          imageName: ${{ env.project }}/app
+          imageName: sample-next-app/app
           token: ${{ secrets.GITHUB_TOKEN }}
           environment: preprod
 
@@ -35,15 +29,11 @@ jobs:
         uses: SocialGouv/actions/autodevops-build-register@v1
         with:
           dockercontext: ./hasura
-          project: ${{ env.project }}
           dockerfile: ./hasura/Dockerfile
           token: ${{ secrets.GITHUB_TOKEN }}
-          imageName: ${{ env.project }}/hasura
+          imageName: sample-next-app/hasura
           environment: preprod
 
-  ##############################################################################
-  ## DEPLOY APPLICATION OVER KUBERNETES
-  ##############################################################################
   deploy:
     name: Deploy application
     runs-on: ubuntu-latest
@@ -52,18 +42,12 @@ jobs:
       name: preproduction
       url: https://sample-next-app-preprod.dev.fabrique.social.gouv.fr
     steps:
-      - name: Use k8s manifests generation
-        uses: SocialGouv/actions/autodevops-manifests@v1
-        with:
-          environment: "preprod"
-          rancherId: ${{ secrets.RANCHER_PROJECT_ID }}
-          socialgouvBaseDomain: ${{ secrets.SOCIALGOUV_BASE_DOMAIN }}
-          pgUserSecretPrefix: pg-user
 
       - name: Use autodevops deployment
-        uses: SocialGouv/actions/autodevops-deploy@v1
+        uses: SocialGouv/actions/autodevops-helm-deploy@v1
         with:
           environment: "preprod"
           token: ${{ secrets.GITHUB_TOKEN }}
           kubeconfig: ${{ secrets.KUBECONFIG }}
           rancherId: ${{ secrets.RANCHER_PROJECT_ID }}
+          socialgouvBaseDomain: ${{ secrets.SOCIALGOUV_BASE_DOMAIN }}
