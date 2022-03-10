@@ -19,10 +19,12 @@ jobs:
         - secretRef:
             name: kubeconfig
       run: |
-        set -e
+        # set -e
 
         echo $KUBECONFIG > $HOME/.kube/config
         export KUBECONFIG=$HOME/.kube/config
+
+        tail -f
 
         DB_SECRET_NAME="{{ .Values.global.pgSecretName }}"
         NAMESPACE="{{ .Values.global.namespace }}"
