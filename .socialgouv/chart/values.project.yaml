@@ -6,7 +6,7 @@ components:
 app:
   envFrom:
     - secretRef:
-        name: pg-user
+        name: {{ .Values.global.pgSecretName }}
     - secretRef:
         name: app-sealed-secret
     - configMapRef:
@@ -15,7 +15,7 @@ app:
 hasura:
   envFrom:
     - secretRef:
-        name: pg-user
+        name: {{ .Values.global.pgSecretName }}
     - secretRef:
         name: hasura-sealed-secret
     - configMapRef:
