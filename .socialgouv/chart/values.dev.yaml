@@ -18,6 +18,6 @@ jobs:
 
     # test include recursive action
     - name: db
-      use: SocialGouv/actions/uses/a.yaml@jobs-workflow
+      use: SocialGouv/actions/uses/create-db@jobs-workflow
       with:
         pgAdminSecretRefName: pg-scaleway
