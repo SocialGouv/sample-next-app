@@ -1,3 +1,10 @@
+# [3.6.0](https://github.com/SocialGouv/sample-next-app/compare/v3.5.3...v3.6.0) (2022-03-11)
+
+
+### Features
+
+* **ci:** helm-deploy + jobs workflow ([#603](https://github.com/SocialGouv/sample-next-app/issues/603)) ([f67ab8f](https://github.com/SocialGouv/sample-next-app/commit/f67ab8f0e35dc954d20bf3e98f2b50e674cba569))
+
 ## [3.5.3](https://github.com/SocialGouv/sample-next-app/compare/v3.5.2...v3.5.3) (2022-02-14)
 
 
