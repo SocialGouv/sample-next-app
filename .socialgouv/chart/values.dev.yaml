@@ -1,3 +1,4 @@
+a: 3
 components:
   jobs: true
 
@@ -12,7 +13,8 @@ jobs:
   runs:
 
     - name: db
-      use: create-db
+      # use: create-db
+      use: https://github.com/SocialGouv/actions/uses/create-db@jobs-workflow
       with:
         pgAdminSecretRefName: pg-scaleway
 
