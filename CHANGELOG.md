@@ -1,3 +1,10 @@
+## [3.6.2](https://github.com/SocialGouv/sample-next-app/compare/v3.6.1...v3.6.2) (2022-03-11)
+
+
+### Bug Fixes
+
+* **prod:** pg-secret-name ([71829dc](https://github.com/SocialGouv/sample-next-app/commit/71829dcc48d4a8b11faa99ad3b555ebccb97095f))
+
 ## [3.6.1](https://github.com/SocialGouv/sample-next-app/compare/v3.6.0...v3.6.1) (2022-03-11)
 
 
