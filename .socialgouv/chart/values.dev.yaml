@@ -12,12 +12,12 @@ jobs:
   runs:
 
     # - name: db
-    #   use: SocialGouv/uses/create-db@v1
+    #   use: SocialGouv/actions/uses/create-db@v1
     #   with:
     #     pgAdminSecretRefName: pg-scaleway
 
     # test include recursive action
     - name: db
-      use: SocialGouv/uses/a.yaml@jobs-workflow
+      use: SocialGouv/actions/uses/a.yaml@jobs-workflow
       with:
         pgAdminSecretRefName: pg-scaleway
