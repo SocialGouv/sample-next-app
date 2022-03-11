@@ -8,16 +8,9 @@ pgweb:
   needs: [db]
 
 jobs:
-  repositoryUrl: https://github.com/SocialGouv/sample-next-app.git
   runs:
-
-    # - name: db
-    #   use: SocialGouv/actions/uses/create-db@v1
-    #   with:
-    #     pgAdminSecretRefName: pg-scaleway
-
-    # test include recursive action
     - name: db
       use: SocialGouv/actions/uses/create-db@jobs-workflow
+      # use: SocialGouv/actions/uses/create-db@v1
       with:
         pgAdminSecretRefName: pg-scaleway
