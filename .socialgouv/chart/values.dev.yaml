@@ -1,4 +1,3 @@
-a: 3
 components:
   jobs: true
 
@@ -12,95 +11,13 @@ jobs:
   repositoryUrl: https://github.com/SocialGouv/sample-next-app.git
   runs:
 
+    # - name: db
+    #   use: SocialGouv/uses/create-db@v1
+    #   with:
+    #     pgAdminSecretRefName: pg-scaleway
+
+    # test include recursive action
     - name: db
-      # use: create-db
-      use: https://github.com/SocialGouv/actions/uses/create-db@jobs-workflow
+      use: SocialGouv/uses/a.yaml@jobs-workflow
       with:
         pgAdminSecretRefName: pg-scaleway
-
-    # following is equivalent to previous "use" and can also be used, with all that kind of options
-
-    # - name: create-secret
-    #   checkout: false
-    #   image: bitnami/kubectl:latest
-    #   envFrom:
-    #     - secretRef:
-    #         name: pg-scaleway
-    #     - secretRef:
-    #         name: kubeconfig
-    #   run: |
-    #     set -e
-
-    #     echo "$KUBECONFIG" > ~/.kube/config
-    #     export KUBECONFIG=~/.kube/config
-
-    #     DB_SECRET_NAME="{{ .Values.global.pgSecretName }}"
-    #     NAMESPACE="{{ .Values.global.namespace }}"
-    #     JOB_NAMESPACE="{{ .Values.namespace }}"
-    #     PGDATABASE="{{ .Values.global.pgDatabase }}"
-    #     PGUSER="{{ .Values.global.pgUser }}"
-
-    #     if [ -n "$(kubectl -n $NAMESPACE get secret $DB_SECRET_NAME 2>/dev/null)" ]; then
-    #       echo "secret named '$DB_SECRET_NAME' already exists in namespace '$NAMESPACE'"
-    #     else
-    #       echo "create secret"
-    #       PGPASSWORD=$(openssl rand -base64 32 | sed "s/[^[:alnum:]-]//g")
-    #       if [[ $PG_HOST == *"azure.com"* ]]; then
-    #         PGUSER="${PGUSER}@${PGHOST}"
-    #       fi
-    #       PGSSLMODE=require
-    #       PGUSER_URLENCODED=$(printf %s "$PGUSER" |jq -sRr @uri)
-    #       PGPASSWORD_URLENCODED=$(printf %s "$PGPASSWORD" |jq -sRr @uri)
-    #       DATABASE_URL=postgresql://${PGUSER_URLENCODED}:${PGPASSWORD_URLENCODED}@${PGHOST}/${PGDATABASE}?sslmode=${PGSSLMODE}
-
-    #       kubectl -n $NAMESPACE create secret generic $DB_SECRET_NAME \
-    #         --from-literal="PGPASSWORD=$PGPASSWORD" \
-    #         --from-literal="PGSSLMODE=$PGSSLMODE" \
-    #         --from-literal="HASURA_GRAPHQL_DATABASE_URL=$DATABASE_URL" \
-    #         --from-literal="DATABASE_URL=$DATABASE_URL" \
-    #         --from-literal="PGDATABASE=$PGDATABASE" \
-    #         --from-literal="PGHOST=$PGHOST" \
-    #         --from-literal="PGPORT=$PGPORT" \
-    #         --from-literal="PGUSER=$PGUSER"
-    #     fi
-
-    #     echo "copy secret '$DB_SECRET_NAME' to '$JOB_NAMESPACE'"
-    #     kubectl get secret "$DB_SECRET_NAME" --namespace="$NAMESPACE" -ojson \
-    #       | jq 'del(.metadata.namespace,.metadata.resourceVersion,.metadata.uid) | .metadata.creationTimestamp=null' \
-    #       | jq '.metadata.annotations["janitor/ttl"] = "24h"' \
-    #       | kubectl -n "$JOB_NAMESPACE" apply -f -
-
-    # - name: create-db
-    #   needs: [create-secret]
-    #   checkout: false
-    #   action: SocialGouv/actions/autodevops-create-db@jobs-workflow
-    #   image: ghcr.io/socialgouv/docker/psql:6.70.0
-    #   envFrom:
-    #     - secretRef:
-    #         name: pg-scaleway
-    #   env:
-    #     - name: NEW_DB_NAME
-    #       valueFrom:
-    #         secretKeyRef:
-    #           key: PGDATABASE
-    #           name: "{{ .Values.global.pgSecretName }}"
-    #     - name: NEW_USER
-    #       valueFrom:
-    #         secretKeyRef:
-    #           key: PGUSER
-    #           name: "{{ .Values.global.pgSecretName }}"
-    #     - name: NEW_PASSWORD
-    #       valueFrom:
-    #         secretKeyRef:
-    #           key: PGPASSWORD
-    #           name: "{{ .Values.global.pgSecretName }}"
-    #     - name: PGHOST
-    #       valueFrom:
-    #         secretKeyRef:
-    #           key: PGHOST
-    #           name: "{{ .Values.global.pgSecretName }}"
-    #     - name: NEW_DB_EXTENSIONS
-    #       value: "hstore pgcrypto citext uuid-ossp postgis pg_trgm unaccent"
-    #   run: /action/bin/ensure-db
-
-
