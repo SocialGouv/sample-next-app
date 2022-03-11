@@ -10,7 +10,6 @@ pgweb:
 jobs:
   runs:
     - name: db
-      use: SocialGouv/actions/uses/create-db@jobs-workflow
-      # use: SocialGouv/actions/uses/create-db@v1
+      use: SocialGouv/actions/uses/create-db@v1
       with:
         pgAdminSecretRefName: pg-scaleway

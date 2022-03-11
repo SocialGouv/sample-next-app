@@ -41,7 +41,7 @@ jobs:
     needs: [build-app,build-hasura]
     steps:
       - name: Use autodevops deployment
-        uses: SocialGouv/actions/autodevops-helm-deploy@jobs-workflow
+        uses: SocialGouv/actions/autodevops-helm-deploy@v1
         with:
           environment: "dev"
           token: ${{ secrets.GITHUB_TOKEN }}
