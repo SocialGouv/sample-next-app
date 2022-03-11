@@ -1,0 +1,25 @@
+components:
+  app: true
+  hasura: true
+  pgweb: true
+
+app:
+  imagePackage: app
+  probesPath: /healthz
+  envFrom:
+    - secretRef:
+        name: "{{ .Values.global.pgSecretName }}"
+    - secretRef:
+        name: app-sealed-secret
+    - configMapRef:
+        name: app-configmap
+
+hasura:
+  # waitForPostgres: true
+  envFrom:
+    - secretRef:
+        name: "{{ .Values.global.pgSecretName }}"
+    - secretRef:
+        name: hasura-sealed-secret
+    - configMapRef:
+        name: hasura-configmap

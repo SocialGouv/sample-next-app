@@ -1,0 +1,15 @@
+components:
+  jobs: true
+
+hasura:
+  needs: [db]
+
+pgweb:
+  needs: [db]
+
+jobs:
+  runs:
+    - name: db
+      use: SocialGouv/actions/uses/create-db@v1
+      with:
+        pgAdminSecretRefName: pg-scaleway
