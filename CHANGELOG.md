@@ -1,3 +1,10 @@
+## [3.6.3](https://github.com/SocialGouv/sample-next-app/compare/v3.6.2...v3.6.3) (2022-03-11)
+
+
+### Bug Fixes
+
+* **prod:** fix crt name ([307b5c9](https://github.com/SocialGouv/sample-next-app/commit/307b5c9bedfe36b1821b595e5743d1a55638d72c))
+
 ## [3.6.2](https://github.com/SocialGouv/sample-next-app/compare/v3.6.1...v3.6.2) (2022-03-11)
 
 
