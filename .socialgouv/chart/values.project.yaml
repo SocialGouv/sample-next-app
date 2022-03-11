@@ -6,6 +6,7 @@ components:
 app:
   imagePackage: app
   probesPath: /healthz
+  certSecretName: app-crt
   envFrom:
     - secretRef:
         name: "{{ .Values.global.pgSecretName }}"
@@ -23,3 +24,6 @@ hasura:
         name: hasura-sealed-secret
     - configMapRef:
         name: hasura-configmap
+
+pgweb:
+  certSecretName: pgweb-crt
