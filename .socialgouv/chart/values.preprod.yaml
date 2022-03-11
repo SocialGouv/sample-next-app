@@ -1,0 +1,2 @@
+global:
+  pgSecretName: pg-user
