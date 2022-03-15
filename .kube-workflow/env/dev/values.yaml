@@ -1,6 +1,3 @@
-components:
-  jobs: true
-
 hasura:
   needs: [db]
 
@@ -8,8 +5,9 @@ pgweb:
   needs: [db]
 
 jobs:
+  enabled: true
   runs:
     - name: db
-      use: SocialGouv/actions/uses/create-db@v1
+      use: SocialGouv/kube-workflow/jobs/create-db@master
       with:
         pgAdminSecretRefName: pg-scaleway
