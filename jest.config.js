@@ -8,5 +8,5 @@ module.exports = {
   coverageDirectory: "coverage",
   coverageProvider: "v8",
   testEnvironment: "node",
-  testPathIgnorePatterns: ["/.socialgouv/", "/node_modules/"],
+  testPathIgnorePatterns: ["/.kube-workflow/", "/node_modules/"],
 };
