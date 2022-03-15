@@ -54,4 +54,3 @@ jobs:
           kubeconfig: ${{ secrets.KUBECONFIG }}
           rancherProjectId: ${{ secrets.RANCHER_PROJECT_ID }}
           rancherProjectName: ${{ secrets.RANCHER_PROJECT_NAME }}
-          socialgouvBaseDomain: ${{ secrets.SOCIALGOUV_BASE_DOMAIN }}
