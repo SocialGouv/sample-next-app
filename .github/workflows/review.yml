@@ -20,7 +20,7 @@ jobs:
       - name: Application
         uses: SocialGouv/actions/autodevops-build-register@v1
         with:
-          imageName: sample-next-app/app
+          imagePackage: app
           token: ${{ secrets.GITHUB_TOKEN }}
 
   build-hasura:
@@ -33,7 +33,7 @@ jobs:
           dockercontext: ./hasura
           dockerfile: ./hasura/Dockerfile
           token: ${{ secrets.GITHUB_TOKEN }}
-          imageName: sample-next-app/hasura
+          imagePackage: hasura
 
   deploy:
     name: Deploy application
@@ -41,10 +41,10 @@ jobs:
     needs: [build-app,build-hasura]
     steps:
       - name: Use autodevops deployment
-        uses: SocialGouv/actions/autodevops-helm-deploy@v1
+        uses: SocialGouv/kube-workflow@master
         with:
           environment: "dev"
           token: ${{ secrets.GITHUB_TOKEN }}
           kubeconfig: ${{ secrets.KUBECONFIG }}
-          rancherId: ${{ secrets.RANCHER_PROJECT_ID }}
-          socialgouvBaseDomain: ${{ secrets.SOCIALGOUV_BASE_DOMAIN }}
+          rancherProjectId: ${{ secrets.RANCHER_PROJECT_ID }}
+          rancherProjectName: ${{ secrets.RANCHER_PROJECT_Name }}

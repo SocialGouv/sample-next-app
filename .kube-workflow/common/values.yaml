@@ -1,9 +1,5 @@
-components:
-  app: true
-  hasura: true
-  pgweb: true
-
 app:
+  enabled: true
   imagePackage: app
   probesPath: /healthz
   certSecretName: app-crt
@@ -16,6 +12,7 @@ app:
         name: app-configmap
 
 hasura:
+  enabled: true
   # waitForPostgres: true
   envFrom:
     - secretRef:
@@ -26,4 +23,5 @@ hasura:
         name: hasura-configmap
 
 pgweb:
+  enabled: true
   certSecretName: pgweb-crt
