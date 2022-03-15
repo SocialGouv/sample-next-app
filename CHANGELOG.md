@@ -1,3 +1,10 @@
+## [3.7.1](https://github.com/SocialGouv/sample-next-app/compare/v3.7.0...v3.7.1) (2022-03-15)
+
+
+### Bug Fixes
+
+* **ci:** preprod and prod ([#606](https://github.com/SocialGouv/sample-next-app/issues/606)) ([6c14732](https://github.com/SocialGouv/sample-next-app/commit/6c1473219eb31f1e3b3adb7b14860d403ac5bbb3))
+
 # [3.7.0](https://github.com/SocialGouv/sample-next-app/compare/v3.6.3...v3.7.0) (2022-03-15)
 
 
