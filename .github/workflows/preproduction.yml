@@ -20,7 +20,7 @@ jobs:
       - name: Application
         uses: SocialGouv/actions/autodevops-build-register@v1
         with:
-          imageName: sample-next-app/app
+          imagePackage: app
           token: ${{ secrets.GITHUB_TOKEN }}
           environment: preprod
 
@@ -34,7 +34,7 @@ jobs:
           dockercontext: ./hasura
           dockerfile: ./hasura/Dockerfile
           token: ${{ secrets.GITHUB_TOKEN }}
-          imageName: sample-next-app/hasura
+          imagePackage: hasura
           environment: preprod
 
   deploy:
@@ -47,7 +47,7 @@ jobs:
     steps:
 
       - name: Use autodevops deployment
-        uses: SocialGouv/actions/autodevops-helm-deploy@v1
+        uses: SocialGouv/kube-workflow@master
         with:
           environment: "preprod"
           token: ${{ secrets.GITHUB_TOKEN }}
