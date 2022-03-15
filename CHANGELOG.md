@@ -1,3 +1,10 @@
+# [3.7.0](https://github.com/SocialGouv/sample-next-app/compare/v3.6.3...v3.7.0) (2022-03-15)
+
+
+### Features
+
+* **kube-workflow:** upgrade ([#604](https://github.com/SocialGouv/sample-next-app/issues/604)) ([1382765](https://github.com/SocialGouv/sample-next-app/commit/13827657b1af2da4230c2bfe790f5f9261f1afe9))
+
 ## [3.6.3](https://github.com/SocialGouv/sample-next-app/compare/v3.6.2...v3.6.3) (2022-03-11)
 
 
