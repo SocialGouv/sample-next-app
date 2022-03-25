@@ -1,3 +1,6 @@
+global:
+  registry: harbor.fabrique.social.gouv.fr
+
 app:
   enabled: true
   needs: [build-app]
