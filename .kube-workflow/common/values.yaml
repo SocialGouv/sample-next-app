@@ -1,5 +1,6 @@
 app:
   enabled: true
+  needs: [build-app]
   imagePackage: app
   probesPath: /healthz
   certSecretName: app-crt
@@ -13,6 +14,7 @@ app:
 
 hasura:
   enabled: true
+  needs: [build-hasura]
   # waitForPostgres: true
   envFrom:
     - secretRef:
@@ -25,3 +27,20 @@ hasura:
 pgweb:
   enabled: true
   certSecretName: pgweb-crt
+
+jobs:
+  enabled: true
+  runs:
+
+    - name: build-app
+      use: SocialGouv/kube-workflow/jobs/build@master
+      with:
+        registrySecretRefName: harbor
+        imagePackage: app
+
+    - name: build-hasura
+      use: SocialGouv/kube-workflow/jobs/build@master
+      with:
+        registrySecretRefName: harbor
+        imagePackage: hasura
+        context: hasura
