@@ -4,8 +4,7 @@ global:
 app:
   enabled: true
   needs: [build-app]
-  imagePackage: notfound
-  replicas: 2
+  imagePackage: app
   probesPath: /healthz
   certSecretName: app-crt
   envFrom:
