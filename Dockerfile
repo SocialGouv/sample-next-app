@@ -28,4 +28,8 @@ COPY --from=builder --chown=node:node /app/.next ./.next
 
 USER 1000
 
+
+COPY entrypoint.sh /entrypoint.sh
+ENTRYPOINT ["/entrypoint.sh"]
+
 CMD ["yarn", "start"]
