@@ -49,6 +49,6 @@ jobs:
         context: hasura
 
     - name: test-app
-      use: SocialGouv/kube-workflow/jobs/test@master
+      use: SocialGouv/kube-workflow/jobs/test@feat-outputs
       with:
         dockerImage: '{{ printf $.outputs.buildApp "DOCKER_IMAGE" }}'
