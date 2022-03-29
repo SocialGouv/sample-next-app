@@ -47,3 +47,8 @@ jobs:
         registrySecretRefName: harbor
         imagePackage: hasura
         context: hasura
+
+    - name: test-app
+      use: SocialGouv/kube-workflow/jobs/test@master
+      with:
+        dockerImage: '{{ printf $.outputs.buildApp "DOCKER_IMAGE" }}'

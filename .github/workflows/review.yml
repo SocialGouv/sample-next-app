@@ -18,7 +18,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Use autodevops deployment
-        uses: SocialGouv/kube-workflow@master
+        uses: SocialGouv/kube-workflow@feat-outputs
         with:
           environment: "dev"
           token: ${{ secrets.GITHUB_TOKEN }}
