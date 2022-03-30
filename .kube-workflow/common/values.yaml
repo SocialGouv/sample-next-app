@@ -36,13 +36,13 @@ jobs:
   runs:
 
     - name: build-app
-      use: SocialGouv/kube-workflow/jobs/build@master
+      use: SocialGouv/kube-workflow/jobs/build@feat-outputs
       with:
         registrySecretRefName: harbor
         imagePackage: app
 
     - name: build-hasura
-      use: SocialGouv/kube-workflow/jobs/build@master
+      use: SocialGouv/kube-workflow/jobs/build@feat-outputs
       with:
         registrySecretRefName: harbor
         imagePackage: hasura
