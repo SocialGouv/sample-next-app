@@ -50,5 +50,6 @@ jobs:
 
     - name: test-app
       use: SocialGouv/kube-workflow/jobs/test@feat-outputs
+      needs: [build-app]
       with:
         dockerImage: '{{ printf $.outputs.buildApp "DOCKER_IMAGE" }}'
