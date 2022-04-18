@@ -7,5 +7,5 @@ data:
   HASURA_GRAPHQL_ENABLE_CONSOLE: "true"
   HASURA_GRAPHQL_ENABLED_LOG_TYPES: "startup, http-log, webhook-log, websocket-log, query-log"
   HASURA_GRAPHQL_LOG_LEVEL: "debug"
-  HASURA_GRAPHQL_NO_OF_RETRIES: "4"
+  HASURA_GRAPHQL_NO_OF_RETRIES: "5"
   HASURA_GRAPHQL_UNAUTHORIZED_ROLE: "anonymous"
