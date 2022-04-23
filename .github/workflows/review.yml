@@ -17,7 +17,7 @@ jobs:
     name: Build and Deploy application
     runs-on: ubuntu-latest
     steps:
-      - name: Use autodevops deployment
+      - name: Logs kube-workflow pipeline
         uses: SocialGouv/kube-workflow/logs@master
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
