@@ -20,8 +20,6 @@ jobs:
       - name: Use autodevops deployment
         uses: SocialGouv/kube-workflow/logs@master
         with:
-          environment: "dev"
           token: ${{ secrets.GITHUB_TOKEN }}
-          kubeconfig: ${{ secrets.KUBECONFIG }}
-          rancherProjectId: ${{ secrets.RANCHER_PROJECT_ID }}
-          rancherProjectName: ${{ secrets.RANCHER_PROJECT_Name }}
+          kubewebhookToken: ${{ secrets.KUBEWEBHOOK_TOKEN }}
+          rancherProjectName: ${{ secrets.RANCHER_PROJECT_NAME }}
