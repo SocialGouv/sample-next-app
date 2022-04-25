@@ -21,5 +21,5 @@ jobs:
         uses: SocialGouv/kube-workflow/logs@master
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          kubewebhookToken: ${{ secrets.KUBEWEBHOOK_TOKEN }}
+          webhookToken: ${{ secrets.KUBEWEBHOOK_TOKEN }}
           rancherProjectName: ${{ secrets.RANCHER_PROJECT_NAME }}
