@@ -1,10 +1,10 @@
 hasura:
-  needs: [db]
+  needs: [build-hasura,db]
 
 pgweb:
   needs: [db]
 
-jobs:
+jobs-dev:
   enabled: true
   runs:
     - name: db

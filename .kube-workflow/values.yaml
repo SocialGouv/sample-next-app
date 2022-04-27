@@ -1,0 +1,55 @@
+global:
+  registry: harbor.fabrique.social.gouv.fr
+
+app:
+  enabled: true
+  needs: [build-app]
+  imagePackage: app
+  probesPath: /healthz
+  certSecretName: app-crt
+  envFrom:
+    - secretRef:
+        name: "{{ .Values.global.pgSecretName }}"
+    - secretRef:
+        name: app-sealed-secret
+    - configMapRef:
+        name: app-configmap
+
+hasura:
+  enabled: true
+  needs: [build-hasura]
+  # waitForPostgres: true
+  envFrom:
+    - secretRef:
+        name: "{{ .Values.global.pgSecretName }}"
+    - secretRef:
+        name: hasura-sealed-secret
+    - configMapRef:
+        name: hasura-configmap
+
+pgweb:
+  enabled: true
+  certSecretName: pgweb-crt
+
+jobs:
+  enabled: true
+  runs:
+
+    - name: build-app
+      use: SocialGouv/kube-workflow/jobs/build@feat-outputs
+      with:
+        registrySecretRefName: harbor
+        imagePackage: app
+
+    - name: build-hasura
+      use: SocialGouv/kube-workflow/jobs/build@feat-outputs
+      with:
+        registrySecretRefName: harbor
+        imagePackage: hasura
+        context: hasura
+
+    - name: test-app
+      use: SocialGouv/kube-workflow/jobs/test@feat-outputs
+      needs: [build-app]
+      with:
+        dockerImage: '{{ printf $.outputs.buildApp "DOCKER_IMAGE" }}'

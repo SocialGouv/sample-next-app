@@ -1,6 +1,6 @@
 .git
 .github
-.k8s
+.kube-workflow
 *.md
 **/node_modules
 **/.next/cache
