@@ -33,20 +33,17 @@ jobs:
   runs:
 
     - name: build-app
-      use: SocialGouv/kube-workflow/jobs/build@feat-outputs
+      use: SocialGouv/kontinuous-fabrique/jobs/build
       with:
         registrySecretRefName: harbor
         imagePackage: app
 
     - name: build-hasura
-      use: SocialGouv/kube-workflow/jobs/build@feat-outputs
+      use: SocialGouv/kontinuous-fabrique/jobs/build
       with:
         registrySecretRefName: harbor
         imagePackage: hasura
         context: hasura
 
-
-# job-say-hello:
-#   foo: barjo
 
 # keycloak: {}

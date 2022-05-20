@@ -47,7 +47,7 @@ jobs:
     steps:
 
       - name: Use autodevops deployment
-        uses: SocialGouv/kube-workflow@master
+        uses: SocialGouv/kontinuous-fabrique/deploy
         with:
           environment: "preprod"
           token: ${{ secrets.GITHUB_TOKEN }}

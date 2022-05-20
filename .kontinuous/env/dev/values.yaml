@@ -7,6 +7,6 @@ pgweb:
 jobs-dev:
   runs:
     - name: db
-      use: SocialGouv/kube-workflow/jobs/create-db@master
+      use: SocialGouv/kontinuous-fabrique/jobs/create-db@master
       with:
         pgAdminSecretRefName: pg-scaleway

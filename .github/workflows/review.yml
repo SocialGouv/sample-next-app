@@ -40,9 +40,8 @@ jobs:
     runs-on: ubuntu-latest
     needs: [build-app,build-hasura]
     steps:
-      - name: Logs kube-workflow pipeline
-        # uses: SocialGouv/kontinuous@master
-        uses: SocialGouv/kontinuous-fabrique@master
+      - name: kontinuous pipeline
+        uses: SocialGouv/kontinuous-fabrique/deploy
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           webhookToken: ${{ secrets.KUBEWEBHOOK_TOKEN }}

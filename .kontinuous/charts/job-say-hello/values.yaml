@@ -1,9 +1,0 @@
-enabled: false
-namespace:
-repository:
-gitBranch:
-runs: []
-needs: []
-image: "debian:stable"
-degitImage: ghcr.io/socialgouv/kube-workflow/degit:latest
-foo: bar
