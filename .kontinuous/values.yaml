@@ -33,13 +33,13 @@ jobs:
   runs:
 
     - name: build-app
-      use: SocialGouv/kontinuous-fabrique/jobs/build
+      use: SocialGouv/kontinuous-fabrique/jobs/build@master
       with:
         registrySecretRefName: harbor
         imagePackage: app
 
     - name: build-hasura
-      use: SocialGouv/kontinuous-fabrique/jobs/build
+      use: SocialGouv/kontinuous-fabrique/jobs/build@master
       with:
         registrySecretRefName: harbor
         imagePackage: hasura
