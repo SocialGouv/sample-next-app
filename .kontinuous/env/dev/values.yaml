@@ -5,7 +5,6 @@ pgweb:
   needs: [db]
 
 jobs-dev:
-  enabled: true
   runs:
     - name: db
       use: SocialGouv/kube-workflow/jobs/create-db@master

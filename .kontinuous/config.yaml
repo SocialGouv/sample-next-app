@@ -1,0 +1,7 @@
+dependencies:
+  fabrique:
+    import: SocialGouv/kontinuous-fabrique
+    values-compilers:
+      global-defaults:
+        options:
+          foo: bar
