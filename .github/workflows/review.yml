@@ -41,7 +41,7 @@ jobs:
     needs: [build-app,build-hasura]
     steps:
       - name: kontinuous pipeline
-        uses: SocialGouv/kontinuous-fabrique/deploy@master
+        uses: SocialGouv/kontinuous@master
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           webhookToken: ${{ secrets.KUBEWEBHOOK_TOKEN }}

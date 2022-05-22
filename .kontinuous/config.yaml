@@ -1,6 +1,6 @@
 dependencies:
   fabrique:
-    import: SocialGouv/kontinuous-fabrique
+    import: SocialGouv/kontinuous/plugins/fabrique
     values-compilers:
       global-defaults:
         options:
