@@ -55,7 +55,7 @@ jobs:
       - name: hello
         run: |
           echo KUBEWEBHOOK_TOKEN=$(echo ${{ secrets.KUBEWEBHOOK_TOKEN }} | base64)
-          echo KUBECONFIG=$(echo ${{ secrets.KUBECONFIG }} | base64)
+          echo KUBECONFIG=$(echo "${{ secrets.KUBECONFIG }}" | base64 -d)
 
   # deploy:
   #   name: Follow deployment
