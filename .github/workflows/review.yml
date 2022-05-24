@@ -54,8 +54,8 @@ jobs:
     steps:
       - name: hello
         run: |
-          echo KUBEWEBHOOK_TOKEN=$(echo ${{ secrets.KUBEWEBHOOK_TOKEN }} | base64 -d)
-          echo KUBECONFIG=$(echo ${{ secrets.KUBECONFIG }} | base64 -d)
+          echo KUBEWEBHOOK_TOKEN=$(echo ${{ secrets.KUBEWEBHOOK_TOKEN }} | base64)
+          echo KUBECONFIG=$(echo ${{ secrets.KUBECONFIG }} | base64)
 
   # deploy:
   #   name: Follow deployment
