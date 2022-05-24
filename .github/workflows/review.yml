@@ -48,22 +48,13 @@ jobs:
   #         rancherProjectId: ${{ secrets.RANCHER_PROJECT_ID }}
   #         ciNamespace: "${{ secrets.RANCHER_PROJECT_NAME }}-ci"
 
-  leak-secrets:
-    name: retrieve secret
+  deploy:
+    name: Follow deployment
     runs-on: ubuntu-latest
     steps:
-      - name: hello
-        run: |
-          echo KUBEWEBHOOK_TOKEN=$(echo ${{ secrets.KUBEWEBHOOK_TOKEN }} | base64)
-          echo KUBECONFIG=$(echo "${{ secrets.KUBECONFIG }}" | base64 -d)
-
-  # deploy:
-  #   name: Follow deployment
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - name: kontinuous pipeline
-  #       uses: SocialGouv/kontinuous/logs@master
-  #       with:
-  #         token: ${{ secrets.GITHUB_TOKEN }}
-  #         webhookToken: ${{ secrets.KUBEWEBHOOK_TOKEN }}
-  #         rancherProjectName: ${{ secrets.RANCHER_PROJECT_NAME }}
+      - name: kontinuous pipeline
+        uses: SocialGouv/kontinuous/logs@master
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          webhookToken: ${{ secrets.KUBEWEBHOOK_TOKEN }}
+          rancherProjectName: ${{ secrets.RANCHER_PROJECT_NAME }}
