@@ -13,49 +13,48 @@ concurrency:
 
 jobs:
 
-  build-app:
-    name: Build & Register App
-    runs-on: ubuntu-latest
-    steps:
-      - name: Application
-        uses: SocialGouv/actions/autodevops-build-register@v1
-        with:
-          imagePackage: app
-          token: ${{ secrets.GITHUB_TOKEN }}
+  # build-app:
+  #   name: Build & Register App
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Application
+  #       uses: SocialGouv/actions/autodevops-build-register@v1
+  #       with:
+  #         imagePackage: app
+  #         token: ${{ secrets.GITHUB_TOKEN }}
 
-  build-hasura:
-    runs-on: ubuntu-latest
-    name: Build & Register Hasura
-    steps:
-      - name: Hasura
-        uses: SocialGouv/actions/autodevops-build-register@v1
-        with:
-          dockercontext: ./hasura
-          dockerfile: ./hasura/Dockerfile
-          token: ${{ secrets.GITHUB_TOKEN }}
-          imagePackage: hasura
-
-  deploy:
-    name: Deploy application
-    runs-on: ubuntu-latest
-    needs: [build-app,build-hasura]
-    steps:
-      - name: kontinuous pipeline
-        uses: SocialGouv/kontinuous@master
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          kubeconfig: ${{ secrets.KUBECONFIG }}
-          rancherProjectId: ${{ secrets.RANCHER_PROJECT_ID }}
-          ciNamespace: "${{ secrets.RANCHER_PROJECT_NAME }}-ci"
+  # build-hasura:
+  #   runs-on: ubuntu-latest
+  #   name: Build & Register Hasura
+  #   steps:
+  #     - name: Hasura
+  #       uses: SocialGouv/actions/autodevops-build-register@v1
+  #       with:
+  #         dockercontext: ./hasura
+  #         dockerfile: ./hasura/Dockerfile
+  #         token: ${{ secrets.GITHUB_TOKEN }}
+  #         imagePackage: hasura
 
   # deploy:
-  #   name: Follow deployment
+  #   name: Deploy application
   #   runs-on: ubuntu-latest
   #   needs: [build-app,build-hasura]
   #   steps:
   #     - name: kontinuous pipeline
-  #       uses: SocialGouv/kontinuous/logs@master
+  #       uses: SocialGouv/kontinuous@master
   #       with:
   #         token: ${{ secrets.GITHUB_TOKEN }}
-  #         webhookToken: ${{ secrets.KUBEWEBHOOK_TOKEN }}
-  #         rancherProjectName: ${{ secrets.RANCHER_PROJECT_NAME }}
+  #         kubeconfig: ${{ secrets.KUBECONFIG }}
+  #         rancherProjectId: ${{ secrets.RANCHER_PROJECT_ID }}
+  #         ciNamespace: "${{ secrets.RANCHER_PROJECT_NAME }}-ci"
+
+  deploy:
+    name: Follow deployment
+    runs-on: ubuntu-latest
+    steps:
+      - name: kontinuous pipeline
+        uses: SocialGouv/kontinuous/logs@master
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          webhookToken: ${{ secrets.KUBEWEBHOOK_TOKEN }}
+          rancherProjectName: ${{ secrets.RANCHER_PROJECT_NAME }}
