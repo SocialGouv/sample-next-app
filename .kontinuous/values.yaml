@@ -2,7 +2,7 @@ global:
   registry: harbor.fabrique.social.gouv.fr
 
 app:
-  # chart: fabrique.app
+  # chart: fabrique.app # implicit
   needs: [build-app]
   imagePackage: app
   probesPath: /healthz
@@ -17,7 +17,6 @@ app:
 
 hasura:
   needs: [build-hasura]
-  # waitForPostgres: true
   envFrom:
     - secretRef:
         name: "{{ .Values.global.pgSecretName }}"

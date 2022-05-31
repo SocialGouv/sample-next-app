@@ -13,32 +13,9 @@ concurrency:
 
 jobs:
 
-  # build-app:
-  #   name: Build & Register App
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - name: Application
-  #       uses: SocialGouv/actions/autodevops-build-register@v1
-  #       with:
-  #         imagePackage: app
-  #         token: ${{ secrets.GITHUB_TOKEN }}
-
-  # build-hasura:
-  #   runs-on: ubuntu-latest
-  #   name: Build & Register Hasura
-  #   steps:
-  #     - name: Hasura
-  #       uses: SocialGouv/actions/autodevops-build-register@v1
-  #       with:
-  #         dockercontext: ./hasura
-  #         dockerfile: ./hasura/Dockerfile
-  #         token: ${{ secrets.GITHUB_TOKEN }}
-  #         imagePackage: hasura
-
   # deploy:
   #   name: Deploy application
   #   runs-on: ubuntu-latest
-  #   needs: [build-app,build-hasura]
   #   steps:
   #     - name: kontinuous pipeline
   #       uses: SocialGouv/kontinuous@master
