@@ -1,4 +1,9 @@
-import javascript
+/**
+ * @kind problem
+ * @id sync-methods
+ */
+ 
+ import javascript
 
 from CallExpr c
 where c.getCalleeName() = "existsSync" or c.getCalleeName() = "readFileSync"
