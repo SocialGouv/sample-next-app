@@ -1,11 +1,12 @@
 /**
  * @kind problem
  * @id sync-methods
+ * @severity medium
  */
  
- import javascript
+import javascript
 
 from CallExpr c
 where c.getCalleeName() = "existsSync" or c.getCalleeName() = "readFileSync"
-select c, c.getLocation(), "Sync method warning"
+select c, "Sync method warning"
 
