@@ -1,5 +1,4 @@
 name: Review
-
 on:
   push:
     branches-ignore:
@@ -9,33 +8,9 @@ on:
 
 concurrency:
   cancel-in-progress: true
-  group: ${{ github.ref }}
+  group: review-${{ github.ref }}
 
 jobs:
-
-  # deploy:
-  #   name: Deploy application
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - name: kontinuous pipeline
-  #       uses: SocialGouv/kontinuous@master
-  #       with:
-  #         token: ${{ secrets.GITHUB_TOKEN }}
-  #         kubeconfig: ${{ secrets.KUBECONFIG }}
-  #         rancherProjectId: ${{ secrets.RANCHER_PROJECT_ID }}
-  #         ciNamespace: "${{ secrets.RANCHER_PROJECT_NAME }}-ci"
-
-  # deploy:
-  #   name: Follow deployment
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - name: kontinuous pipeline
-  #       uses: SocialGouv/kontinuous/logs@master
-  #       with:
-  #         token: ${{ secrets.GITHUB_TOKEN }}
-  #         webhookToken: ${{ secrets.KUBEWEBHOOK_TOKEN }}
-  #         webhookUri: https://webhook-${{ secrets.RANCHER_PROJECT_NAME }}.fabrique.social.gouv.fr
-
   follow-deployment:
     uses: SocialGouv/kontinuous/.github/workflows/workflow-logs.yaml@master
     secrets: inherit
