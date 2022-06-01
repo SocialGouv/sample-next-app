@@ -1,7 +1,7 @@
 /**
  * @kind problem
  * @id sync-methods
- * @severity medium
+ * @problem.severity warning
  */
  
 import javascript
