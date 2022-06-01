@@ -34,4 +34,4 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           webhookToken: ${{ secrets.KUBEWEBHOOK_TOKEN }}
-          rancherProjectName: ${{ secrets.RANCHER_PROJECT_NAME }}
+          webhookUri: https://webhook-${{ secrets.RANCHER_PROJECT_NAME }}.fabrique.social.gouv.fr
