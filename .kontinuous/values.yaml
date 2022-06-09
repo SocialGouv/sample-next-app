@@ -30,19 +30,20 @@ pgweb:
 
 jobs:
   runs:
-
-    - name: build-app
+    build-app:
       use: SocialGouv/kontinuous/plugins/fabrique/jobs/build@master
       with:
         registrySecretRefName: harbor
         imagePackage: app
 
-    - name: build-hasura
+    build-hasura:
       use: SocialGouv/kontinuous/plugins/fabrique/jobs/build@master
       with:
         registrySecretRefName: harbor
         imagePackage: hasura
         context: hasura
 
+
+secrets: {}
 
 # keycloak: {}

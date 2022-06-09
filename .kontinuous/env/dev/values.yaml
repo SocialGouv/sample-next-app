@@ -6,7 +6,16 @@ pgweb:
 
 jobs-dev:
   runs:
-    - name: db
+    db:
       use: SocialGouv/kontinuous/plugins/fabrique/jobs/create-db@master
+      with:
+        pgAdminSecretRefName: pg-scaleway
+
+jobs-deactivate:
+  enabled: false
+  runs:
+    drop-db:
+      # use: SocialGouv/kontinuous/plugins/fabrique/jobs/deactivate@master
+      use: SocialGouv/kontinuous/plugins/fabrique/jobs/drop-db@master
       with:
         pgAdminSecretRefName: pg-scaleway
