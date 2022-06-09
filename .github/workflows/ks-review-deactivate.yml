@@ -1,0 +1,13 @@
+name: Review Deactivate
+on:
+  pull_request:
+    types: [closed]
+
+concurrency:
+  cancel-in-progress: true
+  group: review-deactivate-${{ github.ref }}
+
+jobs:
+  follow-deactivation:
+    uses: SocialGouv/kontinuous/.github/workflows/workflow-logs.yaml@master
+    secrets: inherit

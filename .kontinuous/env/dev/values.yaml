@@ -14,8 +14,7 @@ jobs-dev:
 jobs-deactivate:
   enabled: false
   runs:
-    drop-db:
-      # use: SocialGouv/kontinuous/plugins/fabrique/jobs/deactivate@master
-      use: SocialGouv/kontinuous/plugins/fabrique/jobs/drop-db@master
+    deactivate:
+      use: SocialGouv/kontinuous/plugins/fabrique/jobs/deactivate
       with:
         pgAdminSecretRefName: pg-scaleway
