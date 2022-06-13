@@ -1,3 +1,10 @@
+## [3.7.3](https://github.com/SocialGouv/sample-next-app/compare/v3.7.2...v3.7.3) (2022-06-13)
+
+
+### Bug Fixes
+
+* force renew ssl ([d60e61f](https://github.com/SocialGouv/sample-next-app/commit/d60e61fc5344db875ffb8e2544b1bf072dafd926))
+
 ## [3.7.2](https://github.com/SocialGouv/sample-next-app/compare/v3.7.1...v3.7.2) (2022-03-15)
 
 
