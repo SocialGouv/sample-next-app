@@ -2,6 +2,8 @@
 
 https://sample-next-app.fabrique.social.gouv.Fr
 
+## :warning: deprecated : use [SocialGouv/template](https://github.com/SocialGouv/template)
+
 A sample SSR Next.js app with :
 
 - ✅ sentry
