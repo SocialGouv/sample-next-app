@@ -2,7 +2,8 @@ projectName: sample-next-app
 
 dependencies:
   fabrique:
-    import: SocialGouv/kontinuous/plugins/fabrique
+    # import: SocialGouv/kontinuous/plugins/fabrique
+    import: SocialGouv/kontinuous/plugins/fabrique@next
     # values-compilers:
     #   global-defaults:
     #     options:
