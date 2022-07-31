@@ -11,10 +11,10 @@ jobs-dev:
       with:
         pgAdminSecretRefName: pg-scaleway
 
-jobs-deactivate:
-  enabled: false
-  runs:
-    deactivate:
-      use: SocialGouv/kontinuous/plugins/fabrique/jobs/deactivate
-      with:
-        pgAdminSecretRefName: pg-scaleway
+# jobs-deactivate:
+#   enabled: false
+#   runs:
+#     deactivate:
+#       use: SocialGouv/kontinuous/plugins/fabrique/jobs/deactivate
+#       with:
+#         pgAdminSecretRefName: pg-scaleway

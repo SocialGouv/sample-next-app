@@ -8,5 +8,3 @@ dependencies:
     #     options:
     #       foo: bar
 
-webhook:
-  uri: https://webhook-sample-next-app.fabrique.social.gouv.fr
