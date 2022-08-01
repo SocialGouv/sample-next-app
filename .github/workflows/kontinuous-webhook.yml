@@ -9,6 +9,5 @@ concurrency:
 
 jobs:
   stream-webhook:
-    # uses: SocialGouv/kontinuous/.github/workflows/workflow-webhook.yaml@v1
-    uses: SocialGouv/kontinuous/.github/workflows/workflow-webhook.yaml@next
+    uses: SocialGouv/kontinuous/.github/workflows/workflow-webhook.yaml@v1
     secrets: inherit
