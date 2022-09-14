@@ -1,6 +1,6 @@
 .git
 .github
-.k8s
+.kontinuous
 *.md
 **/node_modules
 **/.next/cache

@@ -1,0 +1,20 @@
+hasura:
+  ~needs: [build-hasura,db]
+
+pgweb:
+  ~needs: [db]
+
+jobs-dev:
+  runs:
+    db:
+      use: create-db
+      with:
+        pgAdminSecretRefName: pg-scaleway
+
+# jobs-deactivate:
+#   enabled: false
+#   runs:
+#     deactivate:
+#       use: SocialGouv/kontinuous/plugins/fabrique/jobs/deactivate
+#       with:
+#         pgAdminSecretRefName: pg-scaleway

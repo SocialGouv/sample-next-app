@@ -1,0 +1,10 @@
+projectName: sample-next-app
+
+dependencies:
+  fabrique:
+    import: SocialGouv/kontinuous/plugins/fabrique
+    # values-compilers:
+    #   global-defaults:
+    #     options:
+    #       foo: bar
+

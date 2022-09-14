@@ -1,5 +1,9 @@
+global:
+  registry: harbor.fabrique.social.gouv.fr
+
 app:
-  enabled: true
+  # chart: fabrique.app # implicit
+  ~needs: [build-app]
   imagePackage: app
   probesPath: /healthz
   certSecretName: app-crt
@@ -12,8 +16,7 @@ app:
         name: app-configmap
 
 hasura:
-  enabled: true
-  # waitForPostgres: true
+  ~needs: [build-hasura]
   envFrom:
     - secretRef:
         name: "{{ .Values.global.pgSecretName }}"
@@ -23,5 +26,24 @@ hasura:
         name: hasura-configmap
 
 pgweb:
-  enabled: true
   certSecretName: pgweb-crt
+
+jobs:
+  runs:
+    build-app:
+      use: build
+      with:
+        registrySecretRefName: harbor
+        imagePackage: app
+
+    build-hasura:
+      use: build
+      with:
+        registrySecretRefName: harbor
+        imagePackage: hasura
+        context: hasura
+
+
+secrets: {}
+
+# keycloak: {}
