@@ -7,7 +7,7 @@ pgweb:
 jobs-dev:
   runs:
     db:
-      use: SocialGouv/kontinuous/plugins/fabrique/jobs/create-db@master
+      use: create-db
       with:
         pgAdminSecretRefName: pg-scaleway
 

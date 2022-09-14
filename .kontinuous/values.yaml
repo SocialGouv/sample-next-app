@@ -31,13 +31,13 @@ pgweb:
 jobs:
   runs:
     build-app:
-      use: SocialGouv/kontinuous/plugins/fabrique/jobs/build@master
+      use: build
       with:
         registrySecretRefName: harbor
         imagePackage: app
 
     build-hasura:
-      use: SocialGouv/kontinuous/plugins/fabrique/jobs/build@master
+      use: build
       with:
         registrySecretRefName: harbor
         imagePackage: hasura
