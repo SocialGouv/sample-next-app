@@ -3,7 +3,7 @@ global:
 
 app:
   # chart: fabrique.app # implicit
-  needs: [build-app]
+  ~needs: [build-app]
   imagePackage: app
   probesPath: /healthz
   certSecretName: app-crt
@@ -16,7 +16,7 @@ app:
         name: app-configmap
 
 hasura:
-  needs: [build-hasura]
+  ~needs: [build-hasura]
   envFrom:
     - secretRef:
         name: "{{ .Values.global.pgSecretName }}"

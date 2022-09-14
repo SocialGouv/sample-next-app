@@ -1,8 +1,8 @@
 hasura:
-  needs: [build-hasura,db]
+  ~needs: [build-hasura,db]
 
 pgweb:
-  needs: [db]
+  ~needs: [db]
 
 jobs-dev:
   runs:
