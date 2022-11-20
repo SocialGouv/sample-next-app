@@ -1,4 +1,4 @@
-FROM hasura/graphql-engine:v2.0.10
+FROM hasura/graphql-engine:v2.15.1
 
 ENV HASURA_GRAPHQL_ENABLE_TELEMETRY false
 
