@@ -24,7 +24,7 @@
     "graphql": "^15.5.3",
     "graphql-request": "^3.5.0",
     "http-proxy-middleware": "^2.0.1",
-    "jsonwebtoken": "^8.5.1",
+    "jsonwebtoken": "^9.0.0",
     "next": "^11.0.1",
     "next-urql": "^3.2.1",
     "nodemailer": "^6.6.5",
